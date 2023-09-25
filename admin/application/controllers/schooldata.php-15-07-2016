@@ -1,0 +1,278 @@
+<?php
+
+class Schooldata extends CI_Controller {
+
+		//============Constructor to call Model====================
+
+		function __construct() {
+
+			parent::__construct();
+
+			$this->load->model('school_model');
+
+		}
+
+		//============Constructor to call Model====================
+
+		function index(){
+
+			if($this->session->userdata('is_logged_in')){ 
+
+			$data['title'] = "Add Individual";
+
+			//$this->load->view('header',$data);
+
+			//$this->load->helper(array('form'));
+
+			//$this->load->view('individualadd_view');
+
+			//$this->load->view('footer');
+
+			}else{
+
+               redirect('login');
+
+
+
+            }
+
+		}
+
+		
+
+		public function is_logged_in(){
+
+        header("cache-Control: no-store, no-cache, must-revalidate");
+
+        header("cache-Control: post-check=0, pre-check=0", false);
+
+        header("Pragma: no-cache");
+
+        //header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+        $is_logged_in = $this->session->userdata('logged_in');
+
+        
+
+        if(!isset($is_logged_in) || $is_logged_in!==TRUE){
+
+            redirect('main');
+
+        }
+
+    }
+
+		//=======================Insert Individual Data============
+
+		function add_instructional_facilities(){
+
+			$this->form_validation->set_rules('school_name', 'School Data', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+
+			 $data['title'] = "Add Instructional Facilities ";
+
+			//exit();
+
+			$this->load->view('header',$data);
+
+			$this->load->view('page_user_profile');
+
+			$this->load->view('footer');
+
+			}else {
+
+			//Setting values for tabel columns
+
+			$data = array(
+
+				'ind_id' => $this->input->post('ind_id'),
+
+				'school_name' => $this->input->post('school_name'),
+
+				'school_bulletin' => $this->input->post('school_bulletin'),
+
+				'teacher' => $this->input->post('teacher'),
+
+				'address' => $this->input->post('address'),
+
+				'pnone_no' => $this->input->post('pnone_no'),
+
+				'email' => $this->input->post('email'),
+
+				'mobile' => $this->input->post('mobile'),
+
+				'ip_address' => $this->input->post('ip_address'),
+
+				'websites' => $this->input->post('websites'),
+
+				'domain_name' => $this->input->post('domain_name'),
+
+				'url' => $this->input->post('url'),
+
+				'school_information' => $this->input->post('school_information'),
+
+				'schoolprogram_information' => $this->input->post('schoolprogram_information'),
+
+				'schoolwebsite' => $this->input->post('schoolwebsite'),
+
+				'programs_div' => $this->input->post('programs_div'),
+
+				'status' => 1
+
+			);
+
+			
+
+			//Transfering data to Model
+
+			$this->school_model->insert_instructional_facilities($data);
+
+			$data1['message'] = 'Data Inserted Successfully';
+
+			redirect('userprofile/show_user/'.$this->input->post('ind_id').'/sfad');
+
+			
+
+			}
+
+		}
+
+		//=======================Insert Individual Data============ 
+
+  		
+
+		/*  -------------------------------Akash-6-4-16 starts -------------------------     */
+
+		
+
+		/*  -------------------------------Insert-school_course starts -------------------------     */
+
+		function add_school_course(){
+
+			$this->form_validation->set_rules('instructor','required');
+
+			if ($this->form_validation->run() == FALSE) {
+
+			 $data['title'] = "Add Instructional Facilities ";
+
+			//exit();
+
+			$this->load->view('header',$data);
+
+			$this->load->view('page_user_profile');
+
+			$this->load->view('footer');
+
+			}else {
+
+			//Setting values for tabel columns
+
+			$data = array(
+
+				'ind_id' => $this->input->post('ind_id'),
+
+				'instructor' => $this->input->post('instructor'),
+
+				'description' => $this->input->post('description'),
+
+				'schedule' => date('y-m-d',strtotime($this->input->post('schedule'))),
+
+				'facilities' => $this->input->post('facilities'),
+
+				'status' => 1
+
+			);
+
+			
+
+			//Transfering data to Model
+
+			$this->school_model->insert_school_course($data);
+
+			$data1['message'] = 'Data Inserted Successfully';
+
+			redirect('userprofile/show_user/'.$this->input->post('ind_id').'/sfad');
+
+			
+
+			}
+
+		}
+
+				/*  -------------------------------Insert-school_course ends -------------------------     */
+
+				
+
+				/*  -------------------------------Insert-school_course starts -------------------------     */
+
+		function add_school_lect(){
+
+			$this->form_validation->set_rules('instructor','required');
+
+			if ($this->form_validation->run() == FALSE) {
+
+			 $data['title'] = "Add Instructional Facilities ";
+
+			//exit();
+
+			$this->load->view('header',$data);
+
+			$this->load->view('page_user_profile');
+
+			$this->load->view('footer');
+
+			}else {
+
+			//Setting values for tabel columns
+
+			$data = array(
+
+				'ind_id' => $this->input->post('ind_id'),
+
+				'video' => $this->input->post('video'),
+
+				'camera' => $this->input->post('camera'),
+
+				'status' => 1
+
+			);
+
+			
+
+			//Transfering data to Model
+
+			$this->school_model->insert_school_lect($data);
+
+			$data1['message'] = 'Data Inserted Successfully';
+
+			redirect('userprofile/show_user/'.$this->input->post('ind_id').'/sfad');
+
+			
+
+			}
+
+		}
+
+				/*  -------------------------------Insert-school_course ends -------------------------     */
+
+
+
+		
+
+		/*  -------------------------------Akash-6-4-16 starts -------------------------     */
+
+		
+
+		
+
+		
+
+}
+
+
+
+?>
+
+
+

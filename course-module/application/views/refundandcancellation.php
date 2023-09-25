@@ -1,0 +1,43 @@
+        <div class="inner-banner">
+            <div class="blue-banenr">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="inner-hd-banenr">
+                                Refund Policies
+                            </div>
+                            <div class="badecame">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li>Refund Policies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <section class="terms-conditions-page">
+                <div class="container">
+                   <div class="row">
+                         <div class="col-md-7">
+                           <div class="terms-conditions-left">
+                       <h1>Refund Policies</h1>
+                       
+                            <?php foreach($cms as $rc) {?>
+            					<?php echo $rc->description ?>
+                            <?php }?>
+                                     
+                       </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="terms-conditions-right">
+                              <div class="privacy-policy-inn">
+                                  <figure><img src="<?=base_url();?>user_panel/new/images/refund-policies.jpg" alt=""></figure>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>

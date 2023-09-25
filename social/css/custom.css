@@ -1,0 +1,38 @@
+/*=================
+    Webfonts
+======================*/
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,700,900,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
+@font-face {
+  font-family: 'softelegance';
+  src: url('../fonts/softelegance.woff2') format('woff2'),
+       url('../fonts/softelegance.woff') format('woff'),
+       url('../fonts/softelegance.ttf') format('truetype');
+}
+
+
+/*====================
+    Resets
+========================*/
+header {
+    overflow: hidden;
+}
+
+section {
+    padding:3em 0;
+}
+
+.block-header h2 {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    box-shadow: 0 3px 4px #ccc;
+    padding: 5px 20px;
+    color: #23232f !important;
+}
+
+
+
+
+  

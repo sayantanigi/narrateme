@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^listings/([a-z]*)/?$ /page.php  [NC,QSA,L]
+RewriteRule ^pages/[a-zA-Z]*$ page.php  [NC]

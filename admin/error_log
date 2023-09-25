@@ -1,0 +1,2 @@
+[12-Jul-2016 06:52:00 UTC] PHP Fatal error:  Call to undefined method Individual_model::show_school_data() in /home/goigime/public_html/site/narrateme/admin/application/controllers/userprofile.php on line 584
+[12-Jul-2016 06:52:11 UTC] PHP Fatal error:  Call to undefined method Individual_model::show_school_data() in /home/goigime/public_html/site/narrateme/admin/application/controllers/userprofile.php on line 584

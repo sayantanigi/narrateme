@@ -1,0 +1,373 @@
+@-webkit-keyframes transform-rotate {
+0% {
+   -webkit-transform: rotate(0deg);
+}
+100% {
+   -webkit-transform: rotate(359deg);
+}
+}
+@-moz-keyframes transform-rotate {
+0% {
+   -moz-transform: rotate(0deg);
+}
+100% {
+   -moz-transform: rotate(359deg);
+}
+}
+@-o-keyframes transform-rotate {
+0% {
+   -o-transform: rotate(0deg);
+}
+100% {
+   -o-transform: rotate(359deg);
+}
+}
+@-ms-keyframes transform-rotate {
+0% {
+   -ms-transform: rotate(0deg);
+}
+100% {
+   -ms-transform: rotate(359deg);
+}
+}
+@keyframes transform-rotate {
+0% {
+   transform: rotate(0deg);
+}
+100% {
+   transform: rotate(359deg);
+}
+}
+a {
+   color: #0000FF;
+   text-decoration: underline;
+}
+a:visited {
+   color: #800080;
+}
+a:active {
+   color: #FF0000;
+}
+a:hover {
+   color: #0000FF;
+   text-decoration: underline;
+}
+a.igi-link {
+   -moz-transition: all 300ms linear;
+   -webkit-transition: all 300ms linear;
+   color: #FFFFFF;
+   display: inline-block;
+   position: relative;
+   text-decoration: none;
+   transition: all 300ms linear;
+}
+a.igi-link::after {
+   -moz-transition: all 300ms linear;
+   -webkit-transition: all 300ms linear;
+   background: transparent;
+   content: "";
+   display: block;
+   height: 2px;
+   margin-top: 2px;
+   transition: all 300ms linear;
+   width: 0;
+}
+a.igi-link:hover::after {
+   background: #FFC05A;
+   width: 100%;
+}
+a.igi-link:visited {
+   color: #FFFFFF;
+   text-decoration: none;
+}
+a.igi-link:active {
+   color: #FFFFFF;
+   text-decoration: none;
+}
+a.igi-link:hover {
+   color: #FFC05A;
+   text-decoration: none;
+}
+a.link-foo-ha {
+   -moz-transition: all 300ms linear;
+   -webkit-transition: all 300ms linear;
+   color: #D18C13;
+   display: inline-block;
+   position: relative;
+   text-decoration: none;
+   transition: all 300ms linear;
+}
+a.link-foo-ha::after {
+   -moz-transform: translateY(10px);
+   -moz-transition: all 300ms linear;
+   -webkit-transform: translateY(10px);
+   -webkit-transition: all 300ms linear;
+   background: #F5F5F5;
+   background: transparent;
+   content: "";
+   display: block;
+   height: 2px;
+   left: 0;
+   margin-top: 2px;
+   opacity: 0;
+   position: absolute;
+   top: 100%;
+   transform: translateY(10px);
+   transition: all 300ms linear;
+   width: 100%;
+}
+a.link-foo-ha:hover::after {
+   -moz-transform: translateY(0px);
+   -webkit-transform: translateY(0px);
+   background: #F5F5F5;
+   opacity: 1;
+   transform: translateY(0px);
+}
+a.link-foo-ha:visited {
+   color: #D18C13;
+   text-decoration: none;
+}
+a.link-foo-ha:active {
+   color: #D18C13;
+   text-decoration: none;
+}
+a.link-foo-ha:hover {
+   color: #F5F5F5;
+   text-decoration: none;
+}
+h1 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 32px;
+   font-style: normal;
+   font-weight: bold;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+h2 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 27px;
+   font-style: normal;
+   font-weight: bold;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+h3 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 24px;
+   font-style: normal;
+   font-weight: normal;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+h4 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 21px;
+   font-style: italic;
+   font-weight: normal;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+h5 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 19px;
+   font-style: normal;
+   font-weight: normal;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+h6 {
+   background-color: transparent;
+   color: #000000;
+   display: inline;
+   font-family: Arial;
+   font-size: 16px;
+   font-style: normal;
+   font-weight: normal;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   text-decoration: none;
+}
+.CustomStyle {
+   background-color: transparent;
+   color: #000080;
+   font-family: "Courier New";
+   font-size: 16px;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+}
+.B1 {
+   background-color: transparent;
+   color: #FFFFFF;
+   font-family: Roboto;
+   font-size: 64px;
+   font-style: normal;
+   font-weight: normal;
+   text-align: center;
+   text-decoration: none;
+}
+.banner {
+   background-color: transparent;
+   color: #FDCD78;
+   font-family: Roboto;
+   font-size: 29px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.Item-Head {
+   background-color: transparent;
+   color: #FFFFFF;
+   font-family: Roboto;
+   font-size: 24px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.Para-style {
+   background-color: transparent;
+   color: #000000;
+   font-family: Roboto;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.Item-Head_dark {
+   background-color: transparent;
+   color: #696969;
+   font-family: Roboto;
+   font-size: 24px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.foo-text {
+   background-color: transparent;
+   color: #FFFFFF;
+   font-family: Roboto;
+   font-size: 13px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.effect {
+   background-color: transparent;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.effect:hover {
+   -moz-animation-delay: 0ms;
+   -moz-animation-direction: alternate;
+   -moz-animation-duration: 500ms;
+   -moz-animation-fill-mode: backwards;
+   -moz-animation-iteration-count: 1;
+   -moz-animation-name: transform-rotate;
+   -moz-animation-timing-function: linear;
+   -webkit-animation-delay: 0ms;
+   -webkit-animation-direction: alternate;
+   -webkit-animation-duration: 500ms;
+   -webkit-animation-fill-mode: backwards;
+   -webkit-animation-iteration-count: 1;
+   -webkit-animation-name: transform-rotate;
+   -webkit-animation-timing-function: linear;
+   animation-delay: 0ms;
+   animation-direction: alternate;
+   animation-duration: 500ms;
+   animation-fill-mode: backwards;
+   animation-iteration-count: 1;
+   animation-name: transform-rotate;
+   animation-timing-function: linear;
+   background-color: transparent;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.top-text {
+   background-color: transparent;
+   color: #D18C13;
+   font-family: Roboto;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.Buttn {
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   background-color: transparent;
+   border: 2px #D18C13 solid;
+   border-radius: 2px;
+   color: #D18C13;
+   font-family: Roboto;
+   font-size: 19px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+.Buttn:hover {
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   background-color: #D18C13;
+   border: 2px #D18C13 solid;
+   border-radius: 2px;
+   color: #FFFFFF;
+   font-family: Roboto;
+   font-size: 19px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.top-text {
+   background-color: transparent;
+   color: #D18C13;
+   font-family: Roboto;
+   font-size: 13px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+}
+@media only screen and (max-width: 479px) {
+.B1 {
+   background-color: transparent;
+   color: #FFFFFF;
+   font-family: Roboto;
+   font-size: 43px;
+   font-style: normal;
+   font-weight: normal;
+   text-align: center;
+   text-decoration: none;
+}
+.top-text {
+   background-color: transparent;
+   color: #D18C13;
+   font-family: Roboto;
+   font-size: 13px;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+}
+}

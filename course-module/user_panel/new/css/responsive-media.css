@@ -1,0 +1,2806 @@
+@media (min-width:1200px){
+     .container{max-width: 1604px;}
+     .misson-section-inn .container {  max-width: 1440px; }
+    .who-we-areDiv .container { max-width: 1440px; }
+    .team_Section .container { max-width: 1440px; }
+    .getIn-touch .container { max-width: 1410px; }
+    .our-training-section .container { max-width: 1335px; }
+    .our-instructors-sec .container { max-width: 1440px; }
+}
+
+@media(max-width:1600px){
+  .visa-advisorContent { padding: 50px 60px 50px 110px; }
+  .visa-advisor-section .invert-div .visa-advisorContent { padding: 50px 50px 50px 50px; }
+  .menu-bar { padding: 10px 10px 0 0; }
+
+}
+@media (max-width:1499px){   
+.search-detail {
+    margin: 0 16px 0 0;
+}
+.menuTop {
+    padding: 4px 0 0 30px;
+}
+
+.ab-img {
+    margin-left: -40px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 16px;
+}
+.courses-view ul li {
+    padding: 25px 24px;
+}
+.courses-view-other ul li {
+    padding: 25px 13px;
+}
+.totalHours-col span.amount-price {
+    font-size: 14px;
+    margin: 0 0 0 12px;
+}
+.price-col span.amount-price{
+    font-size: 14px;
+    margin: 0 0 0 12px;
+}
+
+.empower-heaing h1 {
+    font-size: 28px;
+}
+.corportate-inner h4 {
+    font-size: 16px;
+    background-size: 50px;
+}
+.corportate-title {
+    height: 340px;
+    width: 340px;
+}
+.corportate-title::before {
+    height: 369px;
+    width: 369px;
+}
+.corportate-title h3 {
+    font-size: 22px;
+    line-height: 30px;
+}
+.corportate-inner:After {
+    width: 468px;
+    height: 334px;
+    background-size: 468px;
+}
+.padding-right h4 {
+    padding-right: 60px;
+
+}
+.staff-col-1 {
+    bottom: 88px;
+    left: -139px;
+}
+.staff-col-2 {
+    top: 158px;
+    left: -220px;
+}
+.staff-col-3 {
+    top: 38px;
+    left: -322px;
+}
+.staff-col-4 {
+    top: -43px;
+    left: -86px;
+}
+.padding-left h4{background-size: 50px;    padding-left: 60px;background-position: 0 4px;
+    position: relative;}
+.staff-col-5.padding-left h4 {
+    padding-left: 70px;
+}
+.staff-col-5 {
+    top: -45px;
+    left: 320px;
+    right: auto;
+    width: 300px;
+}
+.staff-col-6 {
+    top: 48px;
+    left: 419px;
+    right: auto;
+    width: 300px;
+}
+.staff-col-7 {
+    top: 152px;
+    left: 451px;
+    right: auto;
+    width: 300px;
+}
+.staff-col-8 {
+    bottom: 88px;
+    left: 434px;
+    right: auto;
+    width: 300px;
+}
+.corportate-inner {
+    height: 359px;
+}
+/*--------------- blog page --------------*/
+.blog-image { padding-left: 0; }
+.faq-left-content { padding-right: 30px; padding-left: 70px; }
+.faq-detail-col { padding: 0 55px; }
+
+.news-detail-right { padding: 55px 34px 30px 20px;}
+
+
+.training-box { padding: 40px 0 0; }
+.visa-ticket-details { max-width: 790px; padding: 0 15px 0 15px; }
+.visa-ticket-details p { padding-right: 70px; }
+.visa-content img { width: 50px; }
+.visa-content { padding: 0 0 0 61px; }
+.visa-col-part { padding: 50px 0 65px;}
+
+}
+@media (max-width:1399px){
+.navbar-collapse ul li a {
+    font-size: 14px;
+}
+.navbar-collapse .menu-top-menu-container > ul > li {
+    padding: 0 8px;
+}
+
+
+
+.slider-banner .carousel-indicators {
+    margin-right: 4%;
+    margin-left: 4%;
+    bottom: 0;
+}
+
+.menuTop {
+    padding: 4px 0 0 16px;
+}
+.menuTop ul li:after {
+    content: "|";
+    padding: 0px 6px;
+}
+
+/*---------New------------*/
+.about-info p {
+    padding: 0px 0 19px;
+}
+.both-bt a.button-default {
+    margin: 0 3px;
+    min-width: 126px;
+}
+.newsletter-part p {
+    font-size: 20px;
+}
+.newsletter-part h3 {
+    font-size: 30px;
+}
+.newsletter-part span {
+    font-size: 22px;
+}
+.structure-content {
+    padding: 0px 70px 0 0;
+}
+.structure-content h3 {
+    font-size: 32px
+}
+.ab-img {
+    margin-left: -10px;
+}
+.hd-bt h3 {
+    font-size: 18px;
+}
+
+.microWords-col { padding: 0 0;}
+.events-sectionsInn ul { margin: 0 0;}
+
+
+/* -----------contact page responsive--------- */
+.form-title {
+    padding: 0 0 20px;
+}
+.form-title h2 {
+    font-size: 30px;
+}
+.main-form-div {
+    padding-left: 0;
+}
+.about-location {
+    padding: 0 15px;
+}
+.contact-info-outer {
+    padding: 11px;
+    width: 100%;
+}
+
+/*------------------ faq page --------------*/
+.faq-left-content { padding: 50px 30px 50px 50px; }
+.faq-detail-col { padding: 0 0; }
+.business-developr-USE-row { padding: 85px 0 15px; }
+
+
+.service-inn-page { padding-top: 80px;    padding-bottom: 50px; }
+.training-box-dtl h4 { font-size: 20px;}
+.visa-content h4 { font-size: 18px;}
+.visa-ticket-details p { padding-right: 0;     margin: 0 0 15px;}
+.visa-list li { margin: 0 0 10px; }
+.travel-box-1 figcaption h5 { margin: 0 0 0; font-size: 18px; }
+.travel-box-1 figcaption { min-height: 90px; }
+
+}
+
+@media (max-width:1299px){
+.flag-cty {
+    padding: 0 10px 0 0px;
+    font-size: 14px;
+}
+.book-appointment .button-default {
+    font-size: 14px;
+}
+.menu-bar {
+    padding: 8px 10px 0 0;
+}
+.hd-banner {
+    font-size: 30px;
+    padding: 0 0 20px;
+}
+
+
+.social-icon ul li {
+    margin: 0px 0 0 4px;
+}
+.navbar-collapse .menu-top-menu-container > ul > li {
+    padding: 0 6px;
+}
+
+
+.structure-content a.button-default {
+    margin: 15px 14px 0px 0px;
+    padding: 16px 10px 18px;
+    min-width: 202px;
+}
+.heading-md {
+    font-size: 32px;
+}
+.totalHours-col span.amount-price {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+.price-col span.amount-price {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+.totalHours-col p {
+    font-size: 14px;
+}
+.courses-view-other ul li {
+    padding: 25px 12px;
+}
+.courses-view ul li {
+    padding: 25px 24px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 14px;
+}
+
+.formExpert {  width: 1008px;padding: 42px 150px 45px;}
+.expert-boxes {padding: 25px 0 0;}
+.expert-dtl {
+    padding: 0 0;
+}
+.participantReviews {
+    width: 1150px;
+}
+/*------------ faq page -------------*/
+.faq-detail-col { padding: 0 0; }
+.faq-page .tabing-col .nav-tabs .nav-link { font-size: 16px; }
+.faq-page .tabing-col .nav-tabs .nav-item { min-width: 130px;margin: 0 5px; }
+.faq-page .faq-accordion { padding: 0 0; }
+.top-stracture ul li a { font-size: 15px; }
+.top-stracture ul li { padding: 0 8px;}
+.news-detail-right { padding: 25px 0 30px 0; }
+.business-developr-USE-row .invert .business-developr-USE-left { padding-left: 40px; }
+.visa-advisorContent { padding: 50px 40px 50px 40px; }
+
+.training-box-dtl h4 { font-size: 18px; }
+
+
+}
+
+@media (max-width:1199px){
+ .container {max-width: 100%;  }
+ .header-menu {
+    padding-right: 54px;
+}
+.menuTop {
+    display: none;
+}
+
+ul.topNav {
+    display: block !important;
+}
+.collapse.show ul.topNav >li {
+    border-top: solid 1px #5054dc;
+}
+.about-info p {
+    font-size: 16px;
+}
+.about-info h1 {
+    font-size: 30px;
+}
+.heading-md {
+    padding: 0 0 16px;
+    font-size: 32px;
+}
+.title-center p {
+    font-size: 18px;
+}
+
+
+.contactUs-add {
+    padding: 0 1px 0 20px;
+}
+.footer-social span {
+    margin: 0 13px 0 0;
+    font-size: 16px;
+}
+.footer-social a {
+    margin: 0 1px 0 0;
+}
+
+
+
+#back-top-wrapper {
+    right: 14px;
+    bottom: 40px;
+}
+.footer-section {
+    padding: 40px 0 30px;
+}
+
+.structure-img {
+    width: 100%;
+}
+.structure-content {
+    padding: 0 26px 0 0;
+}
+.structure-content h3 {
+    font-size: 28px;
+}
+.structure-content p {
+    font-size: 16px;
+}
+.structure-content a.button-default {
+    margin: 15px 12px 0px 0px;
+    padding: 16px 10px 18px;
+    min-width: 170px;
+    font-size: 16px;
+}
+.menu-footer-menu-container ul li {
+    font-size: 16px;
+}
+
+
+.about-section {
+    padding: 78px 0px;
+}
+
+
+.hd-menu {
+    font-size: 20px;
+    line-height: normal;
+}
+
+.heading-md {
+    font-size: 28px;
+}
+.title-center p {
+    font-size: 16px;
+}
+
+
+.inquiryNow a.button-default {
+    font-size: 15px;
+    width: 180px;
+}
+
+.hd-banner {
+    font-size: 38px;
+}
+
+
+.slider-banner .carousel-indicators li {
+    width: 13px;
+    height: 13px;
+}
+
+
+
+.top-logo {
+    width: 195px;
+}
+
+
+
+
+
+
+div#myNavbar.collapse.show .top-logo {
+    display: block !important;
+    width: 260px;
+    padding: 0 0 24px 16px;
+}
+
+
+/*-----------new------------*/
+.right-header {
+    padding: 4px 0 0;
+}
+.about-info span {
+    font-size: 18px;
+}
+.ab-img {
+    margin-left: 0px;
+}
+.about-section a.button-default {
+    margin: 15px 8px 0px 0px;
+    padding: 12px 16px 14px;
+    min-width: 155px;
+    font-size: 15px;
+}
+.corporate-training ul li a {
+    font-size: 14px;
+    padding: 6px 18px;
+}
+.latest-heading h3 {
+    margin: 0 0 13px;
+    font-size: 22px;
+}
+.newsletter-part h3 {
+    font-size: 22px;
+}
+.corporate-training h3 {
+    font-size: 30px;
+}
+.corporate-section-part {
+    padding: 75px 0;
+}
+.private-online ul li {
+    font-size: 16px;
+}
+.courses-structure {
+    padding: 104px 0 104px;
+}
+.social-icon {
+    padding: 0 14px 0 0;
+    display: none;
+}
+.courses-view ul li {
+    padding: 25px 15px;
+}
+.hd-bt h3 {
+    font-size: 16px;
+}
+.both-bt a.button-default {
+    margin: 0 3px;
+    min-width: 112px;
+    font-size: 14px;
+    padding: 7px 8px 9px 8px;
+}
+.latest-heading p {
+    font-size: 18px;
+}
+.newsletter-part p {
+    font-size: 18px;
+}
+.destinations-list ul li {
+    font-size: 18px;
+    background: url(../images/right-arrow.png) no-repeat left top 4px;
+}
+.content-banner {
+    max-width: 520px;
+}
+.courses-view {
+    padding: 0px 0 0px;
+}
+.button {
+    font-size: 18px;
+    max-width: 186px;
+    padding: 7px 10px;
+}
+.slider-img {
+    height: 440px;
+}
+.slider-img img{
+    height: 100%;
+    object-fit: cover;
+}
+div#myNavbar.navbar-collapse.show .social-icon {
+    display: block !important;
+    float: left;
+    clear: both;
+    margin: 18px 0 0 14px;
+}
+div#myNavbar.navbar-collapse.show .social-icon ul li {
+    width: auto;
+    border: none;
+    margin: 0 4px !important;
+}
+div#myNavbar.navbar-collapse.show .social-icon ul li a {
+    padding: 0px;
+    text-align: center;
+}
+.about-section {
+    padding: 38px 0px;
+}
+.upcoming-courses {
+    padding: 48px 0px;
+}
+.other-nav ul li {
+    font-size: 15px;
+}
+.get-inspired p {
+    font-size: 16px;
+    letter-spacing: 0px;
+}
+.latest-slider-tab {
+    padding: 43px 22px 20px;
+}
+.col-form label {
+    font-size: 16px;
+}
+.select-option {
+    padding: 12px 11px;
+    font-size: 16px;
+}
+.col-form.buttonForm button.btn {
+    height: 47px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 14px;
+    padding: 10px 9px 13px 9px;
+    min-width: auto;
+}
+.form-heading h3 {
+    margin: 0 0 6px;
+    font-size: 30px;
+}
+.formcourse .wrapper-form {
+    padding: 12px 0 0;
+}
+.search-courses .heading-md, .upcoming-courses .heading-md, .other-courses .heading-md {
+    padding: 0px;
+}
+.other-courses {
+    padding: 50px 0px;    background-size: 100% 280px;
+}
+.couldnt-find-course {
+    padding: 0 0 50px;
+}
+.courses-view-other {
+    padding: 0px 0 0px;
+}
+.search-courses {
+    padding: 38px 0px 0;
+}
+.inner-hd-banenr {
+    font-size: 38px;
+}
+
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+
+.logo-createAccount {
+    width: 195px;
+    margin: 0 auto 10px;
+}
+.createAccount-col .gform_wrapper p {
+    font-size: 15px;}
+.createAccount-col h4 {
+margin: 0px 0 10px;
+font-size: 20px;
+}
+
+.createAccount.loginCol .gform_wrapper .gform_body ul li .button.gform_button {
+    font-size: 16px;
+}
+.newSkillogics .button.gform_button {
+    font-size: 16px;
+}
+.newDOb h5 {
+    font-size: 16px;
+}
+.gform_wrapper .medium {
+    padding: 8px 10px !important;
+}
+.createAccount-col .medium {
+    padding: 5px 12px !important;
+}
+div#checkboxes ul li {
+    padding: 0 10px 0 0;
+    font-size: 16px;
+}
+
+.form-group.onder_If label.radio-inline {
+    font-size: 16px;
+}
+button.btn.btn-default.cstm_btn {font-size: 16px;}
+
+
+
+/*--------------------------*/
+.hirePrivaie-tutor-sec {  padding: 40px 0px;}
+.campusCourses .heading-md {
+    padding: 0 0 0;
+}
+.campusCourses .button-default {
+    font-size: 16px;
+    width: 180px;
+    padding: 11px 15px 13px 15px;
+}
+.div-heading h2 {
+    font-size: 24px;
+}
+.div-heading p {
+    font-size: 16px;
+    line-height: 22px;
+}
+.div-heading {
+    padding: 0 0;
+}
+.privateStudies-div .div-heading p br{display: none;}
+.privateStudies-right {
+    padding: 50px 0 0;
+}
+.privateStudies-div {
+    padding: 50px 0 0;
+}
+.studyCaption {
+    padding: 4px 0 0;
+}
+.computerStudies-slide .carousel-control-prev {
+    left: 0px;
+}
+.computerStudies-slide .carousel-control-next {
+    right: 0;
+}
+.computerStudies-slide .carousel-inner {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.studyCaption h3 {
+    font-size: 18px;
+}
+.studyCaption p {
+    font-size: 16px;
+    line-height: 20px;
+}
+.privatTutor-forms {
+    padding: 20px 20px;
+}
+.studyCaption .button-default {
+    font-size: 16px;
+    width: 160px;
+    padding: 11px 15px 12px 15px;
+}
+.privatTutor-forms .gfield_label {
+    font-size: 16px !important;
+}
+.ourExpert-sec {
+    padding: 40px 0 0;
+}
+.expert-md p {
+    font-size: 16px;
+}
+.expert-dtl p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.expert-dtl h3 {
+    font-size: 18px;}
+
+.expert-boxes {
+    padding: 15px 0 0;
+}
+.formExpert .gfield_label {
+    font-size: 16px !important;
+}
+.formExpert {
+    width: 918px;
+    padding: 42px 120px 45px;
+}
+.what-happen-next {
+    padding: 40px 0;
+}
+.what-happen-next-dtls h3 {
+    font-size: 28px;
+}
+.what-happen-next-dtls ul li {
+    line-height: 45px;
+    font-size: 18px;
+}
+.privatTutor-forms .wrapper-form ul li {
+    padding: 0 6px !important;
+}
+.microsoftword-section {padding: 40px 0;}
+.tabing-col .nav-tabs .nav-item { width: 254px;}
+.tabing-col .nav-tabs .nav-link {padding: 11px 15px;  font-size: 16px;}
+.price-detail-div p { font-size: 16px; line-height: 22px;  margin: 0 0 4px;}
+.coursesContent p { font-size: 16px;line-height: 22px; margin: 0 0 15px;}
+.timetable .table thead th {font-size: 16px;padding: 14px 20px;}
+.timetable .table tbody tr td { font-size: 16px; padding: 11px 20px;}
+.tableButton .button-default {
+    width: 155px;
+    font-size: 16px;
+    padding: 10px 15px 12px 15px;
+    margin-left: 10px;
+}
+.batches-courses p { font-size: 16px;  line-height: 22px;}
+.events-sectionsInn h2 {  font-size: 20px;}
+.events-sectionsInn ul {
+    margin: 0 -15px;
+}
+.batches-courses ul li { margin: 0 0 16px; padding: 10px 13px 10px 34px; font-size: 16px; background-position: 14px 16px; background-size: 14px;}
+.batches-courses {
+    padding: 24px 0 20px;
+    width: 765px;
+}
+
+.faq-accordion .collapse.show .card-body>ul >li {
+    font-size: 16px;
+    background-position: 0 6px;
+}
+.card-body p{font-size: 16px; line-height: 22px;}
+.participantReviews {
+    width: 100%;
+}
+.reviews-row-content p { font-size: 16px;line-height: 24px; margin: 0 0 10px;}
+
+.reviews-row {
+    padding: 20px 20px 20px 20px;
+}
+.reviews-row-content h4 {
+    font-size: 16px;
+}
+.popupForm .gform_footer .button {
+    font-size: 16px;
+    padding: 4px 28px;
+    height: 40px;
+    max-width: 129px;
+    width: 100% !important;
+}
+
+.popupForm .modal-body p{font-size: 16px;}
+.popupForm .modal-body h2{font-size: 24px;}
+
+.about-detail-inner { padding: 0 0 0; max-width: 100%;}
+.about-detail-inner h1, .about-detail-inner h2, .about-detail-inner h3 {font-size: 22px;padding-bottom: 10px;}
+.about-detail-inner p { font-size: 16px;line-height: 24px;margin-bottom: 10px;}
+.about-detail-inner ul li {  margin: 0 0 2px; padding: 0 0 0 22px;font-size: 16px;background-position: 0 5px;}
+.misson-section-inn {
+    padding: 40px 0;
+}
+.mission-content {
+    padding: 80px 0 0;
+}
+.vision-section {
+    padding: 45px 0;
+}
+.who-we-areDiv {
+    padding: 35px 0;
+}
+.main-heading {
+    padding: 0 0 10px;
+}
+.main-heading h3 {
+    font-size: 22px
+}
+.main-heading p {
+    font-size: 16px;
+    line-height: 23px;
+}
+.team_Section .main-heading {
+    padding: 0 0 10px;
+}
+.team_Section .col-md-4 {
+    padding: 0 15px;
+}
+.team-title h4 {
+    font-size: 20px;
+}
+.team-title {
+    padding: 10px 15px;
+}
+.whyChoose-us {
+    padding: 45px 0 0;
+}
+.team_Section {
+    padding: 0 0 45px;
+}
+
+.images-choose img {
+    max-width: 600px;
+}
+.why-choose-col h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.why-choose-col {
+    height: 366px;
+    width: 366px;
+}
+.why-choose-col::before {
+    height: 430px;
+    width: 430px;
+}
+
+
+.register-as-business{
+    padding: 40px 0;
+}
+.register-box {
+    padding: 10px 10px;
+    margin-top: 0px;
+}
+.register-box h4 {
+    font-size: 16px;
+}
+.getIn-touch {
+    padding: 50px 0;
+}
+.get-touch-form {
+    padding: 30px 30px;
+}
+.get-touch-form .gfield_label {
+    font-size: 16px !important;
+}
+.gform_wrapper .medium {
+    font-size: 16px !important;
+}
+.get-touch-form .gform_wrapper .medium {
+    padding: 10px 15px !important;
+    height: 38px;
+    padding: 5px 15px !important;
+}
+.imgasBox p {
+    font-size: 30px;
+    top: 46%;
+}
+.empower-staff-section {
+    padding: 40px 0;
+}
+.some-industries img {
+    width: 420px;
+}
+.hire-expertsection {
+    margin: 0;
+    padding: 50px 0;
+}
+.expertHeading {
+    font-size: 24px;
+    width: 290px;
+    padding: 7px 10px;
+}
+
+/* -------contact page responsive------- */
+
+.contact-page {
+    padding: 30px 0 10px;
+}
+.contact-page .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 65%;
+    flex: 0 0 65%;
+    max-width: 65%;
+}
+.form-title {
+    padding: 0 0 0;
+}
+.form-title h2 {
+    font-size: 25px;
+}
+.form-title p {
+    font-size: 16px;
+    line-height: 22px;
+}
+.main-form-div .gfield_label {
+    margin: 0 0 3px !important;
+}
+.main-form-div .gform_wrapper .medium {
+    font-size: 16px !important;
+    height: 40px;
+}
+.main-form-div .gform_footer .button {
+    font-size: 18px;
+    padding: 9px 24px;
+    max-width: 151px;
+    width: 161px !important;
+}
+.main-form-div .gform_wrapper textarea.medium {
+    height: 109px;
+}
+.contact-page-location {
+    padding: 40px 0 50px;
+}
+.location-heading h3 {
+    font-size: 20px;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+}
+.location-heading img {
+    margin-bottom: 20px;
+    width: 100px;
+}
+.contact-info-inter {
+    padding: 25px 20px 10px 20px;
+}
+.address-col {
+    padding-left: 30px;
+    text-align: left;
+}
+.address-col img {
+    height: auto;
+    max-height: 18px;
+}
+.address-col p {
+    font-size: 16px;
+    margin-bottom: 8px;
+    letter-spacing: 0;
+}
+.address-col p span {
+    font-size: 16px;
+}
+.mail-add img {
+    top: 7px;
+    width: 19px;
+}
+.contact-info-outer2 .contact-info-inter {
+    padding: 25px 20px 32px 20px;
+}
+
+
+/*----------- blog page ------------*/
+.top-stracture ul li { padding: 0 6px; }
+.blog-tab-col { padding: 18px 0 22px; margin-bottom: 0; }
+.top-stracture ul li a { font-size: 14px; letter-spacing: 0; }
+.blog-innerDiv { padding: 35px 0 20px; }
+.blog-inner-item h2 { font-size: 22px; margin: 0 0 10px; }
+.comments-divIn { margin-right: 0; }
+.blog-inner-item p { font-size: 16px; line-height: 22px; }
+.comments-divIn ul li { font-size: 13px; margin: 0 18px 0 0; padding-right: 0; }
+.wp-pagenavi a, .wp-pagenavi span { padding: 4px 12px !important; margin: 0 1px 7px!important; font-size: 16px; }
+.wp-pagenavi a.prevpostslink { font-size: 16px; letter-spacing: 2px; }
+.wp-pagenavi a.nextpostslink { font-size: 16px; letter-spacing: 2px; }
+
+.faq-left-content { padding: 30px 0 40px 15px; }
+.faq-left-content h1 { margin: 0 0 20px; font-size: 26px; }
+.faq-left-content p { font-size: 16px; line-height: 24px; }
+.faq-left-content .button-default { font-size: 16px; min-width: 163px; }
+.faq-page { padding: 40px 0; }
+.faq-page .tabing-col .nav-tabs .nav-link { font-size: 14px; }
+.faq-page .tabing-col .nav-tabs .nav-item { min-width: auto; }
+.faq-page .tabing-col .nav-tabs .nav-link {padding: 8px 14px;}
+.faq-accordion .card-header h5 { font-size: 16px; padding: 10px 60px 10px 14px; }
+.faq-accordion .card-body { padding: 15px 15px; }
+.faq-accordion .card-body>ul { padding: 0 !important; margin: 0 !important; float: none !important; }
+.faq-accordion .collapse.show .card-body>ul >li { font-size: 16px; padding: 0 0 0 22px !important; background-size: 13px; background-position: 0 6px; }
+.faq-accordion .card-body>ul >li { font-size: 16px !important; float: none !important; line-height: 24px; margin: 0 0 7px !important; background-position: 0 6px; }
+.faq-page .faq-accordion .card-body { padding: 15px 15px; }
+
+.education-consultants-inner { padding: 40px 0px; }
+.faq-heading-md {font-size: 28px;}
+.form-heading-faq p { font-size: 16px;line-height: 22px;}
+
+.terms-conditions-page { padding: 40px 0; }
+.terms-conditions-left h1 { font-size: 28px;}
+.terms-conditions-left h3 { font-size: 20px; }
+.terms-conditions-left p { font-size: 16px; line-height: 22px; margin-bottom: 15px; }
+.terms-conditions-left ul li { font-size: 16px; line-height: 22px; background-size: 13px; background-position: 0 5px; padding: 0px 0 10px 24px; }
+.terms-conditions-left ul { padding: 0 0 0 0; }
+.terms-conditions-right { padding-left: 0; }
+.terms-conditions-left h4 {font-size: 20px;  margin-bottom: 15px;}
+.terms-conditions-left ol li { font-size: 16px; line-height: 22px; }
+.terms-conditions-left h5 { font-size: 20px;}
+
+.news-page-section { padding: 20px 0; }
+.news-detail-right h1, .news-detail-right h2, .news-detail-right h3 {font-size: 20px;}
+.news-detail-right { padding: 0 0 0 0; }
+
+.iec-vacancies-top-sec { padding: 40px 0 40px; }
+.iec-vacancies-top-sec .title-center p { font-size: 16px; margin-bottom: 20px; }
+.iec-vacancies-top-sec .button-default { width: 160px; padding: 10px 15px 13px 15px; font-size: 16px; }
+.iec-vacancies-top-sec .title-center { padding: 0 0; }
+.business-developr-USE-row { padding: 35px 0 15px; }
+.business-developr-USE-left h1, .business-developr-USE-left h2, .business-developr-USE-left h3 { padding: 0 0 20px; margin: 0 0 20px; font-size: 28px; }
+.business-developr-USE-left p { font-size: 16px; line-height: 22px; }
+.business-developr-USE-left { padding-right: 0; }
+.business-developr-USE-left ul li { padding: 0px 0 4px 24px; font-size: 16px; line-height: 24px; background-size: 15px; background-position: 0 5px; }
+.business-developr-USE-left .button-default { font-size: 16px; padding: 10px 15px 13px 15px; }
+.business-developr-USE-row .invert .business-developr-USE-left { padding-left: 0; padding-right: 0; }
+.business-developr-USE { padding-bottom: 30px; }
+.visa-advisorContent { padding: 30px 30px 30px 30px; }
+.visa-advisor-section .invert-div .visa-advisorContent {
+    padding: 30px 40px 30px 30px;
+}
+
+.blue-banenr {
+    padding: 40px 0px;
+}
+.inner-hd-banenr {
+    font-size: 28px;
+}
+.badecame ul li {
+    font-size: 16px;
+}
+.pagenavi-blog {
+    margin: 37px 0;
+    padding: 0;
+}
+.faq-page .tabing-col .nav-tabs .nav-item {
+    margin: 0 2px;
+}
+
+.accommodation-service-section { padding: 35px 0 15px; }
+.apartments-text figure { margin: 0 auto 20px; height: 81px; width: 81px; }
+.apartments-text figure img { max-height: 40px; }
+.apartments-text h4 { margin: 0 0 0; font-size: 18px; }
+.apartments-text { padding: 40px 0 60px; }
+.our-training-section { padding: 35px 0; }
+.training-box-dtl h4 { font-size: 16px; }
+.training-box-dtl { padding: 15px 12px; min-height: 74px; }
+.training-box { padding: 10px 0 20px; }
+.our-instructors-sec { padding: 35px 0; }
+.ourInstructor-box figure { height: 90px; width: 90px; margin: 0 auto 15px; }
+.ourInstructor-box h4 { font-size: 18px; }
+.ourInstructor-box { padding-top: 15px;}
+.ourInstructor-box figure img { height: auto; max-height: 45px; }
+.visa-ticket-details h2 { font-size: 28px;}
+.visa-ticket-details p { font-size: 16px; line-height: 22px; }
+.visa-content h4 { font-size: 16px;    padding: 6px 0; line-height: 21px }
+.visa-content img { width: 38px; }
+.visa-content { padding: 0 0 0 45px; }
+.visa-col-part { padding: 30px 0 35px; }
+.travel-box-1 figcaption h5 { font-size: 15px; }
+.travel-box-1 figcaption { min-height: 76px; padding: 15px 10px; }
+.travel-box-1 { margin: 15px 0 0; }
+
+.accommodation-list-servies {
+    margin: 30px auto 0;
+    max-width: 100%;
+}
+.iec-vacancy-form-section {
+    padding: 40px 0;
+}
+.iec-vacancy-form .button {
+    font-size: 18px;
+    padding: 7px 20px;
+    max-width: 140px;
+    width: 140px !important;
+}
+
+
+
+}
+@media (max-width:991px){
+    .about-section .col-sm-7 {
+        padding-right: 0px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .about-section .col-sm-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .courses-view ul li {
+        width: 50%;
+    }
+ .hd-banner {
+    padding: 0 0 12px;
+    font-size: 28px;
+    margin: 0 0 14px;
+}
+.content-banner {
+    max-width: 412px;
+}
+.hd-banner span {
+    font-size: 22px;
+}
+
+.destinations-list ul li {
+    font-size: 14px;
+}
+.destinations-list p {
+    padding: 0px 0 8px;
+    font-size: 20px;
+}
+.destinations-list {
+    padding: 0 0 16px;
+}
+.about-info {
+    padding: 0 0 0 6px;
+}
+.footer-social span {
+    margin: 0 13px 7px 0;
+    display: block;
+}
+.input-newsletter {
+    padding: 10px 13px 13px;
+    padding-right: 86px;
+}
+.submit-btn {
+    width: 76px;
+}
+
+.courses-structure {
+    padding: 64px 0px;
+}
+.structure-content h3 {
+    font-size: 26px;
+}
+
+.structure-content a.button-default {
+    min-width: 138px;
+}
+.flag-cty {
+    padding: 0 6px 0 0px;
+    font-size: 13px;
+}
+.flag-cty img {
+    padding: 0 3px 0 0px;
+	max-height: 21px;
+}
+.search-detail {
+    margin: 0 11px 0 0;
+}
+.top-logo {
+    width: 182px;
+}
+.social-icon ul li {
+    margin: 0px 0 0 2px;
+}
+.col-form {
+    width: 33%;
+    margin-bottom: 8px;
+}
+.col-form.col-name {
+    width: 40%;
+}
+.col-form.buttonForm {
+    width: 26%;
+}
+.courses-view-other ul li {
+    width: 50%;padding: 25px 8px;
+}
+.formcourse {
+    width: 100%;
+    padding: 63px 56px 46px;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 47%;
+}
+.totalHours-col span.amount-price {
+    margin: 0 0 0 5px;
+}
+.price-col span.amount-price {
+    margin: 0 0 0 4px;
+}
+.col-form:nth-child(3){
+    padding-right: 0;
+}
+.price-col {
+    width: auto;
+    margin: 0 0 0px;
+}
+.totalHours-col {
+    width:auto;
+}
+
+/*------------------------*/
+.ourExpert-sec .row {
+    justify-content: center;
+}
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.formExpert {
+    width: 100%;
+    padding: 32px 40px 35px;
+}
+
+.formExpert {
+    width: 100%;
+    padding: 20px 20px 20px;
+}
+
+.tabing-col .nav-tabs .nav-item {
+    width: 224px;
+}
+
+.batches-courses {
+    padding: 24px 0 20px;
+    width: 655px;
+}
+.timetable .table thead th {
+    font-size: 15px;
+    padding: 11px 10px;
+}
+.timetable .table tbody tr td {
+    font-size: 15px;
+    padding: 8px 10px;
+}
+
+.faq-accordion {
+    width: 100%;
+}
+
+.popupForm button.close {
+    color: #f90;font-size: 65px;
+}
+.mission-content {
+    padding: 0 0 0;
+}
+
+.images-choose img {
+    max-width: 480px;
+}
+.why-choose-col {
+    height: 285px;
+    width: 285px;
+}
+.why-choose-col::before {
+    height: 330px;
+    width: 330px;
+}
+.gfield_label {
+    font-size: 14px !important;
+}
+.contact-page .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 70%;
+    flex: 0 0 70%;
+    max-width: 70%;
+}
+/*------------- blog page -----------------*/
+.comments-divIn ul .postDate { padding-left: 0; }
+.comments-divIn ul li a img { margin-right: 4px; vertical-align: text-top; height: auto; max-height: 14px; }
+
+.why-us-section .col-sm-3 {
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+.our-instructors-sec .row {
+    justify-content: center;
+}
+.visa-list li {
+    margin: 0 0 10px;
+    flex: 0 0 50%;
+    max-width: 50%;
+    vertical-align: top;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.visa-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.training-box-dtl {
+    padding: 15px 10px;
+    min-height: 93px;
+}
+
+}
+
+@media (max-width:767px){
+
+    .Country-time {
+        float: none;
+        margin-right: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: left;
+        padding: 0px 0 5px 10px;
+        background: #f39d26;
+    }
+    .search-detail {
+        margin: 0 11px 0 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .top-header {
+        background: none;
+        padding: 0;
+    }
+    .nav-header {
+        padding: 5px 0;
+    }
+    .search-form-top input {
+        height: 30px !important;
+    }
+    #searchBoxOpener:checked + label + .searchForm {
+        border: none;
+    }
+.flag-cty {
+    padding: 0 10px 0 0px;
+    font-size: 12px;
+    float: none;
+}
+.flag-cty p {
+    color: #fff;
+    top: 0px;
+}
+.top-section .col-9 {
+    position: static;
+}
+.flag-cty img {
+    max-height: 14px;
+}
+.top-section {
+    padding: 30px 0px 0px 0px;
+}
+.top-logo {
+    width: 148px;    padding: 0px 0 0px;
+}
+.book-appointment .button-default {
+    font-size: 12px;
+    padding: 7px 10px 9px 10px;
+    min-width: 88px;
+    margin-right: 4px !important;
+}
+.social-icon {
+    display: none;
+}
+.right-header {
+    padding: 3px 35px 0 0;
+}
+.top-right {
+    padding: 0 0 0px;
+    float: right;
+}
+.header-menu {
+    padding-right: 12px;
+    float: right;
+}
+.content-banner {
+    padding: 20px 0 44px 0;
+}
+.hd-banner {
+    font-size: 20px;
+	padding: 0 0 8px;
+}
+
+.destinations-list p {
+    padding: 0px 0 5px;
+    font-size: 16px;
+}
+
+.destinations-list {
+    padding: 0 0 10px;
+}
+.inquiryNow a.button-default {
+    font-size: 13px;
+    width: auto;
+    padding: 7px 15px 8px 15px;
+}
+.about-info h1 {
+    font-size: 20px;
+    padding: 0px 0 8px;
+}
+.about-section {
+    padding: 35px 0px;
+}
+.about-section a.button-default {
+    margin: 2px 0 0px;
+    padding: 8px 16px 10px;
+    min-width: auto;
+    font-size: 14px;
+}
+.courses-structure {
+    padding: 40px 0px;
+}
+
+
+
+
+.heading-md {
+    font-size: 20px;
+    padding: 0 0 4px;
+    margin: 0px 0 0px;
+}
+.heading-md:after {
+    height: 2px;
+}
+
+
+.structure-img {
+    width: 100%;
+}
+.structure-content {
+    padding: 12px 0 0 0px;
+    text-align: center;
+}
+
+
+
+.footer-item-row {
+    text-align: center;
+}
+.hd-menu {
+    font-size: 18px;
+    background: #f39d26;
+    padding: 6px 0 8px 0;
+    color: #fff;
+    margin: 0 0 10px;
+    text-align: center;
+}
+.menu-footer-menu-container ul li {
+    border-bottom: 1px dashed #000;
+    padding: 6px 0 11px;
+    margin: 0 0 4px;
+}
+.menu-footer-menu-container ul li:last-child {
+    border-bottom: none;
+}
+.contactUs-add {
+    text-align: center;
+	padding: 0 0px 0 0px;
+}
+.contactUs-add p span {
+    font-size: 20px;
+}
+.contactUs-add p {
+    margin: 0px;
+    padding: 0px 0 0px;
+}
+.newsletter-footer h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    text-align: center;
+}
+.newsletter-footer p {
+    font-size: 16px;
+    text-align: center;
+}
+.newsletter-footer {
+    padding: 17px 0px 0;
+}
+.footer-social span {
+    display: inline-block;
+}
+.footer-social {
+    text-align: center;
+}
+.logo-footer img {
+    max-height: 50px;
+}
+.logo-footer {
+    margin: 16px 0px 0px;
+    text-align: center;
+}
+.copyright {
+    text-align: center;
+}
+.get-inspired {
+    margin: 6px 0 0px;
+    text-align: center;
+}
+.footer-section {
+    padding: 15px 0 15px;
+}
+.website-design p {
+    font-size: 13px;
+}
+
+
+
+.structure-content h3 {
+    font-size: 20px;
+}
+.structure-content a.button-default {
+    margin: 5px 6px 0px 0px;
+    min-width: 112px;
+    font-size: 14px;
+    padding: 7px 8px 9px 8px;
+}
+.structure-content p span {
+    font-size: 16px;
+    line-height: normal;
+}
+
+.about-info:before {
+    border-left: 2px solid #046eb3;
+}
+
+
+.owl-carousel.owl-drag .owl-item {
+    padding: 0px 0px;
+}
+
+/*-------------New-------------*/
+.top-header .col-sm-12 {
+    position: static;
+}
+.slider-img {
+    height: 349px;
+}
+.about-section .col-sm-5 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 2;
+}
+.about-section .col-sm-7 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.about-info {
+    max-width: 100%;
+    padding: 18px 0 0;
+}
+.about-section {
+    padding: 0px 0px 35px 0px;
+}
+.upcoming-courses {
+    padding: 20px 0px;
+}
+.corporate-section-part {
+    padding: 52px 0;
+}
+.button {
+    font-size: 14px;
+    max-width: 140px;
+    padding: 7px 10px;
+}
+.skils-private-section {
+    padding: 40px 0;
+}
+.corporate-training h3 {
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+.latest-newsletter-section {
+    padding: 43px 0;
+}
+.newsletter-part {
+    margin: 0 auto 90px;
+}
+.newsletter-part p {
+    font-size: 14px;
+}
+.latest-heading p {
+    font-size: 14px;
+}
+.other-nav {
+    text-align: center;
+}
+.other-nav ul li {
+    font-size: 16px;
+    float: none;
+    display: inline-block;
+}
+.other-nav ul li a {
+    padding: 0 6px;
+}
+.newsletter-part h3 {
+    font-size: 20px;
+}
+.latest-heading h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+.destinations-list ul li {
+    background: url(../images/right-arrow.png) no-repeat left top 3px;
+    background-size: 18px;
+    padding: 0px 0px 10px 26px;
+}
+.search-detail p {
+    display: none;
+}
+#searchBoxOpener:checked + label {
+    width: 25px;
+    height: 29px;
+}
+.search-form-top label {
+    padding: 1px 0px 6px;
+    width: 25px;
+    background: #fff;
+    text-align: center;
+}
+.search-form-top {
+    padding: 0;
+    border-left: none;
+    float: right;
+    margin: 0;
+}
+.cart-icon img {
+    max-height: 30px;
+}
+.cart-icon {
+    margin: 0 0 0 8px;
+}
+.all-content {
+    padding: 0 0px;
+}
+.courses-view ul li {
+    padding: 15px 8px;
+}
+.both-bt a.button-default {
+    margin: 0 1px;
+    min-width: 98px;
+    font-size: 13px;
+}
+.latest-slider-tab {
+    padding: 26px 23px 17px;
+}
+.hd-bt h3 {
+    font-size: 14px;
+}
+span.name-bt {
+    padding: 4px 16px 5px 16px;
+    font-size: 13px;
+}
+.newsletter-part span {
+    font-size: 18px;
+}
+.about-info span {
+    font-size: 14px;
+}
+.private-online h4 {
+    font-size: 22px;
+    padding: 0 0px;
+}
+.private-online ul {
+    padding: 0 0px;
+}
+.private-online {
+    padding: 0 0px;
+}
+.searchForm {
+    right: 26px;
+}
+.about-info p {
+    font-size: 14px;
+}
+.title-center p {
+    font-size: 14px;
+}
+.contentView p {
+    font-size: 14px;
+}
+.structure-content p {
+    font-size: 14px;
+}
+.corporate-training ul li a {
+    font-size: 14px;
+    padding: 4px 14px;
+}
+.private-online ul li {
+    font-size: 14px;
+}
+.private-online ul li {
+    font-size: 14px;
+    background-size: 18px;
+    background-position: left top 3px;
+    padding: 0 0 0 26px;
+    min-height: 24px;
+}
+.latest-slider-tab {
+    padding: 43px 23px 20px;
+}
+.latest-customer-deatils {
+    padding: 0 34px 0 56px;
+}
+
+.blue-banenr {
+    padding: 48px 0px;
+}
+.inner-hd-banenr {
+    font-size: 22px;
+}
+.badecame ul li {
+    font-size: 14px;line-height: 10px;
+}
+.search-form-course {
+    padding: 0px 0 24px;
+}
+.col-form label {
+    font-size: 14px;
+}
+.other-courses {
+    background-size: 100% 230px;
+    padding: 25px 0px;
+}
+.list-box-courses figure {
+    margin: 0 0 10px;
+}
+.list-box-courses .hd-bt h3 {
+    margin-bottom: 10px;
+}
+.price-section {
+    padding: 0 0 13px;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: auto;
+    font-size: 13px;padding: 7px 8px 9px 8px;
+}
+.courses-view-other ul li {
+    padding: 12px 8px;
+}
+.formcourse {
+    padding: 20px 16px 20px;
+}
+.form-heading h3 {
+    margin: 0 0 2px;
+    font-size: 18px;
+}
+.form-heading p {
+    font-size: 14px;
+}
+.form-heading {
+    margin: 0 auto 6px;
+}
+.gfield_label {
+    font-size: 14px !important;
+}
+.gform_wrapper .medium {
+    border: 1px #ffffff solid;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+    box-shadow: 0px 0 0 1px #797bb9;
+}
+.wrapper-form .gform_footer.top_label {
+    padding: 5px 0 0;
+}
+.wrapper-form .gform_footer .button {
+    font-size: 16px;
+    padding: 4px 28px;
+    height: 42px;
+    max-width: 184px;
+}
+.select-option {
+    padding: 8px 11px;
+    font-size: 14px;
+}
+.col-form.buttonForm button.btn {
+    height: 36px;
+    font-size: 16px;
+}
+.search-courses {
+    padding: 22px 0px 0;
+}
+.couldnt-find-course {
+    padding: 0 0 26px;
+}
+.col-form:nth-child(3){
+    padding-right: 0;
+}
+.col-form.buttonForm {
+    width: 27%;
+}
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+.list-box-courses .hd-bt h3 {
+    font-size: 18px;
+}
+
+
+.createAccount-outer {
+    width: 515px;
+    float: none;
+    margin: 0 auto;
+}
+.logo-createAccount {
+    width: 165px;
+    margin: 0 auto 10px;
+}
+.createAccount-col h4 {
+    font-size: 18px;
+}
+.createAccount-col .gform_wrapper p {
+    font-size: 14px;
+}
+div#checkboxes label.whatever1 {
+    margin: 0 3px;
+    font-size: 14px;
+}
+div#checkboxes input[type="radio"], input[type="checkbox"] {
+    top: 2px;
+}
+
+.createAccount-col .gform_wrapper p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.createAccount-col .gfield_label {
+    font-size: 14px !important;
+}
+.privacyNotice p {
+    padding: 8px 0px;
+    font-size: 14px;
+}
+.loginCol .privacyNotice p {
+    padding: 6px 0px;
+}
+.Forgotpassword {
+    font-size: 14px;
+}
+.newSkillogics .button.gform_button {
+    font-size: 14px;
+}
+
+.createAccount-col .medium {
+    padding: 5px 12px !important;
+}
+
+.createAccount.loginCol .gform_wrapper .gform_body ul li .button.gform_button {
+    font-size: 14px;
+    padding: 6px 0 8px;
+    max-width: initial;
+}
+.newDOb h5 {
+    font-size: 14px;
+}
+
+.tab-content {
+    padding: 0 1px;
+}
+.createAccount.myaccount .createAccount-outer {
+    width: 100%;
+}
+.tab-content .form-group label {
+    font-size: 14px;
+}
+.form-group.onder_If label.radio-inline {
+    font-size: 14px;
+}
+iv#checkboxes ul li a {
+    padding: 0 0px 0 0;
+}
+div#checkboxes ul li {
+    padding: 0 7px 0 0;
+    font-size: 14px;
+}
+button.btn.btn-default.cstm_btn {font-size: 14px;max-width: 140px;}
+
+
+
+
+.formExpert .gfield_label {
+    font-size: 14px !important;
+}
+.formExpert .gform_wrapper .medium {
+    border-color: #c7ced4;
+    box-shadow: 0px 0 0 1px rgba(255, 255, 255, 0.36);
+    font-size: 14px !important;
+    color: #fff;
+    height: 39px;
+}
+
+.formExpert .wrapper-form .gform_footer .button {
+    max-width: 214px;
+}
+.hire-an-expert-section {
+    padding: 145px 0 45px;
+    margin-top: -109px;
+}
+.privatTutor-forms .gform_wrapper .medium {
+    border-color: #c7ced4;
+    box-shadow: 0px 0 0 1px rgba(83, 97, 113, 0.36);
+    font-size: 14px !important;
+    color: #fff;
+    height: 39px;
+}
+
+.privatTutor-forms .gfield_label {
+    font-size: 14px !important;
+}
+.privatTutor-forms .gform_wrapper textarea.medium {
+    height: 60px;
+}
+.privatTutor-forms .wrapper-form .gform_footer .button {
+    max-width: 214px;
+}
+.div-heading h2 {
+    font-size: 18px;
+}
+.div-heading p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.privateStudies-div {
+    padding: 35px 0 0;
+}
+.privateStudies-right {
+    padding: 30px 0 0;
+}
+.hirePrivaie-tutor-sec .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.what-happen-next-dtls h3 {
+    font-size: 20px;
+    margin: 0px 0 0px;
+}
+.what-happen-next-dtls ul li {
+    line-height: 34px;
+    font-size: 14px;
+}
+.what-happen-next-dtls ul li::after { width: 60%;}
+.formExpert .wrapper-form ul li.gfield.gfield_html {
+    text-align: left;
+    padding: 0 0 0 10px!important;
+}
+.formExpert .gform_wrapper input[type="file"] {
+    color: #fff;
+    padding-left: 0;
+}
+.what-happen-next-dtls {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+.studyCaption p {
+    font-size: 14px;}
+    .campusCourses {
+        padding: 15px 5px 20px;
+}
+.formExpert {
+    width: 100%;
+    padding: 15px 15px 15px;
+}
+.expert-md p {
+    font-size: 14px;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    top: 38%;
+}
+.tabing-col {
+    padding-bottom: 25px;
+}
+
+
+.tabing-col .nav-tabs .nav-link {
+    padding: 9px 10px;
+    font-size: 14px;
+}
+.tabing-col .nav-tabs .nav-item {
+    width: 33.33%;
+}
+
+.price-detail-div p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.coursesContent h4 {
+    font-size: 16px;
+    line-height: 22px;
+}
+.coursesContent p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 10px;
+}
+.tableButton .button-default {
+    width: auto;
+    font-size: 14px;
+    padding: 8px 15px 10px 15px;
+    margin-left: 10px;
+}
+.batches-courses {
+    padding: 20px 0 20px;
+    width: 100%;
+}
+.batches-courses ul li {  margin: 0 0 10px;font-size: 14px;  background-position: 14px 14px;}
+.events-sectionsInn h2 {
+    font-size: 18px;
+}
+.timetable .table thead th {
+    font-size: 13px;}
+.timetable .table tbody tr td {
+    font-size: 13px;
+}
+.tableButton {
+    padding-top: 0;
+}
+.coursesContent h5 {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+
+.faq-accordion .card-header h5 { font-size: 14px;padding: 11px 50px 11px 11px;}
+.faq-accordion .card { margin: 0 0 11px;}
+.faq-accordion .collapse.show .card-body>ul >li {
+    font-size: 14px;
+    background-position: 0 5px;
+}
+.faq-accordion .card-header h5:after {
+    width: 40px;
+}
+.faq-accordion .card-body {
+    padding: 10px;
+}
+
+.reviews-row-content p {
+    font-size: 14px;
+    line-height: 22px;
+}
+.reviews-row {
+    padding: 15px 15px 15px 15px;    margin-bottom: 15px;
+}
+.reviews-row-content {
+    padding-left: 35px;
+}
+.popupForm .gform_wrapper .medium {
+    font-size: 14px !important;
+}
+.popupForm .modal-body p{font-size: 14px;}
+.popupForm .modal-body h2{font-size: 20px;}
+
+section.about-section.about-section-inner {
+    padding: 35px 0 35px;
+}
+
+.about-section-inner .col-sm-6 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.vision-section .about-detail-inner {
+    padding: 0 0 10px;
+    max-width: 100%;
+    text-align: center;
+}
+.about-detail-inner p {
+    font-size: 14px;
+    line-height: 22px;
+}
+.about-detail-inner h1, .about-detail-inner h2, .about-detail-inner h3 {
+    font-size: 20px;
+}
+.about-detail-inner ul li {
+    margin: 0 0 2px;
+    padding: 0 0 0 20px;
+    font-size: 14px;
+    background-position: 0 4px;
+    background-size: 12px;
+}
+.main-heading p {
+    font-size: 14px;
+    line-height: 22px;
+}
+.main-heading h3 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+.vision-section .about-detail-inner h3 {
+    background-position: bottom center;
+}
+.team_Section .col-md-4 {
+    padding: 0 15px;
+    width: 50%;
+}
+.team_Section .row {
+    justify-content: center;
+}
+.team-box {
+    padding: 10px 0;
+}
+
+.team-title h4 {
+    font-size: 18px;
+    margin: 0;
+}
+.images-choose img {
+    max-width: 380px;
+}
+.why-choose-col {
+    height: 200px;
+    width: 200px;
+}
+.why-choose-col::before {
+    height: 260px;
+    width: 260px;
+}
+.why-choose-col h3 {
+    font-size: 15px;
+    line-height: 21px;
+}
+.who-weAre-detil figure {
+    margin: 0 0;
+}
+.register-as-business .col-sm-3 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.expertHeading {
+    font-size: 18px;
+    width: 220px;
+    padding: 5px 20px;
+}
+.hire-expertsection {
+    margin: 0;
+    padding: 40px 0;
+}
+.some-industries img {
+    width: 240px;
+}
+.get-in-touchForm .col-sm-7 {
+    padding: 0 15px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.get-in-touchForm .col-sm-5 {
+    padding: 0 15px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.get-inTouch-right img {
+    height: auto;
+}
+
+.get-touch-form .gfield_label {
+    font-size: 14px !important;
+}
+.get-touch-form .gform_wrapper .medium {
+    height: 36px;
+}
+.get-touch-form ul li {
+    margin: 0 0 10px !important;
+}
+.get-touch-form {
+    padding: 20px 15px;
+}
+.some-industries {
+    margin-top: 10px;
+}
+
+/*  ------contact page responsive---------*/
+.form-title h2 {
+    font-size: 22px;
+}
+.form-title p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.contact-page .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.main-form-div .gform_wrapper .medium {
+    font-size: 14px !important;
+    height: 38px;
+}
+.main-form-div .gform_wrapper textarea.medium {
+    height: 80px;
+}
+.contact-page {
+    background: #f2f2f4;
+}
+.captcha img {
+    width: 140px;
+}
+.main-form-div .gform_footer .button {
+    font-size: 16px;
+}
+.contact-page-location {
+    padding: 20px 0 40px;
+}
+
+.location-heading {
+    padding-top: 20px;
+}
+.address-col p {
+    font-size: 14px;
+}
+.contact-info-outer2 .contact-info-inter {
+    padding: 25px 20px 10px 20px;
+}
+.location-heading img {
+    width: 65px;
+}
+
+
+/*------------- blog page -----------------*/
+.top-stracture ul li a { font-size: 13px; }
+.top-stracture ul li { padding: 0 5px; }
+.top-stracture ul { margin-bottom: 10px; }
+.blog-tab-col { padding: 15px 0 20px; }
+.search-form input.search-field { padding: 4px 58px 6px 20px!important; border: 1px solid #fff; height: 37px; font-size: 15px !important; }
+.blog-innerDiv { padding: 25px 0 20px; }
+.blog-inner-item h2 { font-size: 20px; }
+.comments-divIn ul li { font-size: 12px; margin: 0 12px 0 0; padding-right: 0; }
+.comments-divIn ul { margin: 0 0 15px; }
+.comments-divIn ul li a img {
+    margin-right: 2px;
+    vertical-align: text-bottom;
+    height: auto;
+    max-height: 11px;
+    position: relative;
+    top: -3px;
+}
+.blog-inner-item p { font-size: 14px; line-height: 22px; }
+.blog-inner-item { max-width: 100%; padding-bottom: 18px; }
+.wp-pagenavi a, .wp-pagenavi span { padding: 2px 7px !important; margin: 0 1px 7px!important; font-size: 14px; }
+.wp-pagenavi a.prevpostslink { font-size: 14px; letter-spacing: 0; }
+.wp-pagenavi a.nextpostslink { font-size: 14px; letter-spacing: 0; }
+.pagenavi-blog { margin: 30px 0; }
+.blog-image figure { padding: 6px; }
+
+.faq-accordion .card-body>ul >li { font-size: 14px !important;    margin: 0 0 2px !important; }
+.faq-page .tabing-col .nav-tabs .nav-link { font-size: 12px; padding: 8px 10px; }
+.faq-page .tabing-col .nav-tabs .nav-item { margin: 0 1px; }
+.faq-left-content h1 { margin: 0 0 10px; font-size: 20px; padding: 0 0 18px; }
+.faq-left-content h1::before { height: 2px; }
+.faq-left-content p { font-size: 14px; line-height: 22px; }
+.faq-left-content .button-default { font-size: 14px; min-width: 130px; padding: 8px 15px 11px 15px; }
+.faq-heading-md { font-size: 20px;margin: 0 0 10px; padding: 0 0 11px;}
+.faq-heading-md:after{height: 2px;}
+.education-consultants-inner .wrapper-form .gform_footer .button { padding: 3px 18px; height: 42px; font-size: 16px; max-width: 144px; }
+.education-consultants-inner .wrapper-form { width: 100%; }
+.faq-page .faq-accordion .card-header h5:after { width: 40px; }
+.form-heading-faq p { font-size: 14px; line-height: 22px; }
+.form-heading-faq p br{display: none;}
+.education-consultants-inner { padding: 30px 0px; }
+.faq-page { padding: 30px 0 20px; }
+
+.terms-conditions-left h1 { font-size: 20px; padding: 0 0 10px; margin: 0 0 18px;}
+.terms-conditions-left h1::before { height: 2px; }
+.terms-conditions-left h3 { font-size: 18px; }
+.terms-conditions-left p { font-size: 14px; line-height: 22px; }
+.terms-conditions-left ul li { font-size: 14px; }
+.terms-image figure { border-radius: 0; }
+.terms-image figure img { border-radius: 0; width: 100%; }
+.terms-image-3 figure{ border-radius: 0;}
+.terms-image-3 figure img{ border-radius: 0;}
+.terms-conditions-left ol li { padding: 0px 0 10px 0; font-size: 14px; line-height: 22px; }
+
+.news-detail-right h1, .news-detail-right h2, .news-detail-right h3 { font-size: 18px;}
+.news-detail-right p { font-size: 14px; line-height: 22px; }
+.iec-vacancies-top-sec .title-center p { font-size: 14px; }
+.iec-vacancies-top-sec { padding: 30px 0 30px; }
+.business-developr-USE-left h1, .business-developr-USE-left h2, .business-developr-USE-left h3 { padding: 0 0 10px; margin: 0 0 18px; font-size: 20px; }
+.business-developr-USE-left h1::before, .business-developr-USE-left h2::before, .business-developr-USE-left h3::before { height: 2px; }
+.business-developr-USE-left p { font-size: 14px; line-height: 22px; }
+.business-developr-USE-left ul li { padding: 0px 0 4px 21px; font-size: 14px; line-height: 22px; background-size: 13px; }
+.business-developr-USE-left .button-default { font-size: 14px; padding: 8px 15px 11px 15px; }
+.iec-vacancies-top-sec .button-default { width: 130px; padding: 8px 15px 11px 15px; font-size: 14px; }
+.blue-banenr {
+    padding: 30px 0px;
+}
+.inner-hd-banenr {
+    font-size: 21px;
+}
+.badecame ul li {
+    font-size: 14px;
+    line-height: 8px;
+}
+
+.apartments-text figure { margin: 0 auto 15px; height: 60px; width: 60px; }
+.apartments-text figure img { max-height: 26px; }
+.apartments-text h4 { font-size: 16px; }
+.ourInstructor-box h4 { font-size: 16px; }
+.ourInstructor-box figure { height: 60px; width: 60px; margin: 0 auto 15px; }
+.ourInstructor-box figure img { height: auto; max-height: 30px; }
+.our-training-section .col-sm-4 { -webkit-box-flex: 0; -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; }
+.training-box-dtl { padding: 15px 10px; min-height: 74px; }
+.visa-ticket-details h2 { font-size: 20px; padding: 0 0 10px; margin: 0 0 10px; }
+.visa-ticket-details p { font-size: 14px;}
+.visa-list li { margin: 10px 0 10px; flex: 0 0 100%; max-width: 100%; }
+.visa-ticket-details h2::before { height: 2px; }
+.apartments-text {
+    padding: 40px 15px 40px;
+}
+.why-us-section .col-sm-3 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.iec-vacancy-form { max-width: 100%; padding: 20px; }
+.iec-vacancy-form label { font-size: 14px !important;}
+.iec-vacancy-form .form-control {
+    font-size: 14px !important;
+}
+.custom-file-label::after {
+    height: 31px;
+}
+.iec-vacancy-form .button {
+    font-size: 16px;
+    padding: 7px 20px;
+    max-width: 130px;
+    width: 130px !important;
+}
+
+}
+
+
+@media (max-width:650px){
+
+.timetable {
+    overflow-x: auto;
+    width: 100%;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+}
+.timetable table.table {
+    width: 600px;    margin-bottom: 10px;
+}
+
+.tableButton .button-default {
+    margin-left: 8px;
+}
+.events-sectionsInn h2 {
+    font-size: 17px;
+    line-height: 23px;
+}
+/*----------------- faq page ---------------*/
+.faq-page .tabing-col .nav-tabs .nav-link { font-size: 11px; padding: 8px 8px; }
+.visa-advisor-section .container-fluid { padding: 0 15px; }
+.visa-advisor-section .col-sm-6 { padding: 0 15px; -ms-flex: 0 0 100%; flex: 0 0 100%; max-width: 100%; }
+.visa-advisorContent { padding: 15px 0 0 0; }
+.visa-advisor-section .invert-div .visa-advisorContent { padding: 15px 0 30px 0; }
+.visa-advisor-section .col-sm-6 {
+    padding: 0 15px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 2;
+}
+.visa-advisor-section .col-sm-6:nth-child(2) {
+    order: 1;
+}
+.faq-top-section{padding: 30px 0 0;}
+
+.visa-col-part { padding: 30px 0 35px; width: 100%; }
+.training-box-dtl h4 {
+    font-size: 14px;
+}
+
+}
+@media (max-width:575px){
+
+.slider-banner .col-sm-6 {
+    padding-right: 0;
+    order: -1;
+    padding-left: 0;
+}
+.about-info:before {
+  display:none;
+}
+.ab-img {
+    text-align: center;
+    margin: 0 0 15px;
+}
+
+.courses-structure {
+    padding: 35px 0px;
+}
+.structure-content a.button-default {
+    min-width: 125px;
+    font-size: 13px;
+}
+
+
+.private-online {
+    padding: 0 0px 20px;
+}
+.private-online h4 {
+    padding: 0 0px;
+}
+.private-online ul {
+    padding: 0 0px;
+}
+
+.hd-banner span {
+    font-size: 15px;
+}
+.destinations-list ul li {
+    padding: 0px 0px 3px 26px;
+}
+.about-section {
+    padding: 12px 0px 25px 0px;
+}
+.hd-banner {
+    font-size: 18px;
+}
+.caption-banner {
+    position: static;
+    top: 0;
+    transform: translate(0px, 0%);
+    background: #000;
+}
+.slider-img {
+    height: 183px;
+}
+.slider-img:after {
+  display: none;
+}
+.latest-customer-deatils {
+    padding: 0 0px 0 56px;
+}
+.col-form {
+    width: 50%;
+}
+.col-form.col-name {
+    width: 50%;
+}
+.col-form.buttonForm {
+    width: 50%;
+}
+.col-form:nth-child(2), .col-form:nth-child(4) {
+    padding-right: 0;
+}
+.col-form:nth-child(3){
+    padding-right: 16px;
+}
+.courses-view-other ul li {
+    width: 100%;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 48%;
+}
+.list-box-courses .hd-bt h3 {
+    font-size: 18px;
+}
+.price-col {
+    width: auto;
+    margin: 0 0 0px;
+}
+.totalHours-col {
+    width: auto;
+}
+
+
+.createAccount-col {
+    padding: 20px 15px;
+}
+.createAccount-outer {
+    width: 100%;
+}
+
+.newSkillogics::before {
+    right: 42px;
+}
+.createAccount-col h4 {
+    font-size: 16px;
+}
+
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.captionInn {
+    padding: 0 0;
+}
+
+
+.tabing-col .nav-tabs .nav-item {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 2px solid #fff;
+}
+.tabing-col .nav-tabs .nav-link:before{display: none;}
+.flag-cty img {
+    max-height: 12px;
+}
+.popupForm .gform_wrapper .gform_fields li.gfield.gf_left_third, .popupForm .gform_wrapper .gform_fields li.gfield.gf_middle_third, .popupForm .gform_wrapper .gform_fields li.gfield.gf_right_third {
+
+    width: 100% !important;
+}
+.popupForm .modal-body {
+    padding: 30px 20px;
+}
+.modal-open .modal {
+    padding: 0 !important;
+}
+/*--------------- faqpage ------------*/
+.faq-page .tabing-col .nav-tabs .nav-item { width: 49%; }
+.faq-left-content { padding: 30px 0 30px 0; }
+.faq-top-section .container-fluid { padding: 0 15px; }
+.faq-top-section{padding-bottom: 15px;}
+
+.news-image-left { margin-bottom: 20px; }
+.business-developr-right {
+    margin-bottom: 30px;
+}
+.visa-advisor-section{padding-bottom: 0;}
+.business-developr-right img {
+    width: 300px;
+}
+
+.business-developr-USE-row .col-sm-7 {
+    order: 2;
+}
+.business-developr-USE-row .col-sm-5 {
+    order: 1;
+}
+
+.our-instructors-sec .col-sm-3 {
+    width: 25%;
+}
+.travel-box-1 figcaption h5 {
+    font-size: 14px;
+    line-height: 20px;
+}
+.our-training-section .col-sm-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.training-box-dtl h4 {
+    font-size: 16px;
+}
+.training-box-dtl {
+    padding: 15px 10px;
+    min-height: auto;
+}
+.visa-content img {
+    width: 30px;
+}
+.visa-content h4 {
+    font-size: 14px;
+    padding: 0 0;
+    line-height: 20px;
+}
+.visa-content {
+    padding: 0 0 0 38px;
+}
+.ourInstructor-box h4 {
+    font-size: 14px;
+}
+
+.training-box {
+    padding: 10px 0 5px;
+}
+.accommodation-list-servies ul li {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    border-right: 1px #e0e0e0 solid;
+    border-bottom: 1px #e0e0e0 solid;
+}
+.accommodation-list-servies ul li:nth-child(3n-3) {
+    border-right: 1px #e0e0e0 solid;
+}
+.accommodation-list-servies ul li:nth-child(2n-2) {
+    border-right: none;border-bottom: 1px #e0e0e0 solid;
+}
+.accommodation-list-servies ul li:nth-last-of-type(1) {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+}
+@media (max-width:520px){
+  .contact-page {
+      padding: 30px 0 30px;
+  }
+  .gform_wrapper .gform_fields li.gfield.gf_left_third, .gform_wrapper .gform_fields li.gfield.gf_middle_third, .gform_wrapper .gform_fields li.gfield.gf_right_third {
+      width: 100% !important;
+  }
+  .main-form-div ul li {
+      margin: 0 0 10px !important;
+  }
+  .main-form-div .gform_wrapper .gform_fields li.gfield.gf_left_half, .main-form-div .gform_wrapper .gform_fields li.gfield.gf_right_half {
+      width: 100% !important;
+  }
+  .main-form-div .gform_footer.top_label {
+      float: none;
+  }
+}
+@media (max-width:500px){
+.courses-view ul li {
+    width: 100%;
+}
+}
+
+
+
+@media (max-width:480px){
+
+.book-appointment {
+    display: none;
+}
+div#myNavbar.collapse.show .book-appointment{ display:block !important; float:left; margin:20px 0 0px; width:100%;}
+div#myNavbar.collapse.show .book-appointment .button-default {
+    font-size: 16px;
+    padding: 6px 10px 8px 16px;
+    display: block;
+    text-align: left;
+    border-radius: 0;
+    background: #f39d26;
+    margin: 0 0 2px;
+}
+#searchBoxOpener:checked + label + .searchForm {
+    width: 180px;
+}
+.footer-social span {
+    display: block;
+    margin: 0 0 7px;
+}
+.gform_wrapper .gform_fields li.gfield.gf_left_half, .gform_wrapper .gform_fields li.gfield.gf_right_half {
+
+    width: 100% !important;
+}
+
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    top: 30%;
+}
+.team_Section .col-md-4 {
+    padding: 0 15px;
+    width: 100%;
+}
+.team-box {
+    padding: 8px 0;
+}
+.images-choose img {
+    max-width: 270px;
+}
+.why-choose-col {
+    height: 160px;
+    width: 160px;
+}
+.choose-mail-dtl {
+    left: 47.4%;
+}
+.why-choose-col::before {
+    height: 180px;
+    width: 180px;
+}
+.register-as-business .col-sm-3 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.imgasBox img {
+    max-width: 80px;
+}
+.imgasBox p {
+    font-size: 25px;
+}
+/*------------ faq page -------------*/
+.faq-page .tabing-col .nav-tabs .nav-link { padding: 8px 7px; }
+.business-developr-right img { width: 100%; }
+.why-us-section .col-sm-3 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.our-instructors-sec .col-sm-3 {
+    width: 50%;
+}
+.travel-box-1 figcaption {
+    min-height: auto;
+}
+
+.iec-vacancy-form .form-group {
+    margin-bottom: 14px;
+}
+
+
+}
+@media (max-width:420px){
+
+.iec-vacancy-form .col-6 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.iec-vacancy-form label.custom-file-label {
+    margin-top: 0 !important;
+}
+
+}
+
+
+@media (max-width:400px){
+
+.flag-cty {
+    padding: 0 5px 0 0px;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    top: 28%;
+}
+.faq-page .tabing-col .nav-tabs .nav-item {
+    width: 100%;
+    margin: 0 0;
+}
+
+.accommodation-list-servies ul li {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px #e0e0e0 solid;
+}
+.accommodation-list-servies ul li:nth-child(2n-2){border-right: none;}
+.accommodation-list-servies ul li:nth-child(3n-3){border-right: none;}
+.apartments-text {
+    padding: 15px 15px 15px;
+}
+.accommodation-list-servies {
+    margin: 10px auto 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+}
+
+@media (max-width:390px){
+.search-detail {
+    margin: 0 11px 0 0;
+    position: absolute;
+    top: 40px;
+    right: 93px;
+}
+.Country-time {
+    text-align: center;
+}
+#searchBoxOpener:checked + label + .searchForm {
+    width: 160px;
+    border: 1px solid #dfdfdf;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 43%;
+}
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    top: 24%;
+}
+}

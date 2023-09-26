@@ -3,43 +3,35 @@ include('application_top.php');
 //$_SESSION["user_log_flag"] = 0; //login false
 if(isset($_POST['login'])){
 	extract($_POST);   
-	$username=mysql_real_escape_string(strip_tags(trim(@$user)));
-	$password=mysql_real_escape_string(strip_tags(trim(base64_encode(@$pass))));
-	
-		$query = "SELECT * FROM `na_member` WHERE username = '".$username."' AND password = '".$password."' ";
-		$result = mysql_query($query);
-		$counter=mysql_num_rows($result);
-		 $row=mysql_fetch_array($result);
-		//exit();
-		if($row >0){
-		$_SESSION["user_log_flag"] = 1;
-		 $_SESSION["username"] = $row['username']; 
-		 $_SESSION["useremail"] = $row['email'];
-		 $_SESSION["userid"] = $row['id'];//login true
-		 $_SESSION["user_log_flag"];
-		 
-		//exit();
-		//header("location: dashboard.php");	 
+	$username=mysqli_real_escape_string($con, strip_tags(trim(@$user)));
+	$password=mysqli_real_escape_string($con, strip_tags(trim(base64_encode(@$pass))));
+    $query = "SELECT * FROM `na_member` WHERE username = '".$username."' AND password = '".$password."'";
+    $result = mysqli_query($con, $query);
+    $counter=mysqli_num_rows($result);
+    $row=mysqli_fetch_assoc($result);
+    if($row > 0) {
+        $_SESSION["user_log_flag"] = 1;
+        $_SESSION["username"] = $row['username']; 
+        $_SESSION["useremail"] = $row['email'];
+        $_SESSION["userid"] = $row['id'];//login true
+        $_SESSION["user_log_flag"];
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-				echo "window.top.location.href='dashboard.php';\n";
-				echo "</script>";
- 		}else{
-			$_SESSION["user_log_flag"] = 0; //login false
-			$MSGlogfalse="Invalid Username or Password";
-			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-			echo "window.top.location.href='index.php?op=logfals';\n";
-			echo "</script>";
-		}
+		echo "window.top.location.href='dashboard.php';\n";
+		echo "</script>";
+    } else {
+        $_SESSION["user_log_flag"] = 0; //login false
+        $MSGlogfalse="Invalid Username or Password";
+        echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
+        echo "window.top.location.href='index.php?op=logfals';\n";
+        echo "</script>";
+	}
 }  
-
-if(@$_SESSION['user_log_flag']==1){
+if(@$_SESSION['user_log_flag']==1) {
     $viewmember=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
 }
- 
-//=================Page Name Fetch=======================
-    $id= @$_GET['id'];
-	$FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` WHERE id = '".$id."'"));
-//=================Page Name Fetch=======================
+
+$id= @$_GET['id'];
+$FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` WHERE id = '".$id."'"));
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,7 +59,6 @@ if(@$_SESSION['user_log_flag']==1){
         <link href="dashboard/css/app.min.2.css" rel="stylesheet">
     </head>
     <body>
-
        	<header>
         	<div class="header_top">
             	<div class="container-fluid">
@@ -75,27 +66,23 @@ if(@$_SESSION['user_log_flag']==1){
                 		<div class="col-lg-6 col-md-6 col-xs-12">
                     		<div id="wb_Login-link">
                         		<span class="top-text">
-									<?php
-                                    if(@$_SESSION['user_log_flag']==1){
-                                    ?>
-                                    <a class="link-foo-ha"  href="<?php echo $daseurl?>logout.php">Logout</a>
-                                    <?php }else{?>
+									<?php if(@$_SESSION['user_log_flag']==1) { ?>
+                                    <a class="link-foo-ha" href="<?php echo $daseurl?>logout.php">Logout</a>
+                                    <?php } else {?>
                                     <a href="#" class="link-foo-ha" onClick="$('#Login-area').modal('show');return false;">Log In</a>&nbsp;&nbsp;&nbsp; 
-                                    <?php }?>
-                                    <?php
-                                    if(@$_SESSION['user_log_flag']==1){
-                                    ?>
-                                    <a class="link-foo-ha"  href="<?php echo $daseurl?>dashboard.php"><?php echo $viewmember['first_name']." ".$viewmember['last_name']?></a>
-                                    <?php }else{?>
-                                    <a class="link-foo-ha"  href="<?php echo $daseurl?>register.php">Register / Sign Up</a>
-                                    <?php }?>
+                                    <?php } ?>
+                                    <?php if(@$_SESSION['user_log_flag']==1) { ?>
+                                    <a class="link-foo-ha" href="<?php echo $daseurl?>dashboard.php"><?php echo $viewmember['first_name']." ".$viewmember['last_name']?></a>
+                                    <?php } else { ?>
+                                    <a class="link-foo-ha" href="<?php echo $daseurl?>register.php">Register / Sign Up</a>
+                                    <?php } ?>
                                 </span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-xs-12">
-                            <form  method="post"  action="page_search.php" id="Search-site_form" name="Search-site_form">
-                        	<input type="text" placeholder="Search this website" value="" name="pagetitle" id="Search-site">
-                        	<input type="submit" value="SEARCH" name="searchsub"   id="Search-buttn">
+                            <form  method="post" action="page_search.php" id="Search-site_form" name="Search-site_form">
+                            	<input type="text" placeholder="Search this website" value="" name="pagetitle" id="Search-site">
+                            	<input type="submit" value="SEARCH" name="searchsub" id="Search-buttn">
                             </form>
                     	</div>
                     </div>
@@ -109,12 +96,12 @@ if(@$_SESSION['user_log_flag']==1){
   								<div class="container-fluid">
     								<!-- Brand and toggle get grouped for better mobile display -->
     								<div class="navbar-header">
-                                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                             <span class="sr-only">Toggle navigation</span>
                                             <span class="icon-bar"></span>
                                             <span class="icon-bar"></span>
                                             <span class="icon-bar"></span>
-                                          </button>
+                                        </button>
                                         <a class="navbar-brand" href="<?php echo $daseurl?>index.php"><img src="images/Logo.png" class="" alt="logo"></a>
     								</div>
     								<!-- Collect the nav links, forms, and other content for toggling -->
@@ -134,7 +121,6 @@ if(@$_SESSION['user_log_flag']==1){
                                             <li><a href="contact.php?id=5">Contact Us</a></li>
                                         </ul>
     								</div><!-- /.navbar-collapse -->
-                                    
   								</div><!-- /.container-fluid -->
 							</nav>
                         </div>

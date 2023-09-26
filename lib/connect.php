@@ -80,7 +80,7 @@ if($_SERVER['HTTP_HOST']=='192.168.1.126' || $_SERVER['HTTP_HOST']=='127.0.0.1' 
 $con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
 
 if ($con->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+	die("Connection failed: " . $con->connect_error);
 }
 
 //For Settings

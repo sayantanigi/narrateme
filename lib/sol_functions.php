@@ -69,14 +69,16 @@ function download_file($file_path,$file_name) {
 // 	Instructions: Pass password leath and get a random password
 /////////////////////////////////////////////////////////////
 function random_number($length) {
-	$rstr = "abcdefghijklmnopqrstuvwxyz0123456789";
+	/*$rstr = "abcdefghijklmnopqrstuvwxyz0123456789";
 	$nstr = "";
-	// mt_srand ((double) microtime() * 1000000);
-	// while(strlen($nstr) < $length) {
-	// 	$random = mt_rand(0,(strlen($rstr)-1));
-	// 	$nstr .= $rstr{$random};
-	// }
-	// return($nstr);
+	mt_srand ((double) microtime() * 1000000);
+	while(strlen($nstr) < $length) {
+		$random = mt_rand(0,(strlen($rstr)-1));
+		$nstr .= $rstr{$random};
+	}
+	return($nstr);*/
+	$str_result = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    return substr(str_shuffle($str_result), 0, $length);
 }
 
 /////////////////////////////////////////////////////////////
@@ -99,6 +101,10 @@ function removeQuotes($strToChange) {
 //	$insert=InsertData($data,$tablename);
 /////////////////////////////////////////////////////////////
 function insertData($data, $table) {
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	if(!empty($data)) {
 		$fld_names = implode(', ', array_keys($data));
 		$fld_values = '\'' . implode('\', \'', array_values($data)) . '\'';
@@ -120,6 +126,10 @@ function insertData($data, $table) {
 //	$update=updateData($data,$tablename, " name = 'Kaushik'");
 /////////////////////////////////////////////////////////////
 function updateData($data, $table, $parameters = '') {
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	if($parameters !='') {
 		$where = "WHERE ".$parameters;
 	} else {
@@ -151,7 +161,7 @@ function updateData($data, $table, $parameters = '') {
 function getAnyTableWhereData($table,$whereClause) {
 	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
 	if ($con->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
+		die("Connection failed: " . $con->connect_error);
 	}
 	$query="select * from $table where 1=1 $whereClause ";
 	$result = $con->query($query);
@@ -171,7 +181,10 @@ function getAnyTableWhereData($table,$whereClause) {
 // 	Instructions: Pass the table name and where clause like " and id=1"
 /////////////////////////////////////////////////////////////
 function getAlldataWhereData($table,$whereClause) {
-	//echo "<br> $table,$whereClause";	
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	$query="select * from $table where 1=1 $whereClause ";
 	
 	//echo "<br>$query";
@@ -540,22 +553,16 @@ function date_timelisting($date,$seldd="day",$selmm="month",$selyy="year",$hr="h
 //	Date: 24-02-2009
 // 	Instructions: 
 /////////////////////////////////////////////////////////////
-function GetRedirectUrl()
-{
-
+function GetRedirectUrl() {
 	$REDIRECT_URL=$_SERVER['HTTP_REFERER']; // redirecting URL
-
 	$full_url=$REDIRECT_URL; // complete redirecting url  
 	$all_url=explode ( "/", $full_url); // explode url   
 	$all_url=array_reverse($all_url);	// reverse array to fetch file name
 	$return_url= $all_url[0]; // return file name
-
 	$pos = strpos($return_url,"?"); // find position of ? in url
-	if($pos)
-	{
+	if($pos) {
 		$return_url=substr($return_url,0,$pos);		
 	}
-	
 	return $return_url;
 }
 /////////////////////////////////////////////////////////////////////
@@ -668,14 +675,22 @@ function sequre(){
 	} 
 }
 
-function socialcheck(){
+function socialcheck() {
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");	
 	if(mysqli_num_rows($sqlcheck) < 1){
 		header('location: ../index.php');
 	}
 }
 
-function socialcheckreg(){
+function socialcheckreg() {
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");	
 	if(mysqli_num_rows($sqlcheck) < 1){
 		header('location:social-network-profile-creation.php');
@@ -683,7 +698,10 @@ function socialcheckreg(){
 }
 
 function checkExistance($table,$whereClause){
-	//echo "SELECT * FROM $table WHERE 1=1 $whereClause";
+	$con = new mysqli(DB_HOST,DB_USERNAME,DB_PASS,DB_NAME);
+	if ($con->connect_error) {
+		die("Connection failed: " . $con->connect_error);
+	}
 	$query=mysqli_query($con, "SELECT * FROM $table WHERE 1=1 $whereClause");
 	$count=mysqli_num_rows($query);
 	return $count;

@@ -4,37 +4,31 @@ $baseurl='http://narrateme.com/new/';
 //$_SESSION["user_log_flag"] = 1; //login false
 if(isset($_POST['login'])){
 	extract($_POST);   
-	$username=mysql_real_escape_string(strip_tags(trim(@$user)));
-	$password=mysql_real_escape_string(strip_tags(trim(base64_encode(@$pass))));
-	
-		$query = "SELECT * FROM `na_member` WHERE username = '".$username."' AND password = '".$password."' ";
-		//exit();
-		$result = mysql_query($query);
-		$counter=mysql_num_rows($result);
-		 $row=mysql_fetch_array($result);
-		//exit();
-		if($row >0){
-		$_SESSION["user_log_flag"] = 1;
-		 $_SESSION["username"] = $row['username']; 
-		 $_SESSION["useremail"] = $row['email'];
-		 $_SESSION["userid"] = $row['id'];//login true
-		//exit();
-		//header("location: dashboard.php");	 
+	$username=mysqli_real_escape_string($con, strip_tags(trim(@$user)));
+	$password=mysqli_real_escape_string($con, strip_tags(trim(base64_encode(@$pass))));
+	$query = "SELECT * FROM `na_member` WHERE username = '".$username."' AND password = '".$password."' ";
+	$result = mysqli_query($con, $query);
+	$counter=mysqli_num_rows($result);
+	$row=mysqli_fetch_array($result);
+	if($row >0){
+        $_SESSION["user_log_flag"] = 1;
+        $_SESSION["username"] = $row['username']; 
+        $_SESSION["useremail"] = $row['email'];
+        $_SESSION["userid"] = $row['id'];//login true
+        echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
+        echo "window.top.location.href='".$daseurl."dashboard.php';\n";
+		echo "</script>";
+	} else {
+		$_SESSION["user_log_flag"] = 0; //login false
+		$MSGlogfalse="Invalid Username or Password";
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-				echo "window.top.location.href='".$daseurl."dashboard.php';\n";
-				echo "</script>";
- 		}else{
-			$_SESSION["user_log_flag"] = 0; //login false
-			$MSGlogfalse="Invalid Username or Password";
-			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-				echo "window.top.location.href='".$daseurl."index.php?op=logfals';\n";
-				echo "</script>";
-		}
+		echo "window.top.location.href='".$daseurl."index.php?op=logfals';\n";
+		echo "</script>";
+	}
 } 
 if(@$_SESSION['user_log_flag']==1){
-	 $viewmember=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
- }
-
+    $viewmember=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,9 +38,7 @@ if(@$_SESSION['user_log_flag']==1){
         <title>NarrateMe | Register</title>
         <link href="<?php echo $baseurl?>css/bootstrap.css" rel="stylesheet"/>
         <link href="<?php echo $baseurl?>css/custom.css" rel="stylesheet"/>
-
-        <link href="<?php echo $baseurl?>css/animations.css" rel="stylesheet"/>
-        
+        <link href="<?php echo $baseurl?>css/animations.css" rel="stylesheet"/>        
         <link href="<?php echo $baseurl?>css/owl.carousel.css" rel="stylesheet"/>
         <link href="<?php echo $baseurl?>css/owl.theme.css" rel="stylesheet"/>
         <link href="<?php echo $baseurl?>css/owl.transitions.css" rel="stylesheet"/>
@@ -64,7 +56,6 @@ if(@$_SESSION['user_log_flag']==1){
         <link href="<?php echo $baseurl?>dashboard/css/app.min.2.css" rel="stylesheet">
     </head>
     <body>
-
         <header>
         	<div class="header_top">
             	<div class="container">

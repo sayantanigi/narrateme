@@ -3,13 +3,13 @@ include('application_top_cart.php');
 //$_SESSION["user_log_flag"] = 0; //login false
 if(isset($_POST['login'])){
 	extract($_POST);   
-	$username=mysql_real_escape_string(strip_tags(trim(@$user)));
-	$password=mysql_real_escape_string(strip_tags(trim(base64_encode(@$pass))));
+	$username=mysqli_real_escape_string($con, strip_tags(trim(@$user)));
+	$password=mysqli_real_escape_string($con, strip_tags(trim(base64_encode(@$pass))));
 	
 		$query = "SELECT * FROM `na_member` WHERE username = '".$username."' AND password = '".$password."' ";
-		$result = mysql_query($query);
-		$counter=mysql_num_rows($result);
-		 $row=mysql_fetch_array($result);
+		$result = mysqli_query($con, $query);
+		$counter=mysqli_num_rows($result);
+		 $row=mysqli_fetch_array($result);
 		//exit();
 		if($row >0){
 		$_SESSION["user_log_flag"] = 1;

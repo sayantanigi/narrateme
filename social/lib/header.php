@@ -1,28 +1,28 @@
 <?php 
 include('../lib/application_top.php'); 
 socialcheck();
-$viewmemberlogin=getAnyTableWhereData('na_member', " AND id='".$_SESSION["userid"]."' ");
+$viewmemberlogin=getAnyTableWhereData('na_member', " AND id='".$_SESSION["userid"]."'");
 $current_url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 //=====================Accept Friend Request==========================
-if($_REQUEST['op']=="acpt"){
+if(@$_REQUEST['op']=="acpt") {
 	$data = array('frnd_status'=>2);
 	$result=updateData($data,'na_frnd_reqst', " from_id='" . $_REQUEST['from_id'] . "' and to_id='".$_REQUEST['to_id']."' and id=".$_REQUEST['reqst_id']." ");
 }
 //=====================Accept Friend Request==========================
 
 //=====================Reject Friend Request==========================
-if(@$_REQUEST['op']=="rejct"){
-	$result=mysql_query("DELETE from `na_frnd_reqst` where (`from_id`= ".$_REQUEST['to_id']." || `to_id`= ".$_REQUEST['to_id'].") and (`to_id`=".$_REQUEST['from_id']." || `from_id`=".$_REQUEST['from_id'].") and `frnd_status`=1");
+if(@$_REQUEST['op']=="rejct") {
+	$result=mysqli_query($con, "DELETE from `na_frnd_reqst` where (`from_id`= ".$_REQUEST['to_id']." || `to_id`= ".$_REQUEST['to_id'].") and (`to_id`=".$_REQUEST['from_id']." || `from_id`=".$_REQUEST['from_id'].") and `frnd_status`=1");
 }
 //=====================Reject Friend Request==========================
 
-if($_REQUEST['profchatid']!=""){
+if(@$_REQUEST['profchatid']!="") {
 	$data = array('read_status'=>0);
 	$result=updateData($data,'na_message', " to_id ='".$_SESSION["userid"]."' and read_status =1");
 }
 
-if(isset($_REQUEST['decline'])){
-	$result=mysql_query("DELETE from `na_frnd_reqst` where (`from_id`= ".$_REQUEST['to_id']." || `to_id`= ".$_REQUEST['to_id'].") and (`to_id`=".$_REQUEST['from_id']." || `from_id`=".$_REQUEST['from_id'].") and `frnd_status`=1");
+if(@$_REQUEST['decline']) {
+	$result=mysqli_query($con, "DELETE from `na_frnd_reqst` where (`from_id`= ".$_REQUEST['to_id']." || `to_id`= ".$_REQUEST['to_id'].") and (`to_id`=".$_REQUEST['from_id']." || `from_id`=".$_REQUEST['from_id'].") and `frnd_status`=1");
 	if($resultupdatefrnd){
 	   $respondfrndmsg="Friend Removed From The List ...";
 	}
@@ -83,16 +83,16 @@ $(function() {
                         </form> 
                     </div>
                 </li>
-                <?php $sqlcountmsg=mysqli_fetch_array(mysqli_query($con, "select count(id) as countmsg from `na_message` where `to_id`=".$_SESSION['userid']." and `read_status`=1"));?>
+                <?php $sqlcountmsg = mysqli_fetch_array(mysqli_query($con, "select count(id) as countmsg from `na_message` where `to_id`=".$_SESSION['userid']." and `read_status`=1"));?>
                 <li class="dropdown"> 
                     <a data-toggle="dropdown" href="#"> <i class="tm-icon zmdi zmdi-email"></i> <i class="tmn-counts"><?php echo $sqlcountmsg['countmsg']?></i> </a>
                     <div class="dropdown-menu dropdown-menu-lg pull-right">
                         <div class="listview">
                             <div class="lv-header"> Messages </div>
                             <div class="lv-body"> 
-                                <?php $sqlmsglist=mysql_query("SELECT * FROM `na_message` where to_id=".$_SESSION["userid"]." and `read_status`=1");
-            				    if(mysql_num_rows($sqlmsglist)>0){
-            				  	while($rowmsglst=mysql_fetch_array($sqlmsglist)){
+                                <?php $sqlmsglist=mysqli_query($con, "SELECT * FROM `na_message` where to_id=".$_SESSION["userid"]." and `read_status`=1");
+            				    if(mysqli_num_rows($sqlmsglist)>0){
+            				  	while($rowmsglst=mysqli_fetch_array($sqlmsglist)){
             						$viewmembermsg=getAnyTableWhereData('na_member', " AND id='".$rowmsglst['from_id']."' ");
             				    ?>
                                 <a class="lv-item" href="user-chat.php?profchatid=<?php echo $rowmsglst['from_id']?>">
@@ -129,7 +129,7 @@ $(function() {
                 </li>
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#"> <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> <i class="tmn-counts">
-                    <?php $sqlcountnot=mysql_fetch_array(mysql_query("select count(id) as countnot from `na_frnd_reqst` where `to_id`=".$_SESSION['userid']." and `frnd_status`=1")); ?>
+                    <?php $sqlcountnot=mysqli_fetch_array(mysqli_query($con, "select count(id) as countnot from `na_frnd_reqst` where `to_id`=".$_SESSION['userid']." and `frnd_status`=1")); ?>
                     <?php echo $sqlcountnot['countnot']?></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg pull-right">
@@ -140,9 +140,9 @@ $(function() {
                                 </ul>
                             </div>
                             <div class="lv-body"> 
-                                <?php $sqlrequestlist=mysql_query("SELECT * FROM `na_frnd_reqst` where `to_id`=".$_SESSION['userid']." and `frnd_status`=1");
-                                if(mysql_num_rows($sqlrequestlist)>0) {
-                                    while($rowfrndnot=mysql_fetch_array($sqlrequestlist)) {
+                                <?php $sqlrequestlist=mysqli_query($con, "SELECT * FROM `na_frnd_reqst` where `to_id`=".$_SESSION['userid']." and `frnd_status`=1");
+                                if(mysqli_num_rows($sqlrequestlist) > 0) {
+                                    while($rowfrndnot=mysqli_fetch_array($sqlrequestlist)) {
                                         $viewfrndnotlist=getAnyTableWhereData('na_member', " AND id='".$rowfrndnot['from_id']."' ");
                                 ?>
                                 <div class="media" style="padding-left:5px;">

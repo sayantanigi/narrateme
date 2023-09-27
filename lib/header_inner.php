@@ -1,6 +1,6 @@
 <?php
 include('application_top.php');
-$baseurl='http://narrateme.com/new/';
+$baseurl='http://localhost/narrateme/';
 //$_SESSION["user_log_flag"] = 1; //login false
 if(isset($_POST['login'])){
 	extract($_POST);   

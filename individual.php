@@ -3,84 +3,52 @@ include('lib/inner_header.php');
 sequre();
 $view=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."'");
 //==========================SUPRATIM 15/07/2016===================
-if ($_REQUEST['submit']=="Update Userdata"){
-	 extract($_POST);
-	 $dateob=date('Y-m-d',strtotime($dateofbirth));
-	
-$data=array('first_name'=>mysql_real_escape_string(stripcslashes($first_name)),'last_name'=>mysql_real_escape_string(stripcslashes($last_name)),'dateofbirth'=>$dateob,'gender'=>$gender,'url'=>$url,'domain_name'=>$domain_name,'website'=>$website,'phone_no'=>$phone_no,'email'=>$email,'address'=>$address,'informational_description'=>addslashes($informational_description), 'current_student'=>$current_student, 'cellularphone_no'=>$cellularphone_no, 'IpAddress'=>$IpAddress, 'skype_url'=>$skype_url, 'social_seq_no'=>$social_seq_no, 'lastedit' => date('Y-m-d H:i:s'));
-$result=updateData($data,'na_member', "id='".$id."'") ;
-	
+if (@$_REQUEST['submit']=="Update Userdata"){
+ 	extract($_POST);
+ 	$dateob=date('Y-m-d',strtotime($dateofbirth));
+	$data=array('first_name'=>mysqli_real_escape_string($con, stripcslashes($first_name)),'last_name'=>mysqli_real_escape_string($con, stripcslashes($last_name)),'dateofbirth'=>$dateob,'gender'=>$gender,'url'=>$url,'domain_name'=>$domain_name,'website'=>$website,'phone_no'=>$phone_no,'email'=>$email,'address'=>$address,'informational_description'=>addslashes($informational_description), 'current_student'=>$current_student, 'cellularphone_no'=>$cellularphone_no, 'IpAddress'=>$IpAddress, 'skype_url'=>$skype_url, 'social_seq_no'=>$social_seq_no, 'lastedit' => date('Y-m-d H:i:s'));
+	$result=updateData($data,'na_member', "id='".$id."'") ;	
 	echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 	echo "window.top.location.href='individual.php?update=success';\n";
 	echo "</script>";
-	
-	}
+}
 //==========================SUPRATIM 15/07/2016===================
-if(isset($_REQUEST['type'])){
-
-		$typedata=$_REQUEST['type'];
-
-		if($typedata=='ind'){
-
-			$data=array('ind'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='std'){
-
-			$data=array('std'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='edu'){
-
-			$data=array('edu'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='fac'){
-
-			$data=array('fac'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}
-
+if(@$_REQUEST['type']){
+	$typedata=$_REQUEST['type'];
+	if($typedata=='ind'){
+		$data=array('ind'=>1);
+		$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+	}else if($typedata=='std'){
+		$data=array('std'=>1);
+		$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+	}else if($typedata=='edu'){
+		$data=array('edu'=>1);
+		$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+	}else if($typedata=='fac'){
+		$data=array('fac'=>1);
+		$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
 	}
-
+}
 $pagename = basename($_SERVER['PHP_SELF']);
 
 //================================SUPRATIM Individual Add/Update/view===================================
 
 $viewind=getAnyTableWhereData('na_individual', " AND ind_id='".$_SESSION["userid"]."' ");
-
 if (isset($_REQUEST['addindividualdata']) AND ($_REQUEST['addindividualdata']=="ADDIND")){
 	extract($_POST);
 	// Function to get the client IP address
 	function get_client_ip() {
-
 		$ipaddress = '';
-
 		if ($_SERVER['HTTP_CLIENT_IP'])
-
 			$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-
 		else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-
 			$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-
 		else if($_SERVER['HTTP_X_FORWARDED'])
-
 			$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-
 		else if($_SERVER['HTTP_FORWARDED_FOR'])
-
 			$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-
 		else if($_SERVER['HTTP_FORWARDED'])
-
 			$ipaddress = $_SERVER['HTTP_FORWARDED'];
-
 		else if($_SERVER['REMOTE_ADDR'])
 
 			$ipaddress = $_SERVER['REMOTE_ADDR'];
@@ -169,9 +137,9 @@ if (isset($_REQUEST['addindividualdata']) AND ($_REQUEST['addindividualdata']=="
 
 	$query = "SELECT * FROM `na_individual` WHERE ind_id = '".$_SESSION['userid']."'";
 
-	$result = mysql_query($query);
+	$result = mysqli_query($con, $query);
 
-	$counter=mysql_num_rows($result);
+	$counter=mysqli_num_rows($result);
 
 	//================================SUPRATIM Individual Add/Update/view===================================
 
@@ -180,7 +148,7 @@ if (isset($_REQUEST['addindividualdata']) AND ($_REQUEST['addindividualdata']=="
 
 	//================================SUPRATIM Individual Award Add/Update/view==============================
 
-	if($_REQUEST['submit']=="awardsubmit") {
+	if(@$_REQUEST['submit']=="awardsubmit") {
 	extract($_POST);
 	$formataward_date = date('Y-m-d',strtotime($_REQUEST['award_date']));
 	if($_REQUEST['awardid']=="") {
@@ -230,8 +198,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	//$viewdrigs = getAlldataWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' ");
 	$viewawards = getAnyTableWhereData('na_individual_award', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
 	$studensawardssql = "SELECT * FROM na_individual_award WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery3 = mysql_query($studensawardssql) or mysql_error();
-	$stunum3 = mysql_num_rows($resquery3);
+	$resquery3 = mysqli_query($con, $studensawardssql) or mysql_error();
+	$stunum3 = mysqli_num_rows($resquery3);
 
 	//================================SUPRATIM Individual Award Add/Update/view==============================
 
@@ -239,7 +207,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Rehab Award Add/Update/view==============================
 
-	if($_REQUEST['submit']=="rehabilitationsubmit") {
+	if(@$_REQUEST['submit']=="rehabilitationsubmit") {
 	extract($_POST);
 		//$award_date = explode("/",$_REQUEST['award_date']);
 
@@ -317,7 +285,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Awards
 
-	if($_REQUEST['delrehabilitation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delrehabilitation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
@@ -343,15 +311,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewrehabilitation = getAnyTableWhereData('na_rehabilitation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewrehabilitation = getAnyTableWhereData('na_rehabilitation', " AND ind_id='".@$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensrehabilitationssql = "SELECT * FROM na_rehabilitation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery4 = mysql_query($studensrehabilitationssql) or mysql_error();
+	$resquery4 = mysqli_query($con, $studensrehabilitationssql) or mysqli_error();
 
-	$stunum4 = mysql_num_rows($resquery4);
+	$stunum4 = mysqli_num_rows($resquery4);
 
 	//================================SUPRATIM Rehab Award Add/Update/view==============================
 
@@ -359,7 +327,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Institute Award Add/Update/view==============================
 
-	if($_REQUEST['submit']=="institutesubmit") {
+	if(@$_REQUEST['submit']=="institutesubmit") {
 
 		
 
@@ -463,7 +431,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Awards
 
-	if($_REQUEST['delinstitute']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delinstitute']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
@@ -489,15 +457,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewinstitute = getAnyTableWhereData('na_eduinstitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewinstitute = getAnyTableWhereData('na_eduinstitute', " AND ind_id='".@$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensinstitutessql = "SELECT * FROM na_eduinstitute WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery5 = mysql_query($studensinstitutessql) or mysql_error();
+	$resquery5 = mysqli_query($con, $studensinstitutessql) or mysql_error();
 
-	$stunum5 = mysql_num_rows($resquery5);
+	$stunum5 = mysqli_num_rows($resquery5);
 
 	//================================SUPRATIM Institute Award Add/Update/view==============================
 
@@ -505,10 +473,10 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Institute Teacher Add/Update/view==============================
 
-	if($_REQUEST['submit']=="teachersubmit") {
+	if(@$_REQUEST['submit']=="teachersubmit") {
 	extract($_POST);
 
-		if($_REQUEST['teacherid']=="") {
+		if(@$_REQUEST['teacherid']=="") {
 
 			$data = array('ind_id'=>$_SESSION["userid"],'teacher_name'=>$teacher_name,'phone'=>$phone,'email'=>$email,'learning_portal'=>$learning_portal, 'course'=>$course, 'academic_program'=>$academic_program,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
 
@@ -541,13 +509,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	} 
 	//Delete Teacher
 
-	if($_REQUEST['delteacher']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delteacher']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
 		$delsql = "DELETE from na_teacher WHERE id = '".$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
@@ -567,23 +535,23 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewteacher = getAnyTableWhereData('na_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewteacher = getAnyTableWhereData('na_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	$studensteacherssql = "SELECT * FROM na_teacher WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery6 = mysql_query($studensteacherssql) or mysql_error();
-	$stunum6 = mysql_num_rows($resquery6);
+	$resquery6 = mysqli_query($con, $studensteacherssql) or mysql_error();
+	$stunum6 = mysqli_num_rows($resquery6);
 
 	//================================SUPRATIM Institute Teacher Add/Update/view==============================
 
 	//=========================Academic Transcript================================
-	if($_REQUEST['submit']=="atranscriptsubmit"){
+	if(@$_REQUEST['submit']=="atranscriptsubmit"){
 		$grade = $_REQUEST['grade'];
 		$note = $_REQUEST['note'];
 		$message = $_REQUEST['message'];
 		$academic_status=$_REQUEST['academic_status'];
 		$comment=$_REQUEST['comment'];
 		
-		if($_REQUEST['atranscriptid']=="") {
+		if(@$_REQUEST['atranscriptid']=="") {
 		    $uploads_dir = 'uploads/ind_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -617,11 +585,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		
 		}
 	}
-	$sqlatranscript=mysql_query("SELECT * from `na_st_academintranscript` where `ind_id` =".$_SESSION["userid"]."");
-	$viewatranscriptedit = getAnyTableWhereData('na_st_academintranscript', "AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
-	if($_REQUEST['delatranscript']){
+	$sqlatranscript=mysqli_query($con, "SELECT * from `na_st_academintranscript` where `ind_id` =".$_SESSION["userid"]."");
+	$viewatranscriptedit = getAnyTableWhereData('na_st_academintranscript', "AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
+	if(@$_REQUEST['delatranscript']){
 		
-		mysql_query("DELETE FROM `na_st_academintranscript` WHERE `id` = ".$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
+		mysqli_query($con, "DELETE FROM `na_st_academintranscript` WHERE `id` = ".$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
 		
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		
@@ -636,7 +604,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	//=========================Academic Transcript================================
 	
 	//=========================Credit Report================================
-	if($_REQUEST['submit']=="creditreportsubmit"){
+	if(@$_REQUEST['submit']=="creditreportsubmit"){
 		$report_date = date('Y-m-d',strtotime($_REQUEST['report_date']));
 		$report_link = $_REQUEST['report_link'];
 		$description = $_REQUEST['description'];
@@ -685,14 +653,14 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	
 		
 	}
-	$sqlcreport=mysql_query("SELECT * from `na_credit_roport` where `ind_id` =".$_SESSION["userid"]."");
+	$sqlcreport=mysqli_query($con, "SELECT * from `na_credit_roport` where `ind_id` =".$_SESSION["userid"]."");
 	//echo "SELECT * from `na_credit_roport` where `ind_id` =".$_SESSION["userid"]." and id = '".$_REQUEST['id']."'";
 	//exit();
-	 $viewcreporttedit=mysql_fetch_array(mysql_query("SELECT * from `na_credit_roport` where `ind_id` =".$_SESSION["userid"]." and id = '".$_REQUEST['id']."'"));
+	 $viewcreporttedit=mysqli_fetch_array(mysqli_query($con, "SELECT * from `na_credit_roport` where `ind_id` =".@$_SESSION["userid"]." and id = '".@$_REQUEST['id']."'"));
 	//$viewcreporttedit = getAnyTableWhereData('na_credit_roport', "AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
-	if($_REQUEST['delcreport']){
+	if(@$_REQUEST['delcreport']){
 		
-		mysql_query("DELETE FROM `na_credit_roport` WHERE `id` = ".$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
+		mysqli_query($con, "DELETE FROM `na_credit_roport` WHERE `id` = ".$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
 		
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		
@@ -707,7 +675,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	//=========================Credit Report================================
 	
 	//========================Credit Report Issuer Section=======================================
-	if($_REQUEST['submit']=="creditissuerreportsubmit"){
+	if(@$_REQUEST['submit']=="creditissuerreportsubmit"){
 		extract($_POST);
 		
 		if(@$_REQUEST['cpd']=="") {
@@ -727,10 +695,10 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	}
 	
-	$sqlcreportissuename=mysql_query("SELECT * from `na_credit_issuer_report` where `ind_id` =".$_SESSION["userid"]."");
-	$viewissuercreporttedit=mysql_fetch_array(mysql_query("SELECT * from `na_credit_issuer_report` where `ind_id` =".$_SESSION["userid"]." and id = '".$_REQUEST['id']."'"));
-	if($_REQUEST['delissuercreditreport']){
-		mysql_query("DELETE FROM `na_credit_issuer_report` WHERE `id` = ".$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
+	$sqlcreportissuename=mysqli_query($con, "SELECT * from `na_credit_issuer_report` where `ind_id` =".$_SESSION["userid"]."");
+	$viewissuercreporttedit=mysqli_fetch_array(mysqli_query($con, "SELECT * from `na_credit_issuer_report` where `ind_id` =".$_SESSION["userid"]." and id = '".@$_REQUEST['id']."'"));
+	if(@$_REQUEST['delissuercreditreport']){
+		mysqli_query($con, "DELETE FROM `na_credit_issuer_report` WHERE `id` = ".@$_REQUEST['id']." and `ind_id`=".$_SESSION['userid']."");
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='individual.php?operation=successful&creditpanel=1&accordionTeal=&accr=1';\n";
 		echo "</script>";
@@ -740,9 +708,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM coach Add/Update/view==============================
 
-	if($_REQUEST['submit']=="coachsubmit") {
+	if(@$_REQUEST['submit']=="coachsubmit") {
 		extract($_POST);
-		if($_REQUEST['coachid']=="") {
+		if(@$_REQUEST['coachid']=="") {
 		    $uploads_dir = 'uploads/ind_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -781,22 +749,22 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	} 
 	//Delete Coach
 
-	if($_REQUEST['delcoach']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delcoach']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 		$delsql = "DELETE from na_coach WHERE id = '".$_REQUEST['id']."'";
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='individual.php?deloperation=successful&coachpanel=".$_REQUEST['coachpanel']."&accrr=1';\n";
 		echo "</script>";
 	}
 
 	//$viewdrigs = getAlldataWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' ");
-	$viewcoach = getAnyTableWhereData('na_coach', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewcoach = getAnyTableWhereData('na_coach', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenscoachssql = "SELECT * FROM na_coach WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery7 = mysql_query($studenscoachssql) or mysql_error();
-	$stunum7 = mysql_num_rows($resquery7);
+	$resquery7 = mysqli_query($con, $studenscoachssql) or mysql_error();
+	$stunum7 = mysqli_num_rows($resquery7);
 	//================================SUPRATIM coach Add/Update/view==============================
 	//================================SUPRATIM Recomendation Add/Update/view==============================
-	if($_REQUEST['submit']=="recomendationsubmit") {
+	if(@$_REQUEST['submit']=="recomendationsubmit") {
 	extract($_POST);
 	if($_REQUEST['recomendationid']=="") {
 		$data = array('ind_id'=>$_SESSION["userid"],'recomendation_person'=>$recomendation_person,'recomendation'=>$recomendation,'rec_video_link'=>$rec_video_link,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
@@ -823,9 +791,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Coach
 
-	if($_REQUEST['delrecomendation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_recomendation WHERE id = '".$_REQUEST['id']."'";
-		mysql_query($delsql);
+	if(@$_REQUEST['delrecomendation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_recomendation WHERE id = '".@$_REQUEST['id']."'";
+		mysqli_query($con, $delsql);
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='individual.php?deloperation=successful&recomendationpanel=".$_REQUEST['recomendationpanel']."&accr=1';\n";
@@ -833,15 +801,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	}
 
 	//$viewdrigs = getAlldataWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' ");
-	$viewrecomendation = getAnyTableWhereData('na_recomendation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewrecomendation = getAnyTableWhereData('na_recomendation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensrecomendationssql = "SELECT * FROM na_recomendation WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery8 = mysql_query($studensrecomendationssql) or mysql_error();
-	$stunum8 = mysql_num_rows($resquery8);
+	$resquery8 = mysqli_query($con, $studensrecomendationssql) or mysql_error();
+	$stunum8 = mysqli_num_rows($resquery8);
 	//================================SUPRATIM Recomendation Add/Update/view==============================
 
 	//================================SUPRATIM Extra Add/Update/view==============================
 
-	if($_REQUEST['submit']=="extrasubmit") {
+	if(@$_REQUEST['submit']=="extrasubmit") {
 	extract($_POST);
 		$formatextra_date = date('Y-m-d',strtotime($_REQUEST['from_date']));
 
@@ -895,7 +863,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['extraid']."' ") ;
+			$result = updateData($data,'na_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['extraid']."' ") ;
 
 			
 
@@ -915,19 +883,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Extra
 
-	if($_REQUEST['delextra']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delextra']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_extracurricullam WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_extracurricullam WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='individual.php?deloperation=successful&extrapanel=".$_REQUEST['extrapanel']."&accr=1';\n";
+		echo "window.top.location.href='individual.php?deloperation=successful&extrapanel=".@$_REQUEST['extrapanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -941,15 +909,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewextra = getAnyTableWhereData('na_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewextra = getAnyTableWhereData('na_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensextrassql = "SELECT * FROM na_extracurricullam WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery9 = mysql_query($studensextrassql) or mysql_error();
+	$resquery9 = mysqli_query($con, $studensextrassql) or mysql_error();
 
-	$stunum9 = mysql_num_rows($resquery9);
+	$stunum9 = mysqli_num_rows($resquery9);
 
 	//================================SUPRATIM Extra Add/Update/view==============================
 
@@ -957,7 +925,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Job Add/Update/view==============================
 
-		if($_REQUEST['submit']=="jobsubmit") {
+		if(@$_REQUEST['submit']=="jobsubmit") {
 
 		
 
@@ -1011,7 +979,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_student_experience', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['jobid']."' ") ;
+			$result = updateData($data,'na_student_experience', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['jobid']."' ") ;
 
 			
 
@@ -1031,13 +999,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete JOB
 
-	if($_REQUEST['deljob']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deljob']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_student_experience WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_student_experience WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
@@ -1057,15 +1025,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewjob = getAnyTableWhereData('na_student_experience', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewjob = getAnyTableWhereData('na_student_experience', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensjobssql = "SELECT * FROM na_student_experience WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery10 = mysql_query($studensjobssql) or mysql_error();
+	$resquery10 = mysqli_query($con, $studensjobssql) or mysqli_error();
 
-	$stunum10 = mysql_num_rows($resquery10);
+	$stunum10 = mysqli_num_rows($resquery10);
 
 	//================================SUPRATIM Job Add/Update/view==============================
 
@@ -1073,12 +1041,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Video Presentation Add/Update/view==============================
 
-	if($_REQUEST['submit']=="videopresentationsubmit") {
+	if(@$_REQUEST['submit']=="videopresentationsubmit") {
 	extract($_POST);
 
-		$formatvideopresentation_date = date('Y-m-d',strtotime($_REQUEST['video_date']));
+		$formatvideopresentation_date = date('Y-m-d',strtotime(@$_REQUEST['video_date']));
 
-		if($_REQUEST['videopresentationid']=="") {
+		if(@$_REQUEST['videopresentationid']=="") {
 
 								
 
@@ -1132,19 +1100,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete videopresentation
 
-	if($_REQUEST['delvideopresentation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delvideopresentation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
 		$delsql = "DELETE from na_video_presentation WHERE id = '".$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='individual.php?deloperation=successful&videopresentationpanel=".$_REQUEST['videopresentationpanel']."&accr=1';\n";
+		echo "window.top.location.href='individual.php?deloperation=successful&videopresentationpanel=".@$_REQUEST['videopresentationpanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -1158,20 +1126,20 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewvideopresentation = getAnyTableWhereData('na_video_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewvideopresentation = getAnyTableWhereData('na_video_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensvideopresentationssql = "SELECT * FROM na_video_presentation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery11 = mysql_query($studensvideopresentationssql) or mysql_error();
+	$resquery11 = mysqli_query($con, $studensvideopresentationssql) or mysqli_error();
 
-	$stunum11 = mysql_num_rows($resquery11);
+	$stunum11 = mysqli_num_rows($resquery11);
 
 	//================================SUPRATIM Video Presentation Add/Update/view==============================
 	//================================SUPRATIM Academic Transcript Add/Update/view==============================
 
-	if($_REQUEST['submit']=="academictranscriptsubmit") {
+	if(@$_REQUEST['submit']=="academictranscriptsubmit") {
 	  extract($_POST);
 		if($_REQUEST['academictranscriptid']=="") {
 
@@ -1193,9 +1161,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete academictranscript
 
-	if($_REQUEST['delacademictranscript']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delacademictranscript']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 		$delsql = "DELETE from na_academic_transcript WHERE id = '".$_REQUEST['id']."'";
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='individual.php?deloperation=successful&academictranscriptpanel=".$_REQUEST['academictranscriptpanel']."&accr=1';\n";
@@ -1203,10 +1171,10 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	}
 
-	$viewacademictranscript = getAnyTableWhereData('na_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewacademictranscript = getAnyTableWhereData('na_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensacademictranscriptssql = "SELECT * FROM na_academic_transcript WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery12 = mysql_query($studensacademictranscriptssql) or mysql_error();
-	$stunum12 = mysql_num_rows($resquery12);
+	$resquery12 = mysqli_query($con, $studensacademictranscriptssql) or mysqli_error();
+	$stunum12 = mysqli_num_rows($resquery12);
 
 	//================================SUPRATIM Academic Transcript Add/Update/view==============================
 
@@ -1214,7 +1182,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM educationalrecord Add/Update/view==============================
 
-	if($_REQUEST['submit']=="educationalrecordsubmit") {
+	if(@$_REQUEST['submit']=="educationalrecordsubmit") {
 
 		
 
@@ -1296,13 +1264,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete educationalrecord
 
-	if($_REQUEST['deleducationalrecord']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deleducationalrecord']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
 		$delsql = "DELETE from na_educational_records WHERE id = '".$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
@@ -1322,15 +1290,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$vieweducationalrecord = getAnyTableWhereData('na_educational_records', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$vieweducationalrecord = getAnyTableWhereData('na_educational_records', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studenseducationalrecordssql = "SELECT * FROM na_educational_records WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery13 = mysql_query($studenseducationalrecordssql) or mysql_error();
+	$resquery13 = mysqli_query($con, $studenseducationalrecordssql) or mysql_error();
 
-	$stunum13 = mysql_num_rows($resquery13);
+	$stunum13 = mysqli_num_rows($resquery13);
 
 	//================================SUPRATIM educationalrecord Add/Update/view==============================
 
@@ -1338,11 +1306,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM issuerofreport Add/Update/view==============================
 
-		if($_REQUEST['submit']=="issuerofreportsubmit") {
+		if(@$_REQUEST['submit']=="issuerofreportsubmit") {
 		extract($_POST);
 		//$formatvideopresentation_date = date('Y-m-d',strtotime($_REQUEST['video_date']));
 
-		if($_REQUEST['issuerofreportid']=="") {
+		if(@$_REQUEST['issuerofreportid']=="") {
 
 								
 $uploads_dir = 'uploads/ind_doc/';
@@ -1438,15 +1406,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewissuerofreport = getAnyTableWhereData('na_issuer_of_report', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewissuerofreport = getAnyTableWhereData('na_issuer_of_report', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensissuerofreportssql = "SELECT * FROM na_issuer_of_report WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery14 = mysql_query($studensissuerofreportssql) or mysql_error();
+	$resquery14 = mysqli_query($con, $studensissuerofreportssql) or mysqli_error();
 
-	$stunum14 = mysql_num_rows($resquery14);
+	$stunum14 = mysqli_num_rows($resquery14);
 
 	//================================SUPRATIM issuerofreport Add/Update/view==============================
 
@@ -1454,7 +1422,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM report Add/Update/view==============================
 
-	if($_REQUEST['submit']=="reportsubmit") {
+	if(@$_REQUEST['submit']=="reportsubmit") {
 		extract($_POST);
 		$formatreport_date = date('Y-m-d',strtotime($_REQUEST['report_date']));
 		if($_REQUEST['reportid']=="") {
@@ -1488,7 +1456,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			$data = array('ind_id'=>$_SESSION["userid"],'report_date'=>$formatreport_date, 'description'=>$description,'status'=>$status,'lastedit'=>date('Y-m-d H:i:s'));
 
-			$result = updateData($data,'na_reports', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['reportid']."' ") ;
+			$result = updateData($data,'na_reports', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['reportid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='individual.php?operation=successful&reportpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -1497,9 +1465,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 	} 
 
 	//Delete report
-	if($_REQUEST['delreport']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delreport']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 		$delsql = "DELETE from na_reports WHERE id = '".$_REQUEST['id']."'";
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='individual.php?deloperation=successful&reportpanel=".$_REQUEST['reportpanel']."&accr=1';\n";
@@ -1510,15 +1478,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewreport = getAnyTableWhereData('na_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewreport = getAnyTableWhereData('na_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensreportssql = "SELECT * FROM na_reports WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery15 = mysql_query($studensreportssql) or mysql_error();
+	$resquery15 = mysqli_query($con, $studensreportssql) or mysqli_error();
 
-	$stunum15 = mysql_num_rows($resquery15);
+	$stunum15 = mysqli_num_rows($resquery15);
 
 	//================================SUPRATIM report Add/Update/view==============================
 
@@ -1526,7 +1494,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM message Add/Update/view==============================
 
-	if($_REQUEST['submit']=="messagesubmit") {
+	if(@$_REQUEST['submit']=="messagesubmit") {
 	
 	extract($_POST);
 
@@ -1546,7 +1514,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			$data = array('ind_id'=>$_SESSION["userid"],'report_date'=>$formatmessage_date, 'description'=>$description,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
 
-			$result = updateData($data,'na_messages', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['messageid']."' ") ;
+			$result = updateData($data,'na_messages', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['messageid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='individual.php?operation=successful&messagepanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -1558,19 +1526,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete message
 
-	if($_REQUEST['delmessage']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delmessage']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
 		$delsql = "DELETE from na_messages WHERE id = '".$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='individual.php?deloperation=successful&messagepanel=".$_REQUEST['messagepanel']."&accr=1';\n";
+		echo "window.top.location.href='individual.php?deloperation=successful&messagepanel=".@$_REQUEST['messagepanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -1584,15 +1552,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewmessage = getAnyTableWhereData('na_messages', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewmessage = getAnyTableWhereData('na_messages', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensmessagessql = "SELECT * FROM na_messages WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery16 = mysql_query($studensmessagessql) or mysql_error();
+	$resquery16 = mysqli_query($con, $studensmessagessql) or mysqli_error();
 
-	$stunum16 = mysql_num_rows($resquery16);
+	$stunum16 = mysqli_num_rows($resquery16);
 
 	//================================SUPRATIM message Add/Update/view==============================
 
@@ -1600,7 +1568,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM Audio Presentation Add/Update/view==============================
 
-		if($_REQUEST['submit']=="audiopresentationsubmit") {
+		if(@$_REQUEST['submit']=="audiopresentationsubmit") {
 
 		
 
@@ -1610,7 +1578,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		$formataudiopresentation_date = date('Y-m-d',strtotime($_REQUEST['audio_date']));
 
-		if($_REQUEST['audiopresentationid']=="") {
+		if(@$_REQUEST['audiopresentationid']=="") {
 
 								
 
@@ -1644,7 +1612,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_audio_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['audiopresentationid']."' ") ;
+			$result = updateData($data,'na_audio_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['audiopresentationid']."' ") ;
 
 			
 
@@ -1664,19 +1632,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete audiopresentation
 
-	if($_REQUEST['delaudiopresentation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaudiopresentation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_audio_presentation WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_audio_presentation WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='individual.php?deloperation=successful&audiopresentationpanel=".$_REQUEST['audiopresentationpanel']."&accr=1';\n";
+		echo "window.top.location.href='individual.php?deloperation=successful&audiopresentationpanel=".@$_REQUEST['audiopresentationpanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -1690,15 +1658,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewaudiopresentation = getAnyTableWhereData('na_audio_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaudiopresentation = getAnyTableWhereData('na_audio_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensaudiopresentationssql = "SELECT * FROM na_audio_presentation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery17 = mysql_query($studensaudiopresentationssql) or mysql_error();
+	$resquery17 = mysqli_query($con, $studensaudiopresentationssql) or mysqli_error();
 
-	$stunum17 = mysql_num_rows($resquery17);
+	$stunum17 = mysqli_num_rows($resquery17);
 
 	//================================SUPRATIM Audio Presentation Add/Update/view==============================
 
@@ -1706,7 +1674,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//================================SUPRATIM personalrecomendation Add/Update/view==============================
 
-		if($_REQUEST['submit']=="personalrecomendationsubmit") {
+		if(@$_REQUEST['submit']=="personalrecomendationsubmit") {
 
 		
 
@@ -1718,7 +1686,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-		if($_REQUEST['personalrecomendationid']=="") {
+		if(@$_REQUEST['personalrecomendationid']=="") {
 
 								
 
@@ -1772,13 +1740,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete personalrecomendation
 
-	if($_REQUEST['delpersonalrecomendation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delpersonalrecomendation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_personal_recommendations WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_personal_recommendations WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
@@ -1798,15 +1766,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewpersonalrecomendation = getAnyTableWhereData('na_personal_recommendations', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewpersonalrecomendation = getAnyTableWhereData('na_personal_recommendations', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
-	$studenspersonalrecomendationssql = "SELECT * FROM na_personal_recommendations WHERE ind_id = '".$_SESSION["userid"]."'";
+	$studenspersonalrecomendationssql = "SELECT * FROM na_personal_recommendations WHERE ind_id = '".@$_SESSION["userid"]."'";
 
-	$resquery18 = mysql_query($studenspersonalrecomendationssql) or mysql_error();
+	$resquery18 = mysqli_query($con, $studenspersonalrecomendationssql) or mysqli_error();
 
-	$stunum18 = mysql_num_rows($resquery18);
+	$stunum18 = mysqli_num_rows($resquery18);
 
 	//================================SUPRATIM personalrecomendation Add/Update/view==============================
 
@@ -1815,7 +1783,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		//================================SUPRATIM reference Add/Update/view==============================
 
 	
-		if($_REQUEST['submit']=="referencesubmit") {
+		if(@$_REQUEST['submit']=="referencesubmit") {
 
 		
 
@@ -1877,7 +1845,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_reference', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['referenceid']."' ") ;
+			$result = updateData($data,'na_reference', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['referenceid']."' ") ;
 
 			
 
@@ -1897,11 +1865,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete reference
 
-	if($_REQUEST['delreference']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delreference']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_reference WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_reference WHERE id = '".@$_REQUEST['id']."'";
 
 		mysql_query($delsql);
 
@@ -1909,7 +1877,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='individual.php?deloperation=successful&ref=1&#ref&referencepanel=".$_REQUEST['referencepanel']."&accr=1';\n";
+		echo "window.top.location.href='individual.php?deloperation=successful&ref=1&#ref&referencepanel=".@$_REQUEST['referencepanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -1923,15 +1891,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewreference = getAnyTableWhereData('na_reference', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewreference = getAnyTableWhereData('na_reference', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensreferencessql = "SELECT * FROM na_reference WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery19 = mysql_query($studensreferencessql) or mysql_error();
+	$resquery19 = mysqli_query($con, $studensreferencessql) or mysql_error();
 
-	$stunum19 = mysql_num_rows($resquery19);
+	$stunum19 = mysqli_num_rows($resquery19);
 
 
 	//================================SUPRATIM reference Add/Update/view==============================
@@ -1988,7 +1956,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_ins_facilities', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['instructionalfacilitiesid']."' ") ;
+			$result = updateData($data,'na_ins_facilities', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['instructionalfacilitiesid']."' ") ;
 
 			
 
@@ -2008,13 +1976,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete instructionalfacilities
 
-	if($_REQUEST['delinstructionalfacilities']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delinstructionalfacilities']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_ins_facilities WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_ins_facilities WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
@@ -2034,15 +2002,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewinstructionalfacilities = getAnyTableWhereData('na_ins_facilities', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewinstructionalfacilities = getAnyTableWhereData('na_ins_facilities', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensinstructionalfacilitiesssql = "SELECT * FROM na_ins_facilities WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery20 = mysql_query($studensinstructionalfacilitiesssql) or mysql_error();
+	$resquery20 = mysqli_query($con, $studensinstructionalfacilitiesssql) or mysqli_error();
 
-	$stunum20 = mysql_num_rows($resquery20);
+	$stunum20 = mysqli_num_rows($resquery20);
 
 	//================================SUPRATIM instructionalfacilities Add/Update/view==============================
 

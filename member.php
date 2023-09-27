@@ -26,7 +26,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 <div class="pmbb-header">
   <div class="panel-group" data-collapse-color="teal" id="accordionTeal" role="tablist" aria-multiselectable="true">
     <h4 style="padding-bottom:10px; cursor:pointer;" class="btn btn-success"><a id="search_m" style="color:#FFF;">Search Members:</a></h4><br/>
-    <div id="search_m_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_m_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -88,7 +88,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 			<!-------- search individuals----------------->
 			 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_ind" style="color:#FFF;">Search Individuals:</a></h4><br>
 			   
-    <div id="search_ind_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_ind_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
       
       <div class="pmbb-header">
@@ -135,7 +135,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 				<!--============= Search students ============--->
 							 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_stu" style="color:#FFF;">Search Students:</a></h4><br>
 			   
-    <div id="search_stu_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_stu_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -155,23 +155,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
                             </div>
                           </dd>
                         </dl>
-						<!--<dl class="dl-horizontal">
-                          <dt class="p-t-10">By Course Enrolled</dt>
-                          <dd>
-                            <div class="fg-line">
-							<input type="text" class="form-control" placeholder="Course Enrolled" name="course_enroll">
-                            </div>
-                          </dd>
-                        </dl>
-						<dl class="dl-horizontal">
-                          <dt class="p-t-10">By Program Enrolled</dt>
-                          <dd>
-                            <div class="fg-line">
-							<input type="text" class="form-control" placeholder="Program Enrolled" name="prog_enrolled">
-                            </div>
-                          </dd>
-                        </dl>-->
-						<div class="m-t-30">
+                        <div class="m-t-30">
                           <button class="btn btn-primary btn-sm waves-effect" type="submit" name="submit" value="Update Userdata">Search</button>
                           <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
                         </div>
@@ -200,7 +184,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 											 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_edu_inst" style="color:#FFF;">Search Educational Institution:</a></h4><br>
 			   
-    <div id="search_edu_inst_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_edu_inst_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -251,7 +235,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_inst_fac" style="color:#FFF;">Search Instructional Facilities and Schools:</a></h4><br>
 			   
-    <div id="search_inst_fac_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_inst_fac_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -302,7 +286,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_prgm" style="color:#FFF;">Search Programs:</a></h4><br>
 			   
-    <div id="search_prgm_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_prgm_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -358,7 +342,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 <h4 style="cursor:pointer;" class="btn btn-success"><a href="http://narrateme.com/new/course-module/courses"  style="color:#FFF;">Search Courses:</a></h4><br>
 			   
-    <div id="search_corse_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_corse_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">
@@ -409,7 +393,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 <h4 style="cursor:pointer;" class="btn btn-success"><a id="search_clas_lec" style="color:#FFF;">Search Classes & Lectures:</a></h4><br>
 			   
-    <div id="search_clas_lec_p" <?php if($_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
+    <div id="search_clas_lec_p" <?php if(@$_REQUEST['update']=="success") {?> style="display:block;" <?php }?> style="display:none;">
     <div class="panel panel-collapse">
      
       <div class="pmbb-header">

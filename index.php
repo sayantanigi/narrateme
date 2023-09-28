@@ -172,6 +172,4 @@ include('lib/header.php');
             </div>
         </div>
     </div>
-<?php
-include('lib/footer.php');
-?>
+<?php include('lib/footer.php');?>

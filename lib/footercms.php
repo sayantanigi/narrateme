@@ -2,7 +2,7 @@
   <div id="LayoutGrid7">
     <div class="row">
       <div class="col-1">
-        <div id="wb_Text12"> <span class="foo-text">&copy; Copyright 2016. All Right Researved. </span> </div>
+        <div id="wb_Text12"> <span class="foo-text">&copy; Copyright <?php echo date("Y"); ?>. All Right Researved. </span> </div>
       </div>
       <div class="col-2">
         <div id="wb_Text13"> <span class="foo-text">Designed &amp; Developed By <a class="igi-link" href="http://www.goigi.com/">GOIGI.COM</a></span> </div>

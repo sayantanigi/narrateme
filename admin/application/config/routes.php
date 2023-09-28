@@ -38,15 +38,13 @@
 |
 */
 
-//$route['default_controller'] = "welcome";login
+//$route['default_controller'] = "welcome";
 //$route['default_controller'] = "login";
 $route['default_controller'] = "main";
 $route['404_override'] = '';
-
 $route['upload/do_upload'] = 'upload/do_upload';
 $route['upload/(:any)'] = 'upload/view/$1';
 $route['upload'] = 'upload';
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -6,9 +6,9 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 //================Geneal info starts=====================
 
-if($_REQUEST['submit']=="generalinfosubmit") {
+if(@$_REQUEST['submit']=="generalinfosubmit") {
 		extract($_POST);
-		if($_REQUEST['generalinfodid']=="") {
+		if(@$_REQUEST['generalinfodid']=="") {
 
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'informational_description'=>$informational_description,'school_bulletin'=>$school_bulletin,'address'=>$address,'telephone_no'=>$telephone_no,'email'=>$email,'message'=>$message,'ip_address'=>$ip_address,'website'=>$website,'domain_name'=>$domain_name,'url'=>$url,'link_to_portal'=>$link_to_portal,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_general_info');
@@ -18,7 +18,7 @@ if($_REQUEST['submit']=="generalinfosubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'informational_description'=>$informational_description,'school_bulletin'=>$school_bulletin,'address'=>$address,'telephone_no'=>$telephone_no,'email'=>$email,'message'=>$message,'ip_address'=>$ip_address,'website'=>$website,'domain_name'=>$domain_name,'url'=>$url,'link_to_portal'=>$link_to_portal,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_general_info', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['generalinfodid']."' ") ;
+			$result = updateData($data,'na_ins_general_info', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['generalinfodid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&gen=1&generalinfopanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -26,27 +26,27 @@ if($_REQUEST['submit']=="generalinfosubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delgeneralinfo']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_general_info WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delgeneralinfo']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_general_info WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&gen=1&generalinfopanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewgeneralinfo = getAnyTableWhereData('na_ins_general_info', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewgeneralinfo = getAnyTableWhereData('na_ins_general_info', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensgeneralinfosql = "SELECT * FROM na_ins_general_info WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquerygeneralinfo = mysql_query($studensgeneralinfosql) or mysql_error();
-	$stunumgeneralinfo = mysql_num_rows($resquerygeneralinfo);
+	$resquerygeneralinfo = mysqli_query($con, $studensgeneralinfosql) or mysqli_error();
+	$stunumgeneralinfo = mysqli_num_rows($resquerygeneralinfo);
 	
 	
 	//==========================ADD Sub Level=======================
 	//=======ADD=============
-if($_REQUEST['submit']=="instructordetsubmit") {
+if(@$_REQUEST['submit']=="instructordetsubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'igi_id'=>$_REQUEST['id'], 'name'=>$name, 'course'=>$course, 'bioandinfo'=>addslashes($bioandinfo), 'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'igi_id'=>@$_REQUEST['id'], 'name'=>$name, 'course'=>$course, 'bioandinfo'=>addslashes($bioandinfo), 'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_general_info_instructor');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -55,19 +55,19 @@ if($_REQUEST['submit']=="instructordetsubmit") {
 		}
 	}
 	//==========EDIT===========
-		if($_REQUEST['submit']=="editinstructorsubmit") {
+		if(@$_REQUEST['submit']=="editinstructorsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name, 'course'=>$course, 'bioandinfo'=>addslashes($bioandinfo), 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_general_info_instructor', " ind_id='" . $_SESSION["userid"] . "' AND igii_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_general_info_instructor', " ind_id='" . $_SESSION["userid"] . "' AND igii_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&generalinfopanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========
-	if($_REQUEST['delinstructor']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_general_info_instructor WHERE igii_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delinstructor']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_general_info_instructor WHERE igii_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&generalinfopanel=1&accr=1';\n";
@@ -75,16 +75,16 @@ if($_REQUEST['submit']=="instructordetsubmit") {
 		}
 	}
 	//===========FETCH==========
-		$queryinstructorfetch="SELECT * FROM `na_ins_general_info_instructor` WHERE ind_id='".$_SESSION["userid"]."' AND igii_id = '".$_REQUEST['instructorid']."'";
-		$executequeryinstructor=mysql_query($queryinstructorfetch);
-		$fetchinstructor=mysql_fetch_array($executequeryinstructor);
+		$queryinstructorfetch="SELECT * FROM `na_ins_general_info_instructor` WHERE ind_id='".$_SESSION["userid"]."' AND igii_id = '".@$_REQUEST['instructorid']."'";
+		$executequeryinstructor=mysqli_query($con, $queryinstructorfetch);
+		$fetchinstructor=mysqli_fetch_array($executequeryinstructor);
 		
 	//==========================ADD Sub Level End=======================
 //================General info Ends=====================
 //================Add Teacher / Professor / Instructor starts=====================
-if($_REQUEST['submit']=="teachersubmit") {
+if(@$_REQUEST['submit']=="teachersubmit") {
 		extract($_POST);
-		if($_REQUEST['teacherdid']=="") {
+		if(@$_REQUEST['teacherdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'course'=>$course,'information'=>$information,'address'=>$address,'telephone'=>$telephone,'email'=>$email,'website'=>$website,'status'=>1);
 			$result = insertData($data, 'na_ins_teacher');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -92,7 +92,7 @@ if($_REQUEST['submit']=="teachersubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'course'=>$course,'information'=>$information,'address'=>$address,'telephone'=>$telephone,'email'=>$email,'website'=>$website);
-			$result = updateData($data,'na_ins_teacher', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['teacherdid']."' ") ;
+			$result = updateData($data,'na_ins_teacher', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['teacherdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&gen=1&teacherpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -100,28 +100,28 @@ if($_REQUEST['submit']=="teachersubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delteacher']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_teacher WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delteacher']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_teacher WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&gen=1&teacherpanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewteacher = getAnyTableWhereData('na_ins_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewteacher = getAnyTableWhereData('na_ins_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensteachersql = "SELECT * FROM na_ins_teacher WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery1 = mysql_query($studensteachersql) or mysql_error();
-	$stunum1 = mysql_num_rows($resquery1);
+	$resquery1 = mysqli_query($con, $studensteachersql) or mysqli_error();
+	$stunum1 = mysqli_num_rows($resquery1);
 //================Add Teacher / Professor / Instructor Ends=====================
 
 
 
 
 //================Add Schools/ Divisions starts=====================
-if($_REQUEST['submit']=="schoolssubmit") {
+if(@$_REQUEST['submit']=="schoolssubmit") {
 		extract($_POST);
-		if($_REQUEST['schoolsdid']=="") {
+		if(@$_REQUEST['schoolsdid']=="") {
 		    $uploads_dir = 'uploads/edu_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -146,7 +146,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'program'=>$program,'course'=>$course, 'curiculum'=>$curiculum, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['schoolsdid']."' ") ;
+			$result = updateData($data,'na_ins_schools', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['schoolsdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -154,27 +154,27 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delschools']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delschools']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&schoolspanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewschools = getAnyTableWhereData('na_ins_schools', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewschools = getAnyTableWhereData('na_ins_schools', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensschoolssql = "SELECT * FROM na_ins_schools WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery2 = mysql_query($studensschoolssql) or mysql_error();
-	$stunum2 = mysql_num_rows($resquery2);
+	$resquery2 = mysqli_query($con, $studensschoolssql) or mysqli_error();
+	$stunum2 = mysqli_num_rows($resquery2);
 	
 	
 		//==========================ADD Sub Level=======================
 	//=======ADD=============
-if($_REQUEST['submit']=="crssubmit") {
+if(@$_REQUEST['submit']=="crssubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'ins_schools_id'=>$_REQUEST['id'], 'crsname'=>$crsname, 'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'ins_schools_id'=>@$_REQUEST['id'], 'crsname'=>$crsname, 'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_schools_curiculum');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -183,19 +183,19 @@ if($_REQUEST['submit']=="crssubmit") {
 		}
 	}
 	//==========EDIT===========
-		if($_REQUEST['submit']=="editcoursesubmit") {
+		if(@$_REQUEST['submit']=="editcoursesubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'crsname'=>$crsname, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools_curiculum', " ind_id='" . $_SESSION["userid"] . "' AND isc_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_schools_curiculum', " ind_id='" . $_SESSION["userid"] . "' AND isc_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========
-	if($_REQUEST['delcourse']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools_curiculum WHERE isc_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcourse']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools_curiculum WHERE isc_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&schoolspanel=1&accr=1';\n";
@@ -203,18 +203,18 @@ if($_REQUEST['submit']=="crssubmit") {
 		}
 	}
 	//===========FETCH==========
-		$querycoursefetch="SELECT * FROM `na_ins_schools_curiculum` WHERE ind_id='".$_SESSION["userid"]."' AND isc_id = '".$_REQUEST['courseid']."'";
-		$executequerycourse=mysql_query($querycoursefetch);
-		$fetchcourse=mysql_fetch_array($executequerycourse);
+		$querycoursefetch="SELECT * FROM `na_ins_schools_curiculum` WHERE ind_id='".$_SESSION["userid"]."' AND isc_id = '".@$_REQUEST['courseid']."'";
+		$executequerycourse=mysqli_query($con, $querycoursefetch);
+		$fetchcourse=mysqli_fetch_array($executequerycourse);
 	
 	
 		//==========================ADD Sub Level For Course Details=======================[DONE]
 	
 	//=======ADD=============
-if($_REQUEST['submit']=="crsdetailssubmit") {
+if(@$_REQUEST['submit']=="crsdetailssubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'isc_id'=>$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'isc_id'=>@$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_schools_curiculum_details');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -223,19 +223,19 @@ if($_REQUEST['submit']=="crsdetailssubmit") {
 		}
 	}
 	//==========EDIT===========
-		if($_REQUEST['submit']=="crsdetailseditsubmit") {
+		if(@$_REQUEST['submit']=="crsdetailseditsubmit") {
 			extract($_POST);
-			$data = array('ind_id'=>$_SESSION["userid"],'isc_id'=>$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools_curiculum_details', " ind_id='" . $_SESSION["userid"] . "' AND iscd_id = '".$_REQUEST['id']."'") ;
+			$data = array('ind_id'=>$_SESSION["userid"],'isc_id'=>@$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures, 'lastedit'=>date('Y-m-d H:i:s'));
+			$result = updateData($data,'na_ins_schools_curiculum_details', " ind_id='" . $_SESSION["userid"] . "' AND iscd_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========
-	if($_REQUEST['delcoursedetails']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools_curiculum_details WHERE iscd_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcoursedetails']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools_curiculum_details WHERE iscd_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&schoolspanel=1&accr=1';\n";
@@ -243,19 +243,19 @@ if($_REQUEST['submit']=="crsdetailssubmit") {
 		}
 	}
 	//===========FETCH==========
-		$querycoursedetfetch="SELECT * FROM `na_ins_schools_curiculum_details` WHERE ind_id='".$_SESSION["userid"]."' AND iscd_id = '".$_REQUEST['coursedetid']."'";
-		$executequerycoursedet=mysql_query($querycoursedetfetch);
-		$fetchcoursedet=mysql_fetch_array($executequerycoursedet);
+		$querycoursedetfetch="SELECT * FROM `na_ins_schools_curiculum_details` WHERE ind_id='".$_SESSION["userid"]."' AND iscd_id = '".@$_REQUEST['coursedetid']."'";
+		$executequerycoursedet=mysqli_query($con, $querycoursedetfetch);
+		$fetchcoursedet=mysqli_fetch_array($executequerycoursedet);
 		
 	//==========================ADD Sub Level For Course Details=======================[Done]
 	
 			//==========================ADD Sub Level For Videos of classes or lectures=======================[DONE]
 	
 	//=======ADD=============
-if($_REQUEST['submit']=="vdoclssubmit") {
+if(@$_REQUEST['submit']=="vdoclssubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iscd_id'=>$_REQUEST['id'], 'videosofclasses'=>$videosofclasses,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iscd_id'=>@$_REQUEST['id'], 'videosofclasses'=>$videosofclasses,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_schools_curiculum_details_videosofcls');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -264,19 +264,19 @@ if($_REQUEST['submit']=="vdoclssubmit") {
 		}
 	}
 	//==========EDIT===========
-		if($_REQUEST['submit']=="vdoclseditsubmit") {
+		if(@$_REQUEST['submit']=="vdoclseditsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'videosofclasses'=>$videosofclasses, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools_curiculum_details_videosofcls', " ind_id='" . $_SESSION["userid"] . "' AND iscdv_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_schools_curiculum_details_videosofcls', " ind_id='" . $_SESSION["userid"] . "' AND iscdv_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========
-	if($_REQUEST['delvidlec']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools_curiculum_details_videosofcls WHERE iscdv_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delvidlec']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools_curiculum_details_videosofcls WHERE iscdv_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&schoolspanel=1&accr=1';\n";
@@ -284,18 +284,18 @@ if($_REQUEST['submit']=="vdoclssubmit") {
 		}
 	}
 	//===========FETCH==========
-		$queryvidclsfetch="SELECT * FROM `na_ins_schools_curiculum_details_videosofcls` WHERE ind_id='".$_SESSION["userid"]."' AND iscdv_id = '".$_REQUEST['vidclsid']."'";
-		$executequeryvidcls=mysql_query($queryvidclsfetch);
-		$fetchvidcls=mysql_fetch_array($executequeryvidcls);
+		$queryvidclsfetch="SELECT * FROM `na_ins_schools_curiculum_details_videosofcls` WHERE ind_id='".$_SESSION["userid"]."' AND iscdv_id = '".@$_REQUEST['vidclsid']."'";
+		$executequeryvidcls=mysqli_query($con, $queryvidclsfetch);
+		$fetchvidcls=mysqli_fetch_array($executequeryvidcls);
 		
 		
 		//==========================ADD Sub Level For Past Recorded Lecture Link=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="lnkfrpstrecvdosubmit") {  
+if(@$_REQUEST['submit']=="lnkfrpstrecvdosubmit") {  
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iscdv_vidcls_id'=>$_REQUEST['id'], 'linktorecvideo'=>$linktorecvideo,'linktolivecam'=>$linktolivecam ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iscdv_vidcls_id'=>@$_REQUEST['id'], 'linktorecvideo'=>$linktorecvideo,'linktolivecam'=>$linktolivecam ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_schools_curiculum_details_videosofcls_recordedlink');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -304,19 +304,19 @@ if($_REQUEST['submit']=="lnkfrpstrecvdosubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="lnkfrpstrecvdoeditsubmit") {
+		if(@$_REQUEST['submit']=="lnkfrpstrecvdoeditsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'linktorecvideo'=>$linktorecvideo,'linktolivecam'=>$linktolivecam,'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools_curiculum_details_videosofcls_recordedlink', " ind_id='" . $_SESSION["userid"] . "' AND iscdvr_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_schools_curiculum_details_videosofcls_recordedlink', " ind_id='" . $_SESSION["userid"] . "' AND iscdvr_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['deltwolinks']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools_curiculum_details_videosofcls_recordedlink WHERE iscdvr_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['deltwolinks']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools_curiculum_details_videosofcls_recordedlink WHERE iscdvr_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&schoolspanel=1&accr=1';\n";
@@ -324,9 +324,9 @@ if($_REQUEST['submit']=="lnkfrpstrecvdosubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$query123fetch="SELECT * FROM `na_ins_schools_curiculum_details_videosofcls_recordedlink` WHERE ind_id='".$_SESSION["userid"]."' AND iscdvr_id = '".$_REQUEST['twolinksid']."'";
-		$executequery123=mysql_query($query123fetch);
-		$fetch123=mysql_fetch_array($executequery123);
+		$query123fetch="SELECT * FROM `na_ins_schools_curiculum_details_videosofcls_recordedlink` WHERE ind_id='".$_SESSION["userid"]."' AND iscdvr_id = '".@$_REQUEST['twolinksid']."'";
+		$executequery123=mysqli_query($con, $query123fetch);
+		$fetch123=mysqli_fetch_array($executequery123);
 		
 	//==========================ADD Sub Level For Past Recorded Lecture Link=======================[DONE]
 		
@@ -339,10 +339,10 @@ if($_REQUEST['submit']=="lnkfrpstrecvdosubmit") {
 	//==========================ADD Sub Level For Past Recorded Lecture Link=======================[DONE]
 	
 	//=======ADD=============
-if($_REQUEST['submit']=="lnkfrrecvdosubmit") {
+if(@$_REQUEST['submit']=="lnkfrrecvdosubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iscd_id'=>$_REQUEST['id'], 'linkforvideo'=>$linkforvideo,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iscd_id'=>@$_REQUEST['id'], 'linkforvideo'=>$linkforvideo,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_schools_curiculum_details_linkforpastrecvideo');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -351,19 +351,19 @@ if($_REQUEST['submit']=="lnkfrrecvdosubmit") {
 		}
 	}
 	//==========EDIT===========
-		if($_REQUEST['submit']=="lnkfrrecvdoeditsubmit") {
+		if(@$_REQUEST['submit']=="lnkfrrecvdoeditsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"], 'linkforvideo'=>$linkforvideo, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_schools_curiculum_details_linkforpastrecvideo', " ind_id='" . $_SESSION["userid"] . "' AND iscdl_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_schools_curiculum_details_linkforpastrecvideo', " ind_id='" . $_SESSION["userid"] . "' AND iscdl_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&schoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========
-	if($_REQUEST['delpstlnkrecvdo']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_schools_curiculum_details_linkforpastrecvideo WHERE iscdl_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delpstlnkrecvdo']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_schools_curiculum_details_linkforpastrecvideo WHERE iscdl_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&schoolspanel=1&accr=1';\n";
@@ -371,9 +371,9 @@ if($_REQUEST['submit']=="lnkfrrecvdosubmit") {
 		}
 	}
 	//===========FETCH==========
-		$querypstrecfetch="SELECT * FROM `na_ins_schools_curiculum_details_linkforpastrecvideo` WHERE ind_id='".$_SESSION["userid"]."' AND iscdl_id = '".$_REQUEST['pstlnkid']."'";
-		$executequerypstrec=mysql_query($querypstrecfetch);
-		$fetchpstrec=mysql_fetch_array($executequerypstrec);
+		$querypstrecfetch="SELECT * FROM `na_ins_schools_curiculum_details_linkforpastrecvideo` WHERE ind_id='".$_SESSION["userid"]."' AND iscdl_id = '".@$_REQUEST['pstlnkid']."'";
+		$executequerypstrec=mysqli_query($con, $querypstrecfetch);
+		$fetchpstrec=mysqli_fetch_array($executequerypstrec);
 		
 	//==========================ADD Sub Level For Past Recorded Lecture Link=======================[Done]
 	
@@ -389,9 +389,9 @@ if($_REQUEST['submit']=="lnkfrrecvdosubmit") {
 
 
 //================Add curriculum starts=====================
-if($_REQUEST['submit']=="curriculumsubmit") {
+if(@$_REQUEST['submit']=="curriculumsubmit") {
 		extract($_POST);
-		if($_REQUEST['curriculumdid']=="") {
+		if(@$_REQUEST['curriculumdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'course'=>$course,'description'=>$description,'course_schedule'=>date('Y-m-d',strtotime($course_schedule)),'educ_institute'=>$educ_institute,'status'=>1);
 			$result = insertData($data, ' na_ins_curriculum');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -399,7 +399,7 @@ if($_REQUEST['submit']=="curriculumsubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'course'=>$course,'description'=>$description,'course_schedule'=>date('Y-m-d',strtotime($course_schedule)),'educ_institute'=>$educ_institute);
-			$result = updateData($data,' na_ins_curriculum', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['curriculumdid']."' ") ;
+			$result = updateData($data,' na_ins_curriculum', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['curriculumdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&curriculumpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -407,24 +407,24 @@ if($_REQUEST['submit']=="curriculumsubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delcurriculum']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_curriculum WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcurriculum']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_curriculum WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&curriculumpanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewcurriculum = getAnyTableWhereData(' na_ins_curriculum', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewcurriculum = getAnyTableWhereData(' na_ins_curriculum', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenscurriculumsql = "SELECT * FROM  na_ins_curriculum WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery3 = mysql_query($studenscurriculumsql) or mysql_error();
-	$stunum3 = mysql_num_rows($resquery3);
+	$resquery3 = mysqli_query($con, $studenscurriculumsql) or mysqli_error();
+	$stunum3 = mysqli_num_rows($resquery3);
 //================Add curriculum Ends=====================
 //================Add  academic Transcript starts=====================
-if($_REQUEST['submit']=="academictranscriptssubmit") {
+if(@$_REQUEST['submit']=="academictranscriptssubmit") {
 		extract($_POST);
-		if($_REQUEST['academictranscriptsdid']=="") {
+		if(@$_REQUEST['academictranscriptsdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'courses_taken'=>$courses_taken,'grade'=>$grade,'status'=>1);
 			$result = insertData($data, ' na_inst_academic_transcripts');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -432,7 +432,7 @@ if($_REQUEST['submit']=="academictranscriptssubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'courses_taken'=>$courses_taken,'grade'=>$grade);
-			$result = updateData($data,' na_inst_academic_transcripts', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['academictranscriptsdid']."' ") ;
+			$result = updateData($data,' na_inst_academic_transcripts', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['academictranscriptsdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&academictranscriptspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -440,24 +440,24 @@ if($_REQUEST['submit']=="academictranscriptssubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delacademictranscripts']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_inst_academic_transcripts WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delacademictranscripts']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_inst_academic_transcripts WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&academictranscriptspanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewacademictranscripts = getAnyTableWhereData(' na_inst_academic_transcripts', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewacademictranscripts = getAnyTableWhereData(' na_inst_academic_transcripts', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensacademictranscriptssql = "SELECT * FROM  na_inst_academic_transcripts WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery4 = mysql_query($studensacademictranscriptssql) or mysql_error();
-	$stunum4 = mysql_num_rows($resquery4);
+	$resquery4 = mysqli_query($con, $studensacademictranscriptssql) or mysqli_error();
+	$stunum4 = mysqli_num_rows($resquery4);
 //================Add  academic Transcript Ends=====================
 //================Add  accepted substitute starts=====================
-if($_REQUEST['submit']=="acceptedsubstitutesubmit") {
+if(@$_REQUEST['submit']=="acceptedsubstitutesubmit") {
 		extract($_POST);
-		if($_REQUEST['acceptedsubstitutedid']=="") {
+		if(@$_REQUEST['acceptedsubstitutedid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'link_video'=>$link_video,'link_camera'=>$link_camera,'status'=>1);
 			$result = insertData($data, ' na_ins_accepted_substitute');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -465,31 +465,31 @@ if($_REQUEST['submit']=="acceptedsubstitutesubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'link_video'=>$link_video,'link_camera'=>$link_camera);
-			$result = updateData($data,' na_ins_accepted_substitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['acceptedsubstitutedid']."' ") ;
+			$result = updateData($data,' na_ins_accepted_substitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['acceptedsubstitutedid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&acceptedsubstitutepanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delacceptedsubstitute']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_accepted_substitute WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delacceptedsubstitute']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_accepted_substitute WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&acceptedsubstitutepanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewacceptedsubstitute = getAnyTableWhereData(' na_ins_accepted_substitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewacceptedsubstitute = getAnyTableWhereData(' na_ins_accepted_substitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensacceptedsubstitutesql = "SELECT * FROM  na_ins_accepted_substitute WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery5 = mysql_query($studensacceptedsubstitutesql) or mysql_error();
-	$stunum5 = mysql_num_rows($resquery5);
+	$resquery5 = mysqli_query($con, $studensacceptedsubstitutesql) or mysqli_error();
+	$stunum5 = mysqli_num_rows($resquery5);
 //================Add  accepted substitute Ends=====================
 //================ Add affiliate  accepted substitute starts=============
-if($_REQUEST['submit']=="aff_acceptedsubstitutesubmit") {
+if(@$_REQUEST['submit']=="aff_acceptedsubstitutesubmit") {
 		extract($_POST);
-		if($_REQUEST['aff_acceptedsubstitutedid']=="") {
+		if(@$_REQUEST['aff_acceptedsubstitutedid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'link_video'=>$link_video,'link_camera'=>$link_camera,'status'=>1);
 			$result = insertData($data, ' na_ins_affiliate_accepted_substitute');
 
@@ -498,31 +498,31 @@ if($_REQUEST['submit']=="aff_acceptedsubstitutesubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'link_video'=>$link_video,'link_camera'=>$link_camera);
-			$result = updateData($data,' na_ins_affiliate_accepted_substitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['aff_acceptedsubstitutedid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_accepted_substitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['aff_acceptedsubstitutedid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&aff=1&aff_acceptedsubstitutepanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delaff_acceptedsubstitute']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_affiliate_accepted_substitute WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delaff_acceptedsubstitute']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_affiliate_accepted_substitute WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&aff=1&aff_acceptedsubstitutepanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewaff_acceptedsubstitute = getAnyTableWhereData(' na_ins_affiliate_accepted_substitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaff_acceptedsubstitute = getAnyTableWhereData(' na_ins_affiliate_accepted_substitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensaff_acceptedsubstitutesql = "SELECT * FROM  na_ins_affiliate_accepted_substitute WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery5aff = mysql_query($studensaff_acceptedsubstitutesql) or mysql_error();
-	$stunum5aff = mysql_num_rows($resquery5aff);
+	$resquery5aff = mysqli_query($con, $studensaff_acceptedsubstitutesql) or mysqli_error();
+	$stunum5aff = mysqli_num_rows($resquery5aff);
 //================ Add affiliate  accepted substitute ends=============
 //================ Add past lecture starts=============
-if($_REQUEST['submit']=="aff_pastlecturessubmit") {
+if(@$_REQUEST['submit']=="aff_pastlecturessubmit") {
 		extract($_POST);
-		if($_REQUEST['aff_pastlecturesdid']=="") {
+		if(@$_REQUEST['aff_pastlecturesdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera,'status'=>1);
 			$result = insertData($data, ' na_ins_affiliate_past_lectures');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -530,35 +530,35 @@ if($_REQUEST['submit']=="aff_pastlecturessubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera);
-			$result = updateData($data,' na_ins_affiliate_past_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['aff_pastlecturesdid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_past_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['aff_pastlecturesdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&aff=1&aff_pastlecturespanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delaff_pastlectures']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_affiliate_past_lectures WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delaff_pastlectures']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_affiliate_past_lectures WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&aff=1&aff_pastlecturespanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewaff_pastlectures = getAnyTableWhereData(' na_ins_affiliate_past_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaff_pastlectures = getAnyTableWhereData(' na_ins_affiliate_past_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensaff_pastlecturessql = "SELECT * FROM  na_ins_affiliate_past_lectures WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9aff = mysql_query($studensaff_pastlecturessql) or mysql_error();
-	$stunum9aff = mysql_num_rows($resquery9aff);
+	$resquery9aff = mysqli_query($con, $studensaff_pastlecturessql) or mysqli_error();
+	$stunum9aff = mysqli_num_rows($resquery9aff);
 //================ Add past lecture ends=============
 
 
 //================ Add Current Student starts=============[DONE {STUDENT SECTION}]
 
 //======================ADD AND EDIT DONE[[DONE]]===================================
-if($_REQUEST['submit']=="cur_studentsubmit") {
+if(@$_REQUEST['submit']=="cur_studentsubmit") {
 		extract($_POST);
-		if($_REQUEST['cur_studentdid']=="") {
+		if(@$_REQUEST['cur_studentdid']=="") {
 		    $uploads_dir = 'uploads/edu_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -584,7 +584,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'current_student'=>$current_student,'past_student'=>$past_student,'past_alumni'=>$past_alumni,'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_current_student', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['cur_studentdid']."' ") ;
+			$result = updateData($data,'na_ins_current_student', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['cur_studentdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&stud=1&cur_studentpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -592,9 +592,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	} 
 	//Delete [DONE]
-	if($_REQUEST['delcur_student']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_current_student WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcur_student']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_current_student WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -603,19 +603,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	}
 	//=============[DONE SECTION]=================
-	$viewcur_student = getAnyTableWhereData('na_ins_current_student', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewcur_student = getAnyTableWhereData('na_ins_current_student', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenscur_studentsql = "SELECT * FROM  na_ins_current_student WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9stud = mysql_query($studenscur_studentsql) or mysql_error();
-	$stunum9stud = mysql_num_rows($resquery9stud);
+	$resquery9stud = mysqli_query($con, $studenscur_studentsql) or mysqli_error();
+	$stunum9stud = mysqli_num_rows($resquery9stud);
 	
 	
 //==========================ADD Sub Level For Transcript Detsils[DONE]=======================
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="stutranscriptrecordsubmit") {
+if(@$_REQUEST['submit']=="stutranscriptrecordsubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'ins_current_student_id'=>$_REQUEST['id'],'stuid'=>$stuid, 'crstaken'=>$crstaken, 'crsgrade'=>$crsgrade, 'crsattendance'=>$crsattendance, 'crsdegree'=>$crsdegree, 'crsdateconferred'=>date('Y-m-d', strtotime($crsdateconferred)), 'crstranscript'=>$crstranscript, 'crsactivitytranscript'=>$crsactivitytranscript, 'crsmisc'=>addslashes($crsmisc),'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'ins_current_student_id'=>@$_REQUEST['id'],'stuid'=>$stuid, 'crstaken'=>$crstaken, 'crsgrade'=>$crsgrade, 'crsattendance'=>$crsattendance, 'crsdegree'=>$crsdegree, 'crsdateconferred'=>date('Y-m-d', strtotime($crsdateconferred)), 'crstranscript'=>$crstranscript, 'crsactivitytranscript'=>$crsactivitytranscript, 'crsmisc'=>addslashes($crsmisc),'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_edu_student_transcript_record');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -624,19 +624,19 @@ if($_REQUEST['submit']=="stutranscriptrecordsubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="stutranscriptrecordeditsubmit") {
+		if(@$_REQUEST['submit']=="stutranscriptrecordeditsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'stuid'=>$stuid, 'crstaken'=>$crstaken, 'crsgrade'=>$crsgrade, 'crsattendance'=>$crsattendance, 'crsdegree'=>$crsdegree, 'crsdateconferred'=>date('Y-m-d', strtotime($crsdateconferred)), 'crstranscript'=>$crstranscript, 'crsactivitytranscript'=>$crsactivitytranscript, 'crsmisc'=>addslashes($crsmisc),'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_edu_student_transcript_record', " ind_id='" . $_SESSION["userid"] . "' AND tra_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_edu_student_transcript_record', " ind_id='" . $_SESSION["userid"] . "' AND tra_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&cur_studentpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['deltranscript']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_edu_student_transcript_record WHERE tra_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['deltranscript']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_edu_student_transcript_record WHERE tra_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&cur_studentpanel=1&accr=1';\n";
@@ -644,18 +644,18 @@ if($_REQUEST['submit']=="stutranscriptrecordsubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$querytransfetch="SELECT * FROM `na_edu_student_transcript_record` WHERE ind_id='".$_SESSION["userid"]."' AND tra_id = '".$_REQUEST['transid']."'";
-		$executequerytrans=mysql_query($querytransfetch);
-		$fetchtranscript=mysql_fetch_array($executequerytrans);
+		$querytransfetch="SELECT * FROM `na_edu_student_transcript_record` WHERE ind_id='".$_SESSION["userid"]."' AND tra_id = '".@$_REQUEST['transid']."'";
+		$executequerytrans=mysqli_query($con, $querytransfetch);
+		$fetchtranscript=mysqli_fetch_array($executequerytrans);
 //==========================ADD Sub Level For Transcript Detsils[DONE]=======================
 	
 //================ Add Current Student ends=============[DONE {STUDENT SECTION}]========
 
 
 //================ Add Past Student starts=============
-if($_REQUEST['submit']=="past_studentsubmit") {
+if(@$_REQUEST['submit']=="past_studentsubmit") {
 		extract($_POST);
-		if($_REQUEST['past_studentdid']=="") {
+		if(@$_REQUEST['past_studentdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript,'status'=>1);
 			$result = insertData($data, ' na_ins_past_student');
 			
@@ -664,7 +664,7 @@ if($_REQUEST['submit']=="past_studentsubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript);
-			$result = updateData($data,' na_ins_past_student', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['past_studentdid']."' ") ;
+			$result = updateData($data,' na_ins_past_student', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['past_studentdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&stud=1&past_studentpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -673,9 +673,9 @@ if($_REQUEST['submit']=="past_studentsubmit") {
 	} 
 	//Delete Drugs
 
-	if($_REQUEST['delpast_student']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_past_student WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delpast_student']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_past_student WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -683,15 +683,15 @@ if($_REQUEST['submit']=="past_studentsubmit") {
 		echo "</script>";
 		}
 	}
-	$viewpast_student = getAnyTableWhereData(' na_ins_past_student', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewpast_student = getAnyTableWhereData(' na_ins_past_student', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenspast_studentsql = "SELECT * FROM  na_ins_past_student WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9stud_past = mysql_query($studenspast_studentsql) or mysql_error();
-	$stunum9stud_past = mysql_num_rows($resquery9stud_past);
+	$resquery9stud_past = mysqli_query($con, $studenspast_studentsql) or mysqli_error();
+	$stunum9stud_past = mysqli_num_rows($resquery9stud_past);
 //================ Add Past Student ends=============
 //================ Add Past Alumni starts=============
-if($_REQUEST['submit']=="past_alumnisubmit") {
+if(@$_REQUEST['submit']=="past_alumnisubmit") {
 		extract($_POST);
-		if($_REQUEST['past_alumnidid']=="") {
+		if(@$_REQUEST['past_alumnidid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript,'status'=>1);
 			$result = insertData($data, ' na_ins_past_alumni');
 
@@ -700,7 +700,7 @@ if($_REQUEST['submit']=="past_alumnisubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript);
-			$result = updateData($data,' na_ins_past_alumni', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['past_alumnidid']."' ") ;
+			$result = updateData($data,' na_ins_past_alumni', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['past_alumnidid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&stud=1&past_alumnipanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -709,25 +709,25 @@ if($_REQUEST['submit']=="past_alumnisubmit") {
 	} 
 	//Delete Drugs
 
-	if($_REQUEST['delpast_alumni']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_past_alumni WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delpast_alumni']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_past_alumni WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&stud=1&past_alumnipanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewpast_alumni = getAnyTableWhereData(' na_ins_past_alumni', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewpast_alumni = getAnyTableWhereData(' na_ins_past_alumni', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenspast_alumnisql = "SELECT * FROM  na_ins_past_alumni WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9stud_past_al = mysql_query($studenspast_alumnisql) or mysql_error();
-	$stunum9stud_past_al = mysql_num_rows($resquery9stud_past_al);
+	$resquery9stud_past_al = mysqli_query($con, $studenspast_alumnisql) or mysqli_error();
+	$stunum9stud_past_al = mysqli_num_rows($resquery9stud_past_al);
 //================ Add Past Alumni ends=============
 //================ Add Academic Transcript student starts=============
 
-if($_REQUEST['submit']=="stud_academictranscriptsubmit") {
+if(@$_REQUEST['submit']=="stud_academictranscriptsubmit") {
 		extract($_POST);
-		if($_REQUEST['stud_academictranscriptdid']=="") {
+		if(@$_REQUEST['stud_academictranscriptdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript,'status'=>1);
 
 			$result = insertData($data, ' na_ins_student_academic_transcript');
@@ -737,7 +737,7 @@ if($_REQUEST['submit']=="stud_academictranscriptsubmit") {
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'student_id'=>$student_id,'courses_taken'=>$courses_taken,'grade'=>$grade,'attendance'=>$attendance,'date'=>date('Y-m-d',strtotime($date)),'academic_transcript'=>$academic_transcript,'activity_transcript'=>$activity_transcript);
 
-			$result = updateData($data,' na_ins_student_academic_transcript', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['stud_academictranscriptdid']."' ") ;
+			$result = updateData($data,' na_ins_student_academic_transcript', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['stud_academictranscriptdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&stud=1&stud_academictranscriptpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -745,24 +745,24 @@ if($_REQUEST['submit']=="stud_academictranscriptsubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delstud_academictranscript']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_student_academic_transcript WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delstud_academictranscript']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_student_academic_transcript WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&stud=1&stud_academictranscriptpanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewstud_academictranscript = getAnyTableWhereData(' na_ins_student_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewstud_academictranscript = getAnyTableWhereData(' na_ins_student_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensstud_academictranscriptsql = "SELECT * FROM  na_ins_student_academic_transcript WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9stud_past_ac = mysql_query($studensstud_academictranscriptsql) or mysql_error();
-	$stunum9stud_past_ac = mysql_num_rows($resquery9stud_past_ac);
+	$resquery9stud_past_ac = mysqli_query($con, $studensstud_academictranscriptsql) or mysqli_error();
+	$stunum9stud_past_ac = mysqli_num_rows($resquery9stud_past_ac);
 //================ Add Academic Transcript student ends=============
 //================ Add Marketing and Promotion starts=============
-if($_REQUEST['submit']=="marketsubmit") {
+if(@$_REQUEST['submit']=="marketsubmit") {
 		extract($_POST);
-		if($_REQUEST['marketdid']=="") {
+		if(@$_REQUEST['marketdid']=="") {
 		    $uploads_dir = 'uploads/edu_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -791,7 +791,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'Advertisements'=>$Advertisements,'Marketing_Material'=>$Marketing_Material,'Commercials'=>$Commercials,'Video'=>$Video,'Infomercials'=>$Infomercials,'lastedit'=>date('Y-m-d H:i:s'));
 
-			$result = updateData($data,' na_ins_market', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['marketdid']."' ") ;
+			$result = updateData($data,' na_ins_market', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['marketdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&market=1&marketpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -799,24 +799,24 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delmarket']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_market WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delmarket']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_market WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&market=1&marketpanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewmarket = getAnyTableWhereData(' na_ins_market', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewmarket = getAnyTableWhereData(' na_ins_market', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensmarketsql = "SELECT * FROM  na_ins_market WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9market = mysql_query($studensmarketsql) or mysql_error();
-	$stunum9market = mysql_num_rows($resquery9market);
+	$resquery9market = mysqli_query($con, $studensmarketsql) or mysqli_error();
+	$stunum9market = mysqli_num_rows($resquery9market);
 //================ Add Marketing and Promotion ends=============
 //================Add  Course starts=====================
-if($_REQUEST['submit']=="coursesubmit") {
+if(@$_REQUEST['submit']=="coursesubmit") {
 		extract($_POST);
-		if($_REQUEST['coursedid']=="") {
+		if(@$_REQUEST['coursedid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'description'=>$description,'schedule'=>date('Y-m-d',strtotime($schedule)),'facilities'=>$facilities,'status'=>1);
 
 			$result = insertData($data, ' na_ins_course');
@@ -826,31 +826,31 @@ if($_REQUEST['submit']=="coursesubmit") {
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'description'=>$description,'schedule'=>date('Y-m-d',strtotime($schedule)),'facilities'=>$facilities);
 
-			$result = updateData($data,' na_ins_course', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['coursedid']."' ") ;
+			$result = updateData($data,' na_ins_course', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['coursedid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&coursepanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delcourse']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_course WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcourse']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_course WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&coursepanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewcourse = getAnyTableWhereData(' na_ins_course', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewcourse = getAnyTableWhereData(' na_ins_course', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenscoursesql = "SELECT * FROM  na_ins_course WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery6 = mysql_query($studenscoursesql) or mysql_error();
-	$stunum6 = mysql_num_rows($resquery6);
+	$resquery6 = mysqli_query($con, $studenscoursesql) or mysqli_error();
+	$stunum6 = mysqli_num_rows($resquery6);
 //================Add  Course Ends=====================
 //================Add  classes and lecturess=====================
-if($_REQUEST['submit']=="insedusubmit") {
+if(@$_REQUEST['submit']=="insedusubmit") {
 		extract($_POST);
-		if($_REQUEST['insedudid']=="") {
+		if(@$_REQUEST['insedudid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'description'=>$description,'school'=>$school,'status'=>1);
 			$result = insertData($data, ' na_ins_edu');
 
@@ -859,31 +859,31 @@ if($_REQUEST['submit']=="insedusubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'description'=>$description,'school'=>$school);
-			$result = updateData($data,' na_ins_edu', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['insedudid']."' ") ;
+			$result = updateData($data,' na_ins_edu', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['insedudid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&insedupanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delinsedu']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_edu WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delinsedu']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_edu WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&insedupanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewinsedu = getAnyTableWhereData(' na_ins_edu', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewinsedu = getAnyTableWhereData(' na_ins_edu', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensinsedusql = "SELECT * FROM  na_ins_edu WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery7 = mysql_query($studensinsedusql) or mysql_error();
-	$stunum7 = mysql_num_rows($resquery7);
+	$resquery7 = mysqli_query($con, $studensinsedusql) or mysqli_error();
+	$stunum7 = mysqli_num_rows($resquery7);
 //================Add  classes and lectures=====================
 //================Add  Videos of classes or lectures=====================
-if($_REQUEST['submit']=="lecturessubmit") {
+if(@$_REQUEST['submit']=="lecturessubmit") {
 		extract($_POST);
-		if($_REQUEST['lecturesdid']=="") {
+		if(@$_REQUEST['lecturesdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera,'status'=>1);
 			$result = insertData($data, ' na_ins_lectures');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -891,7 +891,7 @@ if($_REQUEST['submit']=="lecturessubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera);
-			$result = updateData($data,' na_ins_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['lecturesdid']."' ") ;
+			$result = updateData($data,' na_ins_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['lecturesdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&lecturespanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -899,24 +899,24 @@ if($_REQUEST['submit']=="lecturessubmit") {
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['dellectures']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_lectures WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['dellectures']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_lectures WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&lecturespanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewlectures = getAnyTableWhereData(' na_ins_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewlectures = getAnyTableWhereData(' na_ins_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenslecturessql = "SELECT * FROM  na_ins_lectures WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery8 = mysql_query($studenslecturessql) or mysql_error();
-	$stunum8 = mysql_num_rows($resquery8);
+	$resquery8 = mysqli_query($con, $studenslecturessql) or mysqli_error();
+	$stunum8 = mysqli_num_rows($resquery8);
 //================Add  Videos of classes or lectures=====================
 //================Add Past Lectures starts=====================
-if($_REQUEST['submit']=="pastlecturessubmit") {
+if(@$_REQUEST['submit']=="pastlecturessubmit") {
 		extract($_POST);
-		if($_REQUEST['pastlecturesdid']=="") {
+		if(@$_REQUEST['pastlecturesdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera,'status'=>1);
 			$result = insertData($data, ' na_ins_past_lectures');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -924,35 +924,35 @@ if($_REQUEST['submit']=="pastlecturessubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'video'=>$video,'camera'=>$camera);
-			$result = updateData($data,' na_ins_past_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['pastlecturesdid']."' ") ;
+			$result = updateData($data,' na_ins_past_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['pastlecturesdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&prog=1&pastlecturespanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delpastlectures']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_past_lectures WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delpastlectures']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_past_lectures WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&prog=1&pastlecturespanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewpastlectures = getAnyTableWhereData(' na_ins_past_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewpastlectures = getAnyTableWhereData(' na_ins_past_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studenspastlecturessql = "SELECT * FROM  na_ins_past_lectures WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery9 = mysql_query($studenspastlecturessql) or mysql_error();
-	$stunum9 = mysql_num_rows($resquery9);
+	$resquery9 = mysqli_query($con, $studenspastlecturessql) or mysqli_error();
+	$stunum9 = mysqli_num_rows($resquery9);
 //================Add  Past lectures ends=====================
 
 
 
 
 //================Add Affiliate Schools/Divisions starts=====================
-if($_REQUEST['submit']=="affiliateschoolssubmit") {
+if(@$_REQUEST['submit']=="affiliateschoolssubmit") {
 		extract($_POST);
-		if($_REQUEST['affiliateschoolsdid']=="") {
+		if(@$_REQUEST['affiliateschoolsdid']=="") {
 		    $uploads_dir = 'uploads/edu_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -978,34 +978,34 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'program'=>$program,'course'=>$course,'curriculum'=>$curriculum,'status'=>$status, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_affiliate_schools', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['affiliateschoolsdid']."' ") ;
+			$result = updateData($data,'na_ins_affiliate_schools', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['affiliateschoolsdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&aff=1&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delaffiliateschools']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_affiliate_schools WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delaffiliateschools']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_affiliate_schools WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&aff=1&affiliateschoolspanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewaffiliateschools = getAnyTableWhereData('na_ins_affiliate_schools', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaffiliateschools = getAnyTableWhereData('na_ins_affiliate_schools', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensaffiliateschoolssql = "SELECT * FROM na_ins_affiliate_schools WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery10aff = mysql_query($studensaffiliateschoolssql) or mysql_error();
-	$stunum10aff = mysql_num_rows($resquery10aff);
+	$resquery10aff = mysqli_query($con, $studensaffiliateschoolssql) or mysqli_error();
+	$stunum10aff = mysqli_num_rows($resquery10aff);
 	
 		//==========================ADD Sub Level For Courses Under Curricullum=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="crsisubmit") {
+if(@$_REQUEST['submit']=="crsisubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'ias_id'=>$_REQUEST['id'], 'courses'=>$courses,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'ias_id'=>@$_REQUEST['id'], 'courses'=>$courses,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_affiliate_schools_curiculum_details');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1014,19 +1014,19 @@ if($_REQUEST['submit']=="crsisubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="crsiedtsubmit") {
+		if(@$_REQUEST['submit']=="crsiedtsubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"], 'courses'=>$courses, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_affiliate_schools_curiculum_details', " ind_id='" . $_SESSION["userid"] . "' AND iascd_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_affiliate_schools_curiculum_details', " ind_id='" . $_SESSION["userid"] . "' AND iascd_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['delcoursei']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_affiliate_schools_curiculum_details WHERE iascd_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcoursei']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_affiliate_schools_curiculum_details WHERE iascd_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&affiliateschoolspanel=1&accr=1';\n";
@@ -1034,19 +1034,19 @@ if($_REQUEST['submit']=="crsisubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$querypstirecfetch="SELECT * FROM `na_ins_affiliate_schools_curiculum_details` WHERE ind_id='".$_SESSION["userid"]."' AND iascd_id = '".$_REQUEST['courseiid']."'";
-		$executequerypstreci=mysql_query($querypstirecfetch);
-		$fetchpstrecii=mysql_fetch_array($executequerypstreci);
+		$querypstirecfetch="SELECT * FROM `na_ins_affiliate_schools_curiculum_details` WHERE ind_id='".$_SESSION["userid"]."' AND iascd_id = '".@$_REQUEST['courseiid']."'";
+		$executequerypstreci=mysqli_query($con, $querypstirecfetch);
+		$fetchpstrecii=mysqli_fetch_array($executequerypstreci);
 		
 		
 		
 	//==========================ADD Sub Level For Course Details=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="crsdetailsisubmit") {
+if(@$_REQUEST['submit']=="crsdetailsisubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iascd_id'=>$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iascd_id'=>@$_REQUEST['id'], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures ,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_affiliate_curricullum_course_details');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1055,19 +1055,19 @@ if($_REQUEST['submit']=="crsdetailsisubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="crsdetailseditisubmit") {
+		if(@$_REQUEST['submit']=="crsdetailseditisubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"], 'crs_desc'=>addslashes($crs_desc), 'crs_instructor'=>$crs_instructor,'crs_schedule'=>date('Y-m-d', strtotime($crs_schedule)), 'transferofinstitutions'=>$transferofinstitutions , 'clsandlec'=>$clsandlec , 'acceptedsuplyclasses'=>$acceptedsuplyclasses, 'pastlectures'=>$pastlectures, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_affiliate_curricullum_course_details', " ind_id='" . $_SESSION["userid"] . "' AND iaccd_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_affiliate_curricullum_course_details', " ind_id='" . $_SESSION["userid"] . "' AND iaccd_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['delcoursedetailsi']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_affiliate_curricullum_course_details WHERE iaccd_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delcoursedetailsi']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_affiliate_curricullum_course_details WHERE iaccd_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&affiliateschoolspanel=1&accr=1';\n";
@@ -1075,18 +1075,18 @@ if($_REQUEST['submit']=="crsdetailsisubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$querycoursedetifetch="SELECT * FROM `na_ins_affiliate_curricullum_course_details` WHERE ind_id='".$_SESSION["userid"]."' AND iaccd_id = '".$_REQUEST['coursedetiid']."'";
-		$executequerycoursedeti=mysql_query($querycoursedetifetch);
-		$fetchcoursedeti=mysql_fetch_array($executequerycoursedeti);
+		$querycoursedetifetch="SELECT * FROM `na_ins_affiliate_curricullum_course_details` WHERE ind_id='".$_SESSION["userid"]."' AND iaccd_id = '".@$_REQUEST['coursedetiid']."'";
+		$executequerycoursedeti=mysqli_query($con, $querycoursedetifetch);
+		$fetchcoursedeti=mysqli_fetch_array($executequerycoursedeti);
 		
 		
 		//==========================ADD Sub Level For Videos of classes or lectures=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="vdoclsisubmit") {
+if(@$_REQUEST['submit']=="vdoclsisubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iaccd_id'=>$_REQUEST['id'], 'videosofclasses'=>$videosofclasses,'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iaccd_id'=>@$_REQUEST['id'], 'videosofclasses'=>$videosofclasses,'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_affiliate_schools_curiculum_details_videosofcls');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1095,19 +1095,19 @@ if($_REQUEST['submit']=="vdoclsisubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="vdoclseditisubmit") {
+		if(@$_REQUEST['submit']=="vdoclseditisubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'videosofclasses'=>$videosofclasses,'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_affiliate_schools_curiculum_details_videosofcls', " ind_id='" . $_SESSION["userid"] . "' AND iascdv_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_affiliate_schools_curiculum_details_videosofcls', " ind_id='" . $_SESSION["userid"] . "' AND iascdv_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['delvidleci']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_affiliate_schools_curiculum_details_videosofcls WHERE iascdv_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delvidleci']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_affiliate_schools_curiculum_details_videosofcls WHERE iascdv_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&affiliateschoolspanel=1&accr=1';\n";
@@ -1115,19 +1115,19 @@ if($_REQUEST['submit']=="vdoclsisubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$queryvidclsfetchi="SELECT * FROM `na_ins_affiliate_schools_curiculum_details_videosofcls` WHERE ind_id='".$_SESSION["userid"]."' AND iascdv_id = '".$_REQUEST['vidclsiid']."'";
-		$executequeryividcls=mysql_query($queryvidclsfetchi);
-		$fetchvidclsi=mysql_fetch_array($executequeryividcls);
+		$queryvidclsfetchi="SELECT * FROM `na_ins_affiliate_schools_curiculum_details_videosofcls` WHERE ind_id='".$_SESSION["userid"]."' AND iascdv_id = '".@$_REQUEST['vidclsiid']."'";
+		$executequeryividcls=mysqli_query($con, $queryvidclsfetchi);
+		$fetchvidclsi=mysqli_fetch_array($executequeryividcls);
 		
 		//==========================ADD Sub Level For Videos of classes or lectures=======================[DONE]
 		
 		//==========================ADD Sub Level For Lecture Link=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="lnkfrpstrecvdoisubmit") {
+if(@$_REQUEST['submit']=="lnkfrpstrecvdoisubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iascdv_videos_id'=>$_REQUEST['id'], 'linktorecvideo'=>$linktorecvideo, 'linktolivecam'=>$linktolivecam, 'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iascdv_videos_id'=>@$_REQUEST['id'], 'linktorecvideo'=>$linktorecvideo, 'linktolivecam'=>$linktolivecam, 'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_affiliate_schools_curiculum_details_videosofcls_recordedlink');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1136,19 +1136,19 @@ if($_REQUEST['submit']=="lnkfrpstrecvdoisubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="lnkfrpstrecvdoeditisubmit") {
+		if(@$_REQUEST['submit']=="lnkfrpstrecvdoeditisubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"],'linktorecvideo'=>$linktorecvideo, 'linktolivecam'=>$linktolivecam, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_affiliate_schools_curiculum_details_videosofcls_recordedlink', " ind_id='" . $_SESSION["userid"] . "' AND iascdvr_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_affiliate_schools_curiculum_details_videosofcls_recordedlink', " ind_id='" . $_SESSION["userid"] . "' AND iascdvr_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['deltwolinksi']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_affiliate_schools_curiculum_details_videosofcls_recordedlink WHERE iascdvr_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['deltwolinksi']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_affiliate_schools_curiculum_details_videosofcls_recordedlink WHERE iascdvr_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&affiliateschoolspanel=1&accr=1';\n";
@@ -1156,9 +1156,9 @@ if($_REQUEST['submit']=="lnkfrpstrecvdoisubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$querypstrecfetchi="SELECT * FROM `na_affiliate_schools_curiculum_details_videosofcls_recordedlink` WHERE ind_id='".$_SESSION["userid"]."' AND iascdvr_id = '".$_REQUEST['twolinksiid']."'";
-		$executequerypstreci=mysql_query($querypstrecfetchi);
-		$fetchpstrecik=mysql_fetch_array($executequerypstreci);
+		$querypstrecfetchi="SELECT * FROM `na_affiliate_schools_curiculum_details_videosofcls_recordedlink` WHERE ind_id='".$_SESSION["userid"]."' AND iascdvr_id = '".@$_REQUEST['twolinksiid']."'";
+		$executequerypstreci=mysqli_query($con, $querypstrecfetchi);
+		$fetchpstrecik=mysqli_fetch_array($executequerypstreci);
 		
 	//==========================ADD Sub Level For Lecture Link=======================[DONE]
 	
@@ -1169,10 +1169,10 @@ if($_REQUEST['submit']=="lnkfrpstrecvdoisubmit") {
 	//==========================ADD Sub Level For Past Recorded Lecture Link=======================[DONE]
 	
 	//=======ADD=============[DONE]
-if($_REQUEST['submit']=="lnkfrrecvdoisubmit") {
+if(@$_REQUEST['submit']=="lnkfrrecvdoisubmit") {
 		extract($_POST);
-		if($_REQUEST['id']!="") {
-			$data = array('ind_id'=>$_SESSION["userid"], 'iaccd_pastlectures_id'=>$_REQUEST['id'], 'linkforvideo'=>$linkforvideo,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
+		if(@$_REQUEST['id']!="") {
+			$data = array('ind_id'=>$_SESSION["userid"], 'iaccd_pastlectures_id'=>@$_REQUEST['id'], 'linkforvideo'=>$linkforvideo,'status'=>1, 'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_affiliate_curricullum_details_linkforpastrecvideo');
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1181,19 +1181,19 @@ if($_REQUEST['submit']=="lnkfrrecvdoisubmit") {
 		}
 	}
 	//==========EDIT===========[DONE]
-		if($_REQUEST['submit']=="lnkfrrecvdoeditisubmit") {
+		if(@$_REQUEST['submit']=="lnkfrrecvdoeditisubmit") {
 			extract($_POST);
 			$data = array('ind_id'=>$_SESSION["userid"], 'linkforvideo'=>$linkforvideo, 'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_affiliate_curricullum_details_linkforpastrecvideo', " ind_id='" . $_SESSION["userid"] . "' AND iacdl_id = '".$_REQUEST['id']."'") ;
+			$result = updateData($data,'na_ins_affiliate_curricullum_details_linkforpastrecvideo', " ind_id='" . $_SESSION["userid"] . "' AND iacdl_id = '".@$_REQUEST['id']."'") ;
 			
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&affiliateschoolspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 	}
 	//============DELETE========[DONE]
-	if($_REQUEST['delpstlnkrecivdo']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_affiliate_curricullum_details_linkforpastrecvideo WHERE iacdl_id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delpstlnkrecivdo']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_affiliate_curricullum_details_linkforpastrecvideo WHERE iacdl_id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&affiliateschoolspanel=1&accr=1';\n";
@@ -1201,9 +1201,9 @@ if($_REQUEST['submit']=="lnkfrrecvdoisubmit") {
 		}
 	}
 	//===========FETCH==========[DONE]
-		$querypstrecfetchi="SELECT * FROM `na_ins_affiliate_curricullum_details_linkforpastrecvideo` WHERE ind_id='".$_SESSION["userid"]."' AND iacdl_id = '".$_REQUEST['pstlnkiid']."'";
-		$executequerypstreci=mysql_query($querypstrecfetchi);
-		$fetchpstreci=mysql_fetch_array($executequerypstreci);
+		$querypstrecfetchi="SELECT * FROM `na_ins_affiliate_curricullum_details_linkforpastrecvideo` WHERE ind_id='".$_SESSION["userid"]."' AND iacdl_id = '".@$_REQUEST['pstlnkiid']."'";
+		$executequerypstreci=mysqli_query($con, $querypstrecfetchi);
+		$fetchpstreci=mysqli_fetch_array($executequerypstreci);
 		
 	//==========================ADD Sub Level For Past Recorded Lecture Link=======================[DONE]
 	
@@ -1217,9 +1217,9 @@ if($_REQUEST['submit']=="lnkfrrecvdoisubmit") {
 
 
 //================Add Friends and Followers starts=====================
-if($_REQUEST['submit']=="friendssubmit") {
+if(@$_REQUEST['submit']=="friendssubmit") {
 		extract($_POST);
-		if($_REQUEST['friendsdid']=="") {
+		if(@$_REQUEST['friendsdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'link'=>$link,'status'=>1,'lastedit'=>date('Y-m-d H:i:s'));
 			$result = insertData($data, 'na_ins_friends');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1227,31 +1227,31 @@ if($_REQUEST['submit']=="friendssubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'link'=>$link,'lastedit'=>date('Y-m-d H:i:s'));
-			$result = updateData($data,'na_ins_friends', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['friendsdid']."' ") ;
+			$result = updateData($data,'na_ins_friends', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['friendsdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&friendspanel=1&accordionTeal=".$accordionTeal."&soc=1&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delfriends']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_friends WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delfriends']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_friends WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&friendspanel=1&soc=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewfriends = getAnyTableWhereData('na_ins_friends', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewfriends = getAnyTableWhereData('na_ins_friends', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensfriendssql = "SELECT * FROM na_ins_friends WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery11 = mysql_query($studensfriendssql) or mysql_error();
-	$stunum11 = mysql_num_rows($resquery11);
+	$resquery11 = mysqli_query($con, $studensfriendssql) or mysqli_error();
+	$stunum11 = mysqli_num_rows($resquery11);
 //================Add  Friends and Followers ends=====================
 //================Add External Friends and Followers starts=====================
-if($_REQUEST['submit']=="extfriendssubmit") {
+if(@$_REQUEST['submit']=="extfriendssubmit") {
 		extract($_POST);
-		if($_REQUEST['extfriendsdid']=="") {
+		if(@$_REQUEST['extfriendsdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'link'=>$link,'status'=>1);
 			$result = insertData($data, 'na_ins_ext_friends');
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
@@ -1259,31 +1259,31 @@ if($_REQUEST['submit']=="extfriendssubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'name'=>$name,'link'=>$link);
-			$result = updateData($data,'na_ins_ext_friends', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['extfriendsdid']."' ") ;
+			$result = updateData($data,'na_ins_ext_friends', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['extfriendsdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&extfriendspanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delextfriends']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_ins_ext_friends WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delextfriends']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_ins_ext_friends WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&extfriendspanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewextfriends = getAnyTableWhereData('na_ins_ext_friends', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewextfriends = getAnyTableWhereData('na_ins_ext_friends', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensextfriendssql = "SELECT * FROM na_ins_ext_friends WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery12 = mysql_query($studensextfriendssql) or mysql_error();
-	$stunum12 = mysql_num_rows($resquery12);
+	$resquery12 = mysqli_query($con, $studensextfriendssql) or mysqli_error();
+	$stunum12 = mysqli_num_rows($resquery12);
 //================Add  External Friends and Followers ends=====================
 //=============Affiliate Curriculum starts==============================
-if($_REQUEST['submit']=="affiliatecurriculumsubmit") {
+if(@$_REQUEST['submit']=="affiliatecurriculumsubmit") {
 		extract($_POST);
-		if($_REQUEST['affiliatecurriculumdid']=="") {
+		if(@$_REQUEST['affiliatecurriculumdid']=="") {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'course'=>$course,'description'=>$description,'course_schedule'=>date('Y-m-d',strtotime($course_schedule)),'educ_institute'=>$educ_institute,'status'=>1);
 
 			$result = insertData($data, ' na_ins_affiliate_curriculum');
@@ -1292,36 +1292,36 @@ if($_REQUEST['submit']=="affiliatecurriculumsubmit") {
 			echo "</script>";
 		} else {
 			$data = array('ind_id'=>$_SESSION["userid"],'instructor'=>$instructor,'course'=>$course,'description'=>$description,'course_schedule'=>date('Y-m-d',strtotime($course_schedule)),'educ_institute'=>$educ_institute);
-			$result = updateData($data,' na_ins_affiliate_curriculum', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['affiliatecurriculumdid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_curriculum', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['affiliatecurriculumdid']."' ") ;
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 			echo "window.top.location.href='educationalinstitute.php?operation=successful&aff=1&affiliatecurriculumpanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
 			echo "</script>";
 		}
 	} 
 	//Delete Drugs
-	if($_REQUEST['delaffiliatecurriculum']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from  na_ins_affiliate_curriculum WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delaffiliatecurriculum']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from  na_ins_affiliate_curriculum WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&aff=1&affiliatecurriculumpanel=1&accr=1';\n";
 		echo "</script>";
 		}
 	}
-	$viewaffiliatecurriculum = getAnyTableWhereData(' na_ins_affiliate_curriculum', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaffiliatecurriculum = getAnyTableWhereData(' na_ins_affiliate_curriculum', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	$studensaffiliatecurriculumsql = "SELECT * FROM  na_ins_affiliate_curriculum WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquery3aff = mysql_query($studensaffiliatecurriculumsql) or mysql_error();
-	$stunum3aff = mysql_num_rows($resquery3aff);
+	$resquery3aff = mysqli_query($con, $studensaffiliatecurriculumsql) or mysqli_error();
+	$stunum3aff = mysqli_num_rows($resquery3aff);
 //=============Affiliate Curriculum ends==============================
 
 
 //=============Affiliate Course starts==============================
 
-if($_REQUEST['submit']=="affiliatecoursesubmit") {
+if(@$_REQUEST['submit']=="affiliatecoursesubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['affiliatecoursedid']=="") {
+		if(@$_REQUEST['affiliatecoursedid']=="") {
 
 								
 
@@ -1355,7 +1355,7 @@ if($_REQUEST['submit']=="affiliatecoursesubmit") {
 
 			//exit();
 
-			$result = updateData($data,' na_ins_affiliate_course', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['affiliatecoursedid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_course', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['affiliatecoursedid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1373,13 +1373,13 @@ if($_REQUEST['submit']=="affiliatecoursesubmit") {
 
 	//Delete Drugs
 
-	if($_REQUEST['delaffiliatecourse']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaffiliatecourse']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from  na_ins_affiliate_course WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from  na_ins_affiliate_course WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1397,26 +1397,26 @@ if($_REQUEST['submit']=="affiliatecoursesubmit") {
 
 		
 
-	$viewaffiliatecourse = getAnyTableWhereData(' na_ins_affiliate_course', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaffiliatecourse = getAnyTableWhereData(' na_ins_affiliate_course', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensaffiliatecoursesql = "SELECT * FROM  na_ins_affiliate_course WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery6aff = mysql_query($studensaffiliatecoursesql) or mysql_error();
+	$resquery6aff = mysqli_query($con, $studensaffiliatecoursesql) or mysqli_error();
 
-	$stunum6aff = mysql_num_rows($resquery6aff);
+	$stunum6aff = mysqli_num_rows($resquery6aff);
 	
 
 //=============Affiliate Course ends==============================
 
 //=============Affiliate classes and lectures starts==============================
 
-if($_REQUEST['submit']=="affiliateedusubmit") {
+if(@$_REQUEST['submit']=="affiliateedusubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['affiliateedudid']=="") {
+		if(@$_REQUEST['affiliateedudid']=="") {
 
 								
 
@@ -1450,7 +1450,7 @@ if($_REQUEST['submit']=="affiliateedusubmit") {
 
 			//exit();
 
-			$result = updateData($data,' na_ins_affiliate_edu', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['affiliateedudid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_edu', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['affiliateedudid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1468,13 +1468,13 @@ if($_REQUEST['submit']=="affiliateedusubmit") {
 
 	//Delete Drugs
 
-	if($_REQUEST['delaffiliateedu']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaffiliateedu']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from  na_ins_affiliate_edu WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from  na_ins_affiliate_edu WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1492,26 +1492,26 @@ if($_REQUEST['submit']=="affiliateedusubmit") {
 
 		
 
-	$viewaffiliateedu = getAnyTableWhereData(' na_ins_affiliate_edu', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaffiliateedu = getAnyTableWhereData(' na_ins_affiliate_edu', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensaffiliateedusql = "SELECT * FROM  na_ins_affiliate_edu WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery7aff = mysql_query($studensaffiliateedusql) or mysql_error();
+	$resquery7aff = mysqli_query($con, $studensaffiliateedusql) or mysqli_error();
 
-	$stunum7aff = mysql_num_rows($resquery7aff);
+	$stunum7aff = mysqli_num_rows($resquery7aff);
 	
 
 //=============Affiliate classes and lectures ends==============================
 
 //=============Affiliate Video classes and lectures starts==============================
 
-if($_REQUEST['submit']=="affiliatelecturessubmit") {
+if(@$_REQUEST['submit']=="affiliatelecturessubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['affiliatelecturesdid']=="") {
+		if(@$_REQUEST['affiliatelecturesdid']=="") {
 
 								
 
@@ -1545,7 +1545,7 @@ if($_REQUEST['submit']=="affiliatelecturessubmit") {
 
 			//exit();
 
-			$result = updateData($data,' na_ins_affiliate_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['affiliatelecturesdid']."' ") ;
+			$result = updateData($data,' na_ins_affiliate_lectures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['affiliatelecturesdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1563,13 +1563,13 @@ if($_REQUEST['submit']=="affiliatelecturessubmit") {
 
 	//Delete Drugs
 
-	if($_REQUEST['delaffiliatelectures']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaffiliatelectures']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from  na_ins_affiliate_lectures WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from  na_ins_affiliate_lectures WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1587,22 +1587,22 @@ if($_REQUEST['submit']=="affiliatelecturessubmit") {
 
 		
 
-	$viewaffiliatelectures = getAnyTableWhereData(' na_ins_affiliate_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaffiliatelectures = getAnyTableWhereData(' na_ins_affiliate_lectures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensaffiliatelecturessql = "SELECT * FROM  na_ins_affiliate_lectures WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery8aff = mysql_query($studensaffiliatelecturessql) or mysql_error();
+	$resquery8aff = mysqli_query($con, $studensaffiliatelecturessql) or mysqli_error();
 
-	$stunum8aff = mysql_num_rows($resquery8aff);
+	$stunum8aff = mysqli_num_rows($resquery8aff);
 
 //=============Affiliate Video classes and lectures ends==============================
 
 //===========News and Informations Starts===================== 
-	if($_REQUEST['submit']=="newssubmit") {
+	if(@$_REQUEST['submit']=="newssubmit") {
 			extract($_POST);
-			if($_REQUEST['newsid']=="") {
+			if(@$_REQUEST['newsid']=="") {
 			    $uploads_dir = 'uploads/edu_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -1628,7 +1628,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 				echo "</script>";
 			} else {
 				$data = array('ind_id'=>$_SESSION["userid"],'newsname'=>addslashes($newsname),'newsdescription'=>addslashes($newsdescription),'linktonews'=>$linktonews,'newsdate'=>date('Y-m-d', strtotime($newsdate)), 'lastedit'=>date('Y-m-d H:i:s'));
-				$result = updateData($data,'na_eduins_newsandinformation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['newsid']."' ") ;
+				$result = updateData($data,'na_eduins_newsandinformation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['newsid']."' ") ;
 	
 				echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 				echo "window.top.location.href='educationalinstitute.php?operation=successful&newsainfopanel=1&accordionTeal=".$accordionTeal."&accr=1';\n";
@@ -1637,9 +1637,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		} 
 
 	//Delete News and Information
-	if($_REQUEST['delnews']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
-		$delsql = "DELETE from na_eduins_newsandinformation WHERE id = '".$_REQUEST['id']."'";
-		$ard=mysql_query($delsql);
+	if(@$_REQUEST['delnews']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
+		$delsql = "DELETE from na_eduins_newsandinformation WHERE id = '".@$_REQUEST['id']."'";
+		$ard=mysqli_query($con, $delsql);
 		if($ard){	
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 		echo "window.top.location.href='educationalinstitute.php?deloperation=successful&newsainfopanel=1&accr=1';\n";
@@ -1647,11 +1647,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 		}
 	}
 
-	$viewnews = getAnyTableWhereData('na_eduins_newsandinformation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewnews = getAnyTableWhereData('na_eduins_newsandinformation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 	
 	$newssql = "SELECT * FROM na_eduins_newsandinformation WHERE ind_id = '".$_SESSION["userid"]."'";
-	$resquerynews = mysql_query($newssql) or mysql_error();
-	$stunumnews = mysql_num_rows($resquerynews);
+	$resquerynews = mysqli_query($con, $newssql) or mysqli_error();
+	$stunumnews = mysqli_num_rows($resquerynews);
 	//===========News and Informations Ends=====================
 ?>
 <section id="main">
@@ -1727,17 +1727,17 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
           <div>
             <h4 class="btn btn-success"><a id="gen" style="cursor:pointer; color:#FFF;">General Information </a></h4>
           </div>
-          <div id="genbody" <?php if($_REQUEST['gen']==1 || $_REQUEST['generalinfopanel']==1 || $_REQUEST['schoolspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
+          <div id="genbody" <?php if(@$_REQUEST['gen']==1 || @$_REQUEST['generalinfopanel']==1 || @$_REQUEST['schoolspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
           <!-- General information start -->
           <div class="panel panel-collapse"> 
-          <div <?php if($_REQUEST['generalinfopanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+          <div <?php if(@$_REQUEST['generalinfopanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
             <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-generalinfo" data-parent="#accordionTeal" data-toggle="collapse" class="">Add General Information: </a> </h4>
           </div>
-          <div id="accordionTeal-generalinfo" <?php if($_REQUEST['generalinfopanel']!='') { ?> class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel"> 
+          <div id="accordionTeal-generalinfo" <?php if(@$_REQUEST['generalinfopanel']!='') { ?> class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel"> 
           <div class="panel-body"> 
           <div class="pmb-block p-10  m-b-0"> 
           <div class="pmbb-body p-l-0"> 
-          <?php if($_REQUEST['editgeneralinfo']=='') { ?>
+          <?php if(@$_REQUEST['editgeneralinfo']=='') { ?>
           <div class="pmbb-view">
             <ul class="actions" style="position:static; float:right;">
               <li class="dropdown open">
@@ -1748,12 +1748,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
               </li>
             </ul>
 						<?php 
-                        if(@$_REQUEST['addgeninfoinstructor']==1){
+                        if(@@$_REQUEST['addgeninfoinstructor']==1){
                         ?>
                         <div>
                         <form  onsubmit="return instruvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="generalinfopanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Name*</dt>
                         <dd>
@@ -1798,11 +1798,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                         <?php }?>
                         
-                        <?php if(@$_REQUEST['editinstructorform']==1){ ?>
+                        <?php if(@@$_REQUEST['editinstructorform']==1){ ?>
                         <div>
                         <form  onsubmit="return editinstruvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="generalinfopanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['instructorid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['instructorid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Name*</dt>
                         <dd>
@@ -1847,7 +1847,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                        <?php }?>
                               
-            <?php if(@$_REQUEST['addgeninfoinstructor']!=1 && $_REQUEST['editinstructorform']!=1) { ?>
+            <?php if(@@$_REQUEST['addgeninfoinstructor']!=1 && @$_REQUEST['editinstructorform']!=1) { ?>
             <dl class="dl-horizontal">
               <table class="table table-striped table-bordered table-advance table-hover" width="50%">
                 <thead>
@@ -1866,7 +1866,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 </thead>
                 <tbody>
                   <?php
-                while($viewgeneralinfo = mysql_fetch_array($resquerygeneralinfo)) {
+                while($viewgeneralinfo = mysqli_fetch_array($resquerygeneralinfo)) {
                 ?>
                   <tr>
                     <td><?=$viewgeneralinfo['name'];?></td>
@@ -1899,8 +1899,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                 <th>Action</th>
                                               </tr>
                                               <?php
-										$sqlinstructor=mysql_query("SELECT igi.*, igii.* FROM `na_ins_general_info` as igi INNER JOIN `na_ins_general_info_instructor` as igii on igi.id=igii.igi_id WHERE igii.igi_id='".$viewgeneralinfo['id']."'");
-											  while($fetchinslist=mysql_fetch_array($sqlinstructor)){	
+										$sqlinstructor=mysqli_query($con, "SELECT igi.*, igii.* FROM `na_ins_general_info` as igi INNER JOIN `na_ins_general_info_instructor` as igii on igi.id=igii.igi_id WHERE igii.igi_id='".$viewgeneralinfo['id']."'");
+											  while($fetchinslist=mysqli_fetch_array($sqlinstructor)){	
 										?>
                                               <tr>
                                                 <td><?php echo $fetchinslist['name']?></td>
@@ -2203,17 +2203,17 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
     <div>
       <h4 class="btn btn-success"><a id="prog" style="cursor:pointer; color:#FFF;">Schools & Programs</a></h4>
     </div>
-    <div id="progbody"<?php if($_REQUEST['prog']==1 || $_REQUEST['schoolspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
+    <div id="progbody"<?php if(@$_REQUEST['prog']==1 || @$_REQUEST['schoolspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
     <!-- Add Schools/ Divisions -->
     <div class="panel panel-collapse">
-      <div <?php if($_REQUEST['schoolspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+      <div <?php if(@$_REQUEST['schoolspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
         <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-2" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Schools & Programs: </a> </h4>
       </div>
-     <div id="accordionTeal-2" <?php if($_REQUEST['schoolspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+     <div id="accordionTeal-2" <?php if(@$_REQUEST['schoolspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
         <div class="panel-body">
           <div class="pmb-block p-10  m-b-0">
             <div class="pmbb-body p-l-0">
-              <?php if($_REQUEST['editschools']=='') { ?>
+              <?php if(@$_REQUEST['editschools']=='') { ?>
               <div class="pmbb-view">
                 <ul class="actions" style="position:static; float:right;">
                   <li class="dropdown open">
@@ -2224,12 +2224,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                   </li>
                 </ul>
                 		<?php 
-                        if(@$_REQUEST['addcourse']==1){
+                        if(@@$_REQUEST['addcourse']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Courses*</dt>
                         <dd>
@@ -2257,11 +2257,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                         <?php }?>
                         
-                        <?php if(@$_REQUEST['editcourseform']==1){ ?>
+                        <?php if(@@$_REQUEST['editcourseform']==1){ ?>
                         <div>
                         <form  onsubmit="return editcrsvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['courseid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['courseid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Courses*</dt>
                         <dd>
@@ -2290,12 +2290,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                        <?php }?>
                        <?php 
-                        if(@$_REQUEST['addcoursedetails']==1){
+                        if(@@$_REQUEST['addcoursedetails']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsdetvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Description*</dt>
                         <dd>
@@ -2373,12 +2373,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editcourdetform']==1){
+                        if(@@$_REQUEST['editcourdetform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsdetedtvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['coursedetid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['coursedetid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Description*</dt>
                         <dd>
@@ -2456,12 +2456,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                        
                        <?php 
-                        if(@$_REQUEST['addvideosofclasses']==1){
+                        if(@@$_REQUEST['addvideosofclasses']==1){
                         ?>
                         <div>
                         <form  onsubmit="return videoslnkvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Videos of classes*</dt>
                         <dd>
@@ -2490,12 +2490,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editvidclsform']==1){
+                        if(@@$_REQUEST['editvidclsform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return videoslnkeditvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['vidclsid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['vidclsid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Videos of classes*</dt>
                         <dd>
@@ -2524,12 +2524,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['addlinkforpastlecture']==1){
+                        if(@@$_REQUEST['addlinkforpastlecture']==1){
                         ?>
                         <div>
                         <form  onsubmit="return pstleclnkvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link for Video*</dt>
                         <dd>
@@ -2558,12 +2558,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editpstlnkform']==1){
+                        if(@@$_REQUEST['editpstlnkform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return editpstleclnkvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['pstlnkid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['pstlnkid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link for Past Lecture*</dt>
                         <dd>
@@ -2592,12 +2592,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['addlinkforvidclsandlec']==1){
+                        if(@@$_REQUEST['addlinkforvidclsandlec']==1){
                         ?>
                         <div>
                         <form  onsubmit="return lnkfrvidclsvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link to recorded video/audio*</dt>
                         <dd>
@@ -2635,12 +2635,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['edittwolinksform']==1){
+                        if(@@$_REQUEST['edittwolinksform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return lnkfrtwovalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="schoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['twolinksid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['twolinksid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link to recorded video/audio*</dt>
                         <dd>
@@ -2679,7 +2679,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         
                         
                        
-               <?php if(@$_REQUEST['addcourse']!=1 && $_REQUEST['editcourseform']!=1 && $_REQUEST['addcoursedetails']!=1 && $_REQUEST['editcourdetform']!=1 && $_REQUEST['addvideosofclasses']!=1 && $_REQUEST['editvidclsform']!=1 && $_REQUEST['addlinkforpastlecture']!=1 && $_REQUEST['editpstlnkform']!=1 && $_REQUEST['addlinkforvidclsandlec']!=1 && $_REQUEST['edittwolinksform']!=1) { ?>        
+               <?php if(@@$_REQUEST['addcourse']!=1 && @$_REQUEST['editcourseform']!=1 && @$_REQUEST['addcoursedetails']!=1 && @$_REQUEST['editcourdetform']!=1 && @$_REQUEST['addvideosofclasses']!=1 && @$_REQUEST['editvidclsform']!=1 && @$_REQUEST['addlinkforpastlecture']!=1 && @$_REQUEST['editpstlnkform']!=1 && @$_REQUEST['addlinkforvidclsandlec']!=1 && @$_REQUEST['edittwolinksform']!=1) { ?>        
                 <dl class="dl-horizontal">
                   <table class="table table-striped table-bordered table-advance table-hover" width="50%">
                     <thead>
@@ -2696,7 +2696,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     </thead>
                     <tbody>
 					<?php
-                    while($viewschools = mysql_fetch_array($resquery2)) {
+                    while($viewschools = mysqli_fetch_array($resquery2)) {
                     ?>
                       <tr>
                         <td><?=$viewschools['program']?></td>
@@ -2725,9 +2725,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                     <th>Action</th>
                                   </tr>
                                   <?php
-                            $sqlcourse=mysql_query("SELECT nis.*, isc.* FROM `na_ins_schools` as nis INNER JOIN `na_ins_schools_curiculum` as isc on nis.id=isc.ins_schools_id WHERE isc.ins_schools_id='".$viewschools['id']."'");
+                            $sqlcourse=mysqli_query($con, "SELECT nis.*, isc.* FROM `na_ins_schools` as nis INNER JOIN `na_ins_schools_curiculum` as isc on nis.id=isc.ins_schools_id WHERE isc.ins_schools_id='".$viewschools['id']."'");
 							
-                                  while($fetchcourse=mysql_fetch_array($sqlcourse)){	
+                                  while($fetchcourse=mysqli_fetch_array($sqlcourse)){	
                             ?>
                                   <tr>
                                     <td><?php echo $fetchcourse['crsname']?></td>
@@ -2767,8 +2767,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                           <th>Action</th>
                                                         </tr>
                                                         <?php
-                                            $sqlcoudet=mysql_query("SELECT isc.*, iscd.* FROM `na_ins_schools_curiculum` as isc INNER JOIN `na_ins_schools_curiculum_details` as iscd on isc.isc_id=iscd.isc_id WHERE iscd.isc_id='".$fetchcourse['isc_id']."'");
-                                                  while($fetchcoudet=mysql_fetch_array($sqlcoudet)){	
+                                            $sqlcoudet=mysqli_query($con, "SELECT isc.*, iscd.* FROM `na_ins_schools_curiculum` as isc INNER JOIN `na_ins_schools_curiculum_details` as iscd on isc.isc_id=iscd.isc_id WHERE iscd.isc_id='".$fetchcourse['isc_id']."'");
+                                                  while($fetchcoudet=mysqli_fetch_array($sqlcoudet)){	
                                             	  ?>
                                                         <tr>
                                                       <!--<td><?php echo substr(stripslashes($fetchcoudet['crs_desc']),0,5)?></td>
@@ -2803,8 +2803,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                         <th>Action</th>
                                                                       </tr>
                                                                       <?php
-                                                                $sqlcouvide=mysql_query("SELECT iscd.*, iscdv.* FROM `na_ins_schools_curiculum_details` as iscd INNER JOIN `na_ins_schools_curiculum_details_videosofcls` as iscdv on iscd.iscd_id=iscdv.iscd_id WHERE iscdv.iscd_id='".$fetchcoudet['iscd_id']."'");
-                                                                      while($fetchcouvide=mysql_fetch_array($sqlcouvide)){	
+                                                                $sqlcouvide=mysqli_query($con, "SELECT iscd.*, iscdv.* FROM `na_ins_schools_curiculum_details` as iscd INNER JOIN `na_ins_schools_curiculum_details_videosofcls` as iscdv on iscd.iscd_id=iscdv.iscd_id WHERE iscdv.iscd_id='".$fetchcoudet['iscd_id']."'");
+                                                                      while($fetchcouvide=mysqli_fetch_array($sqlcouvide)){	
                                                                 ?>
                                                                       <tr>
                                                                         <td><?php echo $fetchcouvide['videosofclasses']?></td>
@@ -2833,8 +2833,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                                         <th>Action</th>
                                                                                       </tr>
                                                                                       <?php
-                                                                                $sqlsublink=mysql_query("SELECT iscdv.*, iscdvr.* FROM `na_ins_schools_curiculum_details_videosofcls` as iscdv INNER JOIN `na_ins_schools_curiculum_details_videosofcls_recordedlink` as iscdvr on iscdv.iscdv_id=iscdvr.iscdv_vidcls_id WHERE iscdvr.iscdv_vidcls_id='".$fetchcouvide['iscdv_id']."'");
-                                                                                      while($fetchsublink=mysql_fetch_array($sqlsublink)){	
+                                                                                $sqlsublink=mysqli_query($con, "SELECT iscdv.*, iscdvr.* FROM `na_ins_schools_curiculum_details_videosofcls` as iscdv INNER JOIN `na_ins_schools_curiculum_details_videosofcls_recordedlink` as iscdvr on iscdv.iscdv_id=iscdvr.iscdv_vidcls_id WHERE iscdvr.iscdv_vidcls_id='".$fetchcouvide['iscdv_id']."'");
+                                                                                      while($fetchsublink=mysqli_fetch_array($sqlsublink)){	
                                                                                 ?>
                                                                                       <tr>
                                                                                         <td><?php echo $fetchsublink['linktorecvideo']?></td>
@@ -2893,8 +2893,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                         <th>Action</th>
                                                                       </tr>
                                                                       <?php
-                                                                $sqllnkfrpstcrs=mysql_query("SELECT iscd.*, iscdl.* FROM `na_ins_schools_curiculum_details` as iscd INNER JOIN `na_ins_schools_curiculum_details_linkforpastrecvideo` as iscdl on iscd.iscd_id=iscdl.iscd_id WHERE iscdl.iscd_id='".$fetchcoudet['iscd_id']."'");
-                                                                      while($fetchlnkpstcrs=mysql_fetch_array($sqllnkfrpstcrs)){	
+                                                                $sqllnkfrpstcrs=mysqli_query($con, "SELECT iscd.*, iscdl.* FROM `na_ins_schools_curiculum_details` as iscd INNER JOIN `na_ins_schools_curiculum_details_linkforpastrecvideo` as iscdl on iscd.iscd_id=iscdl.iscd_id WHERE iscdl.iscd_id='".$fetchcoudet['iscd_id']."'");
+                                                                      while($fetchlnkpstcrs=mysqli_fetch_array($sqllnkfrpstcrs)){	
                                                                 ?>
                                                                       <tr>
                                                                         <td><?php echo $fetchlnkpstcrs['linkforvideo']?></td>
@@ -3119,17 +3119,17 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
     <div>
       <h4 class="btn btn-success"><a id="aff" style="cursor:pointer; color:#FFF;">Affiliate Information</a></h4>
     </div>
-    <div id="affbody" <?php if($_REQUEST['aff']==1 || $_REQUEST['affiliateschoolspanel']==1){?>style="display:block;"<?php }else{ ?> style="display:none;" <?php }?>> 
+    <div id="affbody" <?php if(@$_REQUEST['aff']==1 || @$_REQUEST['affiliateschoolspanel']==1){?>style="display:block;"<?php }else{ ?> style="display:none;" <?php }?>> 
     <!-- Affiliate school start--->
     <div class="panel panel-collapse">
-      <div <?php if($_REQUEST['affiliateschoolspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+      <div <?php if(@$_REQUEST['affiliateschoolspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
         <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-2aff" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Affiliate Information: </a> </h4>
       </div>
-      <div id="accordionTeal-2aff" <?php if($_REQUEST['affiliateschoolspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+      <div id="accordionTeal-2aff" <?php if(@$_REQUEST['affiliateschoolspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
         <div class="panel-body">
           <div class="pmb-block p-10  m-b-0">
             <div class="pmbb-body p-l-0">
-              <?php if($_REQUEST['editaffiliateschools']=='') { ?>
+              <?php if(@$_REQUEST['editaffiliateschools']=='') { ?>
               <div class="pmbb-view">
                 <ul class="actions" style="position:static; float:right;">
                   <li class="dropdown open">
@@ -3141,12 +3141,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 </ul>
                 
                 		<?php 
-                        if(@$_REQUEST['addcurdetailsundercur']==1){
+                        if(@@$_REQUEST['addcurdetailsundercur']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Courses*</dt>
                         <dd>
@@ -3175,12 +3175,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editcourseiform']==1){
+                        if(@@$_REQUEST['editcourseiform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsiedtvalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['courseiid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['courseiid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Courses*</dt>
                         <dd>
@@ -3208,12 +3208,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                         <?php }?>
                         <?php 
-                        if(@$_REQUEST['addcoursedetailsi']==1){
+                        if(@@$_REQUEST['addcoursedetailsi']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsdetivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Description*</dt>
                         <dd>
@@ -3290,12 +3290,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         </div>
                         <?php }?>
                         <?php 
-                        if(@$_REQUEST['editcourdetiform']==1){
+                        if(@@$_REQUEST['editcourdetiform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return crsdetedtivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['coursedetiid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['coursedetiid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Description*</dt>
                         <dd>
@@ -3373,12 +3373,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
 						<?php 
-                        if(@$_REQUEST['addvideosofclassesi']==1){
+                        if(@@$_REQUEST['addvideosofclassesi']==1){
                         ?>
                         <div>
                         <form  onsubmit="return videoslnkivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Videos of classes*</dt>
                         <dd>
@@ -3407,12 +3407,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editvidclsiform']==1){
+                        if(@@$_REQUEST['editvidclsiform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return videoslnkeditivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['vidclsiid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['vidclsiid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Videos of classes*</dt>
                         <dd>
@@ -3441,12 +3441,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         <!---->
                         <?php 
-                        if(@$_REQUEST['addlinkforvidclsandleci']==1){
+                        if(@@$_REQUEST['addlinkforvidclsandleci']==1){
                         ?>
                         <div>
                         <form  onsubmit="return lnkfrvidclsivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link to recorded video/audio*</dt>
                         <dd>
@@ -3484,12 +3484,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['edittwolinksiform']==1){
+                        if(@@$_REQUEST['edittwolinksiform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return lnkfrtwoivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['twolinksiid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['twolinksiid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link to recorded video/audio*</dt>
                         <dd>
@@ -3527,12 +3527,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         <!---->
                         <?php 
-                        if(@$_REQUEST['addlinkforpastlecturei']==1){
+                        if(@@$_REQUEST['addlinkforpastlecturei']==1){
                         ?>
                         <div>
                         <form  onsubmit="return pstleclnkivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link for Video*</dt>
                         <dd>
@@ -3561,12 +3561,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                         
                         <?php 
-                        if(@$_REQUEST['editpstlnkiform']==1){
+                        if(@@$_REQUEST['editpstlnkiform']==1){
                         ?>
                         <div>
                         <form  onsubmit="return editpstleclnkivalde();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                         <input type="hidden" name="affiliateschoolspanel" value="1" />
-                        <input type="hidden" name="id" value="<?=$_REQUEST['pstlnkiid']?>" />
+                        <input type="hidden" name="id" value="<?=@$_REQUEST['pstlnkiid']?>" />
                         <dl class="dl-horizontal">
                         <dt class="p-t-10">Link for Past Lecture*</dt>
                         <dd>
@@ -3595,7 +3595,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                         <?php }?>
                 
                 
-                <?php if(@$_REQUEST['addcurdetailsundercur']!=1 && $_REQUEST['editcourseiform']!=1 && $_REQUEST['addcoursedetailsi']!=1 && $_REQUEST['editcourdetiform']!=1 && $_REQUEST['addvideosofclassesi']!=1 && $_REQUEST['editvidclsiform']!=1 && $_REQUEST['addlinkforvidclsandleci']!=1 && $_REQUEST['edittwolinksiform']!=1 && $_REQUEST['addlinkforpastlecturei']!=1 && $_REQUEST['editpstlnkiform']!=1) { ?> 
+                <?php if(@@$_REQUEST['addcurdetailsundercur']!=1 && @$_REQUEST['editcourseiform']!=1 && @$_REQUEST['addcoursedetailsi']!=1 && @$_REQUEST['editcourdetiform']!=1 && @$_REQUEST['addvideosofclassesi']!=1 && @$_REQUEST['editvidclsiform']!=1 && @$_REQUEST['addlinkforvidclsandleci']!=1 && @$_REQUEST['edittwolinksiform']!=1 && @$_REQUEST['addlinkforpastlecturei']!=1 && @$_REQUEST['editpstlnkiform']!=1) { ?> 
                 <dl class="dl-horizontal">
                   <table class="table table-striped table-bordered table-advance table-hover" width="50%">
                     <thead>
@@ -3612,7 +3612,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     </thead>
                     <tbody>
                       <?php
-						while($viewaffiliateschools = mysql_fetch_array($resquery10aff)) {
+						while($viewaffiliateschools = mysqli_fetch_array($resquery10aff)) {
 					  ?>
                       <tr>
                         <td><?=$viewaffiliateschools['program'];?></td>
@@ -3641,9 +3641,9 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                     <th>Action</th>
                                   </tr>
                                   <?php
-                            $sqlcoursei=mysql_query("SELECT ias.*, iascd.* FROM `na_ins_affiliate_schools` as ias INNER JOIN `na_ins_affiliate_schools_curiculum_details` as iascd on ias.id=iascd.ias_id WHERE iascd.ias_id='".$viewaffiliateschools['id']."'");
+                            $sqlcoursei=mysqli_query($con, "SELECT ias.*, iascd.* FROM `na_ins_affiliate_schools` as ias INNER JOIN `na_ins_affiliate_schools_curiculum_details` as iascd on ias.id=iascd.ias_id WHERE iascd.ias_id='".$viewaffiliateschools['id']."'");
 							
-                                  while($fetchcoursei=mysql_fetch_array($sqlcoursei)){	
+                                  while($fetchcoursei=mysqli_fetch_array($sqlcoursei)){	
                             ?>
                                   <tr>
                                     <td><?php echo $fetchcoursei['courses']?></td>
@@ -3685,8 +3685,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                           <th>Action</th>
                                                         </tr>
                                                         <?php
-                                            	$sqlcoudeti=mysql_query("SELECT iascd.*, iaccd.* FROM `na_ins_affiliate_schools_curiculum_details` as iascd INNER JOIN `na_ins_affiliate_curricullum_course_details` as iaccd on iascd.iascd_id=iaccd.iascd_id WHERE iaccd.iascd_id='".$fetchcoursei['iascd_id']."'");
-                                                  while($fetchcoudeti=mysql_fetch_array($sqlcoudeti)){	
+                                            	$sqlcoudeti=mysqli_query($con, "SELECT iascd.*, iaccd.* FROM `na_ins_affiliate_schools_curiculum_details` as iascd INNER JOIN `na_ins_affiliate_curricullum_course_details` as iaccd on iascd.iascd_id=iaccd.iascd_id WHERE iaccd.iascd_id='".$fetchcoursei['iascd_id']."'");
+                                                  while($fetchcoudeti=mysqli_fetch_array($sqlcoudeti)){	
                                             	  ?>
                                                         <tr>
                                                       <!--<td><?php echo substr(stripslashes($fetchcoudet['crs_desc']),0,5)?></td>
@@ -3721,8 +3721,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                         <th>Action</th>
                                                                       </tr>
                                                                       <?php
-                                                                $sqlcouvidei=mysql_query("SELECT iaccd.*, iascdv.* FROM `na_ins_affiliate_curricullum_course_details` as iaccd INNER JOIN `na_ins_affiliate_schools_curiculum_details_videosofcls` as iascdv on iaccd.iaccd_id=iascdv.iaccd_id WHERE iascdv.iaccd_id='".$fetchcoudeti['iaccd_id']."'");
-                                                                      while($fetchcouvidei=mysql_fetch_array($sqlcouvidei)){	
+                                                                $sqlcouvidei=mysqli_query($con, "SELECT iaccd.*, iascdv.* FROM `na_ins_affiliate_curricullum_course_details` as iaccd INNER JOIN `na_ins_affiliate_schools_curiculum_details_videosofcls` as iascdv on iaccd.iaccd_id=iascdv.iaccd_id WHERE iascdv.iaccd_id='".$fetchcoudeti['iaccd_id']."'");
+                                                                      while($fetchcouvidei=mysqli_fetch_array($sqlcouvidei)){	
                                                                 ?>
                                                                       <tr>
                                                                         <td><?php echo $fetchcouvidei['videosofclasses']?></td>
@@ -3752,8 +3752,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                                         <th>Action</th>
                                                                                       </tr>
                                                                                       <?php
-                                                                                $sqlsublinki=mysql_query("SELECT iascdv.*, ascdvr.* FROM `na_ins_affiliate_schools_curiculum_details_videosofcls` as iascdv INNER JOIN `na_affiliate_schools_curiculum_details_videosofcls_recordedlink` as ascdvr on iascdv.iascdv_id=ascdvr.iascdv_videos_id WHERE ascdvr.iascdv_videos_id='".$fetchcouvidei['iascdv_id']."'");
-                                                                                      while($fetchsublinki=mysql_fetch_array($sqlsublinki)){	
+                                                                                $sqlsublinki=mysqli_query($con, "SELECT iascdv.*, ascdvr.* FROM `na_ins_affiliate_schools_curiculum_details_videosofcls` as iascdv INNER JOIN `na_affiliate_schools_curiculum_details_videosofcls_recordedlink` as ascdvr on iascdv.iascdv_id=ascdvr.iascdv_videos_id WHERE ascdvr.iascdv_videos_id='".$fetchcouvidei['iascdv_id']."'");
+                                                                                      while($fetchsublinki=mysqli_fetch_array($sqlsublinki)){	
                                                                                 ?>
                                                                                       <tr>
                                                                                         <td><?php echo $fetchsublinki['linktorecvideo']?></td>
@@ -3812,8 +3812,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                                                         <th>Action</th>
                                                                       </tr>
                                                                       <?php
-                                                                $sqllnkfrpstcrsi=mysql_query("SELECT iaccd.*, iascdl.* FROM `na_ins_affiliate_curricullum_course_details` as iaccd INNER JOIN `na_ins_affiliate_curricullum_details_linkforpastrecvideo` as iascdl on iaccd.iaccd_id=iascdl.iaccd_pastlectures_id WHERE iascdl.iaccd_pastlectures_id='".$fetchcoudeti['iaccd_id']."'");
-                                                                      while($fetchlnkpstcrsi=mysql_fetch_array($sqllnkfrpstcrsi)){	
+                                                                $sqllnkfrpstcrsi=mysqli_query($con, "SELECT iaccd.*, iascdl.* FROM `na_ins_affiliate_curricullum_course_details` as iaccd INNER JOIN `na_ins_affiliate_curricullum_details_linkforpastrecvideo` as iascdl on iaccd.iaccd_id=iascdl.iaccd_pastlectures_id WHERE iascdl.iaccd_pastlectures_id='".$fetchcoudeti['iaccd_id']."'");
+                                                                      while($fetchlnkpstcrsi=mysqli_fetch_array($sqllnkfrpstcrsi)){	
                                                                 ?>
                                                                       <tr>
                                                                         <td><?php echo $fetchlnkpstcrsi['linkforvideo']?></td>
@@ -4038,17 +4038,17 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
     <div>
       <h4 class="btn btn-success"><a id="stud" style="cursor:pointer; color:#FFF;">Students:</a></h4>
     </div>
-    <div id="studbody" <?php if($_REQUEST['aff']==1 || $_REQUEST['cur_studentpanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
+    <div id="studbody" <?php if(@$_REQUEST['aff']==1 || @$_REQUEST['cur_studentpanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>> 
     <!----   Current Student starts  ----->
     <div class="panel panel-collapse">
-      <div <?php if($_REQUEST['cur_studentpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+      <div <?php if(@$_REQUEST['cur_studentpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
         <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-cur_student" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Current Students: </a> </h4>
       </div>
-      <div id="accordionTeal-cur_student" <?php if($_REQUEST['cur_studentpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+      <div id="accordionTeal-cur_student" <?php if(@$_REQUEST['cur_studentpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
         <div class="panel-body">
           <div class="pmb-block p-10  m-b-0">
             <div class="pmbb-body p-l-0">
-              <?php if($_REQUEST['editcur_student']=='') { ?>
+              <?php if(@$_REQUEST['editcur_student']=='') { ?>
               <div class="pmbb-view">
                 <ul class="actions" style="position:static; float:right;">
                   <li class="dropdown open">
@@ -4061,12 +4061,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 </ul>
                 
                 <?php 
-				if(@$_REQUEST['addtranscriptrecord']==1){
+				if(@@$_REQUEST['addtranscriptrecord']==1){
 				?>
 				<div>
 				<form  onsubmit="return transcriptformvalidate();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
 				<input type="hidden" name="cur_studentpanel" value="1" />
-				<input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
+				<input type="hidden" name="id" value="<?=@$_REQUEST['id']?>" />
 				<dl class="dl-horizontal">
 				<dt class="p-t-10">Student ID No*</dt>
 				<dd>
@@ -4165,12 +4165,12 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 				<?php }?>
                 
                 <?php 
-				if(@$_REQUEST['edittranscriptrecord']==1){
+				if(@@$_REQUEST['edittranscriptrecord']==1){
 				?>
 				<div>
 				<form  onsubmit="return transcriptformvalidatei();" action="<?=$_SERVER['PHP_SELF']?>" method="post">
 				<input type="hidden" name="cur_studentpanel" value="1" />
-				<input type="hidden" name="id" value="<?=$_REQUEST['transid']?>" />
+				<input type="hidden" name="id" value="<?=@$_REQUEST['transid']?>" />
 				<dl class="dl-horizontal">
 				<dt class="p-t-10">Student ID No*</dt>
 				<dd>
@@ -4268,7 +4268,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 				</div>
 				<?php }?>
                         
-                <?php if(@$_REQUEST['addtranscriptrecord']!=1 && $_REQUEST['edittranscriptrecord']!=1) { ?>
+                <?php if(@@$_REQUEST['addtranscriptrecord']!=1 && @$_REQUEST['edittranscriptrecord']!=1) { ?>
                 <dl class="dl-horizontal">
                   <table class="table table-striped table-bordered table-advance table-hover" width="50%">
                     <thead>
@@ -4284,7 +4284,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     </thead>
                     <tbody>
                       <?php
-					  	while($viewcur_student = mysql_fetch_array($resquery9stud)) {
+					  	while($viewcur_student = mysqli_fetch_array($resquery9stud)) {
 					  ?>
                       <tr>
                         <td><?=$viewcur_student['current_student'];?></td>
@@ -4321,8 +4321,8 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                                     <th>Action</th>
                                   </tr>
                                   <?php
-                            $sqltranscript=mysql_query("SELECT ics.*, estr.* FROM `na_ins_current_student` as ics INNER JOIN `na_edu_student_transcript_record` as estr on ics.id=estr.ins_current_student_id WHERE estr.ins_current_student_id='".$viewcur_student['id']."'");
-                                  while($fetchtranscript=mysql_fetch_array($sqltranscript)){	
+                            $sqltranscript=mysqli_query($con, "SELECT ics.*, estr.* FROM `na_ins_current_student` as ics INNER JOIN `na_edu_student_transcript_record` as estr on ics.id=estr.ins_current_student_id WHERE estr.ins_current_student_id='".$viewcur_student['id']."'");
+                                  while($fetchtranscript=mysqli_fetch_array($sqltranscript)){	
                             ?>
                                   <tr>
                                     <td><?php echo $fetchtranscript['stuid']?></td>
@@ -4484,16 +4484,16 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
     <div>
       <h4 class="btn btn-success"><a id="market" style="cursor:pointer; color:#FFF;">Marketing and Promotion:</a></h4>
     </div>
-    <div id="marketbody" <?php if($_REQUEST['aff']==1 || $_REQUEST['marketpanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>>
+    <div id="marketbody" <?php if(@$_REQUEST['aff']==1 || @$_REQUEST['marketpanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>>
     <div class="panel panel-collapse">
-      <div <?php if($_REQUEST['marketpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+      <div <?php if(@$_REQUEST['marketpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
         <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-market" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Marketing and Promotion: </a> </h4>
       </div>
-      <div id="accordionTeal-market" <?php if($_REQUEST['marketpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+      <div id="accordionTeal-market" <?php if(@$_REQUEST['marketpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
         <div class="panel-body">
           <div class="pmb-block p-10  m-b-0">
             <div class="pmbb-body p-l-0">
-              <?php if($_REQUEST['editmarket']=='') { ?>
+              <?php if(@$_REQUEST['editmarket']=='') { ?>
               <div class="pmbb-view">
                 <ul class="actions" style="position:static; float:right;">
                   <li class="dropdown open">
@@ -4519,7 +4519,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     </thead>
                     <tbody>
                       <?php
-							while($viewmarket = mysql_fetch_array($resquery9market)) {
+							while($viewmarket = mysqli_fetch_array($resquery9market)) {
 					  ?>
                       <tr>
                         <td><?=$viewmarket['Advertisements'];?></td>
@@ -4686,17 +4686,17 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
         
             <!--****News and Information on 17-08-2016 [SUPRATIM]****-->
     <h4 style="padding-bottom:10px; cursor:pointer;" class="btn btn-success"><a id="nws" style="color:#FFF;">News and Information</a></h4>
-    <div id="news" <?php if($_REQUEST['newsainfopanel']==1) {?>style="display:block;"<?php }?>style="display:none;">
+    <div id="news" <?php if(@$_REQUEST['newsainfopanel']==1) {?>style="display:block;"<?php }?>style="display:none;">
     <!--NEWS AND INFORMATION HERE-->
     <div class="panel panel-collapse">
-    <div <?php if($_REQUEST['newsainfopanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+    <div <?php if(@$_REQUEST['newsainfopanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
     <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-news" data-parent="#accordionTeal" data-toggle="collapse" class="">News and Information: </a> </h4>
     </div>
-    <div id="accordionTeal-news" <?php if($_REQUEST['newsainfopanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+    <div id="accordionTeal-news" <?php if(@$_REQUEST['newsainfopanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
     <div class="panel-body">
     <div class="pmb-block p-10  m-b-0">
     <div class="pmbb-body p-l-0">
-    <?php if($_REQUEST['editnewsainfo']=='') { ?>
+    <?php if(@$_REQUEST['editnewsainfo']=='') { ?>
     <div class="pmbb-view">
     <ul class="actions" style="position:static; float:right;">
     <li class="dropdown open"> &nbsp;
@@ -4719,7 +4719,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
       </thead>
       <tbody>
         <?php
-        while($viewnews = mysql_fetch_array($resquerynews)) {
+        while($viewnews = mysqli_fetch_array($resquerynews)) {
         ?>
         <tr>
           <td><?=$viewnews['newsname']?></td>
@@ -4869,16 +4869,16 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
     <div>
       <h4 class="btn btn-success"><a id="soc" style="cursor:pointer; color:#FFF;">Link to NarrateMe Social Network Sites:</a></h4>
     </div>
-    <div id="socbody" <?php if($_REQUEST['aff']==1 || $_REQUEST['friendspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>>
+    <div id="socbody" <?php if(@$_REQUEST['aff']==1 || @$_REQUEST['friendspanel']==1){?>style="display:block;"<?php }else{?> style="display:none;" <?php }?>>
     <div class="panel panel-collapse">
-      <div <?php if($_REQUEST['friendspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+      <div <?php if(@$_REQUEST['friendspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
         <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-11" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Friends/Followers: </a> </h4>
       </div>
-      <div id="accordionTeal-11" <?php if($_REQUEST['friendspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+      <div id="accordionTeal-11" <?php if(@$_REQUEST['friendspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
         <div class="panel-body">
           <div class="pmb-block p-10  m-b-0">
             <div class="pmbb-body p-l-0">
-              <?php if($_REQUEST['editfriends']=='') { ?>
+              <?php if(@$_REQUEST['editfriends']=='') { ?>
               <div class="pmbb-view">
                 <ul class="actions" style="position:static; float:right;">
                   <li class="dropdown open">
@@ -4901,7 +4901,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     </thead>
                     <tbody>
                       <?php
-						while($viewfriends = mysql_fetch_array($resquery11)) {
+						while($viewfriends = mysqli_fetch_array($resquery11)) {
 					  ?>
                       <tr>
                         <td><?=$viewfriends['name'];?></td>

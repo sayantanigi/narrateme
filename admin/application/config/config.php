@@ -15,7 +15,7 @@ error_reporting(0);
 |
 */
 //$config['base_url']	= 'http://narrateme.com/';
-$config['base_url']	= 'http://narrateme.com/new/admin/';
+$config['base_url']	= 'http://localhost/narrateme/admin/';
 
 /*
 |--------------------------------------------------------------------------

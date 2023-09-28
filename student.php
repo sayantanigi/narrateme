@@ -4,9 +4,9 @@ sequre();
 
 $view=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
 
-/*if(isset($_REQUEST['type'])){
+/*if(isset(@$_REQUEST['type'])){
 
-		$typedata=$_REQUEST['type'];
+		$typedata=@$_REQUEST['type'];
 
 		if($typedata=='ind'){
 
@@ -47,7 +47,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 //Insert Individual Record
 
-	if($_REQUEST['submit']=="indsubmit") {
+	if(@@$_REQUEST['submit']=="indsubmit") {
 
 		
 
@@ -103,9 +103,9 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 	$studensql = "SELECT * FROM na_st_individual WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery = mysql_query($studensql) or mysql_error();
+	$resquery = mysqli_query($con, $studensql) or mysqli_error();
 
-	$stunum = mysql_num_rows($resquery);
+	$stunum = mysqli_num_rows($resquery);
 
 	
 
@@ -113,7 +113,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 		
 
-		$dateofbirth = explode("-",$_REQUEST['dateofbirth']);
+		$dateofbirth = explode("-",@$_REQUEST['dateofbirth']);
 
 		$formatdateofbirth = $dateofbirth[2]."-".$dateofbirth[1]."-".$dateofbirth[0];
 
@@ -141,7 +141,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 		
 
-		$dateofbirth = explode("-",$_REQUEST['dateofbirth']);
+		$dateofbirth = explode("-",@$_REQUEST['dateofbirth']);
 
 		$formatdateofbirth = $dateofbirth[2]."-".$dateofbirth[1]."-".$dateofbirth[0];
 
@@ -177,9 +177,9 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 	$studensql = "SELECT * FROM na_st_individual WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery = mysql_query($studensql) or mysql_error();
+	$resquery = mysqli_query($con, $studensql) or mysqli_error();
 
-	$stunum = mysql_num_rows($resquery);
+	$stunum = mysqli_num_rows($resquery);
 
 	
 
@@ -187,7 +187,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 	//Insert Drugs Record
 
-	if($_REQUEST['submit']=="drugsubmit") {
+	if(@@$_REQUEST['submit']=="drugsubmit") {
 
 		
 
@@ -195,13 +195,13 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
 		
 
-		$drug_date = explode("-",$_REQUEST['drug_date']);
+		$drug_date = explode("-",@$_REQUEST['drug_date']);
 
 		$formatdrug_date = $drug_date[2]."-".$drug_date[1]."-".$drug_date[0];
 
 		
 
-		if($_REQUEST['drugsid']=="") {
+		if(@$_REQUEST['drugsid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -251,7 +251,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,' na_st_drug', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['drugsid']."' ") ;
+			$result = updateData($data,' na_st_drug', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['drugsid']."' ") ;
 
 			
 
@@ -271,19 +271,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['del']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['del']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_drug WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_drug WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='student.php?deloperation=successful&drugspanel=".$_REQUEST['drugspanel']."&accr=1';\n";
+		echo "window.top.location.href='student.php?deloperation=successful&drugspanel=".@$_REQUEST['drugspanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -299,15 +299,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewdrugs = getAnyTableWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewdrugs = getAnyTableWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensdrugsql = "SELECT * FROM na_st_drug WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery2 = mysql_query($studensdrugsql) or mysql_error();
+	$resquery2 = mysqli_query($con, $studensdrugsql) or mysqli_error();
 
-	$stunum2 = mysql_num_rows($resquery2);
+	$stunum2 = mysqli_num_rows($resquery2);
 
 	
 
@@ -319,7 +319,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Drugs Record
 
-	if($_REQUEST['submit']=="awardsubmit") {
+	if(@@$_REQUEST['submit']=="awardsubmit") {
 
 		
 
@@ -327,13 +327,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-		//$award_date = explode("/",$_REQUEST['award_date']);
+		//$award_date = explode("/",@$_REQUEST['award_date']);
 
-		$formataward_date = date('Y-m-d',strtotime($_REQUEST['award_date']));
+		$formataward_date = date('Y-m-d',strtotime(@$_REQUEST['award_date']));
 
 		
 
-		if($_REQUEST['awardid']=="") {
+		if(@$_REQUEST['awardid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -375,11 +375,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		} else {
 
-			$award_date = explode("-",$_REQUEST['award_date1']);
+			$award_date = explode("-",@$_REQUEST['award_date1']);
 
 		     //$formataward_date = $award_date[2]."-".$award_date[1]."-".$award_date[0];
 
-			  $formataward_date=date('Y-m-d',strtotime($_REQUEST['award_date']));
+			  $formataward_date=date('Y-m-d',strtotime(@$_REQUEST['award_date']));
 
 			
 
@@ -391,7 +391,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_st_award', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['awardid']."' ") ;
+			$result = updateData($data,'na_st_award', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['awardid']."' ") ;
 
 			
 
@@ -411,13 +411,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delaward']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaward']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_award WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_award WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -443,15 +443,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewawards = getAnyTableWhereData('na_st_award', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewawards = getAnyTableWhereData('na_st_award', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensawardssql = "SELECT * FROM na_st_award WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery3 = mysql_query($studensawardssql) or mysql_error();
+	$resquery3 = mysqli_query($con, $studensawardssql) or mysqli_error();
 
-	$stunum3 = mysql_num_rows($resquery3);
+	$stunum3 = mysqli_num_rows($resquery3);
 
 
 
@@ -461,11 +461,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//========================Rehabiliation Panel Starts======================
 
-if($_REQUEST['submit']=="rehabilitationsubmit") {
+if(@@$_REQUEST['submit']=="rehabilitationsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['rehabilitationdid']=="") {
+		if(@$_REQUEST['rehabilitationdid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -515,7 +515,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_rehabilitation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['rehabilitationdid']."' ") ;
+			$result = updateData($data,'na_st_rehabilitation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['rehabilitationdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -533,13 +533,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delrehabilitation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delrehabilitation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_rehabilitation WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_rehabilitation WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -557,15 +557,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewrehabilitation = getAnyTableWhereData('na_st_rehabilitation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewrehabilitation = getAnyTableWhereData('na_st_rehabilitation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensrehabilitationsql = "SELECT * FROM na_st_rehabilitation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resqueryrehabilitation = mysql_query($studensrehabilitationsql) or mysql_error();
+	$resqueryrehabilitation = mysqli_query($con, $studensrehabilitationsql) or mysqli_error();
 
-	$stunumrehabilitation = mysql_num_rows($resqueryrehabilitation);
+	$stunumrehabilitation = mysqli_num_rows($resqueryrehabilitation);
 
 	//========================Rehabiliation Panel Ends======================
 
@@ -577,23 +577,23 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Drugs Record
 
-	if($_REQUEST['submit']=="institutesubmit") {
+	if(@@$_REQUEST['submit']=="institutesubmit") {
 
 		
 
 	extract($_POST);
 
-	//echo $_REQUEST['rehab_name'].">>>>>>";
+	//echo @$_REQUEST['rehab_name'].">>>>>>";
 
 	
 
-		//$award_date = explode("/",$_REQUEST['award_date']);
+		//$award_date = explode("/",@$_REQUEST['award_date']);
 
 		
 
 		
 
-		if($_REQUEST['institutedid']=="") {
+		if(@$_REQUEST['institutedid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -635,11 +635,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		} else {
 
-			//$award_date = explode("/",$_REQUEST['award_date1']);
+			//$award_date = explode("/",@$_REQUEST['award_date1']);
 
 		     //$formataward_date = $award_date[2]."-".$award_date[1]."-".$award_date[0];
 
-			  //$formatrahab_date=date('Y-m-d',strtotime($_REQUEST['rehab_date']));
+			  //$formatrahab_date=date('Y-m-d',strtotime(@$_REQUEST['rehab_date']));
 
 			
 
@@ -653,7 +653,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_st_eduinstitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['institutedid']."' ") ;
+			$result = updateData($data,'na_st_eduinstitute', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['institutedid']."' ") ;
 
 			
 
@@ -673,13 +673,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delinstitute']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delinstitute']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_eduinstitute WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_eduinstitute WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -705,15 +705,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewinstitute = getAnyTableWhereData('na_st_eduinstitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewinstitute = getAnyTableWhereData('na_st_eduinstitute', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensinstitutesql = "SELECT * FROM na_st_eduinstitute WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery5 = mysql_query($studensinstitutesql) or mysql_error();
+	$resquery5 = mysqli_query($con, $studensinstitutesql) or mysqli_error();
 
-	$stunum5 = mysql_num_rows($resquery5);
+	$stunum5 = mysqli_num_rows($resquery5);
 
 
 
@@ -727,23 +727,23 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Drugs Record
 
-	if($_REQUEST['submit']=="teachersubmit") {
+	if(@@$_REQUEST['submit']=="teachersubmit") {
 
 		
 
 	extract($_POST);
 
-	//echo $_REQUEST['rehab_name'].">>>>>>";
+	//echo @$_REQUEST['rehab_name'].">>>>>>";
 
 	
 
-		//$award_date = explode("/",$_REQUEST['award_date']);
+		//$award_date = explode("/",@$_REQUEST['award_date']);
 
 		
 
 		
 
-		if($_REQUEST['teacherdid']=="") {
+		if(@$_REQUEST['teacherdid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -785,11 +785,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		} else {
 
-			//$award_date = explode("/",$_REQUEST['award_date1']);
+			//$award_date = explode("/",@$_REQUEST['award_date1']);
 
 		     //$formataward_date = $award_date[2]."-".$award_date[1]."-".$award_date[0];
 
-			  //$formatrahab_date=date('Y-m-d',strtotime($_REQUEST['rehab_date']));
+			  //$formatrahab_date=date('Y-m-d',strtotime(@$_REQUEST['rehab_date']));
 
 			
 
@@ -803,7 +803,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_st_teacher', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['teacherdid']."' ") ;
+			$result = updateData($data,'na_st_teacher', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['teacherdid']."' ") ;
 
 			
 
@@ -823,13 +823,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delteacher']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delteacher']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_teacher WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_teacher WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -849,15 +849,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewteacher = getAnyTableWhereData('na_st_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewteacher = getAnyTableWhereData('na_st_teacher', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensteachersql = "SELECT * FROM na_st_teacher WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery6 = mysql_query($studensteachersql) or mysql_error();
+	$resquery6 = mysqli_query($con, $studensteachersql) or mysqli_error();
 
-	$stunum6 = mysql_num_rows($resquery6);
+	$stunum6 = mysqli_num_rows($resquery6);
 
 
 
@@ -871,11 +871,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Drugs Record
 
-	if($_REQUEST['submit']=="coachsubmit") {
+	if(@@$_REQUEST['submit']=="coachsubmit") {
 	extract($_POST);
 
 
-		if($_REQUEST['coachdid']=="") {
+		if(@$_REQUEST['coachdid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -923,7 +923,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_st_coach', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['coachdid']."' ") ;
+			$result = updateData($data,'na_st_coach', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['coachdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -941,13 +941,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delcoach']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delcoach']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_coach WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_coach WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -965,15 +965,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewcoach = getAnyTableWhereData('na_st_coach', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewcoach = getAnyTableWhereData('na_st_coach', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studenscoachsql = "SELECT * FROM na_st_coach WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery7 = mysql_query($studenscoachsql) or mysql_error();
+	$resquery7 = mysqli_query($con, $studenscoachsql) or mysqli_error();
 
-	$stunum7 = mysql_num_rows($resquery7);
+	$stunum7 = mysqli_num_rows($resquery7);
 
 
 
@@ -987,7 +987,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Recomend Record
 
-	if($_REQUEST['submit']=="recomendsubmit") {
+	if(@@$_REQUEST['submit']=="recomendsubmit") {
 
 		
 
@@ -995,7 +995,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			
 
-		if($_REQUEST['recomenddid']=="") {
+		if(@$_REQUEST['recomenddid']=="") {
 
 								
 
@@ -1029,7 +1029,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_recomendation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['recomenddid']."' ") ;
+			$result = updateData($data,'na_st_recomendation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['recomenddid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1047,13 +1047,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Recomemnd
 
-	if($_REQUEST['delrecomend']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delrecomend']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_recomendation WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_recomendation WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1071,15 +1071,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewrecomend = getAnyTableWhereData('na_st_recomendation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewrecomend = getAnyTableWhereData('na_st_recomendation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensrecomendsql = "SELECT * FROM na_st_recomendation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery8 = mysql_query($studensrecomendsql) or mysql_error();
+	$resquery8 = mysqli_query($con, $studensrecomendsql) or mysqli_error();
 
-	$stunum8 = mysql_num_rows($resquery8);
+	$stunum8 = mysqli_num_rows($resquery8);
 
 
 
@@ -1093,11 +1093,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert Extra Record
 
-	if($_REQUEST['submit']=="extrasubmit") {
+	if(@@$_REQUEST['submit']=="extrasubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['extradid']=="") {
+		if(@$_REQUEST['extradid']=="") {
 
 								
 
@@ -1131,7 +1131,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['extradid']."' ") ;
+			$result = updateData($data,'na_st_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['extradid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1149,13 +1149,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delextra']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delextra']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_extracurricullam WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_extracurricullam WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1173,15 +1173,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewextra = getAnyTableWhereData('na_st_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewextra = getAnyTableWhereData('na_st_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensextrasql = "SELECT * FROM na_st_extracurricullam WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery9 = mysql_query($studensextrasql) or mysql_error();
+	$resquery9 = mysqli_query($con, $studensextrasql) or mysqli_error();
 
-	$stunum9 = mysql_num_rows($resquery9);
+	$stunum9 = mysqli_num_rows($resquery9);
 */
 
 
@@ -1195,11 +1195,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert job Record
 
-	if($_REQUEST['submit']=="jobsubmit") {
+	if(@@$_REQUEST['submit']=="jobsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['jobdid']=="") {
+		if(@$_REQUEST['jobdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1249,7 +1249,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_student_experience', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['jobdid']."' ") ;
+			$result = updateData($data,'na_student_experience', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['jobdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1267,13 +1267,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['deljob']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deljob']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_student_experience WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_student_experience WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1291,15 +1291,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewjob = getAnyTableWhereData('na_student_experience', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewjob = getAnyTableWhereData('na_student_experience', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensjobsql = "SELECT * FROM na_student_experience WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery10 = mysql_query($studensjobsql) or mysql_error();
+	$resquery10 = mysqli_query($con, $studensjobsql) or mysqli_error();
 
-	$stunum10 = mysql_num_rows($resquery10);
+	$stunum10 = mysqli_num_rows($resquery10);
 
 
 
@@ -1317,11 +1317,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert videopresentation Record
 
-	if($_REQUEST['submit']=="videopresentationsubmit") {
+	if(@@$_REQUEST['submit']=="videopresentationsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['videopresentationdid']=="") {
+		if(@$_REQUEST['videopresentationdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1365,7 +1365,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_video_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['videopresentationdid']."' ") ;
+			$result = updateData($data,'na_st_video_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['videopresentationdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1383,13 +1383,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delvideopresentation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delvideopresentation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_video_presentation WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_video_presentation WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1407,15 +1407,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewvideopresentation = getAnyTableWhereData('na_st_video_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewvideopresentation = getAnyTableWhereData('na_st_video_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensvideopresentationsql = "SELECT * FROM na_st_video_presentation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery11 = mysql_query($studensvideopresentationsql) or mysql_error();
+	$resquery11 = mysqli_query($con, $studensvideopresentationsql) or mysqli_error();
 
-	$stunum11 = mysql_num_rows($resquery11);
+	$stunum11 = mysqli_num_rows($resquery11);
 
 
 
@@ -1435,11 +1435,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert academictranscript Record
 
-	if($_REQUEST['submit']=="academictranscriptsubmit") {
+	if(@@$_REQUEST['submit']=="academictranscriptsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['academictranscriptdid']=="") {
+		if(@$_REQUEST['academictranscriptdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1489,7 +1489,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_academic_transcript', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['academictranscriptdid']."' ") ;
+			$result = updateData($data,'na_st_academic_transcript', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['academictranscriptdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1507,13 +1507,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delacademictranscript']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delacademictranscript']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_academic_transcript WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_academic_transcript WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1531,15 +1531,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewacademictranscript = getAnyTableWhereData('na_st_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewacademictranscript = getAnyTableWhereData('na_st_academic_transcript', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensacademictranscriptsql = "SELECT * FROM na_st_academic_transcript WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery12 = mysql_query($studensacademictranscriptsql) or mysql_error();
+	$resquery12 = mysqli_query($con, $studensacademictranscriptsql) or mysqli_error();
 
-	$stunum12 = mysql_num_rows($resquery12);
+	$stunum12 = mysqli_num_rows($resquery12);
 
 
 
@@ -1553,11 +1553,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert educationalrecords Record
 
-	if($_REQUEST['submit']=="educationalrecordssubmit") {
+	if(@@$_REQUEST['submit']=="educationalrecordssubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['educationalrecordsdid']=="") {
+		if(@$_REQUEST['educationalrecordsdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1607,7 +1607,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_educational_records', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['educationalrecordsdid']."' ") ;
+			$result = updateData($data,'na_st_educational_records', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['educationalrecordsdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1625,13 +1625,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['deleducationalrecords']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deleducationalrecords']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_educational_records WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_educational_records WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1649,15 +1649,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$vieweducationalrecords = getAnyTableWhereData('na_st_educational_records', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$vieweducationalrecords = getAnyTableWhereData('na_st_educational_records', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studenseducationalrecordssql = "SELECT * FROM na_st_educational_records WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery13 = mysql_query($studenseducationalrecordssql) or mysql_error();
+	$resquery13 = mysqli_query($con, $studenseducationalrecordssql) or mysqli_error();
 
-	$stunum13 = mysql_num_rows($resquery13);
+	$stunum13 = mysqli_num_rows($resquery13);
 
 
 
@@ -1673,11 +1673,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert issuerofreport Record
 
-	if($_REQUEST['submit']=="issuerofreportsubmit") {
+	if(@@$_REQUEST['submit']=="issuerofreportsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['issuerofreportdid']=="") {
+		if(@$_REQUEST['issuerofreportdid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1727,7 +1727,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_issuer_of_report', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['issuerofreportdid']."' ") ;
+			$result = updateData($data,'na_st_issuer_of_report', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['issuerofreportdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1745,13 +1745,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delissuerofreport']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delissuerofreport']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_issuer_of_report WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_issuer_of_report WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1769,15 +1769,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewissuerofreport = getAnyTableWhereData('na_st_issuer_of_report', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewissuerofreport = getAnyTableWhereData('na_st_issuer_of_report', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensissuerofreportsql = "SELECT * FROM na_st_issuer_of_report WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery14 = mysql_query($studensissuerofreportsql) or mysql_error();
+	$resquery14 = mysqli_query($con, $studensissuerofreportsql) or mysqli_error();
 
-	$stunum14 = mysql_num_rows($resquery14);
+	$stunum14 = mysqli_num_rows($resquery14);
 
 
 
@@ -1791,11 +1791,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert reports Record
 
-	if($_REQUEST['submit']=="reportssubmit") {
+	if(@@$_REQUEST['submit']=="reportssubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['reportsdid']=="") {
+		if(@$_REQUEST['reportsdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -1843,7 +1843,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_reports', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['reportsdid']."' ") ;
+			$result = updateData($data,'na_st_reports', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['reportsdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1861,13 +1861,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delreports']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delreports']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_reports WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_reports WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1885,15 +1885,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewreports = getAnyTableWhereData('na_st_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewreports = getAnyTableWhereData('na_st_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensreportssql = "SELECT * FROM na_st_reports WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery15 = mysql_query($studensreportssql) or mysql_error();
+	$resquery15 = mysqli_query($con, $studensreportssql) or mysqli_error();
 
-	$stunum15 = mysql_num_rows($resquery15);
+	$stunum15 = mysqli_num_rows($resquery15);
 
 
 
@@ -1909,11 +1909,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert messages Record
 
-	if($_REQUEST['submit']=="messagessubmit") {
+	if(@@$_REQUEST['submit']=="messagessubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['messagesdid']=="") {
+		if(@$_REQUEST['messagesdid']=="") {
 
 								
 
@@ -1945,7 +1945,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_messages', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['messagesdid']."' ") ;
+			$result = updateData($data,'na_st_messages', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['messagesdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -1963,13 +1963,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delmessages']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delmessages']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_messages WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_messages WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -1987,15 +1987,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewmessages = getAnyTableWhereData('na_st_messages', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewmessages = getAnyTableWhereData('na_st_messages', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensmessagessql = "SELECT * FROM na_st_messages WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery16 = mysql_query($studensmessagessql) or mysql_error();
+	$resquery16 = mysqli_query($con, $studensmessagessql) or mysqli_error();
 
-	$stunum16 = mysql_num_rows($resquery16);
+	$stunum16 = mysqli_num_rows($resquery16);
 
 
 
@@ -2011,11 +2011,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert audiopresentation Record
 
-	if($_REQUEST['submit']=="audiopresentationsubmit") {
+	if(@@$_REQUEST['submit']=="audiopresentationsubmit") {
 
 		extract($_POST);
 
-	if($_REQUEST['audiopresentationdid']=="") {
+	if(@$_REQUEST['audiopresentationdid']=="") {
     $uploads_dir = 'uploads/student_doc/';
     $imageArr = array();
     foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2063,7 +2063,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_audio_sturec_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['audiopresentationdid']."' ") ;
+			$result = updateData($data,'na_audio_sturec_presentation', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['audiopresentationdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2081,13 +2081,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delaudiopresentation']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delaudiopresentation']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_audio_sturec_presentation WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_audio_sturec_presentation WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2105,15 +2105,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewaudiopresentation = getAnyTableWhereData('na_audio_sturec_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewaudiopresentation = getAnyTableWhereData('na_audio_sturec_presentation', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensaudiopresentationsql = "SELECT * FROM na_audio_sturec_presentation WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery17 = mysql_query($studensaudiopresentationsql) or mysql_error();
+	$resquery17 = mysqli_query($con, $studensaudiopresentationsql) or mysqli_error();
 
-	$stunum17 = mysql_num_rows($resquery17);
+	$stunum17 = mysqli_num_rows($resquery17);
 
 
 
@@ -2127,11 +2127,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert seminar Record
 
-	if($_REQUEST['submit']=="seminarsubmit") {
+	if(@@$_REQUEST['submit']=="seminarsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['seminardid']=="") {
+		if(@$_REQUEST['seminardid']=="") {
 		    $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2180,7 +2180,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_seminar_attend', " ind_id='" . $_SESSION["userid"] . "' AND semi_id = '".$_REQUEST['seminardid']."' ") ;
+			$result = updateData($data,'na_st_seminar_attend', " ind_id='" . $_SESSION["userid"] . "' AND semi_id = '".@$_REQUEST['seminardid']."' ") ;
 
 			if($result){
 
@@ -2202,13 +2202,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delseminar']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delseminar']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_seminar_attend WHERE semi_id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_seminar_attend WHERE semi_id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2226,15 +2226,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewseminar = getAnyTableWhereData('na_st_seminar_attend', " AND ind_id='".$_SESSION["userid"]."' AND semi_id = '".$_REQUEST['id']."' ");
+	$viewseminar = getAnyTableWhereData('na_st_seminar_attend', " AND ind_id='".$_SESSION["userid"]."' AND semi_id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensseminarsql = "SELECT * FROM na_st_seminar_attend WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery24 = mysql_query($studensseminarsql) or mysql_error();
+	$resquery24 = mysqli_query($con, $studensseminarsql) or mysqli_error();
 
-	$stunum24 = mysql_num_rows($resquery24);
+	$stunum24 = mysqli_num_rows($resquery24);
 
 
 
@@ -2248,11 +2248,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	if($_REQUEST['submit']=="eduinstituteattendedsubmit") {
+	if(@@$_REQUEST['submit']=="eduinstituteattendedsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['eduinstituteattendeddid']=="") {
+		if(@$_REQUEST['eduinstituteattendeddid']=="") {
 		    $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2303,7 +2303,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_eduinstitute_attended', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['eduinstituteattendeddid']."' ") ;
+			$result = updateData($data,'na_st_eduinstitute_attended', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['eduinstituteattendeddid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2321,13 +2321,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['deleduinstituteattended']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deleduinstituteattended']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_eduinstitute_attended WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_eduinstitute_attended WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2345,15 +2345,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$vieweduinstituteattended = getAnyTableWhereData('na_st_eduinstitute_attended', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$vieweduinstituteattended = getAnyTableWhereData('na_st_eduinstitute_attended', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studenseduinstituteattendedsql = "SELECT * FROM na_st_eduinstitute_attended WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resqueryeduinstituteattended = mysql_query($studenseduinstituteattendedsql) or mysql_error();
+	$resqueryeduinstituteattended = mysqli_query($con, $studenseduinstituteattendedsql) or mysqli_error();
 
-	$stunumeduinstituteattended = mysql_num_rows($resqueryeduinstituteattended);
+	$stunumeduinstituteattended = mysqli_num_rows($resqueryeduinstituteattended);
 	
 
 
@@ -2370,11 +2370,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert facilities Record
 
-	if($_REQUEST['submit']=="facilitiessubmit") {
+	if(@@$_REQUEST['submit']=="facilitiessubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['facilitiesdid']=="") {
+		if(@$_REQUEST['facilitiesdid']=="") {
 
 								
 
@@ -2412,7 +2412,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_facilities', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['facilitiesdid']."' ") ;
+			$result = updateData($data,'na_st_facilities', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['facilitiesdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2430,13 +2430,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delfacilities']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delfacilities']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from  na_st_facilities WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from  na_st_facilities WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2454,13 +2454,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewfacilities = getAnyTableWhereData('na_st_facilities', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewfacilities = getAnyTableWhereData('na_st_facilities', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	$studensfacilitiessql = "SELECT * FROM  na_st_facilities WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery22 = mysql_query($studensfacilitiessql) or mysql_error();
+	$resquery22 = mysqli_query($con, $studensfacilitiessql) or mysqli_error();
 
-	$stunum22 = mysql_num_rows($resquery22);
+	$stunum22 = mysqli_num_rows($resquery22);
 
 
 
@@ -2474,11 +2474,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Insert reference Record
 
-	if($_REQUEST['submit']=="referencessubmit") {
+	if(@@$_REQUEST['submit']=="referencessubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['referencesdid']=="") {
+		if(@$_REQUEST['referencesdid']=="") {
 
 				$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -2524,7 +2524,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 
 
-			$result = updateData($data,'na_sturec_reference', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['referencesdid']."' ") ;
+			$result = updateData($data,'na_sturec_reference', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['referencesdid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2542,15 +2542,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delreferences']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delreferences']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		echo $delsql = "DELETE from  na_sturec_reference WHERE id = '".$_REQUEST['id']."'";
+		echo $delsql = "DELETE from  na_sturec_reference WHERE id = '".@$_REQUEST['id']."'";
 
 		
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2568,15 +2568,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewreference1 = getAnyTableWhereData('na_sturec_reference', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewreference1 = getAnyTableWhereData('na_sturec_reference', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	print_r($viewreference);
 
 	$studensreferencesql = "SELECT * FROM  na_sturec_reference WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery21 = mysql_query($studensreferencesql) or mysql_error();
+	$resquery21 = mysqli_query($con, $studensreferencesql) or mysqli_error();
 
-	$stunum21 = mysql_num_rows($resquery21);
+	$stunum21 = mysqli_num_rows($resquery21);
 
 
 
@@ -2588,11 +2588,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	if($_REQUEST['submit']=="precomendsubmit") {
+	if(@@$_REQUEST['submit']=="precomendsubmit") {
 
 		extract($_POST);
 
-		if($_REQUEST['precomenddid']=="") {
+		if(@$_REQUEST['precomenddid']=="") {
 $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2638,7 +2638,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 
 
-			$result = updateData($data,' na_sturec_personal_recommendations', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['precomenddid']."' ") ;
+			$result = updateData($data,' na_sturec_personal_recommendations', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['precomenddid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2656,15 +2656,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delprecomend']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delprecomend']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		echo $delsql = "DELETE from   na_sturec_personal_recommendations WHERE id = '".$_REQUEST['id']."'";
+		echo $delsql = "DELETE from   na_sturec_personal_recommendations WHERE id = '".@$_REQUEST['id']."'";
 
 		
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2682,15 +2682,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewprecomend1 = getAnyTableWhereData(' na_sturec_personal_recommendations', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewprecomend1 = getAnyTableWhereData(' na_sturec_personal_recommendations', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	//print_r($viewreference);
 
 	$studensprecomendql = "SELECT * FROM   na_sturec_personal_recommendations WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquery20 = mysql_query($studensprecomendql) or mysql_error();
+	$resquery20 = mysqli_query($con, $studensprecomendql) or mysqli_error();
 
-	$stunum20 = mysql_num_rows($resquery20);
+	$stunum20 = mysqli_num_rows($resquery20);
 
 
 
@@ -2699,11 +2699,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 //============= Injuries starts===========================
 
 
-if($_REQUEST['submit']=="injuriessubmit") {
+if(@@$_REQUEST['submit']=="injuriessubmit") {
 
 		extract($_POST);
-//echo $_REQUEST['injuriesid'].">>>>>"; exit();
-		if($_REQUEST['injuriesid']=="") {
+//echo @$_REQUEST['injuriesid'].">>>>>"; exit();
+		if(@$_REQUEST['injuriesid']=="") {
 $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2753,7 +2753,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_injuries', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['injuriesid']."' ") ;
+			$result = updateData($data,'na_st_injuries', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['injuriesid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2771,13 +2771,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delinjuries']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delinjuries']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_injuries WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_injuries WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2795,26 +2795,26 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewinjuries = getAnyTableWhereData('na_st_injuries', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewinjuries = getAnyTableWhereData('na_st_injuries', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensinjuriessql = "SELECT * FROM na_st_injuries WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resqueryinj = mysql_query($studensinjuriessql) or mysql_error();
+	$resqueryinj = mysqli_query($con, $studensinjuriessql) or mysqli_error();
 
-	$stunuminj = mysql_num_rows($resqueryinj);
+	$stunuminj = mysqli_num_rows($resqueryinj);
 	
 //================Injuries ends============================
 
 
 //============= Surguries starts===========================
 
-if($_REQUEST['submit']=="surgeriessubmit") {
+if(@@$_REQUEST['submit']=="surgeriessubmit") {
 
 		extract($_POST);
-//echo $_REQUEST['surgeriesid'].">>>>>"; exit();
-		if($_REQUEST['surgeriesid']=="") {
+//echo @$_REQUEST['surgeriesid'].">>>>>"; exit();
+		if(@$_REQUEST['surgeriesid']=="") {
 $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
 foreach ($_FILES["images"]["error"] as $key => $error) {
@@ -2864,7 +2864,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_surgeries', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['surgeriesid']."' ") ;
+			$result = updateData($data,'na_st_surgeries', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['surgeriesid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2882,13 +2882,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delsurgeries']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delsurgeries']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_surgeries WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_surgeries WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -2906,26 +2906,26 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewsurgeries = getAnyTableWhereData('na_st_surgeries', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewsurgeries = getAnyTableWhereData('na_st_surgeries', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studenssurgeriessql = "SELECT * FROM na_st_surgeries WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resqueryshj = mysql_query($studenssurgeriessql) or mysql_error();
+	$resqueryshj = mysqli_query($con, $studenssurgeriessql) or mysqli_error();
 
-	$stunumshj = mysql_num_rows($resqueryshj);
+	$stunumshj = mysqli_num_rows($resqueryshj);
 	
 	
 //================Surguries ends============================
 
 //================================ Procedures  Starts=====================================
 
-if($_REQUEST['submit']=="proceduressubmit") {
+if(@@$_REQUEST['submit']=="proceduressubmit") {
 
 		extract($_POST);
-//echo $_REQUEST['proceduresid'].">>>>>"; exit();
-		if($_REQUEST['proceduresid']=="") {
+//echo @$_REQUEST['proceduresid'].">>>>>"; exit();
+		if(@$_REQUEST['proceduresid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -2975,7 +2975,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_procedures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['proceduresid']."' ") ;
+			$result = updateData($data,'na_st_procedures', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['proceduresid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -2993,13 +2993,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['delprocedures']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delprocedures']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_procedures WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_procedures WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -3017,15 +3017,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewprocedures = getAnyTableWhereData('na_st_procedures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewprocedures = getAnyTableWhereData('na_st_procedures', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studensproceduressql = "SELECT * FROM na_st_procedures WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquerypro = mysql_query($studensproceduressql) or mysql_error();
+	$resquerypro = mysqli_query($con, $studensproceduressql) or mysqli_error();
 
-	$stunumpro = mysql_num_rows($resquerypro);
+	$stunumpro = mysqli_num_rows($resquerypro);
 	
 
 //================================= Procedures  Ends ========================================
@@ -3033,11 +3033,11 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 //================================ Treatments   Starts=====================================
 
 
-if($_REQUEST['submit']=="treatmentssubmit") {
+if(@@$_REQUEST['submit']=="treatmentssubmit") {
 
 		extract($_POST);
-//echo $_REQUEST['treatmentsid'].">>>>>"; exit();
-		if($_REQUEST['treatmentsid']=="") {
+//echo @$_REQUEST['treatmentsid'].">>>>>"; exit();
+		if(@$_REQUEST['treatmentsid']=="") {
 
 			$uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -3087,7 +3087,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 			//exit();
 
-			$result = updateData($data,'na_st_treatments', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['treatmentsid']."' ") ;
+			$result = updateData($data,'na_st_treatments', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['treatmentsid']."' ") ;
 
 			echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
@@ -3105,13 +3105,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Drugs
 
-	if($_REQUEST['deltreatments']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['deltreatments']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_treatments WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_treatments WHERE id = '".@$_REQUEST['id']."'";
 
-		$ard=mysql_query($delsql);
+		$ard=mysqli_query($con, $delsql);
 
 		if($ard){	
 
@@ -3129,28 +3129,28 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 		
 
-	$viewtreatments = getAnyTableWhereData('na_st_treatments', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewtreatments = getAnyTableWhereData('na_st_treatments', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	 $studenstreatmentssql = "SELECT * FROM na_st_treatments WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resquerytrt = mysql_query($studenstreatmentssql) or mysql_error();
+	$resquerytrt = mysqli_query($con, $studenstreatmentssql) or mysqli_error();
 
-	$stunumtrt = mysql_num_rows($resquerytrt);
+	$stunumtrt = mysqli_num_rows($resquerytrt);
 	
 
 //================================= Treatments   Ends ========================================
 //================================= Extra   start ========================================
 
 
-	if($_REQUEST['submit']=="extrasubmit") {
+	if(@@$_REQUEST['submit']=="extrasubmit") {
 
 	extract($_POST);
 
-		$formatextra_date = date('Y-m-d',strtotime($_REQUEST['from_date']));
+		$formatextra_date = date('Y-m-d',strtotime(@$_REQUEST['from_date']));
 
-		if($_REQUEST['extraid']=="") {
+		if(@$_REQUEST['extraid']=="") {
 
 $uploads_dir = 'uploads/student_doc/';
 $imageArr = array();
@@ -3200,7 +3200,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-			$result = updateData($data,'na_st_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".$_REQUEST['extraid']."' ") ;
+			$result = updateData($data,'na_st_extracurricullam', " ind_id='" . $_SESSION["userid"] . "' AND id = '".@$_REQUEST['extraid']."' ") ;
 
 			
 
@@ -3220,19 +3220,19 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	//Delete Extra
 
-	if($_REQUEST['delextra']!='' && $_REQUEST['ind_id']!='' && $_REQUEST['id']!='') {
+	if(@$_REQUEST['delextra']!='' && @$_REQUEST['ind_id']!='' && @$_REQUEST['id']!='') {
 
 		
 
-		$delsql = "DELETE from na_st_extracurricullam WHERE id = '".$_REQUEST['id']."'";
+		$delsql = "DELETE from na_st_extracurricullam WHERE id = '".@$_REQUEST['id']."'";
 
-		mysql_query($delsql);
+		mysqli_query($con, $delsql);
 
 			
 
 		echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 
-		echo "window.top.location.href='student.php?deloperation=successful&extrapanel=".$_REQUEST['extrapanel']."&accr=1';\n";
+		echo "window.top.location.href='student.php?deloperation=successful&extrapanel=".@$_REQUEST['extrapanel']."&accr=1';\n";
 
 		echo "</script>";
 
@@ -3246,15 +3246,15 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
 	
 
-	$viewextra = getAnyTableWhereData('na_st_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+	$viewextra = getAnyTableWhereData('na_st_extracurricullam', " AND ind_id='".$_SESSION["userid"]."' AND id = '".@$_REQUEST['id']."' ");
 
 	
 
 	$studensextrassql = "SELECT * FROM na_st_extracurricullam WHERE ind_id = '".$_SESSION["userid"]."'";
 
-	$resqueryextra = mysql_query($studensextrassql) or mysql_error();
+	$resqueryextra = mysqli_query($con, $studensextrassql) or mysqli_error();
 
-	$stunumextra = mysql_num_rows($resqueryextra);
+	$stunumextra = mysqli_num_rows($resqueryextra);
 	
 	
 	//================================= Extra   Ends ========================================
@@ -3398,13 +3398,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                 <div class="form-group" style="margin:0 0 20px 0;">
 
-                <?php if($_REQUEST['operation']=="successful") { ?>
+                <?php if(@$_REQUEST['operation']=="successful") { ?>
 
                  <div class="col-sm-12 pmbb-header" style="margin-top:0; color:#D18C13;">Operation Successful</div>
 
                  <?php } ?>
 
-                 <?php if($_REQUEST['deloperation']=="successful") { ?>
+                 <?php if(@$_REQUEST['deloperation']=="successful") { ?>
 
                  <div class="col-sm-12 pmbb-header" style="margin-top:0; color:#D18C13;">Delete Operation Successful</div>
 
@@ -3478,7 +3478,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                     </div>
 
-                    <div id="accordionTeal-one" <?php if(isset($_REQUEST['accr'])==''){ ?> class="collapse in" <?php } else { ?> class="collapse " <?php } ?> role="tabpanel">
+                    <div id="accordionTeal-one" <?php if(@$_REQUEST['accr']==''){ ?> class="collapse in" <?php } else { ?> class="collapse " <?php } ?> role="tabpanel">
 
                       <div class="panel-body">
 
@@ -3514,7 +3514,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>IP Address</dt>
 
-                                <dd><?=$viewindiv['ip_address']?></dd>
+                                <dd><?=@$viewindiv['ip_address']?></dd>
 
                               </dl>
 
@@ -3522,7 +3522,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>Conference Id</dt>
 
-                                <dd><?=$viewindiv['conference_id']?></dd>
+                                <dd><?=@$viewindiv['conference_id']?></dd>
 
                               </dl>
 
@@ -3530,7 +3530,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>Social Security Number</dt>
 
-                                <dd><?=$viewindiv['social_seq_no']?></dd>
+                                <dd><?=@$viewindiv['social_seq_no']?></dd>
 
                               </dl> 
 
@@ -3538,7 +3538,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>Date of Birth</dt>
 
-                                <dd><?php if($viewindiv['dob']!='') { ?><?=date("jS M Y", strtotime($viewindiv['dob']))?><?php } ?></dd>
+                                <dd><?php if(@$viewindiv['dob']!='') { ?><?=date("jS M Y", strtotime(@$viewindiv['dob']))?><?php } ?></dd>
 
                               </dl>                            
 
@@ -3546,7 +3546,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>Gender</dt>
 
-                                <dd><?=$viewindiv['gender']?></dd>
+                                <dd><?=@$viewindiv['gender']?></dd>
 
                               </dl>
 
@@ -3556,7 +3556,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                                 <dt>Description</dt>
 
-                                <dd><?=stripslashes($viewindiv['description'])?></dd>
+                                <dd><?=stripslashes(@$viewindiv['description'])?></dd>
 
                               </dl>
 
@@ -3730,13 +3730,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['eduinstituteattendedpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['eduinstituteattendedpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-edu" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Educational Institute Attend: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-edu" <?php if($_REQUEST['eduinstituteattendedpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-edu" <?php if(@$_REQUEST['eduinstituteattendedpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -3744,7 +3744,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editeduinstituteattended']=='') { ?>
+                          <?php if(@$_REQUEST['editeduinstituteattended']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -4114,13 +4114,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                     
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['seminarpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['seminarpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-24" data-parent="#accordionTeal" data-toggle="collapse" class="">Add Seminars Attended: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-24" <?php if($_REQUEST['seminarpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-24" <?php if(@$_REQUEST['seminarpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -4128,7 +4128,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editseminar']=='') { ?>
+                          <?php if(@$_REQUEST['editseminar']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -4478,13 +4478,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   		<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['teacherpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['teacherpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-six" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Teacher: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-six" <?php if($_REQUEST['teacherpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-six" <?php if(@$_REQUEST['teacherpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -4492,7 +4492,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editteacher']=='') { ?>
+                          <?php if(@$_REQUEST['editteacher']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -5068,13 +5068,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['videopresentationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['videopresentationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-11" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Video Presentation: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-11" <?php if($_REQUEST['videopresentationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-11" <?php if(@$_REQUEST['videopresentationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -5082,7 +5082,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editvideopresentation']=='') { ?>
+                          <?php if(@$_REQUEST['editvideopresentation']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -5474,13 +5474,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['audiopresentationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['audiopresentationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-17" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Audio Presentation: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-17" <?php if($_REQUEST['audiopresentationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-17" <?php if(@$_REQUEST['audiopresentationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -5488,7 +5488,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editaudiopresentation']=='') { ?>
+                          <?php if(@$_REQUEST['editaudiopresentation']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -5901,13 +5901,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   		<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['recomendpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['recomendpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-8" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Recomendation: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-8" <?php if($_REQUEST['recomendpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-8" <?php if(@$_REQUEST['recomendpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -5915,7 +5915,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editrecomend']=='') { ?>
+                          <?php if(@$_REQUEST['editrecomend']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -6208,13 +6208,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   	<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['awardpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['awardpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-three" aria-expanded="false"> Add Award: <?=$awardpanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-three" <?php if($_REQUEST['awardpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-three" <?php if(@$_REQUEST['awardpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -6222,7 +6222,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editaward']=='') { ?>
+                          <?php if(@$_REQUEST['editaward']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -6492,13 +6492,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   	<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['jobpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['jobpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-10" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add job: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-10" <?php if($_REQUEST['jobpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-10" <?php if(@$_REQUEST['jobpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -6506,7 +6506,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editjob']=='') { ?>
+                          <?php if(@$_REQUEST['editjob']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -6881,13 +6881,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['referencespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="referencespanel">
+                    <div <?php if(@$_REQUEST['referencespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="referencespanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-21" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add references: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-21" <?php if($_REQUEST['referencespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-21" <?php if(@$_REQUEST['referencespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -6895,7 +6895,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editreferences']=='') { ?>
+                          <?php if(@$_REQUEST['editreferences']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -7402,13 +7402,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['issuerofreportpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['issuerofreportpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-14" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Issuer Report: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-14" <?php if($_REQUEST['issuerofreportpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-14" <?php if(@$_REQUEST['issuerofreportpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -7416,7 +7416,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editissuerofreport']=='') { ?>
+                          <?php if(@$_REQUEST['editissuerofreport']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -7801,13 +7801,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   		<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['coachpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['coachpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-7" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Coach: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-7" <?php if($_REQUEST['coachpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-7" <?php if(@$_REQUEST['coachpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -7815,7 +7815,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editcoach']=='') { ?>
+                          <?php if(@$_REQUEST['editcoach']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -8239,13 +8239,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                  
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['injuriespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="injuriespanel">
+                    <div <?php if(@$_REQUEST['injuriespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="injuriespanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-injuries" aria-expanded="false"> Add injuries: <?=$injuriespanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-injuries" <?php if($_REQUEST['injuriespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-injuries" <?php if(@$_REQUEST['injuriespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -8253,7 +8253,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editinjuries']=='') { ?>
+                          <?php if(@$_REQUEST['editinjuries']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -8537,13 +8537,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                  
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['surgeriespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="surgeriespanel">
+                    <div <?php if(@$_REQUEST['surgeriespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="surgeriespanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-surgeries" aria-expanded="false"> Add surgeries: <?=$surgeriespanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-surgeries" <?php if($_REQUEST['surgeriespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-surgeries" <?php if(@$_REQUEST['surgeriespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -8551,7 +8551,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editsurgeries']=='') { ?>
+                          <?php if(@$_REQUEST['editsurgeries']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -8837,13 +8837,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 
                 <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['procedurespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="procedurespanel">
+                    <div <?php if(@$_REQUEST['procedurespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="procedurespanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-procedures" aria-expanded="false"> Add procedures: <?=$procedurespanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-procedures" <?php if($_REQUEST['procedurespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-procedures" <?php if(@$_REQUEST['procedurespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -8851,7 +8851,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editprocedures']=='') { ?>
+                          <?php if(@$_REQUEST['editprocedures']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -9136,13 +9136,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 
                 <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['treatmentspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="treatmentspanel">
+                    <div <?php if(@$_REQUEST['treatmentspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="treatmentspanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-treatments" aria-expanded="false"> Add treatments: <?=$treatmentspanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-treatments" <?php if($_REQUEST['treatmentspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-treatments" <?php if(@$_REQUEST['treatmentspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -9150,7 +9150,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['edittreatments']=='') { ?>
+                          <?php if(@$_REQUEST['edittreatments']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -9433,13 +9433,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   	<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['rehabilitationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['rehabilitationpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-reh" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Rehabilitation: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-reh" <?php if($_REQUEST['rehabilitationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-reh" <?php if(@$_REQUEST['rehabilitationpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -9447,7 +9447,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editrehabilitation']=='') { ?>
+                          <?php if(@$_REQUEST['editrehabilitation']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -9762,13 +9762,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   	<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['drugspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="drugspanel">
+                    <div <?php if(@$_REQUEST['drugspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="drugspanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-two" aria-expanded="false"> Add Athletics/Sports/Activities: <?=$drugspanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-two" <?php if($_REQUEST['drugspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-two" <?php if(@$_REQUEST['drugspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -9776,7 +9776,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['edit']=='') { ?>
+                          <?php if(@$_REQUEST['edit']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -10118,13 +10118,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   	<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['institutepanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['institutepanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-five" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Institute: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-five" <?php if($_REQUEST['institutepanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-five" <?php if(@$_REQUEST['institutepanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -10132,7 +10132,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editinstitute']=='') { ?>
+                          <?php if(@$_REQUEST['editinstitute']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -10881,13 +10881,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                   	
 						<div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['extrapanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="extrapanel">
+                    <div <?php if(@$_REQUEST['extrapanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="extrapanel">
 
                       <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordionTeal" href="#accordionTeal-nine" aria-expanded="false"> Add Extracurricullam: <?=$extrapanel?> </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-nine" <?php if($_REQUEST['extrapanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-nine" <?php if(@$_REQUEST['extrapanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -10895,7 +10895,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editextra']=='') { ?>
+                          <?php if(@$_REQUEST['editextra']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -11170,13 +11170,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['academictranscriptpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['academictranscriptpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-12" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Academic Transcript: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-12" <?php if($_REQUEST['academictranscriptpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-12" <?php if(@$_REQUEST['academictranscriptpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -11184,7 +11184,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editacademictranscript']=='') { ?>
+                          <?php if(@$_REQUEST['editacademictranscript']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -11966,13 +11966,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['educationalrecordspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['educationalrecordspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-13" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Educational Record: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-13" <?php if($_REQUEST['educationalrecordspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-13" <?php if(@$_REQUEST['educationalrecordspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -11980,7 +11980,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editeducationalrecords']=='') { ?>
+                          <?php if(@$_REQUEST['editeducationalrecords']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -12770,13 +12770,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['reportspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['reportspanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-15" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Report: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-15" <?php if($_REQUEST['reportspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-15" <?php if(@$_REQUEST['reportspanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -12784,7 +12784,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editreports']=='') { ?>
+                          <?php if(@$_REQUEST['editreports']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -13056,13 +13056,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                         <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['messagespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
+                    <div <?php if(@$_REQUEST['messagespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="awardpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-16" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Messages: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-16" <?php if($_REQUEST['messagespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-16" <?php if(@$_REQUEST['messagespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -13070,7 +13070,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editmessages']=='') { ?>
+                          <?php if(@$_REQUEST['editmessages']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -13334,13 +13334,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['precomendpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="precomendpanel">
+                    <div <?php if(@$_REQUEST['precomendpanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="precomendpanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-20" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Personal Recomendation: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-20" <?php if($_REQUEST['precomendpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-20" <?php if(@$_REQUEST['precomendpanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -13348,7 +13348,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editprecomend']=='') { ?>
+                          <?php if(@$_REQUEST['editprecomend']=='') { ?>
 
                             <div class="pmbb-view">
 
@@ -13681,13 +13681,13 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
                 
                   <div class="panel panel-collapse">		
 
-                    <div <?php if($_REQUEST['facilitiespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="facilitiespanel">
+                    <div <?php if(@$_REQUEST['facilitiespanel']!='') { ?>class="panel-heading active" <?php } else { ?>class="panel-heading" <?php } ?> role="tab" id="facilitiespanel">
 
                       <h4 class="panel-title"> <a aria-expanded="true" href="#accordionTeal-22" data-parent="#accordionTeal" data-toggle="collapse" class=""> Add Facilities: </a> </h4>
 
                     </div>
 
-                    <div id="accordionTeal-22" <?php if($_REQUEST['facilitiespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
+                    <div id="accordionTeal-22" <?php if(@$_REQUEST['facilitiespanel']!='') { ?>class="collapse in" <?php } else { ?>class="collapse" <?php } ?> role="tabpanel" >
 
                       <div class="panel-body">
 
@@ -13695,7 +13695,7 @@ foreach ($_FILES["images"]["error"] as $key => $error) {
 
                           <div class="pmbb-body p-l-0">
 
-                          <?php if($_REQUEST['editfacilities']=='') { ?>
+                          <?php if(@$_REQUEST['editfacilities']=='') { ?>
 
                             <div class="pmbb-view">
 

@@ -1,4 +1,4 @@
-<?php include"lib/headercms.php";?>
+<?php include('lib/header.php');?>
 <section class="body_content">
     <div class="page_header">
         <div class="over_bg"></div>
@@ -35,4 +35,7 @@
         </div>
     </div>
 </section>
-<?php include"lib/footercms.php";?>
+<?php
+//include"lib/footercms.php";
+include('lib/footer.php');
+?>

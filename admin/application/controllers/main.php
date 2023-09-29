@@ -1,6 +1,13 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-class main extends CI_Controller {
+class Main extends CI_Controller {
+
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('model_users');
+		$this->load->library('form_validation');
+		$this->load->library('session');
+	}
 
 	public function index() {
 		$data['title'] = "Admin Login";
@@ -9,58 +16,31 @@ class main extends CI_Controller {
 		$this->load->view('footerlogin');
 	}
 
-	/*public function members() {
-		if($this->session->userdata('is_logged_in')){
-			$this->load->view('home');
+	public function login_validation() {
+		$this->rules_login();
+		if ($this->form_validation->run() == FALSE) {
+			redirect();
 		} else {
-			redirect('main/restricted');
+			$cond = "UserName='".$_POST['username']."' and UserPassword='".md5($_POST['password'])."'";
+			$checkLoginUser = $this->model_users->get_single("na_admin_detail",$cond);
+			if(!empty($checkLoginUser)) {
+				$sess = array("username"=>$checkLoginUser->UserName,'is_logged_in' => 1);
+				$this->session->set_userdata($sess);
+				$username = $this->session->userdata('username');
+				redirect(base_url('home'));
+			} else {
+				$this->session->set_flashdata('message', 'Incorrect email address and password.');
+				redirect(admin_url());
+			}
 		}
 	}
 
-	public function restricted() {
-		$this->load->view('restricted');
-   	}
-
-   	public function signup() {
-   		redirect('user/registration');
-   	}*/
-
-   	//==================================Form validation===========================================
-	public function login_validation(){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username','Username','trim|xss_clean|callback_validate_credentials');
-		$this->form_validation->set_rules('password','Password','sha1|trim');
-		if($this->form_validation->run()){
-			$data = array(
-				'username' => $this->input->post('username'),
-				'is_logged_in' => 1
-			);
-			//$data1['username']=$this->input->post('username');
-			$this->session->set_userdata($data);
-			$username = $this->session->userdata('UserName');
-			redirect('home');
-		} else {
-			$data['title'] = "Admin Login";
-			$this->load->view('headerlogin');
-			$this->load->view('login_view',$data);
-			$this->load->view('footerlogin');
-		}
+	public function rules_login() {
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">','</span>');
 	}
-	//================================Form Validation==========================================
 
-	//================================Validating admin credentials against database============
-	public function validate_credentials(){
-		$this->load->model('model_users');
-		if($this->model_users->can_log_in()){
-			return true;
-		} else {
-			$this->form_validation->set_message('validate_credentials','Incorrect Username or password');
-			return false;
-		}
-	}
-	//==============================Validating admin credentials against database=============
-
-	//==============================Admin reset Password======================================
 	public function reset_password() {
 		$this->load->model('model_users');
 		$this->form_validation->set_rules('old_password', 'Password', 'trim|required|xss_clean');
@@ -100,14 +80,11 @@ class main extends CI_Controller {
 		$this->load->view('resetpassword', $datamsg);
 		$this->load->view('footer');
 	}
-	//==============================Admin reset Password======================================
 
-	//==============================Admin Logout==============================================
     public function logout(){
 		$this->session->sess_destroy();
 		$this->session->unset_userdata('is_logged_in');
-		redirect('main/login');
+		redirect('main');
 	}
-	//==============================Admin Logout==============================================
 }
 ?>

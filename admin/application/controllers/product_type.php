@@ -40,7 +40,6 @@ class Product_type extends CI_Controller {
     		$this->load->view('product_typeadd_view',$data);
 			$this->load->view('footer');
 		} else {
-
 			if ($_FILES['userfile']['name'] != '') {
 				$_POST['userfile'] = rand(0000, 9999) . "_" . $_FILES['userfile']['name'];
 				$config2['image_library'] = 'gd2';
@@ -107,70 +106,40 @@ class Product_type extends CI_Controller {
 	}
 
 	function edit_product_type(){
-		$product_type_image = $this->input->post('product_type_image');
-		$config = array(
-		'upload_path' => "uploads/product_type/",
-		'upload_url' => base_url() . "uploads/product_type/",
-		'allowed_types' => "gif|jpg|png|jpeg"
-		);
-		$this->load->library('upload', $config);
-		if ($this->upload->do_upload("userfile")) {
-		@unlink("uploads/product_type/".$product_type_image);
-		//echo $image_data = $this->upload->data();
-		$data['img'] = $this->upload->data();
-			//echo $data['img']['file_name'];
-		//exit();
-		//*********************************
-		//============================================
+		if ($_FILES['userfile']['name'] != '') {
+			$_POST['userfile'] = rand(0000, 9999) . "_" . $_FILES['userfile']['name'];
+			$config2['image_library'] = 'gd2';
+			$config2['source_image'] =  $_FILES['userfile']['tmp_name'];
+			$config2['new_image'] =   getcwd() . '/uploads/product_type/' . $_POST['userfile'];
+			$config2['upload_path'] =  getcwd() . '/uploads/product_type/';
+			$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg';
+			$config2['maintain_ratio'] = TRUE;
+			$this->image_lib->initialize($config2);
+			if (!$this->image_lib->resize()) {
+				echo ('<pre>');
+				echo ($this->image_lib->display_errors());
+				exit;
+			} else {
+				$image  = $_POST['userfile'];
+				@unlink('uploads/product_type/' . $_POST['old_image']);
+			}
+		} else {
+			$image = $_POST['old_image'];
+		}
 		$datalist = array(			
-		'product_type_title' => $this->input->post('product_type_title'),
-		'product_type_image' => $data['img']['file_name']
+			'product_type_title' => $this->input->post('product_type_title'),  
+			'product_type_image' => $image,
 		);
-		//echo $gallery_name=$_POST['gallery_name'];
-		//====================Post Data===================
-		//print_r($datalist);
-		//exit();
 		$id = $this->input->post('product_type_id');
 		$data['title'] = "Product type Edit";
-		//loading database
-		$this->load->database();
-		//Calling Model
-		$this->load->model('product_type_model');
-		//Transfering data to Model
 		$query = $this->product_type_model->product_type_edit($id,$datalist);
-		// echo $ddd=$this->db->last_query();
-
 		$data1['message'] = 'Data Update Successfully';
 		$query = $this->product_type_model->show_product_typelist();
 		$data['ecms'] = $query;
 		$data['title'] = "Product type Page List";
 		$this->session->set_flashdata('edit_message', 'Product type Upated Successfully !!!!');
 		redirect('product_type/show_product_type');
-		//*********************************
-
-		}else{
-		$datalist = array(			
-			'product_type_title' => $this->input->post('product_type_title'),
-		);
-		$id = $this->input->post('product_type_id');
-		$data['title'] = "Product_type Edit";
-		//loading database
-		$this->load->database();
-		//Calling Model
-		$this->load->model('product_type_model');
-		//Transfering data to Model
-		$query = $this->product_type_model->product_type_edit($id,$datalist);
-		//echo $ddd=$this->db->last_query();
-		//exit();
-		$data1['message'] = 'Data Update Successfully';
-		$query = $this->product_type_model->show_product_typelist();
-		$data['ecms'] = $query;
-		$this->session->set_flashdata('edit_message', 'Product type Updated Successfully !!!!');
-		$data['title'] = "Product_type Page List";
-		$this->session->set_flashdata('edit_message', 'Product type Upated Successfully !!!!');
-		redirect('product_type/show_product_type');			}
-
-		}
+	}
 
 	function delete_product_type() {
 		$id = $this->uri->segment(3);

@@ -136,9 +136,9 @@
                                 <input type="hidden" name="id" value="<?php echo $i->product_id;?>">
                               </div>
                             </div></td>
-                            <td><a class="btn sbold yellow" href="<?php echo base_url()?>index.php/product/product_view/<?php echo $i->product_id?>"><i class="fa fa-eye"></i> View </a></td>
-                          <td style="max-width:250px;"><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/product/show_product_id/<?php echo $i->product_id; ?>">Edit</a></td>
-                          <td style="max-width:250px;"><a class="btn red btn-sm btn-outline sbold uppercase" onclick="return confirm('Are you sure about this delete?');" href="<?php echo base_url()?>index.php/product/delete_product/<?php echo $i->product_id; ?>">Delete</a></td>
+                            <td><a class="btn sbold yellow" href="<?php echo base_url()?>product/product_view/<?php echo $i->product_id?>"><i class="fa fa-eye"></i> View </a></td>
+                          <td style="max-width:250px;"><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>product/show_product_id/<?php echo $i->product_id; ?>">Edit</a></td>
+                          <td style="max-width:250px;"><a class="btn red btn-sm btn-outline sbold uppercase" onclick="return confirm('Are you sure about this delete?');" href="<?php echo base_url()?>product/delete_product/<?php echo $i->product_id; ?>">Delete</a></td>
                         </tr>
                         
                         <?php $ctn++;}?>
@@ -215,7 +215,7 @@
 		{
 		$.ajax({
 		type:"get",
-		url:"<?php echo base_url(); ?>index.php/product/statusproduct",
+		url:"<?php echo base_url(); ?>product/statusproduct",
 		data:{stat : stat, id :id}
 		});
 		}

@@ -166,9 +166,9 @@
 
                     </td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/video/show_video_id/<?php echo $i->id?>">Edit</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>video/show_video_id/<?php echo $i->id?>">Edit</a></td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/video/delete_video/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>video/delete_video/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
 
                   </tr>
 

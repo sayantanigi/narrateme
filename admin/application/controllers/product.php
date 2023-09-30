@@ -278,7 +278,7 @@ function product_add_form(){
 //======================Logout==========================
 		public function Logout(){
         	$this->session->sess_destroy();
-        	redirect('index.php/login');
+        	redirect('login');
     	}
 //======================Logout==========================
 }

@@ -52,7 +52,7 @@
               <div class="tools"> <a href="javascript:;" class="collapse"> </a> <a href="#portlet-config" data-toggle="modal" class="config"> </a> <a href="javascript:;" class="reload"> </a> <a href="javascript:;" class="remove"> </a> </div>
             </div>
             <div class="portlet-body form">
-            <form action="<?php echo base_url().'index.php/student_record/addextra' ?>" class="form-horizontal form-bordered" method="post" >
+            <form action="<?php echo base_url().'student_record/addextra' ?>" class="form-horizontal form-bordered" method="post" >
        <?php echo form_input(array('id' => 'ind_id', 'name' => 'ind_id','type'=>'hidden','class'=>'form-control' ,'value'=>$this->uri->segment(3))); ?>
                 <div class="form-body">
                   <div class="form-group">

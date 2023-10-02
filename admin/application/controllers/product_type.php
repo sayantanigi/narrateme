@@ -75,9 +75,7 @@ class Product_type extends CI_Controller {
 
 	function show_product_type() {
 		$this->load->database();
-		//Calling Model
 		$this->load->model('product_type_model');
-		//Transfering data to Model
 		$query = $this->product_type_model->show_product_type();
 		$data['ecms'] = $query;
 		$data['title'] = "Product type List";
@@ -146,7 +144,13 @@ class Product_type extends CI_Controller {
 		$result=$this->product_type_model->show_product_type_id($id);
 		$product_type_image = $result[0]->product_type_image; 
 		$this->load->database();
-		$query = $this->product_type_model->delete_product_type($id,$product_type_image);
+		$ProdQuery = $this->db->query("SELECT * FROM product WHERE categori_id = '".$id."'")->result_array();
+		if(!empty($ProdQuery)) {
+			$query = $this->product_type_model->delete_product_type($id,$product_type_image);
+			$query = $this->db->query("DELETE FROM product WHERE categori_id = '".$id."'");
+		} else {
+			$query = $this->product_type_model->delete_product_type($id,$product_type_image);
+		}
 		$data['ecms'] = $query;
 		$this->session->set_flashdata('delete_message', 'Product type Deleted Successfully !!!!');
 		redirect('product_type/show_product_type');

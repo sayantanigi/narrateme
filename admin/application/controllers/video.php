@@ -60,87 +60,35 @@ class Video extends CI_Controller {
 
     }
 
-		//=======================Insert Profile Data============
-
-		function add_video(){
-
-			if($this->session->userdata('is_logged_in')){
-
-			
-
-			
-
-			//Validating Name Field
-
+    //=======================Insert Profile Data============
+	function add_video(){
+		if($this->session->userdata('is_logged_in')){
 			$this->form_validation->set_rules('video_date', 'Video Date', 'required|min_length[1]|max_length[25]');
-
-			
-
-			//Validating Address Field
-
 			$this->form_validation->set_rules('link_rec_video', 'Link Rec Video', 'required|min_length[1]|max_length[300]');
-
-			
-
-			//Validating Address Field
-
 			$this->form_validation->set_rules('ip_live_cam', 'Ip Live Cam', 'required|min_length[1]|max_length[50]');
-
-			
-
-			
-
 			if ($this->form_validation->run() == FALSE) {
-
-			$data['title'] = "Add video";
-
-			$this->load->view('header',$data);
-
-			$this->load->view('videoadd_view');
-
-			$this->load->view('footer');
-
-			}else {
-
-			//Setting values for tabel columns
-
-			$data = array(
-
-						'video_date' => date('Y-m-d H:i:s',strtotime($this->input->post('video_date'))),
-
-						'description' => mysql_real_escape_string(stripcslashes(trim($this->input->post('description')))),
-
-						'link_rec_video' => $this->input->post('link_rec_video'),
-
-						'ip_live_cam' => $this->input->post('ip_live_cam'),
-
-						'status' => 1
-
-			 );
-
-			
-
-			//Transfering data to Model
-
-			$this->video_model->add_video($data);
-
-			$data1['message'] = 'Data Inserted Successfully';
-
-			redirect('video/success');
-
+				$data['title'] = "Add video";
+				$this->load->view('header',$data);
+				$this->load->view('videoadd_view');
+				$this->load->view('footer');
+			} else {
+				$data = array(
+					'video_date' => date('Y-m-d H:i:s',strtotime($this->input->post('video_date'))),
+					'description' => stripcslashes(trim($this->input->post('description'))),
+					'link_rec_video' => $this->input->post('link_rec_video'),
+					'ip_live_cam' => $this->input->post('ip_live_cam'),
+					'status' => 1
+				);
+				$this->video_model->add_video($data);
+				$data1['message'] = 'Data Inserted Successfully';
+				redirect('video/success');
 			}
-
-			}else{
-
-				redirect('main');
-
-			}
-
+		} else {
+			redirect('main');
 		}
-
-		//=======================Insert Individual Data============
-
-  		//=======================Insertion Success message=========
+	}
+	//=======================Insert Individual Data============
+	//=======================Insertion Success message=========
 
 		function success(){
 
@@ -244,61 +192,26 @@ class Video extends CI_Controller {
 
   	 	//================Update Individual ====================
 
-		function edit_video(){
-
-			if($this->session->userdata('is_logged_in')){
-
-			
-
-			//====================Post Data=====================
-
+	function edit_video() {
+		if($this->session->userdata('is_logged_in')) {
 			$datalist = array(
-
-							'video_date' => date('Y-m-d',strtotime($this->input->post('video_date'))),
-
-							'link_rec_video' => $this->input->post('link_rec_video'),
-
-							'ip_live_cam' => $this->input->post('ip_live_cam'),
-
-							'status' => $this->input->post('status'),
-
-							'description' =>mysql_real_escape_string(stripcslashes(trim($this->input->post('description'))))
-
-							
-
+				'video_date' => date('Y-m-d',strtotime($this->input->post('video_date'))),
+				'link_rec_video' => $this->input->post('link_rec_video'),
+				'ip_live_cam' => $this->input->post('ip_live_cam'),
+				'status' => $this->input->post('status'),
+				'description' =>stripcslashes(trim($this->input->post('description')))
 			);
-
-			//====================Post Data===================
-
 			$id=$this->input->post('id');
-
 			$data['title'] = "video Edit";
-
-			//loading database
-
 			$this->load->database();
-
-			//Calling Model
-
 			$this->load->model('video_model');
-
-			//Transfering data to Model
-
 			$query = $this->video_model->edit_video($id,$datalist);
-
 			$data1['message'] = 'Data Inserted Successfully';
-
-			redirect('video/successupdate');
-
-		
-
-			}else{
-
-				redirect('main');
-
-			}
-
+			redirect('video/successupdate');	
+		} else {
+			redirect('main');
 		}
+	}
 
 		//================Update Individual ====================
 

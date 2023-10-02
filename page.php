@@ -21,8 +21,8 @@
         <div class="container" id="page-1">
             <div class="bb-custom-container card-body card-padding card">
                 <div class="row content-block text-justify animateFadeInRight">
-                    <div class="col-sm-2 col-sm-offset-2 text-center cust_size ">
-                        <img style="width:150px;" src="<?=$pic4?>" alt=""/>
+                    <div class="col-sm-5 text-center cust_size ">
+                        <img style="width:100%;height: 410px;" src="<?=$pic4?>" alt=""/>
                     </div>
                     <div class="col-sm-6">
                         <div class="abt_txt	">

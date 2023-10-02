@@ -208,13 +208,13 @@
 
                     
 
-                    <td><?php if($i->status ==1){?>
+                    <td style="text-align: center;"><?php if($i->status ==1){?>
 
-                      <span style="color:#063;"><img src="<?php echo $imgpath?>active.png" /></span>
+                      <span style="color:#063;"><img src="<?php echo $imgpath?>active.png" style="width: 35px;"/></span>
 
-                      <?php }else{?>
+                      <?php } else {?>
 
-                      <span style="color:#900;"><img src="<?php echo $imgpath?>inactive.png" /></span>
+                      <span style="color:#900;"><img src="<?php echo $imgpath?>inactive.png" style="width: 30px;"/></span>
 
                       <?php }?></td>
 

@@ -10,7 +10,6 @@ if(!empty($_GET["action"])) {
 			if(!empty($_POST["quantity"])) {
 				$productByCode = $db_handle->runQuery("SELECT * FROM product WHERE code='" . $_GET["code"] . "'");
 				$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"]));
-			
 				if(!empty($_SESSION["cart_item"])) {
 					if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
 						foreach($_SESSION["cart_item"] as $k => $v) {
@@ -65,8 +64,14 @@ if(!empty($_GET["action"])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    $('#list').click(function(event) {
+    	event.preventDefault();$('#products .item').addClass('list-group-item');
+    });
+
+    $('#grid').click(function(event) {
+    	event.preventDefault();$('#products .item').removeClass('list-group-item');
+    	$('#products .item').addClass('grid-group-item');
+    });
 });
 </script>
 <section class="body_content">
@@ -97,23 +102,23 @@ $(document).ready(function() {
                   					<div class="thumbnail"> 
                   						<a href="<?php echo $product_array[$key]['sku'] ?>">
                   						<?php if($product_array[$key]["product_image"]!='') { ?>
-                        				<img class="group list-group-image" src="uploads/fullsize/<?php echo $product_array[$key]['product_image']?>" height="250" width="400" />
+                        				<img class="group list-group-image" src="admin/uploads/product/<?php echo $product_array[$key]['product_image']?>" height="250" width="400" />
 				                        <?php }else{?>
 		                            	<img class="group list-group-image" src="img/np.png" height="250" width="400" />
 				                     	<?php }?>
                         				</a>
                     					<div class="caption">
-                      						<h4 class="group inner list-group-item-heading"> <a href="product_detail.php"><?php echo $product_array[$key]['product_name']?></a></h4>
-                  							<p class="group inner list-group-item-text"> <?php echo strip_tags(substr($product_array[$key]['description'],0,100));?></p>
+                      						<h4 class="group inner list-group-item-heading"> <a href="product_detail.php?id=<?php echo base64_encode($product_array[$key]['product_id'])?>"><?php echo ucwords($product_array[$key]['product_name']); ?></a></h4>
+                  							<p class="group inner list-group-item-text"> <?php echo ucfirst(strip_tags(substr($product_array[$key]['description'],0,100)));?></p>
 					                      	<div class="row">
 				                        		<div class="col-xs-3 col-md-3"><p class="lead"> $<?php echo $product_array[$key]['price']?></p></div>
 				                        	</div>
                     					</div>
                   					</div>
                 				</div>
-          					<?php } } else { ?>  
+          						<?php } } else { ?>  
               	 				<div class="item  col-xs-12 col-lg-12">No Product Found</div>
-              				<?php } ?>
+              					<?php } ?>
               				</div>
         				</div>
           			</div>

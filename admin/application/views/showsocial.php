@@ -162,11 +162,7 @@
 
                     <td><?php echo $i->marking_media;?></td>
 
-                    <td>&nbsp;
-
-					
-
-                    </td>
+                    <td><?php echo $i->marketing_meterial;?></td>
 
                     <td><?php if($i->status ==1){?>
 

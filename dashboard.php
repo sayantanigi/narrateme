@@ -4,10 +4,11 @@ include('lib/inner_footer.php');
 sequre();
 $view = getAnyTableWhereData('na_member', " AND username='" . $_SESSION["username"] . "' ");
 $soc = getAnyTableWhereData('na_user_social_link', " AND userid='" . $_SESSION["userid"] . "' ");
+
 if (isset($_REQUEST['submit']) and ($_REQUEST['submit'] == "Update Userdata")) {
 	extract($_POST);
 	$dateob = date('Y-m-d', strtotime($dateofbirth));
-	$data = array('prefixname' => $prefixname, 'first_name' => mysql_real_escape_string(stripcslashes($first_name)), 'last_name' => mysql_real_escape_string(stripcslashes($last_name)), 'suffix' => $suffix, 'fullname' => $fullname, 'country' => $country, 'dateofbirth' => $dateob, 'url' => $url, 'domain_name' => $domain_name, 'website' => $website, 'phone_no' => $phone_no, 'text_no' => $text_no, 'email' => $email, 'address' => $address, 'addr_st' => $addr_st, 'phone_st' => $phone_st, 'email_st' => $email_st, 'text_no_st' => $text_no_st);
+	$data = array('prefixname' => $prefixname, 'first_name' => mysqli_real_escape_string($con, stripcslashes($first_name)), 'last_name' => mysqli_real_escape_string($con, stripcslashes($last_name)), 'suffix' => $suffix, 'fullname' => $fullname, 'country' => $country, 'dateofbirth' => $dateob, 'url' => $url, 'domain_name' => $domain_name, 'website' => $website, 'phone_no' => $phone_no, 'text_no' => $text_no, 'email' => $email, 'address' => $address, 'addr_st' => $addr_st, 'phone_st' => $phone_st, 'email_st' => $email_st, 'text_no_st' => $text_no_st);
 	$result = updateData($data, 'na_member', " id='" . $id . "' ");
 	echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 	echo "window.top.location.href='dashboard.php?update=success';\n";
@@ -16,8 +17,8 @@ if (isset($_REQUEST['submit']) and ($_REQUEST['submit'] == "Update Userdata")) {
 if (isset($_REQUEST['upimg'])) {
 	if ($_FILES['image']['name'] != '') {
 		$unlink_sql = "SELECT userImage FROM `na_member` WHERE id = '" . $_SESSION["userid"] . "'";
-		$unlink_rs = mysql_query($unlink_sql) or mysql_error();
-		$row_unlink = mysql_fetch_array($unlink_rs);
+		$unlink_rs = mysqli_query($con, $unlink_sql) or mysqli_error();
+		$row_unlink = mysqli_fetch_array($unlink_rs);
 		$photo = "admin/useravatar/fullsize/" . $row_unlink['userImage'];
 		$thumb = "admin/useravatar/bigimg/" . $row_unlink['userImage'];
 		$thumb1 = "admin/useravatar/smallimg/" . $row_unlink['userImage'];
@@ -124,7 +125,7 @@ if (isset($_REQUEST['type'])) {
 						<div class="p-relative">
 							<a href="#">
 								<?php if ($view['userImage'] != '') { ?>
-									<img class="img-responsive" src="admin/useravatar/fullsize/<?php echo $view['userImage'] ?>" alt="">
+									<img class="img-responsive" src="admin/useravatar/bigimg/<?php echo $view['userImage'] ?>" alt="">
 								<?php } else { ?>
 									<img class="img-responsive" src="img/no-image.png" alt="">
 								<?php } ?>
@@ -337,8 +338,8 @@ if (isset($_REQUEST['type'])) {
 																	<div class="fg-line">
 																		<select class="form-control" name="country" id="country">
 																			<option name="" value="">Please Select Country</option>
-																			<?php $countrysql = mysql_query("SELECT * FROM `na_country`");
-																			while ($countryfetch = mysql_fetch_array($countrysql)) {
+																			<?php $countrysql = mysqli_query($con, "SELECT * FROM `na_country`");
+																			while ($countryfetch = mysqli_fetch_array($countrysql)) {
 																			?>
 																				<option name="<?= $countryfetch['nicename'] ?>" value="<?= $countryfetch['nicename'] ?>" <?php if ($countryfetch['nicename'] == $view['country']) { ?>selected<?php } ?>><?= $countryfetch['nicename'] ?></option>
 																			<?php } ?>
@@ -458,7 +459,7 @@ if (isset($_REQUEST['type'])) {
 																<dt class="p-t-10">Date of Birth</dt>
 																<dd>
 																	<div class="fg-line">
-																		<input type='text' class="form-control datepicker" id="example1" value="<?= date('Y-m-d', strtotime($view['dateofbirth'])) ?>" name="dateofbirth">
+																		<input type='date' class="form-control datepicker" id="example1" value="<?= date('Y-m-d', strtotime($view['dateofbirth'])) ?>" name="dateofbirth">
 																	</div>
 																</dd>
 															</dl>

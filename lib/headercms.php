@@ -1,6 +1,7 @@
 <?php
 include('application_top.php');
 //$_SESSION["user_log_flag"] = 0; //login false
+$baseurl = 'http://localhost/narrateme/';
 if (isset($_POST['login'])) {
     extract($_POST);
     $username = mysqli_real_escape_string($con, strip_tags(trim(@$user)));
@@ -39,7 +40,7 @@ $FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` W
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>NarrateMe | <?= $FetchPageName['cms_pagetitle'] ?></title>
+    <title>NarrateMe | <?= @$FetchPageName['cms_pagetitle'] ?></title>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
     <link href="css/animations.css" rel="stylesheet" />
@@ -69,14 +70,14 @@ $FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` W
                         <div id="wb_Login-link">
                             <span class="top-text">
                                 <?php if (@$_SESSION['user_log_flag'] == 1) { ?>
-                                    <a class="link-foo-ha" href="<?php echo $daseurl ?>logout.php">Logout</a>
+                                    <a class="link-foo-ha" href="<?php echo $baseurl ?>logout.php">Logout</a>
                                 <?php } else { ?>
                                     <a href="#" class="link-foo-ha" onClick="$('#Login-area').modal('show');return false;" style="margin-right: 20px;">Log In</a>
                                 <?php } ?>
                                 <?php if (@$_SESSION['user_log_flag'] == 1) { ?>
-                                    <a class="link-foo-ha" href="<?php echo $daseurl ?>dashboard.php"><?php echo $viewmember['first_name'] . " " . $viewmember['last_name'] ?></a>
+                                    <a class="link-foo-ha" href="<?php echo $baseurl ?>dashboard.php"><?php echo $viewmember['first_name'] . " " . $viewmember['last_name'] ?></a>
                                 <?php } else { ?>
-                                    <a class="link-foo-ha" href="<?php echo $daseurl ?>register.php">Register / Sign Up</a>
+                                    <a class="link-foo-ha" href="<?php echo $baseurl ?>register.php">Register / Sign Up</a>
                                 <?php } ?>
                             </span>
                         </div>
@@ -103,7 +104,7 @@ $FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` W
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="<?php echo $daseurl ?>index.php"><img src="images/Logo.png" class="" alt="logo"></a>
+                                <a class="navbar-brand" href="<?php echo $baseurl ?>index.php"><img src="images/Logo.png" class="" alt="logo"></a>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

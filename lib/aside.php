@@ -19,7 +19,7 @@ if (@$_REQUEST['op'] == 'deltype') {
         <?php
         if ($view['userImage'] != '') {
         ?>
-          <img src="admin/useravatar/fullsize/<?php echo $view['userImage'] ?>" alt="">
+          <img src="admin/useravatar/bigimg/<?php echo $view['userImage'] ?>" alt="">
         <?php } else { ?>
           <img src="img/no-image.png" alt="">
         <?php } ?>
@@ -43,7 +43,7 @@ if (@$_REQUEST['op'] == 'deltype') {
     </ul>
   </div>
   <ul class="main-menu">
-    <li><a href="dashboard.php"> Home</a></li>
+    <li><a href="dashboard.php">Home</a></li>
     <li><a href="member.php">Search</a></li>
     <?php
     if ($viewusr['ind'] == 1) {

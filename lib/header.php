@@ -1,6 +1,6 @@
 <?php
 include('application_top.php');
-$daseurl = 'http://localhost/narrateme/';
+$baseurl = 'http://localhost/narrateme/';
 //$_SESSION["user_log_flag"] = 0; //login false
 if (isset($_POST['login'])) {
     extract($_POST);
@@ -20,13 +20,13 @@ if (isset($_POST['login'])) {
         //exit();
         //header("location: dashboard.php");	 
         echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-        echo "window.top.location.href='" . $daseurl . "dashboard.php';\n";
+        echo "window.top.location.href='" . $baseurl . "dashboard.php';\n";
         echo "</script>";
     } else {
         $_SESSION["user_log_flag"] = 0; //login false
         $MSGlogfalse = "Invalid Username or Password";
         echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-        echo "window.top.location.href='" . $daseurl . "index.php?op=logfals';\n";
+        echo "window.top.location.href='" . $baseurl . "index.php?op=logfals';\n";
         echo "</script>";
     }
 }

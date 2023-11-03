@@ -110,7 +110,7 @@
 
             
 
-            <form action="<?php echo base_url().'audio/add_audio' ?>" class="form-horizontal form-bordered" method="post" >
+            <form action="<?php echo base_url().'index.php/audio/add_audio' ?>" class="form-horizontal form-bordered" method="post" >
 
                 <div class="form-body">
 

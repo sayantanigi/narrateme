@@ -55,7 +55,7 @@
             </div>
             <div class="portlet-body form">
              <?php foreach($efaq as $i){?>
-              <form method="post" class="form-horizontal form-bordered" action="<?php echo base_url()?>faq/edit_faq">
+              <form method="post" class="form-horizontal form-bordered" action="<?php echo base_url()?>index.php/faq/edit_faq">
 			  <input type="hidden" name="id" id="id" value="<?php echo $i->id?>">
                 <div class="form-body">
                   <div class="form-group">

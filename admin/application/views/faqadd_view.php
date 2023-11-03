@@ -46,7 +46,7 @@
               <div class="tools"> <a href="javascript:;" class="collapse"> </a> <a href="#portlet-config" data-toggle="modal" class="config"> </a> <a href="javascript:;" class="reload"> </a> <a href="javascript:;" class="remove"> </a> </div>
             </div>
             <div class="portlet-body form">
-              <form action="<?php echo base_url().'faq/add_faq' ?>" class="form-horizontal form-bordered" method="post" >
+              <form action="<?php echo base_url().'index.php/faq/add_faq' ?>" class="form-horizontal form-bordered" method="post" >
                 <div class="form-body"> 
                   <div class="form-group">
                     <label class="control-label col-md-3">Faq Question</label>

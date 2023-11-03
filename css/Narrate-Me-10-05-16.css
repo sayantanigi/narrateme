@@ -1,57 +1,71 @@
 @-webkit-keyframes transform-rotate {
-0% {
-   -webkit-transform: rotate(0deg);
+   0% {
+      -webkit-transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(359deg);
+   }
 }
-100% {
-   -webkit-transform: rotate(359deg);
-}
-}
+
 @-moz-keyframes transform-rotate {
-0% {
-   -moz-transform: rotate(0deg);
+   0% {
+      -moz-transform: rotate(0deg);
+   }
+
+   100% {
+      -moz-transform: rotate(359deg);
+   }
 }
-100% {
-   -moz-transform: rotate(359deg);
-}
-}
+
 @-o-keyframes transform-rotate {
-0% {
-   -o-transform: rotate(0deg);
+   0% {
+      -o-transform: rotate(0deg);
+   }
+
+   100% {
+      -o-transform: rotate(359deg);
+   }
 }
-100% {
-   -o-transform: rotate(359deg);
-}
-}
+
 @-ms-keyframes transform-rotate {
-0% {
-   -ms-transform: rotate(0deg);
+   0% {
+      -ms-transform: rotate(0deg);
+   }
+
+   100% {
+      -ms-transform: rotate(359deg);
+   }
 }
-100% {
-   -ms-transform: rotate(359deg);
-}
-}
+
 @keyframes transform-rotate {
-0% {
-   transform: rotate(0deg);
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(359deg);
+   }
 }
-100% {
-   transform: rotate(359deg);
-}
-}
+
 a {
    color: #0000FF;
    text-decoration: underline;
 }
+
 a:visited {
-   color: #800080;
+   color: #000;
 }
+
 a:active {
    color: #FF0000;
 }
+
 a:hover {
    color: #0000FF;
    text-decoration: underline;
 }
+
 a.igi-link {
    -moz-transition: all 300ms linear;
    -webkit-transition: all 300ms linear;
@@ -61,6 +75,7 @@ a.igi-link {
    text-decoration: none;
    transition: all 300ms linear;
 }
+
 a.igi-link::after {
    -moz-transition: all 300ms linear;
    -webkit-transition: all 300ms linear;
@@ -72,32 +87,39 @@ a.igi-link::after {
    transition: all 300ms linear;
    width: 0;
 }
+
 a.igi-link:hover::after {
-   background: #FFC05A;
+   background: #fff;
    width: 100%;
 }
+
 a.igi-link:visited {
    color: #FFFFFF;
    text-decoration: none;
 }
+
 a.igi-link:active {
    color: #FFFFFF;
    text-decoration: none;
 }
+
 a.igi-link:hover {
-   color: #FFC05A;
+   color: #fff;
    text-decoration: none;
 }
+
 a.link-foo-ha {
    -moz-transition: all 300ms linear;
    -webkit-transition: all 300ms linear;
-   color: #D18C13;
+   color: #fff;
    display: inline-block;
    position: relative;
    text-decoration: none;
    transition: all 300ms linear;
+   margin-right: 20px;
 }
-a.link-foo-ha::after {
+
+/* a.link-foo-ha::after {
    -moz-transform: translateY(10px);
    -moz-transition: all 300ms linear;
    -webkit-transform: translateY(10px);
@@ -115,26 +137,39 @@ a.link-foo-ha::after {
    transform: translateY(10px);
    transition: all 300ms linear;
    width: 100%;
-}
-a.link-foo-ha:hover::after {
+} */
+/* a.link-foo-ha:hover::after {
    -moz-transform: translateY(0px);
    -webkit-transform: translateY(0px);
    background: #F5F5F5;
    opacity: 1;
    transform: translateY(0px);
+} */
+a:focus {
+   color: #fff !important;
+   text-decoration: none !important;
 }
+
+a:focus-visible {
+   outline: none !important;
+   outline-offset: 0 !important;
+}
+
 a.link-foo-ha:visited {
-   color: #D18C13;
+   color: #fff;
    text-decoration: none;
 }
+
 a.link-foo-ha:active {
-   color: #D18C13;
+   color: #fff;
    text-decoration: none;
 }
+
 a.link-foo-ha:hover {
    color: #F5F5F5;
    text-decoration: none;
 }
+
 h1 {
    background-color: transparent;
    color: #000000;
@@ -147,6 +182,7 @@ h1 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 h2 {
    background-color: transparent;
    color: #000000;
@@ -159,6 +195,7 @@ h2 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 h3 {
    background-color: transparent;
    color: #000000;
@@ -171,6 +208,7 @@ h3 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 h4 {
    background-color: transparent;
    color: #000000;
@@ -183,6 +221,7 @@ h4 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 h5 {
    background-color: transparent;
    color: #000000;
@@ -195,6 +234,7 @@ h5 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 h6 {
    background-color: transparent;
    color: #000000;
@@ -207,6 +247,7 @@ h6 {
    padding: 0px 0px 0px 0px;
    text-decoration: none;
 }
+
 .CustomStyle {
    background-color: transparent;
    color: #000080;
@@ -216,6 +257,7 @@ h6 {
    font-weight: bold;
    text-decoration: none;
 }
+
 .B1 {
    background-color: transparent;
    color: #FFFFFF;
@@ -226,6 +268,7 @@ h6 {
    text-align: center;
    text-decoration: none;
 }
+
 .banner {
    background-color: transparent;
    color: #FDCD78;
@@ -235,6 +278,7 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .Item-Head {
    background-color: transparent;
    color: #FFFFFF;
@@ -244,6 +288,7 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .Para-style {
    background-color: transparent;
    color: #000000;
@@ -253,15 +298,17 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .Item-Head_dark {
    background-color: transparent;
-   color: #696969;
+   color: #000;
    font-family: Roboto;
    font-size: 24px;
    font-style: normal;
    font-weight: normal;
    text-decoration: none;
 }
+
 .foo-text {
    background-color: transparent;
    color: #FFFFFF;
@@ -271,12 +318,14 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .effect {
    background-color: transparent;
    font-style: normal;
    font-weight: normal;
    text-decoration: none;
 }
+
 .effect:hover {
    -moz-animation-delay: 0ms;
    -moz-animation-direction: alternate;
@@ -304,6 +353,7 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .top-text {
    background-color: transparent;
    color: #D18C13;
@@ -313,6 +363,7 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .Buttn {
    -moz-border-radius: 2px;
    -webkit-border-radius: 2px;
@@ -326,6 +377,7 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 .Buttn:hover {
    -moz-border-radius: 2px;
    -webkit-border-radius: 2px;
@@ -339,35 +391,41 @@ h6 {
    font-weight: normal;
    text-decoration: none;
 }
+
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-.top-text {
-   background-color: transparent;
-   color: #D18C13;
-   font-family: Roboto;
-   font-size: 13px;
-   font-style: normal;
-   font-weight: normal;
-   text-decoration: none;
+   .top-text {
+      background-color: transparent;
+      color: #D18C13;
+      font-family: Roboto;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+   }
 }
-}
+
 @media only screen and (max-width: 479px) {
-.B1 {
-   background-color: transparent;
-   color: #FFFFFF;
-   font-family: Roboto;
-   font-size: 43px;
-   font-style: normal;
-   font-weight: normal;
-   text-align: center;
-   text-decoration: none;
+   .B1 {
+      background-color: transparent;
+      color: #FFFFFF;
+      font-family: Roboto;
+      font-size: 43px;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+      text-decoration: none;
+   }
+
+   .top-text {
+      background-color: transparent;
+      color: #D18C13;
+      font-family: Roboto;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+   }
 }
-.top-text {
-   background-color: transparent;
-   color: #D18C13;
-   font-family: Roboto;
-   font-size: 13px;
-   font-style: normal;
-   font-weight: normal;
-   text-decoration: none;
-}
-}
+
+
+/* New Style */

@@ -1,121 +1,324 @@
 <?php
+
 class Member extends CI_Controller {
 
-	public function __construct() {
-		parent::__construct();
-		$this->load->model('member_model');
-		$this->load->model('member_model');
-		$this->load->helper('string');
-		$this->load->helper(array('form'));
-	}
+		//============Constructor to call Model====================
 
-	public function index(){
-		if($this->session->userdata('is_logged_in')) { 
+		function __construct() {
+
+			parent::__construct();
+
+			$this->load->model('member_model');
+
+		}
+
+		//============Constructor to call Model====================
+
+		function index(){
+
+			if($this->session->userdata('is_logged_in')){ 
+
+			//Transfering data to Model
+
+			$this->load->model('member_model');
+
+			$this->load->helper('string');
+
+			//$query = $this->member_model->get_country();
+
 			$querycoun = $this->member_model->get_country();
-			$data['ecntr'] = $querycoun;
-			$data['title'] = "Add Member";
-			$this->load->view('header',$data);
-			$this->load->view('memberadd_view');
-			$this->load->view('footer');
-		} else {
-           redirect('login');
-        }
-	}
 
-	public function is_logged_in() {
-		header("cache-Control: no-store, no-cache, must-revalidate");
+			$data['ecntr'] = $querycoun;
+
+			//print_r($data);
+
+			$data['title'] = "Add Member";
+
+			$this->load->view('header',$data);
+
+			$this->load->helper(array('form'));
+
+			$this->load->view('memberadd_view');
+
+			$this->load->view('footer');
+
+			}else{
+
+               redirect('login');
+
+
+
+            }
+
+			
+
+			 
+
+		}
+
+		
+
+		public function is_logged_in(){
+
+        header("cache-Control: no-store, no-cache, must-revalidate");
+
         header("cache-Control: post-check=0, pre-check=0", false);
+
         header("Pragma: no-cache");
+
         //header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-        $is_logged_in = $this->session->userdata('logged_in');        
+
+        $is_logged_in = $this->session->userdata('logged_in');
+
+        
+
         if(!isset($is_logged_in) || $is_logged_in!==TRUE){
+
             redirect('main');
+
         }
+
     }
 
-    public function add_member() {
-		$this->form_validation->set_rules('first_name', 'First Name', 'required|min_length[1]|max_length[25]');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required|min_length[1]|max_length[25]');
-		$this->form_validation->set_rules('email','Email','required|valid_email|min_length[1]|is_unique[na_member.email]');
-		$this->form_validation->set_rules('username','Username','required|min_length[1]|is_unique[na_member.username]');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		if ($this->form_validation->run() == FALSE) {
+		//=======================Insert Individual Data============
+
+		function add_member(){
+
+			
+
+			
+
+			//Validating Name Field
+
+			$this->form_validation->set_rules('first_name', 'First Name', 'required|min_length[1]|max_length[25]');
+
+			
+
+			$this->form_validation->set_rules('last_name', 'Last Name', 'required|min_length[1]|max_length[25]');
+
+		
+
+			//Validating Email Field
+
+			//$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+			
+
+			//Validating Mobile no. Field
+
+			//$this->form_validation->set_rules('username', 'User Name.', 'required|regex_match[/^[0-9]{10}$/]');
+
+			//$this->form_validation->set_rules('username', 'Username', 'required|min_length[1]|max_length[25]');
+
+			$this->form_validation->set_rules('email','Email','required|valid_email|min_length[1]|is_unique[na_member.email]');
+
+			
+
+			$this->form_validation->set_rules('username','Username','required|min_length[1]|is_unique[na_member.username]');
+
+			
+
+			$this->form_validation->set_rules('password', 'Password', 'required');
+
+			
+
+			
+
+			
+
+			//$this->form_validation->set_rules('email', 'Email', 'callback_rolekey_exists');
+
+			
+
+			
+
+			
+
+			if ($this->form_validation->run() == FALSE) {
+
 			$data['title'] = "Add Member";
+
 			$this->load->view('header',$data);
+
 			$this->load->view('memberadd_view');
+
 			$this->load->view('footer');
-		} else {
-			$email = $this->input->post('email');
-			$querycheck = $this->member_model->checkuser($email);
-			$userlink = random_string('alnum',12);
-			$ind = @$this->input->post('ind');
-			$std = @$this->input->post('std');
-			$edu = @$this->input->post('edu');
-			$fac = @$this->input->post('fac');
-			if(!$ind){$ind='';}
-			if(!$std){$std='';}
-			if(!$edu){$edu='';}
-			if(!$fac){$fac='';}
+
+			}else {
+
+				$email=$this->input->post('email');
+
+				$querycheck = $this->member_model->checkuser($email);
+
+				
+
+					$userlink=random_string('alnum',12);
+
+					$ind=@$this->input->post('ind');
+
+					$std=@$this->input->post('std');
+
+					$edu=@$this->input->post('edu');
+
+					$fac=@$this->input->post('fac');
+
+					if(!$ind){$ind='';}
+
+					if(!$std){$std='';}
+
+					if(!$edu){$edu='';}
+
+					if(!$fac){$fac='';}
+
+			//Setting values for tabel columns
+
 			$data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
-				'address' => $this->input->post('address'),
-				'city' => $this->input->post('city'),
-				'state' => $this->input->post('state'),
-				'zip_code' => $this->input->post('zip_code'),
-				//'country' => $this->input->post('country'),
-				'phone_no' => $this->input->post('phone_no'),
-				'email' => $this->input->post('email'),
-				'text_no' => $this->input->post('text_no'),
-				'website' => $this->input->post('website'),
-				'domain_name' => $this->input->post('domain_name'),
-				'url' => $this->input->post('url'),
-				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password'),
-				'ind' =>$ind,
-				'std' =>$std,
-				'edu' =>$edu,
-				'fac' =>$fac,
-				'userlink' =>$userlink,
-				'status' => 1
+
+			'first_name' => $this->input->post('first_name'),
+
+			'last_name' => $this->input->post('last_name'),
+
+			'address' => $this->input->post('address'),
+
+			'city' => $this->input->post('city'),
+
+			'state' => $this->input->post('state'),
+
+			'zip_code' => $this->input->post('zip_code'),
+
+			//'country' => $this->input->post('country'),
+
+			'phone_no' => $this->input->post('phone_no'),
+
+			'email' => $this->input->post('email'),
+
+			'text_no' => $this->input->post('text_no'),
+
+			'website' => $this->input->post('website'),
+
+			'domain_name' => $this->input->post('domain_name'),
+
+			'url' => $this->input->post('url'),
+
+			'username' => $this->input->post('username'),
+
+			'password' => $this->input->post('password'),
+
+			'ind' =>$ind,
+
+			'std' =>$std,
+
+			'edu' =>$edu,
+
+			'fac' =>$fac,
+
+			'userlink' =>$userlink,
+
+			'status' => 1
+
 			);
+
+			
+
+			//Transfering data to Model
+
 			$this->member_model->insert_member($data);
+
 			$data1['message'] = 'Data Inserted Successfully';
+
 			redirect('member/success');
+
+			
+
+			
+
+			}
+
 		}
-	}
 
-	function success() {
-		$data['h1title'] = 'Data Inserted Successfully';
-		$data['title'] = 'Add Individual';
-		$this->load->view('header');
-		$this->load->view('memberadd_view',$data);
-		$this->load->view('footer');
-	}
+		//=======================Insert Individual Data============
 
-	function view_member(){
-		$this->load->database();
-		$this->load->model('member_model');
-		$query = $this->member_model->view_member();
-		$data['ecms'] = $query;
-		$data['title'] = "Member Data List";
-		$this->load->view('header',$data);
-		$this->load->view('showmember');
-		$this->load->view('footer');
-	}
+  		//=======================Insertion Success message=========
 
-	function show_member_id($id) {
-		$data['title'] = "Member Edit";
-		$this->load->database();
-		$this->load->model('member_model');
-		$query = $this->member_model->show_member_id($id);
-		$data['ecms'] = $query;
-		$this->load->view('header',$data);
-		$this->load->view('memberedit', $data);
-		$this->load->view('footer');
-	}
+		function success(){
 
-	function edit_member(){
+			$data['h1title'] = 'Data Inserted Successfully';
+
+			$data['title'] = 'Add Individual';
+
+			$this->load->view('header');
+
+			$this->load->view('memberadd_view',$data);
+
+			$this->load->view('footer');
+
+		}
+
+		//=======================Insertion Success message=========
+
+		//================View Individual Data List=============
+
+		function view_member(){
+
+			//Loading Database
+
+			$this->load->database();
+
+			//Calling Model
+
+			$this->load->model('member_model');
+
+			//Transfering data to Model
+
+			$query = $this->member_model->view_member();
+
+			$data['ecms'] = $query;
+
+			$data['title'] = "Member Data List";
+
+			$this->load->view('header',$data);
+
+			$this->load->view('showmember');
+
+			$this->load->view('footer');
+
+		}
+
+		//================View Individual Data List=============
+
+  		//================Show Individual by Id=================
+
+		function show_member_id($id) {
+
+			$data['title'] = "Member Edit";
+
+			//Loading Database
+
+			$this->load->database();
+
+			//Calling Model
+
+			$this->load->model('member_model');
+
+			//Transfering data to Model
+
+			$query = $this->member_model->show_member_id($id);
+
+			$data['ecms'] = $query;
+
+			$this->load->view('header',$data);
+
+			$this->load->view('memberedit', $data);
+
+			$this->load->view('footer');
+
+		}
+
+   		//================Show Individual by Id=================
+
+  	 	//================Update Individual ====================
+
+		function edit_member(){
 
 			//====================Post Data=====================
 

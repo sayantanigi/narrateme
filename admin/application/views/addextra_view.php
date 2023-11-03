@@ -106,7 +106,7 @@
 
             <div class="portlet-body form">
 
-            <form action="<?php echo base_url().'individual/addextra' ?>" class="form-horizontal form-bordered" method="post" >
+            <form action="<?php echo base_url().'index.php/individual/addextra' ?>" class="form-horizontal form-bordered" method="post" >
 
        <?php echo form_input(array('id' => 'ind_id', 'name' => 'ind_id','type'=>'hidden','class'=>'form-control' ,'value'=>$this->uri->segment(3))); ?>
 

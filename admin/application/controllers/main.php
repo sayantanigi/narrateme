@@ -84,7 +84,7 @@ class Main extends CI_Controller {
     public function logout(){
 		$this->session->sess_destroy();
 		$this->session->unset_userdata('is_logged_in');
-		redirect('main');
+		redirect('main/login');
 	}
 }
 ?>

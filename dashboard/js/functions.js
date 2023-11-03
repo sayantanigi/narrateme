@@ -54,25 +54,25 @@ $(document).ready(function(){
     /* --------------------------------------------------------
         Scrollbar
     -----------------------------------------------------------*/
-    function scrollBar(selector, theme, mousewheelaxis) {
-        $(selector).mCustomScrollbar({
-            theme: theme,
-            scrollInertia: 100,
-            axis:'yx',
-            mouseWheel: {
-                enable: true,
-                axis: mousewheelaxis,
-                preventDefault: true
-            }
-        });
-    }
+    // function scrollBar(selector, theme, mousewheelaxis) {
+    //     $(selector).mCustomScrollbar({
+    //         theme: theme,
+    //         scrollInertia: 100,
+    //         axis:'yx',
+    //         mouseWheel: {
+    //             enable: true,
+    //             axis: mousewheelaxis,
+    //             preventDefault: true
+    //         }
+    //     });
+    // }
 
-    if (!$('html').hasClass('ismobile')) {
-        //On Custom Class
-        if ($('.c-overflow')[0]) {
-            scrollBar('.c-overflow', 'minimal-dark', 'y');
-        }
-    }
+    // if (!$('html').hasClass('ismobile')) {
+    //     //On Custom Class
+    //     if ($('.c-overflow')[0]) {
+    //         scrollBar('.c-overflow', 'minimal-dark', 'y');
+    //     }
+    // }
 
     /*
      * Top Search

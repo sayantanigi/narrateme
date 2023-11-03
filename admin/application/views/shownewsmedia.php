@@ -202,9 +202,9 @@
 
                       <?php }?></td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>newsmedia/show_newsmedia_id/<?php echo $i->id?>">Edit</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/newsmedia/show_newsmedia_id/<?php echo $i->id?>">Edit</a></td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>newsmedia/delete_newsmedia/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/newsmedia/delete_newsmedia/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
 
                   </tr>
 

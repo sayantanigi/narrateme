@@ -73,8 +73,8 @@
                       <?php }else{?>
                       <span style="color:#900;"><?php echo "Inactive";?></span>
                       <?php }?></td>
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>faq/show_faq_id/<?php echo $i->id?>">Edit</a></td>
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>faq/delete_faq/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/faq/show_faq_id/<?php echo $i->id?>">Edit</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/faq/delete_faq/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
                   </tr>
                   <?php }}else{?>
                   <tr>

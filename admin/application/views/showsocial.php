@@ -162,7 +162,11 @@
 
                     <td><?php echo $i->marking_media;?></td>
 
-                    <td><?php echo $i->marketing_meterial;?></td>
+                    <td>&nbsp;
+
+					
+
+                    </td>
 
                     <td><?php if($i->status ==1){?>
 
@@ -174,9 +178,9 @@
 
                       <?php }?></td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>social/show_social_id/<?php echo $i->id?>">Edit</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/social/show_social_id/<?php echo $i->id?>">Edit</a></td>
 
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>social/delete_social/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/social/delete_social/<?php echo $i->id?>" onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
 
                   </tr>
 

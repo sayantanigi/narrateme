@@ -42,7 +42,9 @@ $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 <link href="dashboard/css/app.min.1.css" rel="stylesheet">
 <?php if($actual_link != "http://narrateme.com/dev/dashboard.php") { ?>
 <link href="dashboard/css/app.min.2.css" rel="stylesheet">
+<link href="dashboard/css/style.css" rel="stylesheet">
 <link href="dashboard/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php } else { ?>
 
 <?php } ?>

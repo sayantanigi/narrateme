@@ -110,7 +110,7 @@
 
             
 
-            <form action="<?php echo base_url().'video/add_video' ?>" class="form-horizontal form-bordered" method="post" >
+            <form action="<?php echo base_url().'index.php/video/add_video' ?>" class="form-horizontal form-bordered" method="post" >
 
                 <div class="form-body">
 

@@ -33,16 +33,16 @@ class Admin_model extends CI_Model {
 
           if($query->num_rows() == 1)
           {
-                  return $query->row();
+              return $query->row();
           }
           else
              {
-                   return false;
+                 return false;
              }		
     }
  /****************************************************************/
     
-    function check_user_forgot($email,$data)
+  function check_user_forgot($email,$data)
 	{
 		
 		$this->db->where('user_email',$email);

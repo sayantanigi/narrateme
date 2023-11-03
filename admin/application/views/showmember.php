@@ -74,7 +74,7 @@
 
 			$rdurl=$this->uri->segment(3);
 
-			//$urlpath=base_url()."individual/view_individual";
+			//$urlpath=base_url()."index.php/individual/view_individual";
 
 			if($rdurl){
 
@@ -184,7 +184,7 @@
 
                   <tr class="odd gradeX">
 
-                    <td><a href="<?php echo base_url()?>userprofile/show_user/<?php echo $i->id?>"><?php echo $i->first_name ." ".$i->last_name; ?></a></td>
+                    <td><a href="<?php echo base_url()?>index.php/userprofile/show_user/<?php echo $i->id?>"><?php echo $i->first_name ." ".$i->last_name; ?></a></td>
 
                     <td><?php echo $i->email; ?></td>
 
@@ -196,7 +196,7 @@
 
                     <td><?php echo $i->zip_code;?></td>
                     
-                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>friends/view_friends/<?=$i->id?>">View</a></td>
+                    <td><a class="btn green btn-sm btn-outline sbold uppercase" href="<?php echo base_url()?>index.php/friends/view_friends/<?=$i->id?>">View</a></td>
                     
                     
                     
@@ -208,13 +208,13 @@
 
                     
 
-                    <td style="text-align: center;"><?php if($i->status ==1){?>
+                    <td><?php if($i->status ==1){?>
 
-                      <span style="color:#063;"><img src="<?php echo $imgpath?>active.png" style="width: 35px;"/></span>
+                      <span style="color:#063;"><img src="<?php echo $imgpath?>active.png" /></span>
 
-                      <?php } else {?>
+                      <?php }else{?>
 
-                      <span style="color:#900;"><img src="<?php echo $imgpath?>inactive.png" style="width: 30px;"/></span>
+                      <span style="color:#900;"><img src="<?php echo $imgpath?>inactive.png" /></span>
 
                       <?php }?></td>
 

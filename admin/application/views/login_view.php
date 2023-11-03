@@ -30,7 +30,7 @@
             <div style="background: #364150; width: 100%;">
                 <label class="check" style="width: 100%; display: flex; flex-direction: row; justify-content: space-between; padding: 20px; margin: 0;">
                     <button class="btn green pull-right" type="submit" style="padding: 10px !important;">Login<i class="m-icon-swapright m-icon-white" style="margin-left: 5px;"></i></button>
-                    <!-- <button class="btn green pull-right" type="submit" style="padding: 10px !important;">Forgot Password<i class="m-icon-swapright m-icon-white" style="margin-left: 5px;"></i></button> -->
+                    <button class="btn green pull-right" type="submit" style="padding: 10px !important;">Forgot Password<i class="m-icon-swapright m-icon-white" style="margin-left: 5px;"></i></button>
                 </label>
             </div>
         </form>

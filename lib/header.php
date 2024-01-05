@@ -114,7 +114,7 @@ if (@$_SESSION['user_log_flag'] == 1) {
                                     <li><a href="page.php?id=22">Instructional Facilities &amp; Schools</a></li>
                                     <li><a href="product_list.php">Products</a></li>
                                     <?php if (@$viewmember['std'] == 1) { ?>
-                                        <li><a href="http://narrateme.com/new/course-module/courses">Courses</a></li>
+                                        <li><a href="http://localhost/narrateme/course-module/courses">Courses</a></li>
                                     <?php } ?>
                                     <li><a href="contact.php?id=5">Contact Us</a></li>
                                 </ul>

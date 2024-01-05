@@ -357,7 +357,7 @@ $pagename = basename($_SERVER['PHP_SELF']);
 
                 <!-----======== Search Courses  =====----->
 
-                <h4 href="http://narrateme.com/new/course-module/courses" style="cursor:pointer;" class="btn btn-success"><a style="color:#FFF;">Search Courses</a><i class="fa fa-plus-circle" aria-hidden="true"></i></h4>
+                <h4 href="http://localhost/narrateme/course-module/courses" style="cursor:pointer;" class="btn btn-success"><a style="color:#FFF;">Search Courses</a><i class="fa fa-plus-circle" aria-hidden="true"></i></h4>
 
                 <div id="search_corse_p" <?php if (@$_REQUEST['update'] == "success") { ?> style="display:block;" <?php } ?> style="display:none;">
                   <div class="panel panel-collapse">

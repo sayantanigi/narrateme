@@ -89,7 +89,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-2">
-                            <div class="top-logo"><a href="http://narrateme.com/new/index.php"><img src="<?= base_url(); ?>user_panel/new/images/logo.png" alt=""></a></div>
+                            <div class="top-logo"><a href="http://localhost/narrateme/index.php"><img src="<?= base_url(); ?>user_panel/new/images/logo.png" alt=""></a></div>
                         </div>
                         <div class="col-10">
                             <div class="right-header">
@@ -108,16 +108,16 @@
                                             <div class="top-logo" style="display:none"><a href="<?= base_url(); ?>"><img src="<?= base_url(); ?>user_panel/new/images/nav-logo.png" alt=""></a></div>
                                             <div class="menu-top-menu-container">
                                                 <ul>
-                                                    <li><a href="http://narrateme.com/new/index.php">Home</a></li>
-                                                    <li><a href="http://narrateme.com/new/page.php?id=17">About Us</a></li>
-                                                    <li><a href="http://narrateme.com/new/page.php?id=18">Members</a></li>
-                                                    <li><a href="http://narrateme.com/new/page.php?id=19">Individuals</a></li>
-                                                    <li><a href="http://narrateme.com/new/php?id=20">Students</a></li>
-                                                    <li><a href="http://narrateme.com/new/page.php?id=21">Educational Institutions</a></li>
-                                                    <li><a href="http://narrateme.com/new/page.php?id=22">Instructional Facilities &amp; Schools</a></li>
-                                                    <li><a href="http://narrateme.com/new/product_list.php">Products</a></li>
+                                                    <li><a href="http://localhost/narrateme/index.php">Home</a></li>
+                                                    <li><a href="http://localhost/narrateme/page.php?id=17">About Us</a></li>
+                                                    <li><a href="http://localhost/narrateme/page.php?id=18">Members</a></li>
+                                                    <li><a href="http://localhost/narrateme/page.php?id=19">Individuals</a></li>
+                                                    <li><a href="http://localhost/narrateme/php?id=20">Students</a></li>
+                                                    <li><a href="http://localhost/narrateme/page.php?id=21">Educational Institutions</a></li>
+                                                    <li><a href="http://localhost/narrateme/page.php?id=22">Instructional Facilities &amp; Schools</a></li>
+                                                    <li><a href="http://localhost/narrateme/product_list.php">Products</a></li>
                                                     <li><a href="<?php echo base_url('courses') ?>">Courses</a></li>
-                                                    <li><a href="http://narrateme.com/new/contact.php?id=5">Contact Us</a></li>
+                                                    <li><a href="http://localhost/narrateme/contact.php?id=5">Contact Us</a></li>
                                                 </ul>
 
                                             </div>

@@ -5033,7 +5033,7 @@ $stunumnews = mysqli_num_rows($resquerynews);
                 </script>
                 <div>
                   <?php $uri = base64_encode($_SESSION['userid']); ?>
-                  <h4 class="btn btn-success"><a href="http://narrateme.com/new/course-module/supercontrol/home/<?php echo $uri; ?>" style="cursor:pointer; color:#FFF;">Upload Courses</a><i class="fa fa-plus-circle" aria-hidden="true"></i></h4>
+                  <h4 class="btn btn-success"><a href="http://localhost/narrateme/course-module/supercontrol/home/<?php echo $uri; ?>" style="cursor:pointer; color:#FFF;">Upload Courses</a><i class="fa fa-plus-circle" aria-hidden="true"></i></h4>
                 </div>
               </div>
             </div>

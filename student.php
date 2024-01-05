@@ -3204,7 +3204,7 @@ $stunumextra = mysqli_num_rows($resqueryextra);
               <div class="panel-group" data-collapse-color="teal" id="accordionTeal" role="tablist" aria-multiselectable="true">
                 <!--div class="panel-heading" role="tab">
                          <?php $uri = base64_encode($_SESSION['userid']); ?>
-                     <h4 class="panel-title"> <a href="http://narrateme.com/new/course-module/courses?token=<?php echo $uri ?>" > View Course List </a> </h4>
+                     <h4 class="panel-title"> <a href="http://localhost/narrateme/course-module/courses?token=<?php echo $uri ?>" > View Course List </a> </h4>
                      </div-->
                 <!-- individual -->
                 <div class="panel panel-collapse" style="margin-bottom: 20px;">

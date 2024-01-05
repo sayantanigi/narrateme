@@ -143,12 +143,12 @@
                                         Wednesday, 10:00am to 14:00pm --></p>
                                 </div>
                                 <div class="both-bt">
-                                    <a href="http://narrateme.com/new/course-module/courses/upcomingcoursedetails/<?php echo $i->course_id;?>" class="button-default orange">Course Details</a> <a href="<?=base_url();?>courses/payment" class="button-default orange">Book Now</a>
+                                    <a href="http://localhost/narrateme/course-module/courses/upcomingcoursedetails/<?php echo $i->course_id;?>" class="button-default orange">Course Details</a> <a href="<?=base_url();?>courses/payment" class="button-default orange">Book Now</a>
                                 </div>
                             </div>
                             </div>
                         </li>
-                        
+                        https://techg.igiapp.com/narrateme/
                             <?php $ctn++;}?>
                           <?php endif; ?>
                     </ul>

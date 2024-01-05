@@ -1,0 +1,1820 @@
+@media (min-width:1200px){
+     .container{max-width: 1574px;}
+}
+
+@media(max-width:1599px){
+
+}
+@media (max-width:1499px){
+.search-detail {
+    margin: 0 16px 0 0;
+}  
+.menuTop {
+    padding: 4px 0 0 30px;
+} 
+
+.ab-img {
+    margin-left: -40px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 16px;
+}
+.courses-view ul li {
+    padding: 25px 24px;
+}
+.courses-view-other ul li {
+    padding: 25px 13px;
+}
+.totalHours-col span.amount-price {
+    font-size: 14px;
+    margin: 0 0 0 12px;
+}
+.price-col span.amount-price{
+    font-size: 14px;
+    margin: 0 0 0 12px;
+}
+
+}  
+@media (max-width:1399px){
+.navbar-collapse ul li a {
+    font-size: 16px;
+}
+.navbar-collapse .menu-top-menu-container > ul > li {
+    padding: 0 11px;
+}
+
+
+
+.slider-banner .carousel-indicators {
+    margin-right: 4%;
+    margin-left: 4%;
+    bottom: 0;
+}
+
+.menuTop {
+    padding: 4px 0 0 16px;
+}
+.menuTop ul li:after {
+    content: "|";
+    padding: 0px 6px;
+}
+
+/*---------New------------*/
+.about-info p {
+    padding: 0px 0 19px;
+}
+.both-bt a.button-default {
+    margin: 0 3px;
+    min-width: 126px;
+}
+.newsletter-part p {
+    font-size: 20px;
+}
+.newsletter-part h3 {
+    font-size: 30px;
+}
+.newsletter-part span {
+    font-size: 22px;
+}
+.structure-content {
+    padding: 0px 70px 0 0;
+}
+.structure-content h3 {
+    font-size: 32px
+}
+.ab-img {
+    margin-left: -10px;
+}
+.hd-bt h3 {
+    font-size: 18px;
+}
+
+.microWords-col { padding: 0 0;}
+.events-sectionsInn ul { margin: 0 0;}
+
+
+
+
+
+
+
+}  
+
+@media (max-width:1299px){
+.flag-cty {
+    padding: 0 10px 0 0px;
+    font-size: 14px;
+}
+.book-appointment .button-default {
+    font-size: 14px;
+}
+.menu-bar {
+    padding: 8px 10px 0 0;
+}
+.hd-banner {
+    font-size: 30px;
+    padding: 0 0 20px;
+}
+
+
+.social-icon ul li {
+    margin: 0px 0 0 4px;
+} 
+.navbar-collapse .menu-top-menu-container > ul > li {
+    padding: 0 8px;
+}
+
+
+.structure-content a.button-default {
+    margin: 15px 14px 0px 0px;
+    padding: 16px 10px 18px;
+    min-width: 202px;
+}
+.heading-md {
+    font-size: 32px;
+}
+.totalHours-col span.amount-price {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+.price-col span.amount-price {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+.totalHours-col p {
+    font-size: 14px;
+}
+.courses-view-other ul li {
+    padding: 25px 12px;
+}
+.courses-view ul li {
+    padding: 25px 24px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 14px;
+}
+
+.formExpert {  width: 1008px;padding: 42px 150px 45px;}
+.expert-boxes {padding: 25px 0 0;}
+.expert-dtl {
+    padding: 0 0;
+}
+.participantReviews {
+    width: 1150px;
+}
+
+}
+
+@media (max-width:1199px){
+ .container {max-width: 100%;  }
+ .header-menu {
+    padding-right: 54px;
+}
+.menuTop {
+    display: none;
+}
+
+ul.topNav {
+    display: block !important;
+}
+.collapse.show ul.topNav >li {
+    border-top: solid 1px #5054dc;
+}
+.about-info p {
+    font-size: 16px;
+}
+.about-info h1 {
+    font-size: 30px;
+}
+.heading-md {
+    padding: 0 0 16px;
+    font-size: 32px;
+}
+.title-center p {
+    font-size: 18px;
+}
+
+
+.contactUs-add {
+    padding: 0 1px 0 20px;
+}
+.footer-social span {
+    margin: 0 13px 0 0;
+    font-size: 16px;
+}
+.footer-social a {
+    margin: 0 1px 0 0;
+}
+
+
+
+#back-top-wrapper {
+    right: 14px;
+    bottom: 40px;
+}
+.footer-section {
+    padding: 40px 0 30px;
+}
+
+.structure-img {
+    width: 100%;
+}
+.structure-content {
+    padding: 0 26px 0 0;
+}
+.structure-content h3 {
+    font-size: 28px;
+}
+.structure-content p {
+    font-size: 16px;
+}
+.structure-content a.button-default {
+    margin: 15px 12px 0px 0px;
+    padding: 16px 10px 18px;
+    min-width: 170px;
+    font-size: 16px;
+}
+.menu-footer-menu-container ul li {
+    font-size: 16px;
+}
+
+
+.about-section {
+    padding: 78px 0px;
+}
+
+
+.hd-menu {
+    font-size: 20px;
+    line-height: normal;
+}
+
+.heading-md {
+    font-size: 28px;
+}
+.title-center p {
+    font-size: 16px;
+}
+
+
+.inquiryNow a.button-default {
+    font-size: 15px;
+    width: 180px;
+}
+
+.hd-banner {
+    font-size: 38px;
+}
+
+
+.slider-banner .carousel-indicators li {
+    width: 13px;
+    height: 13px;
+}
+
+
+
+.top-logo {
+    width: 195px;
+}
+
+
+
+
+
+
+div#myNavbar.collapse.show .top-logo {
+    display: block !important;
+    width: 260px;
+    padding: 0 0 24px 16px;
+}
+
+
+/*-----------new------------*/
+.right-header {
+    padding: 4px 0 0;
+}
+.about-info span {
+    font-size: 18px;
+}
+.ab-img {
+    margin-left: 0px;
+}
+.about-section a.button-default {
+    margin: 15px 8px 0px 0px;
+    padding: 12px 16px 14px;
+    min-width: 155px;
+    font-size: 15px;
+}
+.corporate-training ul li a {
+    font-size: 14px;
+    padding: 6px 18px;
+}
+.latest-heading h3 {
+    margin: 0 0 13px;
+    font-size: 22px;
+}
+.newsletter-part h3 {
+    font-size: 22px;
+}
+.corporate-training h3 {
+    font-size: 30px;
+}
+.corporate-section-part {
+    padding: 75px 0;
+}
+.private-online ul li {
+    font-size: 16px;
+}
+.courses-structure {
+    padding: 104px 0 104px;
+}
+.social-icon {
+    padding: 0 14px 0 0;
+    display: none;
+}
+.courses-view ul li {
+    padding: 25px 15px;
+}
+.hd-bt h3 {
+    font-size: 16px;
+}
+.both-bt a.button-default {
+    margin: 0 3px;
+    min-width: 112px;
+    font-size: 14px;
+    padding: 7px 8px 9px 8px;
+}
+.latest-heading p {
+    font-size: 18px;
+}
+.newsletter-part p {
+    font-size: 18px;
+}
+.destinations-list ul li {
+    font-size: 18px;
+    background: url(../images/right-arrow.png) no-repeat left top 4px;
+}
+.content-banner {
+    max-width: 520px;
+}
+.courses-view {
+    padding: 0px 0 0px;
+}
+.button {
+    font-size: 18px;
+    max-width: 186px;
+    padding: 7px 10px;
+}
+.slider-img {
+    height: 440px;
+}
+.slider-img img{
+    height: 100%;
+    object-fit: cover;
+}
+div#myNavbar.navbar-collapse.show .social-icon {
+    display: block !important;
+    float: left;
+    clear: both;
+    margin: 18px 0 0 14px;
+}
+div#myNavbar.navbar-collapse.show .social-icon ul li {
+    width: auto;
+    border: none;
+    margin: 0 4px !important;
+}
+div#myNavbar.navbar-collapse.show .social-icon ul li a {
+    padding: 0px;
+    text-align: center;
+}
+.about-section {
+    padding: 38px 0px;
+}
+.upcoming-courses {
+    padding: 48px 0px;
+}
+.other-nav ul li {
+    font-size: 15px;
+}
+.get-inspired p {
+    font-size: 16px;
+    letter-spacing: 0px;
+}
+.latest-slider-tab {
+    padding: 43px 22px 20px;
+}
+.col-form label {
+    font-size: 16px;
+}
+.select-option {
+    padding: 12px 11px;
+    font-size: 16px;
+}
+.col-form.buttonForm button.btn {
+    height: 47px;
+}
+.list-box-courses .both-bt a.button-default {
+    font-size: 14px;
+    padding: 10px 9px 13px 9px;
+    min-width: auto;
+}
+.form-heading h3 {
+    margin: 0 0 6px;
+    font-size: 30px;
+}
+.formcourse .wrapper-form {
+    padding: 12px 0 0;
+}
+.search-courses .heading-md, .upcoming-courses .heading-md, .other-courses .heading-md {
+    padding: 0px;
+}
+.other-courses {
+    padding: 50px 0px;    background-size: 100% 280px;
+}
+.couldnt-find-course {
+    padding: 0 0 50px;
+}
+.courses-view-other {
+    padding: 0px 0 0px;
+}
+.search-courses {
+    padding: 38px 0px 0;
+}
+.inner-hd-banenr {
+    font-size: 38px;
+}
+
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+
+.logo-createAccount {
+    width: 195px;
+    margin: 0 auto 10px;
+}
+.createAccount-col .gform_wrapper p {
+    font-size: 15px;}
+.createAccount-col h4 {
+margin: 0px 0 10px;
+font-size: 20px;
+}
+
+.createAccount.loginCol .gform_wrapper .gform_body ul li .button.gform_button {
+    font-size: 16px;
+}
+.newSkillogics .button.gform_button {
+    font-size: 16px;
+}
+.newDOb h5 {
+    font-size: 16px;
+}
+.gform_wrapper .medium {
+    padding: 8px 10px !important;
+}
+.createAccount-col .medium {
+    padding: 5px 12px !important;
+}
+div#checkboxes ul li {
+    padding: 0 10px 0 0;
+    font-size: 16px;
+}
+
+.form-group.onder_If label.radio-inline {
+    font-size: 16px;
+}
+button.btn.btn-default.cstm_btn {font-size: 16px;}
+
+
+
+/*--------------------------*/
+.hirePrivaie-tutor-sec {  padding: 40px 0px;}
+.campusCourses .heading-md {
+    padding: 0 0 0;
+}
+.campusCourses .button-default {
+    font-size: 16px;
+    width: 180px;
+    padding: 11px 15px 13px 15px;
+}
+.div-heading h2 {
+    font-size: 24px;
+}
+.div-heading p {
+    font-size: 16px;
+    line-height: 22px;
+}
+.div-heading {
+    padding: 0 0;
+}
+.privateStudies-div .div-heading p br{display: none;}
+.privateStudies-right {
+    padding: 50px 0 0;
+}
+.privateStudies-div {
+    padding: 50px 0 0;
+}
+.studyCaption {
+    padding: 4px 0 0;
+}
+.computerStudies-slide .carousel-control-prev {
+    left: 0px;
+}
+.computerStudies-slide .carousel-control-next {
+    right: 0;
+}
+.computerStudies-slide .carousel-inner {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.studyCaption h3 {
+    font-size: 18px;
+}
+.studyCaption p {
+    font-size: 16px;
+    line-height: 20px;
+}
+.privatTutor-forms {
+    padding: 20px 20px;
+}
+.studyCaption .button-default {
+    font-size: 16px;
+    width: 160px;
+    padding: 11px 15px 12px 15px;
+}
+.privatTutor-forms .gfield_label {
+    font-size: 16px !important;
+}
+.ourExpert-sec {
+    padding: 40px 0 0;
+}
+.expert-md p {
+    font-size: 16px;
+}
+.expert-dtl p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.expert-dtl h3 {
+    font-size: 18px;}
+
+.expert-boxes {
+    padding: 15px 0 0;
+}
+.formExpert .gfield_label {
+    font-size: 16px !important;
+}
+.formExpert {
+    width: 918px;
+    padding: 42px 120px 45px;
+}
+.what-happen-next {
+    padding: 40px 0;
+}
+.what-happen-next-dtls h3 {
+    font-size: 28px;
+}
+.what-happen-next-dtls ul li {
+    line-height: 45px;
+    font-size: 18px;
+}
+.privatTutor-forms .wrapper-form ul li {
+    padding: 0 6px !important;
+}
+.microsoftword-section {padding: 40px 0;}
+.tabing-col .nav-tabs .nav-item { width: 254px;}
+.tabing-col .nav-tabs .nav-link {padding: 11px 15px;  font-size: 16px;}
+.price-detail-div p { font-size: 16px; line-height: 22px;  margin: 0 0 4px;}
+.coursesContent p { font-size: 16px;line-height: 22px; margin: 0 0 15px;}
+.timetable .table thead th {font-size: 16px;padding: 14px 20px;}
+.timetable .table tbody tr td { font-size: 16px; padding: 11px 20px;}
+.tableButton .button-default {
+    width: 155px;
+    font-size: 16px;
+    padding: 10px 15px 12px 15px;
+    margin-left: 10px;
+}
+.batches-courses p { font-size: 16px;  line-height: 22px;}
+.events-sectionsInn h2 {  font-size: 20px;}
+.events-sectionsInn ul {
+    margin: 0 -15px;
+}
+.batches-courses ul li { margin: 0 0 16px; padding: 10px 13px 10px 34px; font-size: 16px; background-position: 14px 16px; background-size: 14px;}
+.batches-courses {
+    padding: 24px 0 20px;
+    width: 765px;
+}
+
+.faq-accordion .collapse.show .card-body>ul >li {
+    font-size: 16px;
+    background-position: 0 6px;
+}
+.card-body p{font-size: 16px; line-height: 22px;}
+.participantReviews {
+    width: 100%;
+}
+.reviews-row-content p { font-size: 16px;line-height: 24px; margin: 0 0 10px;}
+
+.reviews-row {
+    padding: 20px 20px 20px 20px;
+}
+.reviews-row-content h4 {
+    font-size: 16px;
+}
+.popupForm .gform_footer .button {
+    font-size: 16px;
+    padding: 4px 28px;
+    height: 40px;
+    max-width: 129px;
+    width: 100% !important;
+}
+
+.popupForm .modal-body p{font-size: 16px;}
+.popupForm .modal-body h2{font-size: 24px;}
+
+}  
+@media (max-width:991px){
+    .about-section .col-sm-7 {
+        padding-right: 0px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .about-section .col-sm-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .courses-view ul li {
+        width: 50%;
+    }
+ .hd-banner {
+    padding: 0 0 12px;
+    font-size: 28px;
+    margin: 0 0 14px;
+}
+.content-banner {
+    max-width: 412px;
+}
+.hd-banner span {
+    font-size: 22px;
+} 
+
+.destinations-list ul li {
+    font-size: 14px;
+}
+.destinations-list p {
+    padding: 0px 0 8px;
+    font-size: 20px;
+} 
+.destinations-list {
+    padding: 0 0 16px;
+}
+.about-info {
+    padding: 0 0 0 6px;
+}  
+.footer-social span {
+    margin: 0 13px 7px 0;
+    display: block;
+}  
+.input-newsletter {
+    padding: 10px 13px 13px;
+    padding-right: 86px;
+}  
+.submit-btn {
+    width: 76px;
+}
+
+.courses-structure {
+    padding: 64px 0px;
+}
+.structure-content h3 {
+    font-size: 26px;
+} 
+
+.structure-content a.button-default {
+    min-width: 138px;
+} 
+.flag-cty {
+    padding: 0 6px 0 0px;
+    font-size: 13px;
+}
+.flag-cty img {
+    padding: 0 3px 0 0px;
+	max-height: 21px;
+}
+.search-detail {
+    margin: 0 11px 0 0;
+}
+.top-logo {
+    width: 182px;
+}  
+.social-icon ul li {
+    margin: 0px 0 0 2px;
+} 
+.col-form {
+    width: 33%;
+    margin-bottom: 8px;
+}
+.col-form.col-name {
+    width: 40%;
+}
+.col-form.buttonForm {
+    width: 26%;
+}
+.courses-view-other ul li {
+    width: 50%;padding: 25px 8px;
+}
+.formcourse {
+    width: 100%;
+    padding: 63px 56px 46px;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 47%;
+}
+.totalHours-col span.amount-price {
+    margin: 0 0 0 5px;
+}
+.price-col span.amount-price {
+    margin: 0 0 0 4px;
+}
+.col-form:nth-child(3){
+    padding-right: 0;
+}
+.price-col {
+    width: auto;
+    margin: 0 0 0px;
+}
+.totalHours-col {
+    width:auto;
+}
+
+/*------------------------*/
+.ourExpert-sec .row {
+    justify-content: center;
+}
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.formExpert {
+    width: 100%;
+    padding: 32px 40px 35px;
+}
+
+.formExpert {
+    width: 100%;
+    padding: 20px 20px 20px;
+}
+
+.tabing-col .nav-tabs .nav-item {
+    width: 224px;
+}
+
+.batches-courses {
+    padding: 24px 0 20px;
+    width: 655px;
+}
+.timetable .table thead th {
+    font-size: 15px;
+    padding: 11px 10px;
+}
+.timetable .table tbody tr td {
+    font-size: 15px;
+    padding: 8px 10px;
+}
+
+.faq-accordion {
+    width: 100%;
+}
+
+.popupForm button.close {
+    color: #f90;font-size: 65px;
+}
+
+
+
+}
+
+@media (max-width:767px){
+ 
+    .Country-time {
+        float: none;
+        margin-right: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: left;
+        padding: 0px 0 5px 10px;
+        background: #f39d26;
+    }
+    .search-detail {
+        margin: 0 11px 0 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .top-header {
+        background: none;
+        padding: 0;
+    }
+    .nav-header {
+        padding: 5px 0;
+    }
+    .search-form-top input {
+        height: 30px !important;
+    }
+    #searchBoxOpener:checked + label + .searchForm {
+        border: none;
+    }
+.flag-cty {
+    padding: 0 10px 0 0px;
+    font-size: 12px;
+    float: none;
+}
+.flag-cty p {
+    color: #fff;
+    top: 0px;
+}
+.top-section .col-9 {
+    position: static;
+}
+.flag-cty img {
+    max-height: 14px;
+}
+.top-section {
+    padding: 30px 0px 0px 0px;
+}
+.top-logo {
+    width: 148px;    padding: 0px 0 0px;
+}
+.book-appointment .button-default {
+    font-size: 12px;
+    padding: 7px 10px 9px 10px;
+    min-width: 88px;
+    margin-right: 4px !important; 
+}
+.social-icon {
+    display: none;
+}
+.right-header {
+    padding: 3px 35px 0 0;
+}
+.top-right {
+    padding: 0 0 0px;
+    float: right;
+}
+.header-menu {
+    padding-right: 12px;
+    float: right;
+}
+.content-banner {
+    padding: 20px 0 44px 0;
+}
+.hd-banner {
+    font-size: 20px;
+	padding: 0 0 8px;
+}
+
+.destinations-list p {
+    padding: 0px 0 5px;
+    font-size: 16px;
+}
+
+.destinations-list {
+    padding: 0 0 10px;
+}
+.inquiryNow a.button-default {
+    font-size: 13px;
+    width: auto;
+    padding: 7px 15px 8px 15px;
+}
+.about-info h1 {
+    font-size: 20px;
+    padding: 0px 0 8px;
+}
+.about-section {
+    padding: 35px 0px;
+}
+.about-section a.button-default {
+    margin: 2px 0 0px;
+    padding: 8px 16px 10px;
+    min-width: auto;
+    font-size: 14px;
+}
+.courses-structure {
+    padding: 40px 0px;
+}
+
+
+
+
+.heading-md {
+    font-size: 20px;
+    padding: 0 0 4px;
+    margin: 0px 0 0px;
+}
+.heading-md:after {
+    height: 2px;
+}
+
+
+.structure-img {
+    width: 100%;
+}
+.structure-content {
+    padding: 12px 0 0 0px;
+    text-align: center;
+}
+
+
+
+.footer-item-row {
+    text-align: center;
+}
+.hd-menu {
+    font-size: 18px;
+    background: #f39d26;
+    padding: 6px 0 8px 0;
+    color: #fff;
+    margin: 0 0 10px;
+    text-align: center;
+}
+.menu-footer-menu-container ul li {
+    border-bottom: 1px dashed #000;
+    padding: 6px 0 11px;
+    margin: 0 0 4px;
+}
+.menu-footer-menu-container ul li:last-child {
+    border-bottom: none;
+}
+.contactUs-add {
+    text-align: center;
+	padding: 0 0px 0 0px;
+}
+.contactUs-add p span {
+    font-size: 20px;
+}
+.contactUs-add p {
+    margin: 0px;
+    padding: 0px 0 0px;
+}
+.newsletter-footer h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    text-align: center;
+}
+.newsletter-footer p {
+    font-size: 16px;
+    text-align: center;
+}
+.newsletter-footer {
+    padding: 17px 0px 0;
+}
+.footer-social span {
+    display: inline-block;
+}
+.footer-social {
+    text-align: center;
+}
+.logo-footer img {
+    max-height: 50px;
+}
+.logo-footer {
+    margin: 16px 0px 0px;
+    text-align: center;
+}
+.copyright {
+    text-align: center;
+}
+.get-inspired {
+    margin: 6px 0 0px;
+    text-align: center;
+}
+.footer-section {
+    padding: 15px 0 15px;
+}
+.website-design p {
+    font-size: 13px;
+}
+
+
+
+.structure-content h3 {
+    font-size: 20px;
+}
+.structure-content a.button-default {
+    margin: 5px 6px 0px 0px;
+    min-width: 112px;
+    font-size: 14px;
+    padding: 7px 8px 9px 8px;
+}
+.structure-content p span {
+    font-size: 16px;
+    line-height: normal;
+}
+
+.about-info:before {
+    border-left: 2px solid #046eb3;
+}
+
+
+.owl-carousel.owl-drag .owl-item {
+    padding: 0px 0px;
+}
+
+/*-------------New-------------*/
+.top-header .col-sm-12 {
+    position: static;
+}
+.slider-img {
+    height: 349px;
+}
+.about-section .col-sm-5 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 2;
+}
+.about-section .col-sm-7 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.about-info {
+    max-width: 100%;
+    padding: 18px 0 0;
+}
+.about-section {
+    padding: 0px 0px 35px 0px;
+}
+.upcoming-courses {
+    padding: 20px 0px;
+}
+.corporate-section-part {
+    padding: 52px 0;
+}
+.button {
+    font-size: 14px;
+    max-width: 140px;
+    padding: 7px 10px;
+}
+.skils-private-section {
+    padding: 40px 0;
+}
+.corporate-training h3 {
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+.latest-newsletter-section {
+    padding: 43px 0;
+}
+.newsletter-part {
+    margin: 0 auto 90px;
+}
+.newsletter-part p {
+    font-size: 14px;
+}
+.latest-heading p {
+    font-size: 14px;
+}
+.other-nav {
+    text-align: center;
+}
+.other-nav ul li {
+    font-size: 16px;
+    float: none;
+    display: inline-block;
+}
+.other-nav ul li a {
+    padding: 0 6px;
+}
+.newsletter-part h3 {
+    font-size: 20px;
+}
+.latest-heading h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+.destinations-list ul li {
+    background: url(../images/right-arrow.png) no-repeat left top 3px;
+    background-size: 18px;
+    padding: 0px 0px 10px 26px;
+}
+.search-detail p {
+    display: none;
+}
+#searchBoxOpener:checked + label {
+    width: 25px;
+    height: 29px;
+}
+.search-form-top label {
+    padding: 1px 0px 6px;
+    width: 25px;
+    background: #fff;
+    text-align: center;
+}
+.search-form-top {
+    padding: 0;
+    border-left: none;
+    float: right;
+    margin: 0;
+}
+.cart-icon img {
+    max-height: 30px;
+}
+.cart-icon {
+    margin: 0 0 0 8px;
+}
+.all-content {
+    padding: 0 0px;
+}
+.courses-view ul li {
+    padding: 15px 8px;
+}
+.both-bt a.button-default {
+    margin: 0 1px;
+    min-width: 98px;
+    font-size: 13px;
+}
+.latest-slider-tab {
+    padding: 26px 23px 17px;
+}
+.hd-bt h3 {
+    font-size: 14px;
+}
+span.name-bt {
+    padding: 4px 16px 5px 16px;
+    font-size: 13px;
+}
+.newsletter-part span {
+    font-size: 18px;
+}
+.about-info span {
+    font-size: 14px;
+}
+.private-online h4 {
+    font-size: 22px;
+    padding: 0 0px;
+}
+.private-online ul {
+    padding: 0 0px;
+}
+.private-online {
+    padding: 0 0px;
+}
+.searchForm {
+    right: 26px;
+}
+.about-info p {
+    font-size: 14px;
+}
+.title-center p {
+    font-size: 14px;
+}
+.contentView p {
+    font-size: 14px;
+}
+.structure-content p {
+    font-size: 14px;
+}
+.corporate-training ul li a {
+    font-size: 14px;
+    padding: 4px 14px;
+}
+.private-online ul li {
+    font-size: 14px;
+}
+.private-online ul li {
+    font-size: 14px;
+    background-size: 18px;
+    background-position: left top 3px;
+    padding: 0 0 0 26px;
+    min-height: 24px;
+}
+.latest-slider-tab {
+    padding: 43px 23px 20px;
+}
+.latest-customer-deatils {
+    padding: 0 34px 0 56px;
+}
+
+.blue-banenr {
+    padding: 48px 0px;
+}
+.inner-hd-banenr {
+    font-size: 22px;
+}
+.badecame ul li {
+    font-size: 14px;line-height: 10px;
+}
+.search-form-course {
+    padding: 0px 0 24px;
+}
+.col-form label {
+    font-size: 14px;
+}
+.other-courses {
+    background-size: 100% 230px;
+    padding: 25px 0px;
+}
+.list-box-courses figure {
+    margin: 0 0 10px;
+}
+.list-box-courses .hd-bt h3 {
+    margin-bottom: 10px;
+}
+.price-section {
+    padding: 0 0 13px;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: auto;
+    font-size: 13px;padding: 7px 8px 9px 8px;
+}
+.courses-view-other ul li {
+    padding: 12px 8px;
+}
+.formcourse {
+    padding: 20px 16px 20px;
+}
+.form-heading h3 {
+    margin: 0 0 2px;
+    font-size: 18px;
+}
+.form-heading p {
+    font-size: 14px;
+}
+.form-heading {
+    margin: 0 auto 6px;
+}
+.gfield_label {
+    font-size: 14px !important;
+}
+.gform_wrapper .medium {
+    border: 1px #ffffff solid;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+    box-shadow: 0px 0 0 1px #797bb9;
+}
+.wrapper-form .gform_footer.top_label {
+    padding: 5px 0 0;
+}
+.wrapper-form .gform_footer .button {
+    font-size: 16px;
+    padding: 4px 28px;
+    height: 42px;
+    max-width: 184px;
+}
+.select-option {
+    padding: 8px 11px;
+    font-size: 14px;
+}
+.col-form.buttonForm button.btn {
+    height: 36px;
+    font-size: 16px;
+}
+.search-courses {
+    padding: 22px 0px 0;
+}
+.couldnt-find-course {
+    padding: 0 0 26px;
+}
+.col-form:nth-child(3){
+    padding-right: 0;
+}
+.col-form.buttonForm {
+    width: 27%;
+}
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+.list-box-courses .hd-bt h3 {
+    font-size: 18px;
+}
+
+
+.createAccount-outer {
+    width: 515px;
+    float: none;
+    margin: 0 auto;
+}
+.logo-createAccount {
+    width: 165px;
+    margin: 0 auto 10px;
+}
+.createAccount-col h4 {
+    font-size: 18px;
+}
+.createAccount-col .gform_wrapper p {
+    font-size: 14px;
+}
+div#checkboxes label.whatever1 {
+    margin: 0 3px;
+    font-size: 14px;
+}
+div#checkboxes input[type="radio"], input[type="checkbox"] {
+    top: 2px;
+}
+
+.createAccount-col .gform_wrapper p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.createAccount-col .gfield_label {
+    font-size: 14px !important;
+}
+.privacyNotice p {
+    padding: 8px 0px;
+    font-size: 14px;
+}
+.loginCol .privacyNotice p {
+    padding: 6px 0px;
+}
+.Forgotpassword {
+    font-size: 14px;
+}
+.newSkillogics .button.gform_button {
+    font-size: 14px;
+}
+
+.createAccount-col .medium {
+    padding: 5px 12px !important;
+}
+
+.createAccount.loginCol .gform_wrapper .gform_body ul li .button.gform_button {
+    font-size: 14px;
+    padding: 6px 0 8px;
+    max-width: initial;
+}
+.newDOb h5 {
+    font-size: 14px;
+}
+
+.tab-content {
+    padding: 0 1px;
+}
+.createAccount.myaccount .createAccount-outer {
+    width: 100%;
+}
+.tab-content .form-group label {
+    font-size: 14px;
+}
+.form-group.onder_If label.radio-inline {
+    font-size: 14px;
+}
+iv#checkboxes ul li a {
+    padding: 0 0px 0 0;
+}
+div#checkboxes ul li {
+    padding: 0 7px 0 0;
+    font-size: 14px;
+}
+button.btn.btn-default.cstm_btn {font-size: 14px;max-width: 140px;}
+
+
+
+
+.formExpert .gfield_label {
+    font-size: 14px !important;
+}
+.formExpert .gform_wrapper .medium {
+    border-color: #c7ced4;
+    box-shadow: 0px 0 0 1px rgba(255, 255, 255, 0.36);
+    font-size: 14px !important;
+    color: #fff;
+    height: 39px;
+}
+
+.formExpert .wrapper-form .gform_footer .button {
+    max-width: 214px;
+}
+.hire-an-expert-section {
+    padding: 145px 0 45px;
+    margin-top: -109px;
+}
+.privatTutor-forms .gform_wrapper .medium {
+    border-color: #c7ced4;
+    box-shadow: 0px 0 0 1px rgba(83, 97, 113, 0.36);
+    font-size: 14px !important;
+    color: #fff;
+    height: 39px;
+}
+
+.privatTutor-forms .gfield_label {
+    font-size: 14px !important;
+}
+.privatTutor-forms .gform_wrapper textarea.medium {
+    height: 60px;
+}
+.privatTutor-forms .wrapper-form .gform_footer .button {
+    max-width: 214px;
+}
+.div-heading h2 {
+    font-size: 18px;
+}
+.div-heading p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.privateStudies-div {
+    padding: 35px 0 0;
+}
+.privateStudies-right {
+    padding: 30px 0 0;
+}
+.hirePrivaie-tutor-sec .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.what-happen-next-dtls h3 {
+    font-size: 20px;
+    margin: 0px 0 0px;
+}
+.what-happen-next-dtls ul li {
+    line-height: 34px;
+    font-size: 14px;
+}
+.what-happen-next-dtls ul li::after { width: 60%;}
+.formExpert .wrapper-form ul li.gfield.gfield_html {
+    text-align: left;
+    padding: 0 0 0 10px!important;
+}
+.formExpert .gform_wrapper input[type="file"] {
+    color: #fff;
+    padding-left: 0;
+}
+.what-happen-next-dtls {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+.studyCaption p {
+    font-size: 14px;}
+    .campusCourses {
+        padding: 15px 5px 20px;
+}
+.formExpert {
+    width: 100%;
+    padding: 15px 15px 15px;
+}
+.expert-md p {
+    font-size: 14px;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    top: 38%;
+}
+.tabing-col {
+    padding-bottom: 25px;
+}
+
+
+.tabing-col .nav-tabs .nav-link {
+    padding: 9px 10px;
+    font-size: 14px;
+}
+.tabing-col .nav-tabs .nav-item {
+    width: 33.33%;
+}
+
+.price-detail-div p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.coursesContent h4 {
+    font-size: 16px;
+    line-height: 22px;
+}
+.coursesContent p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 10px;
+}
+.tableButton .button-default {
+    width: auto;
+    font-size: 14px;
+    padding: 8px 15px 10px 15px;
+    margin-left: 10px;
+}
+.batches-courses {
+    padding: 20px 0 20px;
+    width: 100%;
+}
+.batches-courses ul li {  margin: 0 0 10px;font-size: 14px;  background-position: 14px 14px;}
+.events-sectionsInn h2 {
+    font-size: 18px;
+}
+.timetable .table thead th {
+    font-size: 13px;}
+.timetable .table tbody tr td {
+    font-size: 13px;
+}
+.tableButton {
+    padding-top: 0;
+}
+.coursesContent h5 {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+
+.faq-accordion .card-header h5 { font-size: 14px;padding: 11px 50px 11px 11px;}
+.faq-accordion .card { margin: 0 0 11px;}
+.faq-accordion .collapse.show .card-body>ul >li {
+    font-size: 14px;
+    background-position: 0 5px;
+}
+.faq-accordion .card-header h5:after {
+    width: 40px;
+}
+.faq-accordion .card-body {
+    padding: 10px;
+}
+
+.reviews-row-content p {
+    font-size: 14px;
+    line-height: 22px;
+}
+.reviews-row {
+    padding: 15px 15px 15px 15px;    margin-bottom: 15px;
+}
+.reviews-row-content {
+    padding-left: 35px;
+}
+.popupForm .gform_wrapper .medium {
+    font-size: 14px !important;
+}
+.popupForm .modal-body p{font-size: 14px;}
+.popupForm .modal-body h2{font-size: 20px;}
+
+}
+
+
+@media (max-width:650px){
+
+.timetable {
+    overflow-x: auto;
+    width: 100%;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+}
+.timetable table.table {
+    width: 600px;    margin-bottom: 10px;
+}
+
+.tableButton .button-default {
+    margin-left: 8px;
+}
+.events-sectionsInn h2 {
+    font-size: 17px;
+    line-height: 23px;
+}
+
+}
+@media (max-width:575px){
+
+.slider-banner .col-sm-6 {
+    padding-right: 0;
+    order: -1;
+    padding-left: 0;
+}
+.about-info:before {
+  display:none;
+}
+.ab-img {
+    text-align: center;
+    margin: 0 0 15px;
+}
+
+.courses-structure {
+    padding: 35px 0px;
+}
+.structure-content a.button-default {
+    min-width: 125px;
+    font-size: 13px;
+}
+
+
+.private-online {
+    padding: 0 0px 20px;
+}
+.private-online h4 {
+    padding: 0 0px;
+}
+.private-online ul {
+    padding: 0 0px;
+}
+
+.hd-banner span {
+    font-size: 15px;
+}
+.destinations-list ul li {
+    padding: 0px 0px 3px 26px;
+}
+.about-section {
+    padding: 12px 0px 25px 0px;
+}
+.hd-banner {
+    font-size: 18px;
+}
+.caption-banner {
+    position: static;
+    top: 0;
+    transform: translate(0px, 0%);
+    background: #000;
+}
+.slider-img {
+    height: 183px;
+}
+.slider-img:after {
+  display: none;
+}
+.latest-customer-deatils {
+    padding: 0 0px 0 56px;
+}
+.col-form {
+    width: 50%;
+}
+.col-form.col-name {
+    width: 50%;
+}
+.col-form.buttonForm {
+    width: 50%;
+}
+.col-form:nth-child(2), .col-form:nth-child(4) {
+    padding-right: 0;
+}
+.col-form:nth-child(3){
+    padding-right: 16px;
+}
+.courses-view-other ul li {
+    width: 100%;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 48%;
+}
+.list-box-courses .hd-bt h3 {
+    font-size: 18px;
+}
+.price-col {
+    width: auto;
+    margin: 0 0 0px;
+}
+.totalHours-col {
+    width: auto;
+}
+
+
+.createAccount-col {
+    padding: 20px 15px;
+}
+.createAccount-outer {
+    width: 100%;
+}
+
+.newSkillogics::before {
+    right: 42px;
+}
+.createAccount-col h4 {
+    font-size: 16px;
+}
+
+.ourExpert-sec .col-sm-4 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.captionInn {
+    padding: 0 0;
+}
+
+
+.tabing-col .nav-tabs .nav-item {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 2px solid #fff;
+}
+.tabing-col .nav-tabs .nav-link:before{display: none;}
+.flag-cty img {
+    max-height: 12px;
+}
+.popupForm .gform_wrapper .gform_fields li.gfield.gf_left_third, .popupForm .gform_wrapper .gform_fields li.gfield.gf_middle_third, .popupForm .gform_wrapper .gform_fields li.gfield.gf_right_third {
+  
+    width: 100% !important;
+}
+.popupForm .modal-body {
+    padding: 30px 20px;
+}
+.modal-open .modal {
+    padding: 0 !important;
+}
+
+}
+@media (max-width:500px){
+.courses-view ul li {
+    width: 100%;
+}
+}
+
+
+
+@media (max-width:480px){
+
+.book-appointment {
+    display: none;
+}
+div#myNavbar.collapse.show .book-appointment{ display:block !important; float:left; margin:20px 0 0px; width:100%;}
+div#myNavbar.collapse.show .book-appointment .button-default {
+    font-size: 16px;
+    padding: 6px 10px 8px 16px;
+    display: block;
+    text-align: left;
+    border-radius: 0;
+    background: #f39d26;
+    margin: 0 0 2px;
+}
+#searchBoxOpener:checked + label + .searchForm {
+    width: 180px;
+}
+.footer-social span {
+    display: block;
+    margin: 0 0 7px;
+}
+.gform_wrapper .gform_fields li.gfield.gf_left_half, .gform_wrapper .gform_fields li.gfield.gf_right_half {
+   
+    width: 100% !important;
+}
+
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    top: 30%;
+}
+
+
+
+}
+@media (max-width:400px){
+
+.flag-cty {
+    padding: 0 5px 0 0px;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    top: 28%;
+}
+
+}
+
+@media (max-width:390px){
+.search-detail {
+    margin: 0 11px 0 0;
+    position: absolute;
+    top: 40px;
+    right: 93px;
+}
+.Country-time {
+    text-align: center;
+}
+#searchBoxOpener:checked + label + .searchForm {
+    width: 160px;
+    border: 1px solid #dfdfdf;
+}
+.list-box-courses .both-bt a.button-default {
+    min-width: 43%;
+}
+.price-col {
+    width: 100%;
+    margin: 0 0 7px;
+}
+.totalHours-col {
+    width: 100%;
+}
+.computerStudies-slide .carousel-control-next, .computerStudies-slide .carousel-control-prev {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    top: 24%;
+}
+}

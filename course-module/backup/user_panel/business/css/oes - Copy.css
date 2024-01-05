@@ -1,0 +1,585 @@
+@charset "utf-8";
+/* CSS Document */
+body{ padding:0; margin:0; font-family: 'Roboto', sans-serif;}
+.cms_index{ float:left; width:100%; padding:14px 0 55px 0; margin:0; background:url(../images/top_banner.jpg) no-repeat 0 0; background-size:cover; background-attachment:fixed;}
+
+/***********************Header Panel start Here*********************************/
+.header_panel{ float:left; width:100%;}
+.top_navigation{  width:390px; padding:0; margin:0; float:right; position:relative; background:#075b82; height:41px;}
+.top_navigation:after{ content:""; width:33px; height:41px; position:absolute; left:-32px; top:0; background:url(../images/top-new.png) no-repeat 0 0;}
+.top_navigation ul{ list-style-type:none; padding:12px 0 12px 10px; margin:0;}
+.top_navigation ul li{ float:left; background:url(../images/nav-line.png) no-repeat 100% 50%; padding:0 15px}
+.top_navigation ul li:last-child{ background:url(../images/cart-icon.png) no-repeat 100% 50%; padding:0 20px 0 15px}
+.top_navigation ul li a{ font-family: 'Roboto', sans-serif; font-size:13px; text-transform:uppercase; color:#fff; font-weight:400;}
+.top_navigation ul li a:hover{ text-decoration:underline;}
+
+.logo_and_nav{ float:left; width:100%; padding:0; margin:0; background:#fff;}
+.logo_and_nav .logo{ float:left; width:100%; padding:13px 0 13px 8px; margin:0;}
+.search_and_call{ float:left; width:100%; padding:0 12px 0 0; margin:0;}
+.search_and_call .search_box{ float:right; border:solid 1px #959595; padding:2px; margin:37px 15px 0 0;}
+.search_and_call .search_box input[type="text"]{ border:none;}
+.search_and_call .search_box button{ background:#fff; border:none;}
+.search_and_call .search_box .glyphicon-search{ color:#a3a3a3;}
+.search_and_call .callus{ float:right;}
+.search_and_call .callus p{ padding:44px 0 0 0; margin:0; font-family: 'Roboto', sans-serif; font-size:15px; line-height:15px; font-weight:500; color:#0082bf; text-transform:uppercase;}
+.search_and_call .callus p span{ color:#717171;}
+.navbigation_panel{ float:left; width:100%; padding:0; margin:0;}
+.navbigation_panel nav{ padding:0; margin:0;}
+.navbigation_panel .navbar-default{ border:none; background:none;}
+.navbigation_panel .navbar-collapse{ padding-right:0;}
+.navbigation_panel .navbar-nav > li{ padding:0 0 0 0;}
+.navbigation_panel .navbar-nav > li > a{ padding:15px 9px 5px 9px;  font-family: 'Roboto', sans-serif; color:#6e777e; text-transform:uppercase; font-weight:400; border-bottom:dotted 1px #fff;}
+.navbigation_panel .navbar-nav > li > a:hover{ color:#075b82; border-bottom:dotted 1px #075b82;}
+/***********************Home Page slider panel design start here************************************/
+.home_slider{ float:left; width:100%; padding:54px 0 0 0; margin:0;}
+.home_slider .item_pic{ text-align:center;}
+.home_slider .item_pic img{ text-align:center; margin:0 0 0 206px;}
+.home_slider .item_form{}
+.home_slider .item_form h2{ font-family:"Myriad Pro"; color:#c8b2cc; padding:100px 0 0 0; margin:0; font-size:68px; font-weight:bold; line-height:68px; font-style:italic; text-transform:uppercase;}
+.home_slider .item_form ul{ list-style-type:none; padding:30px 0 0 0; margin:0;}
+.home_slider .item_form ul li{ float:left; width:100%; font-family:"Myriad Pro"; font-size:22px; line-height:28px; font-weight:500; color:#fff; background:url(../images/round-shape.png) no-repeat 0 50%; padding:0 0 0 30px;}
+
+.home_slider .item_form .course_form{ width:100%; background:#fff; padding:30px; margin:100px 0 0 0; border-radius:15px; -webkit-border-radius:15px; -moz-border-radius:15px; -ms-border-radius:15px; -o-border-radius:15px;}
+.home_slider .item_form .course_form h3 {  font-family:"Myriad Pro"; color:#828282; padding:20px 0 20px 0; margin:0; font-size:30px; font-weight:bold; line-height:35px; font-style:italic; text-align:center;}
+.home_slider .item_form .course_form .form-control{ border:solid 1px #e7e7e7; border-radius:0; box-shadow:none; margin-bottom:10px; padding:10px;}
+.home_slider .item_form .course_form .btn-default{ background:#45ebff; color:#fff; border:solid 1px #45ebff; text-transform:uppercase; font-family:"Myriad Pro"; font-size:20px; padding:5px 30px; margin:0 0 0 95px;}
+.home_slider .item_form .course_form .btn-default:hover{ background:#000946; border:solid 1px #000946;}
+/*********************Course Model Panel Design start here*******************/
+.course_model{ float:left; width:100%; padding:50px 0; margin:0;}
+.course_model h2{ position:relative; text-align:center; width:100%; padding:0; margin:0 0 30px 0; font-family:"Myriad Pro"; font-size:36px; color:#595959; font-weight:600;}
+.course_model h2:before{ position:absolute; top:100%; content:""; width:50px; height:5px; background:#45ebff; left:48%;}
+.course_boxs{ float:left; width:100%; padding:0; margin:0;}
+.course_boxs .course-top{ float:left; width:100%; padding:0; margin:0; position:relative;}
+.course_boxs .course-top a img{ width:100%; opacity:0.5;}
+.course_boxs .course-top a:hover img, .course_boxs .course-top a:hover span{ opacity:1; color:#ffffff;}
+.course_boxs .course-top a span{ position:absolute; top:50%; text-align:center; width:100%; left:0; font-family:"Myriad Pro"; font-size:30px; color:#2f2f2f; font-weight:600;}
+.course_boxs .course-bottom{ float:left; width:100%; padding:0; margin:0; text-align:center;}
+.course_boxs .course-bottom p{font-family: 'Roboto', sans-serif; font-size:14px; line-height:18px; font-weight:400; color:#777777; padding:14px 10px; text-align:center; margin:0;}
+.course_boxs .course-bottom a{ text-align:center; font-size:16px; line-height:20px; font-weight:normal; color:#00d3ec; text-decoration:underline; font-style:italic;}
+.course_boxs .course-bottom a:hover{ text-decoration:none;}
+/************footer panel design here****************************/
+.footer_big_col{ float:left; width:100%; padding:0 0 35px 0; margin:0; background:#0082bf;}
+.footer_panel{ float:left; width:100%; padding:35px 0 0 0; margin:0;}
+.footer_panel .logos{ float:left; width:100%; padding:0; margin:0;}
+.footer_panel .logos ul{ list-style-type:none; padding:0; margin:0;}
+.footer_panel .logos ul li{ float:left; width:46%; margin:0 8px 8px 0;}
+.footer_panel .logos ul li img{ width:100%;}
+.footer_panel .logos ul li:first-child{ width:95%;}
+
+.footer_panel .footer_right{ float:left; width:100%; padding:0; margin:0;}
+.footer_panel .footer_right .footer_top_part{ float:left; width:100%; padding:0; margin:0;}
+.footer_panel .footer_right .footer_top_part h2{ font-family:"Myriad Pro"; font-weight:bold; font-size:22px; line-height:32px; color:#fff; padding:0 0 10px 0; margin:0; border-bottom:solid 1px #fff; font-style:italic;}
+.footer_panel .footer_right .footer_top_part ul{ list-style-type:none; padding:10px 0 0 0; margin:0;}
+.footer_panel .footer_right .footer_top_part ul li{ float:left; width:100%;}
+.footer_panel .footer_right .footer_top_part ul li a { font-family:"Myriad Pro"; font-size:17px; line-height:34px; font-weight:normal; color:#fff; background:url(../images/arrow.png) no-repeat 0 50%; padding:0 0 0 15px; font-style:italic;}
+.footer_panel .footer_right .footer_top_part ul li a:hover{}
+.footer_panel .footer_right .address_book{ float:left; width:100%; padding:22px 0 0 0; margin:0;}
+.footer_panel .footer_right .address_book h3{ padding:0 0 5px 0; margin:0; color:#fff; font-family: 'Roboto', sans-serif; font-size:18px; line-height:19px; font-weight:500;}
+.footer_panel .footer_right .address_book p{ font-family: 'Roboto', sans-serif; font-size:18px; line-height:19px; font-weight:300; color:#fff; padding:0; margin:0;}
+.footer_panel .footer_right .address_book i{ font-size:30px; color:#fff;}
+.footer_panel .footer_right .email{}
+.footer_panel .footer_right .email i{ font-size:20px;}
+
+.footer_panel .footer_right .footer_end{ float:left; width:100%; padding:23px 0 0 0; margin:0;}
+.footer_panel .footer_right .footer_end h2{ font-family:"Myriad Pro"; font-weight:bold; font-size:22px; line-height:32px; color:#fff; padding:0 0 10px 0; margin:0 0 0 0; border-bottom:solid 1px #fff; font-style:italic;}
+.footer_panel .footer_right .footer_end h2.accecpted{ border-bottom:none;}
+.footer_panel .footer_right .footer_end .social_icon{ list-style-type:none; padding:10px 0 0 0; text-align:center;}
+.footer_panel .footer_right .footer_end .social_icon li{ width:30px; height:30px; float:none; margin:0 5px 0 0; display:inline-block;}
+.footer_panel .footer_right .footer_end .social_icon li a{  -webkit-transition: all 1s ease-in-out;  -moz-transition: all 1s ease-in-out;  -o-transition: all 1s ease-in-out;  transition: all 1s ease-in-out;}
+.footer_panel .footer_right .footer_end .social_icon li a i{ background:#000946; width:30px; height:30px; border-radius:50px; -webkit-border-radius:50px; -ms-border-radius:50px; -moz-border-radius:50px; -o-border-radius:50px; text-align:center; font-size:15px; line-height:30px; color:#0082bf;  -webkit-transition: all 1s ease-in-out;  -moz-transition: all 1s ease-in-out;  -o-transition: all 1s ease-in-out;  transition: all 1s ease-in-out;}
+.footer_panel .footer_right .footer_end .social_icon li a:hover i{ color:#000946; background:#fff;}
+
+/*****************************footer End Section panel design start here*************************/
+.design_copy_col{ float:left; width:100%; padding:15px 0; margin:0; background:#075b82;}
+.design_copy_col p{ padding:0; margin:0; color:#fff; font-family: 'Roboto', sans-serif; font-size:14px;}
+.design_copy_col p.design{ font-size:13px; text-align:right;}
+.design_copy_col p.design a{ color:#fff;}
+
+/*------------------------ About Us -------------------------*/
+.about-bg{
+	background:url(../images/about-bg.png) no-repeat 0 0;
+	background-size:cover;
+	}
+.page-heading{
+	text-align:center;
+	color:#fff;
+	font-style:italic;
+	font-size:36px;
+	padding-top:100px;
+	padding-bottom:100px;
+	position:relative;
+	}
+.page-heading:after{
+	content:"";
+	width:50px;
+	height:5px;
+	background:#45ebff;
+	left:0;
+	right:0;
+	bottom:80px;
+	position:absolute;
+	margin:0 auto;
+	}
+.about-panel{
+	margin-top:40px;
+	}
+.about-panel p{
+	color:#959595;
+	line-height:24px;
+	font-size:15px;
+	}
+.about-panel img{
+	margin-bottom:10px;
+	}
+	
+	
+
+	.item{
+	width:auto;
+	height:100%;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+	}
+.item img{
+	max-width: 100%;
+	height: auto;
+	text-align: center;
+	float: none;
+	display: inline-block;
+}
+.owl-carousel{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+}
+.owl-theme .owl-nav{
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	}
+.owl-prev{
+	left: -30px;
+	top: -20px;
+	width:67px;
+	height:67px;
+	line-height:30px;
+	color:#fff;
+	cursor:pointer;
+	background:url(../images/owl-prev.png);
+	text-align:center;
+	position: absolute;
+	text-indent: -20000px;
+	}
+.owl-next{
+	position:absolute;
+	right: -30px;
+	top: -20px;
+	width:67px;
+	height:67px;
+	line-height:30px;
+	color:#fff;
+	cursor:pointer;
+	text-align:center;
+	background:url(../images/owl-next.png);
+	text-indent: -20000px;
+	}
+.owl-carousel .owl-item{
+	text-align: center;
+	}
+.owl-carousel .owl-item img{ display: inline-block;}	
+.timeline{
+	border: 2px solid #0082bf;
+	padding: 50px 0;
+	width: 80%;
+	margin: 50px auto;
+	position: relative;
+
+}
+.timeline h3{
+	position: absolute;
+    top: -25px;
+    text-align: center;
+    color: #595959;
+    background: #fff;
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+    display: inline-block;
+    margin: 0 auto;
+    width: 220px;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.padding-50{
+	padding: 50px 0;
+}
+/*------------------------ End About Us -------------------------*/
+/*------------------------ Categories -------------------------*/
+.categories_bg{
+	background:url(../images/categories_bg.png) no-repeat 0 0;
+	background-size:cover;
+	}
+.categories,.subcategories,.courses{
+	text-align:center;
+	}
+.categories-sec h2{
+	font-style:italic;
+	color:#595959;
+	text-transform:uppercase;
+	margin: 30px auto;
+	}
+.categories-btn{
+	width:275px;
+	height:53px;
+	line-height: 53px;
+	background:url(../images/categories-btn.png) repeat-x;
+	display: block;
+	color: #fff;
+	border-radius: 8px;
+	text-transform: uppercase;
+	margin: 0 auto;
+	margin-bottom: 25px;
+	text-align: left;
+	padding: 0px 14px;
+	}
+.categories-btn:hover,.categories-btn:active,.categories-btn:focus{
+	color: #eee;
+	text-decoration: none;
+}
+.categories-green-btn{
+	width:290px;
+	height:57px;
+	line-height: 57px;
+	background:url(../images/categories-green-btn.png) repeat-x;
+	display: block;
+	color: #fff;
+	border-radius: 8px;
+	text-transform: uppercase;
+	margin: 0 auto;
+	margin-bottom: 25px;
+	font-weight: 600;
+	text-align: left;
+	padding: 0px 14px;
+	}
+.categories-green-btn:hover,.categories-green-btn:active,.categories-green-btn:focus{
+	color: #eee;
+	text-decoration: none;
+}
+.classroom_booking_bg{
+	background:url(../images/classroom_booking_bg.png) no-repeat center center;
+	background-size:cover;
+	}
+/*------------------------ End Categories -------------------------*/
+/*------------------------ Classroom Booking -------------------------*/
+.classroom_booking .col-sm-2{
+	padding:0;
+	}
+.tablink-light,.tablink-dark,.tablink-active{
+	width:100%;
+	height:140px;
+	background:url(../images/tablink-light.png) repeat-x;
+	padding:0 10px;
+	text-align:center;
+	color:#fff;
+	text-decoration: none;
+	line-height:140px;
+	font-size: 20px;
+	}
+.tablink-light a,.tablink-dark a,.tablink-active a{
+	color:#fff;
+	text-decoration: none;
+	display: block;
+}
+.tablink-light a:hover,.tablink-dark a:hover,.tablink-active a:hover,
+.tablink-light a:active,.tablink-dark a:active,.tablink-active a:active,
+.tablink-light a:focus,.tablink-dark a:focus,.tablink-active a:focus{
+	color:#fff;
+	text-decoration: none;
+}
+.tablink-dark{
+	background:url(../images/tablink-dark.png) repeat-x;
+	}
+.tab-big-text{
+	line-height:19px !important;
+	text-align:left;
+	font-size:12px;
+	padding-top:10px;
+	}
+.tablink-active{
+	background:#fff;
+	color: #0082bf;
+	}
+.cb-left{
+	margin-top:100px;
+}
+.cb-left h4{
+	color: #0082bf;
+	font-size: 38px;
+	font-style: italic;
+	padding-bottom: 10px;
+}
+/*.cb-left h4:after{
+	content: "";
+	width: 160px;
+	height: 5px;
+	background: #075b82;
+	left: 0px;
+	bottom: 0px;
+	position: absolute;
+}*/
+.cb-left h3,.cb-right h3{
+	color: #595959;
+	font-size: 34px;
+	padding-top: 20px;
+	margin-bottom: 50px;
+}
+.cb-left h5{
+	color: #075b82;
+	font-size: 24px;
+}
+.cb-right{
+	text-align: right;
+	margin-top:100px;
+}
+.price{
+	color: #96aa1e;
+	font-size: 38px;
+	font-style: italic;
+}
+.cu-table{
+	width: 100%;
+	border: 2px solid #075b82;
+	text-align: center;
+}
+.cu-table tr th{
+	background: #0082bf;
+	border: 2px solid #075b82;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	padding: 20px 0;
+}
+.cu-table tr td{
+	border: 2px solid #075b82;
+	color: #595959;
+	font-size: 34px;
+	padding: 18px 0;
+}
+.small-tabel{
+	width: 100%;
+	border: 2px solid #075b82;
+	text-align: center;
+	margin-bottom:50px;
+}
+.small-tabel tr th{
+	background: #0082bf;
+	border: 2px solid #075b82;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	padding: 25px;
+}
+.small-tabel tr td{
+	border: 2px solid #075b82;
+	color: #595959;
+	font-size: 16px;
+	padding: 18px 0;
+	font-weight:bold;
+}
+.small-book{
+	padding:5px 16px;
+	color:#fff;
+	background:#8c9f1b;
+	outline:0;
+	border:0px;
+	border-radius:4px;
+	}
+.heading1{
+	color: #0082bf;
+	font-size: 24px;
+	margin: 20px 0;
+	font-weight: 500;
+}
+.heading1 span{
+	color: #555;
+}
+.heading2{
+	color: #595959;
+	font-size: 24px;
+	background: url(../images/maplocation.png) no-repeat 0 0;
+	padding-left: 35px;
+}
+.heading2 a{
+	color: #0082bf;
+	text-decoration: none;
+	margin-left: 15px;
+	border-bottom: 2px solid #7fc0df;
+}
+.heading2 a:hover,.heading2 a:active,.heading2 a:active{
+	color: #0082bf;
+	text-decoration: none;
+	border-bottom: 2px solid #0082bf;
+}
+.book-btn{
+	width: 255px;
+	height: 57px;
+	background: url(../images/categories-green-btn.png)  repeat-x;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	line-height: 57px;
+	display: block;
+	border-radius: 4px;
+	font-size: 40px;
+	font-weight: 600;
+	margin: 30px 0;
+}
+.book-btn:hover,.book-btn:active,.book-btn:focus{
+	color: #eee;
+	text-decoration: none;
+}
+/*-------------- Radio Button -------------*/
+.radio_cu{
+	display:inline-block;
+	margin-right:10px;
+	color:#696969;
+	font-size:20px;
+	}
+.regular-radio {
+    display:none;
+}
+.regular-radio + .la-cu {
+    -webkit-appearance:none;
+    background:url(../images/radio.png) no-repeat;
+    padding:9px;
+    border-radius:50px;
+    display:inline-block;
+    position:relative;
+	margin-bottom:0px;
+	top:2px;
+	cursor:pointer;
+}
+.regular-radio:checked + .la-cu:after {
+    content:' ';
+    width:12px;
+    height:12px;
+    border-radius:50px;
+    position:absolute;
+    top:3px;
+    background:url(../images/radio-ch.png) no-repeat;
+    text-shadow:0;
+    left:3px;
+    font-size:32px;
+}
+.regular-radio:checked + .la-cu {
+    background-color:#e9ecee;
+    color:#99a1a7;   
+}
+.big-radio:checked + .la-cu:after {
+    width:18px;
+    height:18px;
+    left:0px;
+    top:0px;
+}
+/*-------------- End Radio Button -------------*/
+.fildname{
+	font-size:24px;
+	color:#595959;
+	font-weight:600;
+	}
+.form-sec .row{
+	margin-top:20px;
+	}
+.select_cu{
+	width:450px;
+	height:50px;
+	border:1px solid #eee;
+	outline:0;
+	font-size:20px;
+	color:#b8b8b8;
+	padding:0px 15px;
+	background:url(../images/select_cu.png) no-repeat 98% 50%;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	-o-appearance:none;
+	appearance:none;
+	}
+.input_cu{
+	width:450px;
+	height:50px;
+	border:1px solid #eee;
+	outline:0;
+	font-size:20px;
+	color:#b8b8b8;
+	padding:0px 15px;
+	}
+.heading3{
+	margin:15px 0;
+	color: #595959;
+    font-size: 34px;
+    padding-top: 20px;
+	}
+/*---------------- Checkbox ------------*/
+.regular-checkbox {
+    display:none;
+}
+.regular-checkbox + .checkbox_cu_label {
+	background:url(../images/checkbox.png) no-repeat;
+    padding:9px;
+    border-radius:3px;
+    display:inline-block;
+    position:relative;
+	width:33px;
+	height:33px;
+}
+.regular-checkbox:checked + .checkbox_cu_label{
+    color:#99a1a7;
+}
+.regular-checkbox:checked + .checkbox_cu_label:after {
+    content:'';
+    font-size:14px;
+    position:absolute;
+    top:0;
+    left:0px;
+    color:#99a1a7;
+	background:url(../images/checkbox-ch.png) no-repeat;
+	width:33px;
+	height:33px;
+}
+.big-checkbox + .checkbox_cu_label {
+    padding:18px;
+}
+.big-checkbox:checked + .checkbox_cu_label:after {
+    font-size:28px;
+    left:6px;
+}
+/*---------------- End Checkbox ------------*/
+/*------------------------ End Classroom Booking -------------------------*/
+/*------------------------ Distance Booking -------------------------*/
+.distance_booking{
+	background:url(../images/distance_booking.png) no-repeat center center;
+	background-size:cover;
+}
+/*------------------------ End Distance Booking -------------------------*/
+/*------------------------ Flexibility Booking -------------------------*/
+.flexibility_booking{
+	background:url(../images/flexibility_booking.png) no-repeat center center;
+	background-size:cover;
+}
+/*------------------------ End Flexibility Booking -------------------------*/
+.fontsize-24{
+	font-size:24px;
+	}
+.book-hours{
+	border:2px solid #91a41c;
+	width:50px;
+	height:30px;
+	border-radius:4px;
+	outline:0;
+	text-align:center;
+	}

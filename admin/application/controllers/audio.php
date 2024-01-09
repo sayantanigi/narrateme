@@ -108,7 +108,7 @@ class Audio extends CI_Controller {
 
 						'audio_date' => date('Y-m-d H:i:s',strtotime($this->input->post('audio_date'))),
 
-						'description' => mysql_real_escape_string(stripcslashes(trim($this->input->post('description')))),
+						'description' => stripcslashes(trim($this->input->post('description'))),
 
 						'link_rec_audio' => $this->input->post('link_rec_audio'),
 
@@ -262,7 +262,7 @@ class Audio extends CI_Controller {
 
 							'status' => $this->input->post('status'),
 
-							'description' =>mysql_real_escape_string(stripcslashes(trim($this->input->post('description'))))
+							'description' =>stripcslashes(trim($this->input->post('description')))
 
 							
 

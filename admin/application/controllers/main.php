@@ -30,7 +30,7 @@ class Main extends CI_Controller {
 				redirect(base_url('home'));
 			} else {
 				$this->session->set_flashdata('message', 'Incorrect email address and password.');
-				redirect(admin_url());
+				redirect(base_url());
 			}
 		}
 	}
@@ -49,9 +49,9 @@ class Main extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			$data['title'] = "Admin Reset Password";
 			$sessionData = $this->session->userdata('is_logged_in');
-			$this->data['id'] = $sessionData['id'];
+			$this->data['id'] = @$sessionData['id'];
 			$id=$this->input->post('id');
-			$this->data['UserName'] = $sessionData['UserName'];
+			$this->data['UserName'] = @$sessionData['UserName'];
 			$this->load->view('header',$data);
 			$this->load->view('resetpassword', $data);
 			$this->load->view('footer');

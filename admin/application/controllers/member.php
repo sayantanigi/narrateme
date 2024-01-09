@@ -152,7 +152,7 @@ class Member extends CI_Controller {
 
 				
 
-					$userlink=random_string('alnum',12);
+					$userlink=rand(000000,999999);
 
 					$ind=@$this->input->post('ind');
 

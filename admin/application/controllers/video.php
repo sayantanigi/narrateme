@@ -108,7 +108,7 @@ class Video extends CI_Controller {
 
 						'video_date' => date('Y-m-d H:i:s',strtotime($this->input->post('video_date'))),
 
-						'description' => mysql_real_escape_string(stripcslashes(trim($this->input->post('description')))),
+						'description' => stripcslashes(trim($this->input->post('description'))),
 
 						'link_rec_video' => $this->input->post('link_rec_video'),
 
@@ -262,7 +262,7 @@ class Video extends CI_Controller {
 
 							'status' => $this->input->post('status'),
 
-							'description' =>mysql_real_escape_string(stripcslashes(trim($this->input->post('description'))))
+							'description' =>stripcslashes(trim($this->input->post('description')))
 
 							
 

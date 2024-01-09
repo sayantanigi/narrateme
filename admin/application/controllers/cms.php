@@ -155,7 +155,7 @@ class Cms extends CI_Controller {
 			'cms_pagetitledes' => $this->input->post('cms_pagetitledes'),  
 			'cms_page_heading' => $this->input->post('cms_page_heading'),
 			'cmsimg' => $data['img']['file_name'],
-			'cmsmap' => mysql_real_escape_string($this->input->post('cmsmap')),
+			'cmsmap' => $this->input->post('cmsmap'),
 			'meta_keywords' => $this->input->post('meta_keywords'),
 			'meta_description' => $this->input->post('meta_description'),
 			'cms_pagedes' => $this->input->post('cms_pagedes')		
@@ -177,7 +177,7 @@ class Cms extends CI_Controller {
 			'cms_pagetitle' => $this->input->post('cms_pagetitle'),
 			'cms_pagetitledes' => $this->input->post('cms_pagetitledes'),  
 			'cms_page_heading' => $this->input->post('cms_page_heading'),
-			'cmsmap' => mysql_real_escape_string($this->input->post('cmsmap')),
+			'cmsmap' => $this->input->post('cmsmap'),
 			'meta_keywords' => $this->input->post('meta_keywords'),
 			'meta_description' => $this->input->post('meta_description'),
 			'cms_pagedes' => $this->input->post('cms_pagedes')		
@@ -282,7 +282,7 @@ class Cms extends CI_Controller {
 			'cms_pagetitledes' => $this->input->post('cms_pagetitledes'), 
 			'cms_page_heading' => $this->input->post('cms_page_heading'),
 			'cmsimg' => $data['img']['file_name'],
-			'cmsmap' => mysql_real_escape_string($this->input->post('cmsmap')),
+			'cmsmap' => $this->input->post('cmsmap'),
 			'meta_keywords' => $this->input->post('meta_keywords'),
 			'meta_description' => $this->input->post('meta_description'),
 			'cms_pagedes' => $this->input->post('cms_pagedes')		
@@ -312,7 +312,7 @@ class Cms extends CI_Controller {
 			'cms_pagetitle' => $this->input->post('cms_pagetitle'),
 			'cms_pagetitledes' => $this->input->post('cms_pagetitledes'),  
 			'cms_page_heading' => $this->input->post('cms_page_heading'),
-			'cmsmap' => mysql_real_escape_string($this->input->post('cmsmap')),
+			'cmsmap' => $this->input->post('cmsmap'),
 			'meta_keywords' => $this->input->post('meta_keywords'),
 			'meta_description' => $this->input->post('meta_description'),
 			'cms_pagedes' => $this->input->post('cms_pagedes')		

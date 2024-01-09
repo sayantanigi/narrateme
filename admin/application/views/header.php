@@ -143,7 +143,7 @@
 
           <ul class="dropdown-menu dropdown-menu-default">
 
-            <li> <a href="<?php echo base_url();?>index.php/home"> <i class="icon-calendar"></i> Dashboard </a> </li>
+            <li> <a href="<?php echo base_url();?>home"> <i class="icon-calendar"></i> Dashboard </a> </li>
 
             <!--<li> <a href="app_calendar.html"> <i class="icon-calendar"></i> My Calendar </a> </li>-->
 
@@ -155,7 +155,7 @@
 
            <!-- <li> <a href="page_user_lock_1.html"> <i class="icon-lock"></i> Lock Screen </a> </li>-->
 
-            <li> <a href="<?php echo base_url()?>index.php/main/logout"> <i class="icon-key"></i> Log Out  </a> </li>
+            <li> <a href="<?php echo base_url()?>home/logout"> <i class="icon-key"></i> Log Out  </a> </li>
 
           </ul>
 

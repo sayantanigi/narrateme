@@ -3,148 +3,39 @@ include('lib/inner_header.php');
 sequre();
 $view=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."'");
 //==========================SUPRATIM 15/07/2016===================
-if ($_REQUEST['submit']=="Update Userdata"){
-	 extract($_POST);
-	 $dateob=date('Y-m-d',strtotime($dateofbirth));
-	
-$data=array('first_name'=>mysql_real_escape_string(stripcslashes($first_name)),'last_name'=>mysql_real_escape_string(stripcslashes($last_name)),'dateofbirth'=>$dateob,'gender'=>$gender,'url'=>$url,'domain_name'=>$domain_name,'website'=>$website,'phone_no'=>$phone_no,'email'=>$email,'address'=>$address,'informational_description'=>addslashes($informational_description), 'current_student'=>$current_student, 'cellularphone_no'=>$cellularphone_no, 'IpAddress'=>$IpAddress, 'skype_url'=>$skype_url, 'social_seq_no'=>$social_seq_no, 'lastedit' => date('Y-m-d H:i:s'));
-$result=updateData($data,'na_member', "id='".$id."'") ;
-	
+if ($_REQUEST['submit']=="Update Userdata") {
+    extract($_POST);
+    $dateob=date('Y-m-d',strtotime($dateofbirth));	
+    $data=array('first_name'=>mysql_real_escape_string(stripcslashes($first_name)),'last_name'=>mysql_real_escape_string(stripcslashes($last_name)),'dateofbirth'=>$dateob,'gender'=>$gender,'url'=>$url,'domain_name'=>$domain_name,'website'=>$website,'phone_no'=>$phone_no,'email'=>$email,'address'=>$address,'informational_description'=>addslashes($informational_description), 'current_student'=>$current_student, 'cellularphone_no'=>$cellularphone_no, 'IpAddress'=>$IpAddress, 'skype_url'=>$skype_url, 'social_seq_no'=>$social_seq_no, 'lastedit' => date('Y-m-d H:i:s'));
+    $result=updateData($data,'na_member', "id='".$id."'") ;
 	echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 	echo "window.top.location.href='individual.php?update=success';\n";
 	echo "</script>";
-	
-	}
+}
 //==========================SUPRATIM 15/07/2016===================
-if(isset($_REQUEST['type'])){
-
-		$typedata=$_REQUEST['type'];
-
-		if($typedata=='ind'){
-
-			$data=array('ind'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='std'){
-
-			$data=array('std'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='edu'){
-
-			$data=array('edu'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}else if($typedata=='fac'){
-
-			$data=array('fac'=>1);
-
-			$InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
-
-		}
-
-	}
-
-$pagename = basename($_SERVER['PHP_SELF']);
-
-//================================SUPRATIM Individual Add/Update/view===================================
-
-
-
-	//================================SUPRATIM Individual Add/Update/view===================================
-
-	
-
-
-	//================================SUPRATIM Individual Award Add/Update/view==============================
-
-	//Delete Awards
-
-
-
-	//================================SUPRATIM Individual Award Add/Update/view==============================
-
-	
-
-	//================================SUPRATIM Rehab Award Add/Update/view==============================
-
-		
-
-	//================================SUPRATIM Rehab Award Add/Update/view==============================
-
-	
-
-	//================================SUPRATIM Institute Award Add/Update/view==============================
-
-
-	//================================SUPRATIM Institute Award Add/Update/view==============================
-
-	
-
-	//================================SUPRATIM Institute Teacher Add/Update/view==============================
-
-	
-
-	//================================SUPRATIM Institute Teacher Add/Update/view==============================
-
-	//=========================Academic Transcript================================
-	
-	
-	//=========================Academic Transcript================================
-	
-	//=========================Credit Report================================
-	
-	
-	//=========================Credit Report================================
-	
-	//========================Credit Report Issuer Section=======================================
-
-	//========================Credit Report Issuer Section=======================================
-
-	//================================SUPRATIM coach Add/Update/view==============================
-
-
-	//================================SUPRATIM Extra Add/Update/view==============================
-
-
-
-);
+if(isset($_REQUEST['type'])) {
+    $typedata=$_REQUEST['type'];
+    if($typedata=='ind'){
+        $data=array('ind'=>1);
+        $InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+    } else if($typedata=='std') {
+        $data=array('std'=>1);
+        $InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+        }else if($typedata=='edu') {
+        $data=array('edu'=>1);
+        $InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
+    } else if($typedata=='fac') {
+        $data=array('fac'=>1);
+        $InsertRegSql=updateData($data,'na_member', " id='" .$_SESSION["userid"]. "' ") ;
     }
 }
-	//================================SUPRATIM issuerofreport Add/Update/view==============================
-
-	
-
-	//================================SUPRATIM report Add/Update/view==============================
-
-	//$viewdrigs = getAlldataWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' ");
-
-	
-
-	$viewreport = getAnyTableWhereData('na_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
-
-	
-
-	$studensreportssql = "SELECT * FROM na_reports WHERE ind_id = '".$_SESSION["userid"]."'";
-
-	$resquery15 = mysql_query($studensreportssql) or mysql_error();
-
-	$stunum15 = mysql_num_rows($resquery15);
-
-	//================================SUPRATIM report Add/Update/view==============================
-
-	
-
-	
-
-
-//================================= Injuries Ends ========================================
-
-//================================ surgeries Starts=====================================
-
+$pagename = basename($_SERVER['PHP_SELF']);
+//$viewdrigs = getAlldataWhereData('na_st_drug', " AND ind_id='".$_SESSION["userid"]."' ");
+$viewreport = getAnyTableWhereData('na_reports', " AND ind_id='".$_SESSION["userid"]."' AND id = '".$_REQUEST['id']."' ");
+$studensreportssql = "SELECT * FROM na_reports WHERE ind_id = '".$_SESSION["userid"]."'";
+$resquery15 = mysql_query($studensreportssql) or mysql_error();
+$stunum15 = mysql_num_rows($resquery15);
+?>
 
 <style>
 

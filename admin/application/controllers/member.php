@@ -202,7 +202,7 @@ class Member extends CI_Controller {
 
 			'username' => $this->input->post('username'),
 
-			'password' => $this->input->post('password'),
+			'password' => base64_encode($this->input->post('password')),
 
 			'ind' =>$ind,
 

@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+session_start();
 class Course extends CI_Controller
 {
 	//============Constructor to call Model====================
@@ -752,7 +753,7 @@ class Course extends CI_Controller
 		$id = end($this->uri->segment_array());
 		$this->generalmodel->show_data_id('sm_syllabus', $id, 'syllabus_id', 'delete', '');
 		$this->session->set_flashdata('success', 'Data Deleted Successfully');
-		redirect('supercontrol/course/syllabus_list/',TRUE);
+		redirect('supercontrol/course/syllabus_list/', TRUE);
 	}
 
 	function add_course_clone1($id)
@@ -979,7 +980,7 @@ class Course extends CI_Controller
 		$primary_key = '';
 		$wheredata = "";
 		$data['batchlists'] = $batchlist = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$batchId = $batchlists->batchId;
+		$batchId = $batchlist->batchId;
 		$data['batchSessionlist'] = $session_list = $this->db->get_where('course_sessions', array('batch_id' => $batchId))->result();
 		//print_r($data['batchSessionlist']);die;
 		$data['locations'] = $this->generalmodel->getlocations();

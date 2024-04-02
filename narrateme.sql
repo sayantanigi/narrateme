@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 01:51 PM
+-- Generation Time: Jan 16, 2024 at 04:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -18,8 +18,89 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `narrateme`
+-- Database: `makutano`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_cart`
+--
+
+CREATE TABLE `add_cart` (
+  `id` bigint(20) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `courseid` int(11) NOT NULL,
+  `cdate` datetime NOT NULL DEFAULT current_timestamp(),
+  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `payment_status` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email_id` varchar(40) DEFAULT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `last_login` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email_id`, `password`, `role`, `status`, `last_login`) VALUES
+(1, 'admin', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '2024-01-10 06:09:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL,
+  `heading` varchar(255) DEFAULT NULL,
+  `sub_heading` varchar(255) DEFAULT NULL,
+  `banner_image` varchar(255) DEFAULT NULL,
+  `banner_url` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id`, `heading`, `sub_heading`, `banner_image`, `banner_url`, `status`, `created_at`) VALUES
+(1, 'World Leading Learning Platform', 'People Expect to be Bored of Learning &lt;br&gt; DONT BE', 'h2-11.jpg', 'https://dev.igiapp.com/concepttocreation/course-detail/7', 1, '2023-05-04 16:36:42'),
+(2, 'Beyond Automation', 'RECREATE yourself &lt;br&gt; EXPONENTIALLY!', 'h2-21.jpg', 'https://dev.igiapp.com/concepttocreation/course-detail/7', 1, '2023-05-04 16:38:44'),
+(3, 'Concept To Creation', 'Use your uniqueness  &lt;br&gt; to automate creativity!', 'pexels-buro-millennial-1438072.jpg', 'https://dev.igiapp.com/concepttocreation/course-detail/8', 1, '2023-05-16 05:20:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `uploaded_by` varchar(255) NOT NULL,
+  `popular` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -65,6 +146,43 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_description`, `parent_id`, `add_date`, `status`) VALUES
 (1, 'development new', '', 0, '2017-05-09', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cert_payments`
+--
+
+CREATE TABLE `cert_payments` (
+  `id` bigint(20) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `courseid` int(11) NOT NULL,
+  `shiped_price` varchar(50) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
+  `trans_id` varchar(255) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cert_verify`
+--
+
+CREATE TABLE `cert_verify` (
+  `id` int(11) NOT NULL,
+  `cert_name` varchar(255) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `org_name` varchar(255) NOT NULL,
+  `org_fname` varchar(255) NOT NULL,
+  `org_lname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `rply_text` longtext NOT NULL,
+  `rply_status` int(11) NOT NULL,
+  `rply_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48467,6 +48585,93 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cms`
+--
+
+CREATE TABLE `cms` (
+  `id` int(11) NOT NULL,
+  `page` varchar(255) DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `meta_title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `meta_description` text NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `image1` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `cms`
+--
+
+INSERT INTO `cms` (`id`, `page`, `title`, `meta_title`, `slug`, `meta_description`, `description`, `image`, `image1`, `status`, `created_at`) VALUES
+(1, 'About us', 'Welcome to The Concept To Creation', 'Welcome to The Concept To Creation', 'welcome-to-the-concept-to-creation', 'Recogizing the need is the primary than we expected Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus,', '<p><strong>Recogizing the need is the primary than we expected Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus,</strong></p>\r\n\r\n<p><span class=\"marker\"><em><strong>Great Site to Learn and Gain Knowledge.</strong></em></span></p>\r\n', 'image11.png', '', 1, '2019-01-30 02:28:24'),
+(2, 'Privacy Policy', 'Privacy Policy', 'Privacy Policy', 'privacy-policy', '', '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n', '', '', 1, '2019-04-10 06:10:58'),
+(4, 'Why students choose us', 'Why students choose us?', 'Why students choose us?', 'why-students-choose-us', 'Why students choose us?', '<p>Leverage our experience and collaborations.</p>\r\n', '', '', 1, '2020-10-30 04:40:10'),
+(5, 'Self Paced online', 'Self Paced online', 'Self Paced online', 'self-paced-online', 'Self Paced online', '<p>Online industry standard certifications, thoroughly prepared by experts.</p>\r\n', '', '', 1, '2020-10-30 04:40:50'),
+(6, 'Mentorship', 'Mentorship', 'Mentorship', 'mentorship', 'Mentorship', '<p>One on one mentorship access to professionals with decades of experience in pharmaceuticals.</p>\r\n', '', '', 1, '2020-10-30 04:41:35'),
+(12, 'Terms of Service', 'Terms of Service', '', 'terms-of-service', '', '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n\r\n<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>\r\n', '', '', 1, '2020-12-10 06:24:08'),
+(13, 'Hands on work experience', 'Hands on work experience', 'Hands on work experience', 'hands-on-work-experience', 'Hands on work experience', '<p>With safety databases, CTMS, eTMF, EDC applications.</p>\r\n', '', '', 1, '2021-01-08 01:20:44'),
+(14, 'Collaborations', 'Collaborations', 'Collaborations', 'collaborations', 'Collaborations', '<p>with hiring agencies, Pharmaceutical/CRO companies.</p>\r\n', '', '', 1, '2021-01-15 04:27:15'),
+(15, 'Job place assistance', '100% Job place assistance', '100% Job place assistance', '100-job-place-assistance', '100% Job place assistance', '<p>End to end assistance with resume writing, mock screens and interview questionnaire.</p>\r\n', '', '', 1, '2021-01-15 04:30:30'),
+(16, 'Get In Touch', 'Get In Touch', 'Get In Touch', 'get-in-touch', 'Get In Touch', '<p>Have some queries or suggestions, or just want to say hi? Our support teams are ready to help you 24/7.</p>\r\n', '', '', 1, '2021-01-15 04:31:05'),
+(20, 'Job readiness', 'Job readiness', 'Job readiness', 'job-readiness', 'Curriculum drafted for current market needs.', '<p>Curriculum drafted for current market needs.</p>\r\n', '', '', 1, '2023-01-19 09:15:40'),
+(21, 'Consulting', 'Consulting Services at Concept To Creation', 'Consulting services at Concept To Creation', 'consulting-services-at-concept-to-creation', 'We offer the best consulting services on this planet', '<p><strong>Knowledge is Information, and the more you share the more you know:</strong></p>\r\n\r\n<p>Our expertise is available to you at all times so that you may benefit from our experience. Our consulting servies include&nbsp;</p>\r\n\r\n<ul>\r\n	<li>Job Consulting</li>\r\n	<li>Career Planning</li>\r\n	<li>Placements and relocation</li>\r\n	<li>Portfolio management</li>\r\n</ul>\r\n\r\n<p>All are welcome, and all shall benefit.</p>\r\n', 'image12.png', 'image1.jpg', 1, '2023-05-05 00:52:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consulting_form`
+--
+
+CREATE TABLE `consulting_form` (
+  `id` bigint(20) NOT NULL,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` int(10) NOT NULL,
+  `msg` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `rply_text` longtext NOT NULL,
+  `rply_status` int(11) NOT NULL,
+  `rply_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` int(15) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `crested_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rply_text` longtext NOT NULL,
+  `rply_status` int(11) NOT NULL,
+  `rply_date` datetime DEFAULT NULL,
+  `address` text NOT NULL,
+  `business_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `fname`, `lname`, `email`, `phone`, `subject`, `message`, `crested_at`, `rply_text`, `rply_status`, `rply_date`, `address`, `business_name`) VALUES
+(1, 'David ds Pavel', '', 'david@domainlions.net', 2147483647, 'Establish your online presence with fromconcepttocreation.com', 'Hi,\r\n\r\nWe wanted to let you know that the domain fromconcepttocreation.com is now available for purchase. If you are interested in acquiring this domain, please follow the link below to get more information and express your interest.\r\n\r\nhttps://domainlions.com/domains/fromconcepttocreation.com\r\n\r\nYou can find more information about this domain on our website, but if you have any questions or need assistance, please don\'t hesitate to reply to this email. We would be happy to help.\r\n\r\nBest regards,\r\nDavid Pavel\r\n\r\n--\r\nDomain Lions LLC\r\nT: +1 661 505 9573', '2023-10-05 14:39:13', '', 0, NULL, '30 N Gould St Ste R', 'Domain Lions'),
+(2, 'David ds Pavel', '', 'david@domainlions.net', 2147483647, 'Establish your online presence with fromconcepttocreation.com', 'Hi,\r\n\r\nWe wanted to let you know that the domain fromconcepttocreation.com is now available for purchase. If you are interested in acquiring this domain, please follow the link below to get more information and express your interest.\r\n\r\nhttps://domainlions.com/domains/fromconcepttocreation.com\r\n\r\nYou can find more information about this domain on our website, but if you have any questions or need assistance, please don\'t hesitate to reply to this email. We would be happy to help.\r\n\r\nBest regards,\r\nDavid Pavel\r\n\r\n--\r\nDomain Lions LLC\r\nT: +1 661 505 9573', '2023-10-05 14:39:15', '', 0, NULL, '30 N Gould St Ste R', 'Domain Lions');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `countries`
 --
 
@@ -48732,6 +48937,52 @@ INSERT INTO `countries` (`id`, `sortname`, `name`, `phonecode`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `cat_id` int(11) NOT NULL,
+  `mode_id` int(11) DEFAULT NULL,
+  `level_id` int(11) DEFAULT NULL,
+  `title` text NOT NULL,
+  `slug` text NOT NULL,
+  `heading_1` text DEFAULT NULL,
+  `heading_2` text DEFAULT NULL,
+  `meta_descr` text NOT NULL,
+  `description` text NOT NULL,
+  `program_overview` longtext DEFAULT NULL,
+  `objectives` longtext DEFAULT NULL,
+  `curriculam` longtext DEFAULT NULL,
+  `duration` longtext DEFAULT NULL,
+  `career_paths` longtext DEFAULT NULL,
+  `course_fees` text NOT NULL,
+  `price` int(11) NOT NULL,
+  `price_key` longtext NOT NULL,
+  `course_type` text DEFAULT NULL,
+  `course_certificate` text DEFAULT NULL,
+  `requirement` text DEFAULT NULL,
+  `rating` int(11) NOT NULL,
+  `attended` text DEFAULT NULL,
+  `image` text NOT NULL,
+  `video` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `user_id`, `cat_id`, `mode_id`, `level_id`, `title`, `slug`, `heading_1`, `heading_2`, `meta_descr`, `description`, `program_overview`, `objectives`, `curriculam`, `duration`, `career_paths`, `course_fees`, `price`, `price_key`, `course_type`, `course_certificate`, `requirement`, `rating`, `attended`, `image`, `video`, `status`, `created_at`) VALUES
+(1, NULL, 1, NULL, NULL, 'Test Course Name', 'test-course-name', 'Test Course Heading 1', 'Test Course Heading 2', '', '<p>Test Course&nbsp;Description</p>\r\n', '<p>Test Course&nbsp;Program Overview</p>\r\n', '<p>Test Course&nbsp;Objectives</p>\r\n', '<p>Test Course&nbsp;Curriculam</p>\r\n', '30', '<p>Test Course&nbsp;Career Paths</p>\r\n', 'free', 0, '', NULL, NULL, NULL, 0, NULL, 'image-blog-revel-top-java-tools1.jpg', '', 1, '2023-07-26 11:34:35'),
+(2, NULL, 1, 2, 1, 'Test course', 'test-course', 'Test course heading 1', 'Test course heading 2', '', '<p>Test course description</p>\r\n', '<p>Test course programme overview</p>\r\n', '<p>Test course objectives</p>\r\n', '<p>Test course curriculam</p>\r\n', '3 Months', '<p>Test course career paths</p>\r\n', 'paid', 299, 'retrewtredfgsdfgdsgdfg', 'Upcoming Courses', 'BOTH', 'Test requirement', 0, 'test attend', 'AI-11.jpg', '', 1, '2024-01-16 11:24:11'),
+(4, 2, 4, 2, 1, 'test', '', 'test', 'test', '', '<p>test</p>', 'test', 'test', 'test', '1 Month', 'test', 'paid', 50, 'qweqwe213wwewdas', 'Upcoming Courses', 'BOTH', 'requirement for 2', 0, 'attend for 2', '1624550510XoNRRYd0t0.png', '', 1, '2024-01-16 12:57:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `course_13032020`
 --
 
@@ -48801,6 +49052,209 @@ INSERT INTO `course_backup24072020` (`course_id`, `course_name`, `course_categor
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `course_enrollment`
+--
+
+CREATE TABLE `course_enrollment` (
+  `enrollment_id` bigint(20) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `enrollment_date` datetime DEFAULT current_timestamp(),
+  `enrollment_price` double DEFAULT NULL,
+  `price_cents` double DEFAULT NULL,
+  `currency` varchar(100) DEFAULT NULL,
+  `currency_symbol` varchar(100) DEFAULT NULL,
+  `payment_status` varchar(255) DEFAULT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course_enrollment`
+--
+
+INSERT INTO `course_enrollment` (`enrollment_id`, `course_id`, `user_id`, `order_id`, `enrollment_date`, `enrollment_price`, `price_cents`, `currency`, `currency_symbol`, `payment_status`, `transaction_id`) VALUES
+(1, 1, 10, NULL, '2023-07-26 07:36:01', 0, 0, 'USD', '$', 'COMPLETED', 'tKBzxsrXuj8QbisENYXyyk7tWYaEg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_enrollment_status`
+--
+
+CREATE TABLE `course_enrollment_status` (
+  `id` bigint(20) NOT NULL,
+  `enrollment_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `module` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `material_type` varchar(100) DEFAULT NULL,
+  `completed_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_materials`
+--
+
+CREATE TABLE `course_materials` (
+  `id` int(11) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `module` bigint(20) DEFAULT NULL,
+  `material_type` varchar(100) DEFAULT NULL,
+  `video_type` varchar(100) DEFAULT NULL,
+  `video_url` text DEFAULT NULL,
+  `video_file` varchar(255) DEFAULT NULL,
+  `material_description` longtext DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `position_order` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_modules`
+--
+
+CREATE TABLE `course_modules` (
+  `id` bigint(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `position_order` int(11) DEFAULT NULL,
+  `name` varchar(350) NOT NULL,
+  `module_image` varchar(255) DEFAULT NULL,
+  `module_descriptions` longtext DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_quiz`
+--
+
+CREATE TABLE `course_quiz` (
+  `id` bigint(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `material_id` bigint(20) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `ans1` varchar(800) NOT NULL,
+  `ans2` varchar(800) NOT NULL,
+  `ans3` varchar(800) NOT NULL,
+  `ans4` varchar(800) NOT NULL,
+  `correct_answer` varchar(255) DEFAULT NULL,
+  `quiz_file` text DEFAULT NULL,
+  `ans1_file` text DEFAULT NULL,
+  `ans2_file` text DEFAULT NULL,
+  `ans3_file` text DEFAULT NULL,
+  `ans4_file` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_resources`
+--
+
+CREATE TABLE `course_resources` (
+  `id` bigint(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `material_id` bigint(20) DEFAULT NULL,
+  `resource_file` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_reviews`
+--
+
+CREATE TABLE `course_reviews` (
+  `review_id` bigint(20) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `rating` float DEFAULT NULL,
+  `review_message` text DEFAULT NULL,
+  `review_status` varchar(255) DEFAULT NULL,
+  `review_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_syllabus`
+--
+
+CREATE TABLE `course_syllabus` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `syllabus_name` varchar(255) DEFAULT NULL,
+  `syllabus_content` longtext DEFAULT NULL,
+  `s_order` int(11) DEFAULT NULL,
+  `status` enum('1','0') DEFAULT NULL COMMENT '1=active,0=inactive'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course_syllabus`
+--
+
+INSERT INTO `course_syllabus` (`id`, `user_id`, `course_id`, `syllabus_name`, `syllabus_content`, `s_order`, `status`) VALUES
+(1, 2, 4, 'test syllabus', '<p>test syllabus content</p>', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cr_category`
+--
+
+CREATE TABLE `cr_category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(300) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `cr_category`
+--
+
+INSERT INTO `cr_category` (`id`, `name`, `slug`, `status`) VALUES
+(1, 'Artificial Intelligence', 'artificial-intelligence', 1),
+(2, 'Python', 'python', 1),
+(3, 'Data Structure', 'data-structure', 1),
+(4, 'Web Development', 'web-development', 1),
+(5, 'History', 'history', 1),
+(6, 'Humanities', 'humanities', 1),
+(8, 'development', 'development', 1),
+(9, 'Design', 'design', 1),
+(10, 'Test Category1', 'test-category1', 1),
+(11, 'Fine Arts', 'fine-arts', 1),
+(12, 'automationengineering', 'automationengineering', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_unsubscribe_list`
+--
+
+CREATE TABLE `email_unsubscribe_list` (
+  `id` int(11) NOT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT 0 COMMENT '1 for subscribe and 0 for unsubscribe'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employees`
 --
 
@@ -48821,6 +49275,19 @@ CREATE TABLE `employees` (
   `confirmation_date` datetime DEFAULT '0000-00-00 00:00:00',
   `department` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faqs`
+--
+
+CREATE TABLE `faqs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48853,6 +49320,59 @@ INSERT INTO `faq_old_08062020` (`id`, `question`, `answer`, `faq_status`) VALUES
 (18, '11. Do I need a pre-assessment to enroll into a course?', '<p>(1)Most of the foundation courses do not require pre-assessment, however you should check pre-requirements section in the course description.</p>', 1),
 (19, '12. I cannot attend one or few sessions, what should I do?', '<p>(1)You should let us know as soon as possible. Some of our courses include the &ldquo;flexible mode&rdquo;, which allows you to attend the missed sessions within the following two months.</p>', 1),
 (20, '13 What is Skillogics?', '<p>Nothing this is institute.</p>', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_photos`
+--
+
+CREATE TABLE `gallery_photos` (
+  `id` int(11) NOT NULL,
+  `gallery_id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homecourse`
+--
+
+CREATE TABLE `homecourse` (
+  `id` int(11) NOT NULL,
+  `heading` longtext NOT NULL,
+  `sub_heading` longtext NOT NULL,
+  `course_icon` longtext NOT NULL,
+  `course_url` longtext NOT NULL,
+  `status` enum('1','2') NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `homecourse`
+--
+
+INSERT INTO `homecourse` (`id`, `heading`, `sub_heading`, `course_icon`, `course_url`, `status`, `created_at`) VALUES
+(2, 'Creativity Concepts', 'Recreate the Universe!', 'professor-svgrepo-com1.png', 'https://dev.igiapp.com/concepttocreation/course-detail/4', '1', '2023-05-04 16:42:01'),
+(3, 'Digitalization', 'Automation concepts and more!', 'Icon11.png', 'https://dev.igiapp.com/concepttocreation/course-detail/1', '1', '2023-05-04 16:44:09'),
+(4, 'Augmented Reality', 'Challenge the Creator!', 'a1.png', 'https://dev.igiapp.com/concepttocreation/course-detail/2', '1', '2023-05-16 05:23:03');
 
 -- --------------------------------------------------------
 
@@ -54454,6 +54974,79 @@ CREATE TABLE `ns_social_profile` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `option_id` bigint(20) UNSIGNED NOT NULL,
+  `option_name` varchar(64) NOT NULL DEFAULT '',
+  `option_value` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `options`
+--
+
+INSERT INTO `options` (`option_id`, `option_name`, `option_value`) VALUES
+(1, 'logo', 'logo.png'),
+(2, 'meta_title', NULL),
+(6, 'twitter', 'https://www.twitter.com/'),
+(7, 'facebook', 'https://www.facebook.com/'),
+(8, 'google_plus', 'javascript:void(0);'),
+(9, 'linkdin', 'javascript:void(0);'),
+(11, 'address', '215 Palm Street, Orlando, FL 2721, USA'),
+(12, 'phone', '(+01) 987-654-321'),
+(13, 'email', 'support@concept2creation.com'),
+(14, 'web', 'https://qramerca.com'),
+(15, 'hc', ''),
+(16, 'aws', ''),
+(17, 'aw', ''),
+(18, 'oy', '27 years in Arlington, Texas'),
+(19, 'course_price', NULL),
+(20, 'pint', NULL),
+(21, 'linked', 'https://www.linkedin.com/'),
+(22, 'lt', 'Reality superimposed into creativity!'),
+(23, 'insta', 'https://www.instagram.com/'),
+(24, 'l1', NULL),
+(25, 'l2', NULL),
+(26, 'l3', NULL),
+(27, 'l4', NULL),
+(28, 'l5', NULL),
+(29, 'l6', NULL),
+(30, 'hth1', NULL),
+(31, 'hd1', NULL),
+(32, 'hth2', NULL),
+(33, 'hd2', NULL),
+(34, 'hth3', NULL),
+(35, 'hd3', NULL),
+(36, 'hth4', NULL),
+(37, 'hd4', NULL),
+(38, 'cemail', NULL),
+(39, 'wemail', NULL),
+(40, 'youtube', 'https://www.youtube.com/'),
+(41, 'openh', NULL),
+(42, 'map', '<iframe src=\"https://maps.google.com/maps?q=Fort%20Miley&t=&z=13&ie=UTF8&iwloc=&output=embed\"></iframe>'),
+(43, 'tollfree', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `payment_status` int(11) NOT NULL,
+  `c_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_list`
 --
 
@@ -54495,6 +55088,24 @@ INSERT INTO `order_list` (`order_id`, `transaction_id`, `product_code`, `product
 (21, 'PD83boe2023-10-02', 'vktsG56Yj', 'Wireless Earphone', 1, '99', '99', 'sayantan@goigin.in', '2023-10-02', '0'),
 (22, 'PD83boe2023-10-02', 'xzsU9qng4', 'Apple Product', 1, '699', '699', 'sayantan@goigin.in', '2023-10-02', '0'),
 (23, 'PD83boe2023-10-02', 'MelNzdPIC', 'Electronics Part', 10, '199', '1990', 'sayantan@goigin.in', '2023-10-02', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `txn_id` text NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `payment_gross` int(11) NOT NULL,
+  `total_pay` varchar(255) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54552,6 +55163,104 @@ INSERT INTO `product_type` (`id`, `product_type_image`, `product_type_title`, `p
 (1, 'img-01.jpg', 'Type 1', '1', '0000-00-00'),
 (18, 'Chrysanthemum.jpg', 'Type 2', '1', '0000-00-00'),
 (25, '8327_usb.jpg', 'Type 3', '1', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_bank`
+--
+
+CREATE TABLE `quiz_bank` (
+  `id` bigint(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `ques` varchar(1000) NOT NULL,
+  `ans1` varchar(800) NOT NULL,
+  `ans2` varchar(800) NOT NULL,
+  `ans3` varchar(800) NOT NULL,
+  `ans4` varchar(800) NOT NULL,
+  `cor_ans` varchar(1000) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `id` bigint(20) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `descr` longtext NOT NULL,
+  `status` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `rply_text` longtext NOT NULL,
+  `rply_status` int(11) NOT NULL,
+  `rply_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `option_id` bigint(20) NOT NULL,
+  `option_name` varchar(250) DEFAULT NULL,
+  `option_value` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`option_id`, `option_name`, `option_value`) VALUES
+(1, 'hth1', 'Incredible Infrastructure'),
+(2, 'hd1', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.'),
+(3, 'hth2', 'Email Notifications'),
+(4, 'hd2', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.'),
+(5, 'hth3', 'Simple Dashboard'),
+(6, 'hd3', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.'),
+(7, 'hth4', 'Information Retrieval'),
+(8, 'hd4', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.'),
+(9, 'hth5', 'Drag and Drop Functionality'),
+(10, 'hd5', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.'),
+(11, 'hth6', 'Deadline Reminders'),
+(12, 'hd6', 'Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `set_exam_test`
+--
+
+CREATE TABLE `set_exam_test` (
+  `id` bigint(20) NOT NULL,
+  `courseid` int(11) NOT NULL,
+  `quesid` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `set_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54886,7 +55595,8 @@ INSERT INTO `sm_category` (`category_id`, `category_name`, `category_link`, `par
 (4, 'development', '', 0, '', 0, 48),
 (5, 'Design', '', 0, '', 0, 48),
 (6, 'Test Category', '', 0, '', 0, 48),
-(7, 'Fine Arts', '', 0, '', 0, 48);
+(7, 'Fine Arts', '', 0, '', 0, 48),
+(8, 'automationengineering', '', 0, '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -55149,15 +55859,7 @@ CREATE TABLE `sm_course` (
 --
 
 INSERT INTO `sm_course` (`course_id`, `userid`, `course_name`, `course_category`, `course_country`, `course_city`, `price`, `add_date`, `course_description`, `course_image`, `status`, `certificate`, `entry_requirment`, `who_should_apply`, `course_startDate`, `course_endDate`, `course_mode`, `course_level`, `course_type`) VALUES
-(1, 48, 'Angular js', 5, '', '', 4535.00, '2020-09-04 07:48:46', '', '20-512.png', '1', 'Certificate of Attendance', 'testing', 'test', '2020-09-05', '2020-09-08', '1', '1', 'Coming Soon courses'),
-(2, 48, 'CompTIA Security+ CompTIA Security+', 5, '', '', 2535.00, '2020-09-04 07:50:21', '', '20-5121.png', '1', 'BOTH', 'testing', 'test', '2020-09-12', '2020-09-18', '3', '2', 'Upcoming Courses'),
-(3, 48, 'ADVANCED DESIGNING', 5, '', '', 250.00, '2020-09-04 11:42:47', '<p>The first sttep is knowledge of basic HTML Designing</p>\n<p>&nbsp;</p>\n<p>Next comes Mobile Responsiveness using Bootstrap.</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>', 'IGLOBAL_IMPACT_LOGO.png', '1', 'BOTH', 'Basic aesthetic sense with some experience in sketching and painting!', 'Those who are interested in learning UI Designing for websites and Mobile Applications', '2020-09-17', '2020-09-25', '1', '2', 'Upcoming Courses'),
-(6, 48, 'Test Course', 6, '', '', 500.00, '2020-09-04 12:21:32', '<p>Test</p>', '', '1', 'Certificate of Attendance', 'test requirements', 'test applicants data', '2020-09-11', '2020-09-18', '3', '3', 'Upcoming Courses'),
-(7, 48, 'Drawing', 7, '', '', 100.00, '2020-09-04 12:54:38', '<p>Test</p>', 'Books.png', '1', 'BOTH', 'test requirements', 'test applicants data', '2020-09-11', '2020-09-18', '4', '2', 'Upcoming Courses'),
-(8, 0, 'Drawing', 7, '', '', 100.00, '2020-09-04 12:54:38', '<p>Test</p>', 'Books.png', '1', 'BOTH', 'test requirements', 'test applicants data', '2020-09-11', '2020-09-18', '4', '2', 'Upcoming Courses'),
-(9, NULL, 'test', 5, NULL, NULL, 111.00, '2024-01-05 12:22:53', '<p>testtesttesttesttesttest</p>', NULL, '1', 'BOTH', 'test', 'test', '2024-01-05', '2025-01-05', '4', '3', 'Upcoming Courses'),
-(10, NULL, 'test', 5, NULL, NULL, 111.00, '2024-01-05 12:22:53', '<p>testtesttesttesttesttest</p>', NULL, '1', 'BOTH', 'test', 'test', '2024-01-05', '2025-01-05', '4', '3', 'Upcoming Courses'),
-(11, NULL, 'test', 5, NULL, NULL, 111.00, '2024-01-05 12:22:53', '<p>testtesttesttesttesttest</p>', NULL, '1', 'BOTH', 'test', 'test', '2024-01-05', '2025-01-05', '4', '3', 'Upcoming Courses');
+(1, 2, 'test', 4, NULL, NULL, 50.00, '2024-01-10 17:43:38', '<p>test</p>', NULL, '1', 'BOTH', 'test', 'test', '2024-01-10', '2025-01-10', '1', '1', 'Upcoming Courses');
 
 -- --------------------------------------------------------
 
@@ -55263,7 +55965,7 @@ CREATE TABLE `sm_course_instructor` (
 --
 
 INSERT INTO `sm_course_instructor` (`inst_id`, `instructor_id`, `course_id`, `mode_id`, `class_date`, `start_time`, `end_time`, `status`) VALUES
-(16, 28, 14, 3, '2020-04-15 00:00:00', '14:15:00', '15:30:00', '1');
+(1, 28, 1, 1, '2024-01-10 00:00:00', '19:25:00', '19:25:00', '1');
 
 -- --------------------------------------------------------
 
@@ -55724,19 +56426,18 @@ INSERT INTO `sm_instructor_time_table` (`id`, `instructor_id`, `title`, `start_t
 CREATE TABLE `sm_levels` (
   `id` int(11) NOT NULL,
   `level_title` text NOT NULL,
-  `posted_by` varchar(255) NOT NULL,
-  `level_status` varchar(255) NOT NULL,
-  `date` date NOT NULL
+  `level_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sm_levels`
 --
 
-INSERT INTO `sm_levels` (`id`, `level_title`, `posted_by`, `level_status`, `date`) VALUES
-(1, 'Foundation', '0', '1', '2016-12-28'),
-(2, 'Intermediate', '0', '1', '2016-12-28'),
-(3, 'Advanced ', '0', '1', '2016-12-28');
+INSERT INTO `sm_levels` (`id`, `level_title`, `level_status`) VALUES
+(1, 'Foundation 1', '1'),
+(2, 'Intermediate', '1'),
+(3, 'Advanced ', '1'),
+(5, 'Foundation 2', '1');
 
 -- --------------------------------------------------------
 
@@ -55841,22 +56542,17 @@ INSERT INTO `sm_member` (`member_id`, `first_name`, `last_name`, `email`, `phone
 
 CREATE TABLE `sm_mode` (
   `id` int(11) NOT NULL,
-  `mode_image` varchar(255) NOT NULL,
   `mode_title` text NOT NULL,
-  `posted_by` varchar(255) NOT NULL,
-  `mode_desc` text NOT NULL,
-  `mode_status` varchar(255) NOT NULL,
-  `date` date NOT NULL
+  `mode_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sm_mode`
 --
 
-INSERT INTO `sm_mode` (`id`, `mode_image`, `mode_title`, `posted_by`, `mode_desc`, `mode_status`, `date`) VALUES
-(1, 'model-01.jpg', 'Campus', '0', '0', '1', '2016-12-28'),
-(3, 'model-03.jpg', 'Private', '0', '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard. dummy text ever</p>', '1', '2016-12-28'),
-(4, 'model-04.jpg', 'Distance', '0', '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard. dummy text ever</p>', '1', '0000-00-00');
+INSERT INTO `sm_mode` (`id`, `mode_title`, `mode_status`) VALUES
+(2, 'Test Mode 1', '1'),
+(4, 'Campus 1', '1');
 
 -- --------------------------------------------------------
 
@@ -60488,9 +61184,187 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 (4119, 'Matabeleland South', 246),
 (4120, 'Midlands', 246);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `subscription_id` bigint(20) NOT NULL,
+  `price_id` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `currency_symbol` varchar(255) DEFAULT NULL,
+  `product` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `amount` varchar(255) DEFAULT NULL,
+  `unit_amount` varchar(255) DEFAULT NULL,
+  `unit_amount_decimal` varchar(255) DEFAULT NULL,
+  `subscription` tinyint(4) DEFAULT NULL,
+  `subscription_name` varchar(255) DEFAULT NULL,
+  `subscription_type` varchar(255) DEFAULT NULL,
+  `subscription_duration` int(11) DEFAULT NULL,
+  `subscription_description` text DEFAULT NULL,
+  `plan_discount` float DEFAULT NULL,
+  `subscription_created_at` datetime DEFAULT NULL,
+  `subscription_status` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `desig` varchar(255) NOT NULL,
+  `descr` longtext NOT NULL,
+  `img` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `designation` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  `rating` int(11) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `currency` varchar(100) DEFAULT NULL,
+  `currency_symbol` varchar(100) DEFAULT NULL,
+  `fname` varchar(255) DEFAULT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `phone_full` varchar(255) DEFAULT NULL,
+  `phone_code` int(11) DEFAULT NULL,
+  `phone_country` varchar(100) DEFAULT NULL,
+  `phone_st_country` int(11) DEFAULT NULL,
+  `user_bio` text DEFAULT NULL,
+  `email_verified` smallint(6) NOT NULL DEFAULT 0,
+  `status` smallint(6) DEFAULT 0,
+  `image` text DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `otp` varchar(100) DEFAULT NULL,
+  `token` varchar(100) DEFAULT NULL,
+  `userType` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `currency`, `currency_symbol`, `fname`, `lname`, `email`, `password`, `phone`, `phone_full`, `phone_code`, `phone_country`, `phone_st_country`, `user_bio`, `email_verified`, `status`, `image`, `created_at`, `otp`, `token`, `userType`) VALUES
+(1, 'USD', '$', 'Demo', 'Student', 'student@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '9876543210', '+919876543210', 91, 'India (भारत)', 0, NULL, 1, 1, NULL, '2024-01-09 13:43:02', '680688', NULL, '1'),
+(2, 'USD', '$', 'Demo', 'Instructor', 'instructor@gmail.com', '96e79218965eb72c92a549dd5a330112', '9874123695', '+919874123695', 91, 'India (भारत)', 0, NULL, 1, 1, NULL, '2024-01-09 13:59:32', '462904', NULL, '2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_final_ques`
+--
+
+CREATE TABLE `user_final_ques` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `courseid` int(11) NOT NULL,
+  `quesid` int(11) NOT NULL,
+  `ansid` varchar(255) NOT NULL,
+  `corans` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_ques`
+--
+
+CREATE TABLE `user_ques` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `courseid` int(11) NOT NULL,
+  `quesid` int(11) NOT NULL,
+  `ansid` varchar(255) NOT NULL,
+  `corans` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_subscriptions`
+--
+
+CREATE TABLE `user_subscriptions` (
+  `usr_subid` bigint(20) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `customer` varchar(255) DEFAULT NULL,
+  `recurring_price_id` varchar(255) DEFAULT NULL,
+  `recurring_price_currency` varchar(255) DEFAULT NULL,
+  `recurring_price_amount` varchar(255) DEFAULT NULL,
+  `subscription_id` varchar(255) DEFAULT NULL,
+  `latest_invoice` varchar(255) DEFAULT NULL,
+  `invoice_pdf` text DEFAULT NULL,
+  `current_period_end` date DEFAULT NULL,
+  `current_period_start` date DEFAULT NULL,
+  `stripe_period_end` int(11) DEFAULT NULL,
+  `stripe_period_start` varchar(255) DEFAULT NULL,
+  `subscriptions_amount` varchar(255) DEFAULT NULL,
+  `subscriptions_status` varchar(255) DEFAULT NULL,
+  `subscriptions_cancel` enum('1','0') NOT NULL DEFAULT '0',
+  `subscriptions_canceled_at` date DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `add_cart`
+--
+ALTER TABLE `add_cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bl_banner`
@@ -60503,6 +61377,18 @@ ALTER TABLE `bl_banner`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `cert_payments`
+--
+ALTER TABLE `cert_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cert_verify`
+--
+ALTER TABLE `cert_verify`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cities`
@@ -60524,9 +61410,33 @@ ALTER TABLE `ci_sessions`
   ADD KEY `last_activity_idx` (`last_activity`);
 
 --
+-- Indexes for table `cms`
+--
+ALTER TABLE `cms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `consulting_form`
+--
+ALTER TABLE `consulting_form`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -60542,6 +61452,66 @@ ALTER TABLE `course_backup24072020`
   ADD PRIMARY KEY (`course_id`);
 
 --
+-- Indexes for table `course_enrollment`
+--
+ALTER TABLE `course_enrollment`
+  ADD PRIMARY KEY (`enrollment_id`);
+
+--
+-- Indexes for table `course_enrollment_status`
+--
+ALTER TABLE `course_enrollment_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_materials`
+--
+ALTER TABLE `course_materials`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_modules`
+--
+ALTER TABLE `course_modules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_quiz`
+--
+ALTER TABLE `course_quiz`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_resources`
+--
+ALTER TABLE `course_resources`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_reviews`
+--
+ALTER TABLE `course_reviews`
+  ADD PRIMARY KEY (`review_id`);
+
+--
+-- Indexes for table `course_syllabus`
+--
+ALTER TABLE `course_syllabus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cr_category`
+--
+ALTER TABLE `cr_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_unsubscribe_list`
+--
+ALTER TABLE `email_unsubscribe_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -60549,9 +61519,33 @@ ALTER TABLE `employees`
   ADD UNIQUE KEY `employee_id` (`employee_id`);
 
 --
+-- Indexes for table `faqs`
+--
+ALTER TABLE `faqs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `faq_old_08062020`
 --
 ALTER TABLE `faq_old_08062020`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery_photos`
+--
+ALTER TABLE `gallery_photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `homecourse`
+--
+ALTER TABLE `homecourse`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -61674,10 +62668,29 @@ ALTER TABLE `ns_social_profile`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD PRIMARY KEY (`option_id`),
+  ADD UNIQUE KEY `option_name` (`option_name`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `order_list`
 --
 ALTER TABLE `order_list`
   ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -61689,6 +62702,36 @@ ALTER TABLE `product`
 -- Indexes for table `product_type`
 --
 ALTER TABLE `product_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `quiz_bank`
+--
+ALTER TABLE `quiz_bank`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`option_id`);
+
+--
+-- Indexes for table `set_exam_test`
+--
+ALTER TABLE `set_exam_test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -62028,8 +63071,74 @@ ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`subscription_id`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_final_ques`
+--
+ALTER TABLE `user_final_ques`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_ques`
+--
+ALTER TABLE `user_ques`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_subscriptions`
+--
+ALTER TABLE `user_subscriptions`
+  ADD PRIMARY KEY (`usr_subid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `add_cart`
+--
+ALTER TABLE `add_cart`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bl_banner`
@@ -62044,6 +63153,18 @@ ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `cert_payments`
+--
+ALTER TABLE `cert_payments`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cert_verify`
+--
+ALTER TABLE `cert_verify`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
@@ -62056,10 +63177,34 @@ ALTER TABLE `ci_cookies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cms`
+--
+ALTER TABLE `cms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `consulting_form`
+--
+ALTER TABLE `consulting_form`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `course_13032020`
@@ -62074,16 +63219,100 @@ ALTER TABLE `course_backup24072020`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `course_enrollment`
+--
+ALTER TABLE `course_enrollment`
+  MODIFY `enrollment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `course_enrollment_status`
+--
+ALTER TABLE `course_enrollment_status`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_materials`
+--
+ALTER TABLE `course_materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_modules`
+--
+ALTER TABLE `course_modules`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_quiz`
+--
+ALTER TABLE `course_quiz`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_resources`
+--
+ALTER TABLE `course_resources`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_reviews`
+--
+ALTER TABLE `course_reviews`
+  MODIFY `review_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_syllabus`
+--
+ALTER TABLE `course_syllabus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `cr_category`
+--
+ALTER TABLE `cr_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `email_unsubscribe_list`
+--
+ALTER TABLE `email_unsubscribe_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `faqs`
+--
+ALTER TABLE `faqs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `faq_old_08062020`
 --
 ALTER TABLE `faq_old_08062020`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gallery_photos`
+--
+ALTER TABLE `gallery_photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homecourse`
+--
+ALTER TABLE `homecourse`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `manufacturer`
@@ -63196,10 +64425,28 @@ ALTER TABLE `ns_social_profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order_list`
 --
 ALTER TABLE `order_list`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -63212,6 +64459,36 @@ ALTER TABLE `product`
 --
 ALTER TABLE `product_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `quiz_bank`
+--
+ALTER TABLE `quiz_bank`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
+  MODIFY `option_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `set_exam_test`
+--
+ALTER TABLE `set_exam_test`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `shipping`
@@ -63277,7 +64554,7 @@ ALTER TABLE `sm_buyer`
 -- AUTO_INCREMENT for table `sm_category`
 --
 ALTER TABLE `sm_category`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sm_chat`
@@ -63319,7 +64596,7 @@ ALTER TABLE `sm_countrys`
 -- AUTO_INCREMENT for table `sm_course`
 --
 ALTER TABLE `sm_course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sm_course_booking`
@@ -63343,7 +64620,7 @@ ALTER TABLE `sm_course_feedback`
 -- AUTO_INCREMENT for table `sm_course_instructor`
 --
 ALTER TABLE `sm_course_instructor`
-  MODIFY `inst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `inst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sm_course_lesion`
@@ -63433,7 +64710,7 @@ ALTER TABLE `sm_instructor_time_table`
 -- AUTO_INCREMENT for table `sm_levels`
 --
 ALTER TABLE `sm_levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sm_location`
@@ -63548,6 +64825,48 @@ ALTER TABLE `sm_user_information`
 --
 ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
+
+--
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `subscription_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user_final_ques`
+--
+ALTER TABLE `user_final_ques`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_ques`
+--
+ALTER TABLE `user_ques`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_subscriptions`
+--
+ALTER TABLE `user_subscriptions`
+  MODIFY `usr_subid` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

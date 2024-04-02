@@ -78,7 +78,7 @@ if (isset($_REQUEST['regsub'])) {
 			$socialres = insertData($sdata, 'na_social_profile');
 			//======================Email Sending====================
 			$BidSql = "SELECT * FROM na_admin_mail WHERE MailId = '1'";
-			$BidSqlQuery = mysqli_query($con, $BidSql) or mysql_error();
+			$BidSqlQuery = mysqli_query($con, $BidSql) or mysqli_error();
 			$BidFetch = mysqli_fetch_array($BidSqlQuery);
 			$from = $BidFetch['MailAddress'];
 			$to = $email;
@@ -142,27 +142,21 @@ if (isset($_REQUEST['regsub'])) {
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
 										<label>First Name</label>
-										<input type="text" id="firstname" name="first_name" ng-model="first_name" class="form-control input-sm" value="<?php if (@$_REQUEST['first_name'] != '') {
-																																							echo @$_REQUEST['first_name'];
-																																						} ?>">
+										<input type="text" id="firstname" name="first_name" ng-model="first_name" class="form-control input-sm" value="<?php if (@$_REQUEST['first_name'] != '') { echo @$_REQUEST['first_name']; } ?>">
 										<div style="color:red" id="errofname"></div>
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
 										<label>Last Name</label>
-										<input type="text" placeholder="" id="lastname" name="last_name" ng-model="last_name" value="<?php if (@$_REQUEST['last_name'] != '') {
-																																			echo @$_REQUEST['last_name'];
-																																		} ?>" class="form-control input-sm">
+										<input type="text" placeholder="" id="lastname" name="last_name" ng-model="last_name" value="<?php if (@$_REQUEST['last_name'] != '') { echo @$_REQUEST['last_name']; } ?>" class="form-control input-sm">
 										<div style="color:red" id="errolname"></div>
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
 										<label>Suffix</label>
-										<input type="text" placeholder="" id="suffix" name="suffix" ng-model="suffix" value="<?php if (@$_REQUEST['suffix'] != '') {
-																																	echo @$_REQUEST['suffix'];
-																																} ?>" class="form-control input-sm">
+										<input type="text" placeholder="" id="suffix" name="suffix" ng-model="suffix" value="<?php if (@$_REQUEST['suffix'] != '') { echo @$_REQUEST['suffix']; } ?>" class="form-control input-sm">
 										<div style="color:red" id="errorsuffix"></div>
 									</div>
 								</div>
@@ -192,26 +186,20 @@ if (isset($_REQUEST['regsub'])) {
 							<div class="col-sm-3">
 								<div class="form-group fg-line">
 									<label style="margin-bottom: 0px;">Address</label>
-									<textarea type="text" id="address" name="address" class="form-control input-sm"><?php if (@$_REQUEST['address'] != '') {
-																														echo @$_REQUEST['address'];
-																													} ?></textarea>
+									<textarea type="text" id="address" name="address" class="form-control input-sm"><?php if (@$_REQUEST['address'] != '') { echo @$_REQUEST['address']; } ?></textarea>
 								</div>
 								<div style="color:red" id="erroraddress"></div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group fg-line">
 									<label>City</label>
-									<input type="text" placeholder="" id="" name="city" value="<?php if (@$_REQUEST['city'] != '') {
-																									echo @$_REQUEST['city'];
-																								} ?>" class="form-control input-sm">
+									<input type="text" placeholder="" id="" name="city" value="<?php if (@$_REQUEST['city'] != '') { echo @$_REQUEST['city']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group fg-line">
 									<label>State</label>
-									<input type="text" placeholder="" id="" name="state" value="<?php if (@$_REQUEST['state'] != '') {
-																									echo @$_REQUEST['state'];
-																								} ?>" class="form-control input-sm">
+									<input type="text" placeholder="" id="" name="state" value="<?php if (@$_REQUEST['state'] != '') { echo @$_REQUEST['state']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
 						</div>
@@ -219,9 +207,7 @@ if (isset($_REQUEST['regsub'])) {
 							<div class="col-sm-3">
 								<div class="form-group fg-line">
 									<label>Zip code</label>
-									<input type="text" placeholder="" id="" name="zip_code" class="form-control input-sm" value="<?php if (@$_REQUEST['zip_code'] != '') {
-																																		echo @$_REQUEST['zip_code'];
-																																	} ?>">
+									<input type="text" placeholder="" id="" name="zip_code" class="form-control input-sm" value="<?php if (@$_REQUEST['zip_code'] != '') { echo @$_REQUEST['zip_code']; } ?>" maxlength="6">
 								</div>
 							</div>
 						</div>
@@ -229,25 +215,19 @@ if (isset($_REQUEST['regsub'])) {
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>Telephone No</label>
-									<input type="text" placeholder="" name="phone_no" id="" class="form-control input-sm" value="<?php if (@$_REQUEST['phone_no'] != '') {
-																																		echo @$_REQUEST['phone_no'];
-																																	} ?>">
+									<input type="text" placeholder="" name="phone_no" id="" class="form-control input-sm" value="<?php if (@$_REQUEST['phone_no'] != '') { echo @$_REQUEST['phone_no']; } ?>" maxlength="10">
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>Email</label>
-									<input type="email" placeholder="" name="email" id="" value="<?php if (@$_REQUEST['email'] != '') {
-																										echo @$_REQUEST['email'];
-																									} ?>" class="form-control input-sm" required>
+									<input type="email" placeholder="" name="email" id="" value="<?php if (@$_REQUEST['email'] != '') { echo @$_REQUEST['email']; } ?>" class="form-control input-sm" required>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>Text No</label>
-									<input type="text" placeholder="" id="" value="<?php if (@$_REQUEST['text_no'] != '') {
-																						echo @$_REQUEST['text_no'];
-																					} ?>" name="text_no" class="form-control input-sm">
+									<input type="text" placeholder="" id="" value="<?php if (@$_REQUEST['text_no'] != '') { echo @$_REQUEST['text_no']; } ?>" name="text_no" class="form-control input-sm" maxlength="10">
 								</div>
 							</div>
 						</div>
@@ -255,25 +235,19 @@ if (isset($_REQUEST['regsub'])) {
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>Website(s)</label>
-									<input type="text" placeholder="(e.g http://www.narrateme.com)" id="" name="website" class="form-control input-sm" value="<?php if (@$_REQUEST['website'] != '') {
-																																									echo @$_REQUEST['website'];
-																																								} ?>">
+									<input type="text" placeholder="(e.g http://www.narrateme.com)" id="" name="website" class="form-control input-sm" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>">
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>Domain Name(s)</label>
-									<input type="text" placeholder="" id="" name="domain_name" value="<?php if (@$_REQUEST['website'] != '') {
-																											echo @$_REQUEST['website'];
-																										} ?>" class="form-control input-sm">
+									<input type="text" placeholder="" id="" name="domain_name" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
 									<label>URL(s)</label>
-									<input type="text" placeholder="" id="" name="url" value="<?php if (@$_REQUEST['website'] != '') {
-																									echo @$_REQUEST['website'];
-																								} ?>" class="form-control input-sm">
+									<input type="text" placeholder="" id="" name="url" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
 						</div>
@@ -281,18 +255,14 @@ if (isset($_REQUEST['regsub'])) {
 							<div class="col-sm-6">
 								<div class="form-group fg-line">
 									<label>User Name</label>
-									<input type="text" placeholder="" id="usrnamereg" value="<?php if (@$_REQUEST['username'] != '') {
-																									echo @$_REQUEST['username'];
-																								} ?>" name="username" class="form-control input-sm">
+									<input type="text" placeholder="" id="usrnamereg" value="<?php if (@$_REQUEST['username'] != '') { echo @$_REQUEST['username']; } ?>" name="username" class="form-control input-sm">
 									<div style="color:red" id="errousrnm"></div>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group fg-line">
 									<label>Password</label>
-									<input type="password" placeholder="" id="passwordreg" value="<?php if (@$_REQUEST['password'] != '') {
-																										echo @$_REQUEST['password'];
-																									} ?>" name="password" class="form-control input-sm">
+									<input type="password" placeholder="" id="passwordreg" value="<?php if (@$_REQUEST['password'] != '') { echo @$_REQUEST['password']; } ?>" name="password" class="form-control input-sm">
 									<div style="color:red" id="errorpassword"></div>
 								</div>
 							</div>

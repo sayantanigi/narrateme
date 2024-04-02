@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+session_start();
 class Country extends CI_Controller
 {
 	//============Constructor to call Model====================
@@ -25,8 +26,8 @@ class Country extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('is_logged_in')) {
-			$this->load->view('supercontrol/header', $data);
-			$this->load->view('supercontrol/countryadd_view', $data);
+			$this->load->view('supercontrol/header');
+			$this->load->view('supercontrol/countryadd_view');
 			$this->load->view('supercontrol/footer');
 			//redirect('categoryadd_view');
 		} else {

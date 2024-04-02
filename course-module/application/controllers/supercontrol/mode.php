@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+session_start();
 class Mode extends CI_Controller {
 		//============Constructor to call Model====================
 		function __construct() {

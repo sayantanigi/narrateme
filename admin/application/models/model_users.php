@@ -22,7 +22,7 @@ class model_users extends CI_Model{
 			return 1;
 		} else {
 			return 0;
-			print $this->db->last_query();
+			//print $this->db->last_query();
 		}
 	}
 
@@ -32,7 +32,7 @@ class model_users extends CI_Model{
 		$this->db->where('UserName', $id);
 		$this->db->update('na_admin_detail', $data);
 		return true;
-		print $this->db->last_query();
+		//print $this->db->last_query();
 	}
 
 	function get_single($table, $cond='') {

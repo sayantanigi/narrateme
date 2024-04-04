@@ -1,29 +1,23 @@
 <?php
-
 class Banner extends CI_Controller {
-	//============Constructor to call Model====================
 	function __construct() {
 		parent::__construct();
 		$this->load->model('banner_model');
 	}
-	//============Constructor to call Model====================
 	function index() {
 		if($this->session->userdata('is_logged_in')) {
 			$data['title'] = "Add Banner ";
 			$this->load->view('header',$data);
-			$this->load->helper(array('form'));
-			$this->load->view('banneradd_view');
+			$this->load->view('banner/banneradd_view');
 			$this->load->view('footer');
 		} else {
 			redirect('main');
 		}
 	}
-
 	public function is_logged_in(){
         header("cache-Control: no-store, no-cache, must-revalidate");
         header("cache-Control: post-check=0, pre-check=0", false);
         header("Pragma: no-cache");
-        //header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
         $is_logged_in = $this->session->userdata('logged_in');
         if(!isset($is_logged_in) || $is_logged_in!==TRUE){
             redirect('login');
@@ -36,76 +30,78 @@ class Banner extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['title'] = "Add Banner";
 			$this->load->view('header',$data);
-			$this->load->view('banneradd_view');
+			$this->load->view('banner/banneradd_view');
 			$this->load->view('footer');
 		} else {
-			$imgname = $_FILES["banner_image"]["name"];
-			//Setting values for tabel columns
+			if(!empty($_FILES['banner_image']['name'])) {
+				$_POST['banner_image']= rand(0000,9999)."_".$_FILES['banner_image']['name'];
+				$config2['image_library'] = 'gd2';
+				$config2['source_image'] = $_FILES['banner_image']['tmp_name'];
+				$config2['new_image'] = getcwd().'/uploads/banner/'.$_POST['banner_image'];
+				$config2['upload_path'] = getcwd().'/uploads/banner/';
+				$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg|avif';
+				$config2['maintain_ratio'] = FALSE;
+				$this->image_lib->initialize($config2);
+				if(!$this->image_lib->resize()) {
+					echo('<pre>');
+					echo ($this->image_lib->display_errors());
+					exit;
+				} else {
+					$imgname  = $_POST['banner_image'];
+					@unlink(getcwd().'/uploads/banner/'.$_POST['old_image']);
+				}
+			} else {
+				$imgname  = $_POST['old_image'];;
+			}
 			$data = array(
 				'title' => $this->input->post('title'),
 				'subtitle' => $this->input->post('subtitle'),
 				'description' => $this->input->post('description'),
-				'banner_image' => $_FILES["banner_image"]["name"],
+				'banner_image' => $imgname,
 				'status' => 1
 			 );
-			//Transfering data to Model
 			$this->banner_model->insert_banner($data);
-			$data1['message'] = 'Data Inserted Successfully';
+			$this->session->set_flashdata('message', 'Data Inserted Successfully');
 			redirect('banner/view_banner');
 		}
 	}
-
-	function success() {
-		$data['h1title'] = 'Data Inserted Successfully';
-		$data['title'] = 'Add Banner';
-		$this->load->view('header');
-		$this->load->view('banneradd_view',$data);
-		$this->load->view('footer');
-	}
 	function view_banner() {
-		$this->load->database();
-		$this->load->model('banner_model');
-		$query = $this->banner_model->view_banner();
-		$data['ecms'] = $query;
+		$data['ecms'] = $this->banner_model->view_banner();
 		$data['title'] = "Banner List";
 		$this->load->view('header',$data);
-		$this->load->view('showbanner');
+		$this->load->view('banner/showbanner');
 		$this->load->view('footer');
 	}
 	function show_banner_id($id) {
 		$data['title'] = "Banner Edit";
-		$this->load->database();
-		$this->load->model('banner_model');
 		$query = $this->banner_model->show_banner_id($id);
 		$data['ecms'] = $query;
 		$this->load->view('header',$data);
-		$this->load->view('banneredit', $data);
+		$this->load->view('banner/banneredit', $data);
 		$data['title'] = "Edit Data List";
 		$this->load->view('footer');
 	}
 	function edit_banner() {
 		$id = $this->input->post('id');
-		if($_FILES["banner_image"]["name"]!='') {
-			$imgname = $_FILES["banner_image"]["name"];
-			$this->db->where('id',$id);
-			$this->db->select('banner_image');
-			$result=$this->db->get('bl_banner');
-			$row = $result->row();
-			//print_r($row);
-			$path = APPPATH.'../uploads/banner/'.$row->banner_image;
-			unlink($path);
-			$config['upload_path'] = APPPATH.'../uploads/banner/';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $imgname;
-			$this->load->library('upload',$config);
-			//print_r($config); die();
-			if (!$this->upload->do_upload("banner_image")) {
-				$error = array('error' => $this->upload->display_errors());
+		if(!empty($_FILES['banner_image']['name'])) {
+			$_POST['banner_image']= rand(0000,9999)."_".$_FILES['banner_image']['name'];
+			$config2['image_library'] = 'gd2';
+			$config2['source_image'] = $_FILES['banner_image']['tmp_name'];
+			$config2['new_image'] = getcwd().'/uploads/banner/'.$_POST['banner_image'];
+			$config2['upload_path'] = getcwd().'/uploads/banner/';
+			$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg|avif';
+			$config2['maintain_ratio'] = FALSE;
+			$this->image_lib->initialize($config2);
+			if(!$this->image_lib->resize()) {
+				echo('<pre>');
+				echo ($this->image_lib->display_errors());
+				exit;
 			} else {
-				$upload_data = $this->upload->data();
+				$imgname  = $_POST['banner_image'];
+				@unlink(getcwd().'/uploads/banner/'.$_POST['old_image']);
 			}
 		} else {
-			$imgname = $this->input->post('oldimg');
+			$imgname  = $_POST['old_image'];;
 		}
 		$datalist = array(
 			'title' => $this->input->post('title'),
@@ -114,41 +110,19 @@ class Banner extends CI_Controller {
 			'banner_image' => $imgname,
 			'status' => 1
 		);
-		//print_r($datalist); die();
 		$data['title'] = "Banner Edit";
-		$this->load->database();
-		$this->load->model('banner_model');
 		$query = $this->banner_model->edit_banner($id,$datalist);
-		$data1['message'] = 'Data Updated Successfully';
-		redirect('banner/successupdate');
-	}
-	function successupdate(){
-		$this->load->database();
-		$this->load->model('banner_model');
-		$query = $this->banner_model->view_banner();
-		$data['ecms'] = $query;
-		$data['title'] = "Banner List";
-		$datamsg['h1title'] = 'Data Updated Successfully';
-		$this->load->view('header',$data);
-		$this->load->view('showbanner',$datamsg);
-		$this->load->view('footer');
+		$this->session->set_flashdata('message', 'Data Updated Successfully');
+		redirect('banner/view_banner');
 	}
 	function delete_banner($id){
-		$this->load->database();
+		$getData = $this->db->query("SELECT * FROM bl_banner WHERE id = '".$id."'")->row();
+		$image = $getData->banner_image;
 		$this->banner_model->delete_banner($id);
+		@unlink(getcwd().'/uploads/banner/'.$image);
 		$data1['message'] = 'Data Deleted Successfully';
-		redirect('banner/successdelete');
-	}
-	function successdelete(){
-		$this->load->database();
-		$this->load->model('banner_model');
-		$query = $this->banner_model->view_banner();
-		$data['ecms'] = $query;
-		$data['title'] = "Banner List";
-		$datamsg['h1title'] = 'Data Updated Successfully';
-		$this->load->view('header',$data);
-		$this->load->view('showbanner');
-		$this->load->view('footer');
+		$this->session->set_flashdata('message', 'Data Updated Successfully');
+		redirect('banner/view_banner');
 	}
 }
 ?>

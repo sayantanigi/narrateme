@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -36,10 +37,7 @@
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-
 $autoload['packages'] = array();
-
-
 /*
 | -------------------------------------------------------------------
 |  Auto-load Libraries
@@ -51,10 +49,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
-
-$autoload['libraries'] = array();
-
-
+$autoload['libraries'] = array('database','form_validation','pagination','session','upload','image_lib');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Helper Files
@@ -63,10 +58,7 @@ $autoload['libraries'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-
-$autoload['helper'] = array();
-
-
+$autoload['helper'] = array('url','form', 'my_url_helper','file');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
@@ -79,10 +71,7 @@ $autoload['helper'] = array();
 | config files.  Otherwise, leave it blank.
 |
 */
-
 $autoload['config'] = array();
-
-
 /*
 | -------------------------------------------------------------------
 |  Auto-load Language files
@@ -95,10 +84,7 @@ $autoload['config'] = array();
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-
 $autoload['language'] = array();
-
-
 /*
 | -------------------------------------------------------------------
 |  Auto-load Models
@@ -110,16 +96,11 @@ $autoload['language'] = array();
 */
 //$autoload['helper'] = array('url');
 //$autoload['libraries'] = array('database','session');
-$autoload['libraries'] = array('database','form_validation','pagination','session');
-
+//$autoload['libraries'] = array('database','form_validation','pagination','session');
 //$autoload['libraries'] = array('database');
 //$autoload['libraries'] = array('form_validation');
 //$this->load->helper('form');
-$autoload['helper'] = array('url');
-
-
+//$autoload['helper'] = array('url','file');
 $autoload['model'] = array();
-
-
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

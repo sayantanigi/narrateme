@@ -7,9 +7,9 @@ class Banner extends CI_Controller {
 	function index() {
 		if($this->session->userdata('is_logged_in')) {
 			$data['title'] = "Add Banner ";
-			$this->load->view('header',$data);
+			$this->load->view('include/header',$data);
 			$this->load->view('banner/banneradd_view');
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 		} else {
 			redirect('main');
 		}
@@ -29,9 +29,9 @@ class Banner extends CI_Controller {
 		$this->form_validation->set_rules('description', 'Description', 'required|min_length[1]|max_length[300]');
 		if ($this->form_validation->run() == FALSE) {
 			$data['title'] = "Add Banner";
-			$this->load->view('header',$data);
+			$this->load->view('include/header',$data);
 			$this->load->view('banner/banneradd_view');
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 		} else {
 			if(!empty($_FILES['banner_image']['name'])) {
 				$_POST['banner_image']= rand(0000,9999)."_".$_FILES['banner_image']['name'];
@@ -68,18 +68,18 @@ class Banner extends CI_Controller {
 	function view_banner() {
 		$data['ecms'] = $this->banner_model->view_banner();
 		$data['title'] = "Banner List";
-		$this->load->view('header',$data);
+		$this->load->view('include/header',$data);
 		$this->load->view('banner/showbanner');
-		$this->load->view('footer');
+		$this->load->view('include/footer');
 	}
 	function show_banner_id($id) {
 		$data['title'] = "Banner Edit";
 		$query = $this->banner_model->show_banner_id($id);
 		$data['ecms'] = $query;
-		$this->load->view('header',$data);
+		$this->load->view('include/header',$data);
 		$this->load->view('banner/banneredit', $data);
 		$data['title'] = "Edit Data List";
-		$this->load->view('footer');
+		$this->load->view('include/footer');
 	}
 	function edit_banner() {
 		$id = $this->input->post('id');
@@ -110,8 +110,7 @@ class Banner extends CI_Controller {
 			'banner_image' => $imgname,
 			'status' => 1
 		);
-		$data['title'] = "Banner Edit";
-		$query = $this->banner_model->edit_banner($id,$datalist);
+		$this->banner_model->edit_banner($id,$datalist);
 		$this->session->set_flashdata('message', 'Data Updated Successfully');
 		redirect('banner/view_banner');
 	}
@@ -120,7 +119,6 @@ class Banner extends CI_Controller {
 		$image = $getData->banner_image;
 		$this->banner_model->delete_banner($id);
 		@unlink(getcwd().'/uploads/banner/'.$image);
-		$data1['message'] = 'Data Deleted Successfully';
 		$this->session->set_flashdata('message', 'Data Updated Successfully');
 		redirect('banner/view_banner');
 	}

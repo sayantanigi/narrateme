@@ -13,9 +13,9 @@ class Home extends CI_Controller {
             $this->session->userdata('is_logged_in');
             $data['UserName'] = @$session_data['username'];
             $data2['title'] = "Dashbord";
-            $this->load->view('header',$data2);
+            $this->load->view('include/header',$data2);
             $this->load->view('home_view', $data);
-            $this->load->view('footer',$data);
+            $this->load->view('include/footer',$data);
         } else {
             redirect('main', 'refresh');
         }

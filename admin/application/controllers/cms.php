@@ -9,9 +9,9 @@ class Cms extends CI_Controller {
 		if ($this->session->userdata('is_logged_in')) {
 			$data['ecms'] = $this->cms_model->show_cmslist();
 			$data['title'] = "Cms Page List";
-			$this->load->view('header', $data);
+			$this->load->view('include/header', $data);
 			$this->load->view('cms/showcmslist', $data);
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 		} else {
 			redirect('main');
 		}
@@ -27,9 +27,9 @@ class Cms extends CI_Controller {
 	}
 	function add_cms() {
 		if ($this->session->userdata('is_logged_in')) {
-			$this->load->view('header');
+			$this->load->view('include/header');
 			$this->load->view('cms/add_cms');
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 			$data['title'] = "Add New Cms";
 		} else {
 			redirect('main');
@@ -44,9 +44,9 @@ class Cms extends CI_Controller {
 		$this->form_validation->set_rules('cms_pagedes', 'Descriptions', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$data['title'] = "Add CMS";
-			$this->load->view('header', $data);
+			$this->load->view('include/header', $data);
 			$this->load->view('cms/add_cms');
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 		} else {
 			if(!empty($_FILES['page_image']['name'])) {
 				$_POST['page_image']= rand(0000,9999)."_".$_FILES['page_image']['name'];
@@ -88,9 +88,9 @@ class Cms extends CI_Controller {
 			$data['title'] = "Edit Cms";
 			$query = $this->cms_model->show_individual_cms_id($id);
 			$data['ecms'] = $query;
-			$this->load->view('header', $data);
+			$this->load->view('include/header', $data);
 			$this->load->view('cms/cms_edit', $data);
-			$this->load->view('footer');
+			$this->load->view('include/footer');
 		} else {
 			redirect('main');
 		}

@@ -3,7 +3,6 @@ class faq_model extends CI_Model{
 	function __construct() {
         parent::__construct();
    }
-
 	public function insert_faq($data) {
 		$this->load->database();
 	    $this->db->insert('na_faq', $data);
@@ -15,7 +14,7 @@ class faq_model extends CI_Model{
 	}
 
 	function view_faq(){
-		$sql ="select * from na_faq";
+		$sql ="select * from na_faq ORDER BY id DESC";
 		$query = $this->db->query($sql);
 		return($query->num_rows() > 0) ? $query->result(): NULL;
 	}
@@ -36,7 +35,7 @@ class faq_model extends CI_Model{
 
 	function delete_faq($id){
 	  $this->db->where('id', $id);
-      $this->db->delete('na_faq'); 
+      $this->db->delete('na_faq');
 	}
 }
 ?>

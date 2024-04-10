@@ -9,14 +9,10 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <style>
-        .tab-content>.active {
-            display: block;
-            width: 100% !important;
-        }
+        .tab-content>.active {display: block;width: 100% !important;}
         .form-control {width: 100% !important;}
-        .login .content {
-            padding: 10px 30px 5px !important;
-        }
+        .login .content {padding: 10px 30px 5px !important;}
+        .page-bar .page-breadcrumb {text-transform: uppercase !important;}
     </style>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

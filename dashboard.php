@@ -144,13 +144,17 @@ if (isset($_REQUEST['type'])) {
 					</div>
 					<div class="pmo-block pmo-contact hidden-xs">
 						<h2>Contact</h2>
-						<ul>
+						<00ul>
 							<li><i class="zmdi zmdi-phone"></i><?= $view['phone_no'] ?></li>
 							<li><i class="zmdi zmdi-email"></i><?= $view['email'] ?></li>
-							<li><i class="zmdi zmdi-facebook-box"></i><a href="<?= $soc['fb_links'] ?>" target="_blank"><?= $soc['fb_links'] ?></a></li>
-							<li><i class="zmdi zmdi-twitter"></i><a href="<?= $soc['twit_link'] ?>" target="_blank"><?= $soc['twit_link'] ?></a></li>
+							<?php if(!empty(@$soc['fb_links'])) { ?>
+							<li><i class="zmdi zmdi-facebook-box"></i><a href="<?= @$soc['fb_links'] ?>" target="_blank"><?= @$soc['fb_links'] ?></a></li>
+							<?php } ?>
+							<?php if(!empty(@$soc['fb_links'])) { ?>
+							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['twit_link'] ?>" target="_blank"><?= @$soc['twit_link'] ?></a></li>
+							<?php } ?>
 							<li> <i class="zmdi zmdi-pin"></i>
-								<address class="m-b-0 ng-binding"><?= $view['address'] ?>,<br><?= $view['country'] ?>,<br><?= $view['state'] ?> P: <?= $view['phone_no'] ?> <br></address>
+								<address class="m-b-0 ng-binding"><?= $view['address'] ?>, <?= $view['country'] ?>, <?= $view['state'] ?></address>
 							</li>
 						</ul>
 					</div>

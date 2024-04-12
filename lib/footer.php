@@ -17,22 +17,22 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<i class="fa fa-times-circle" aria-hidden="true"></i>
 				</button>
-				<div id="wb_FontAwesomeIcon1">
+				<div id="wb_FontAwesomeIcon1" style="margin-top: 30px !important;">
 					<div id="FontAwesomeIcon1"><i class="fa fa-user"></i></div>
 				</div>
-				<div id="wb_Text1">
-					<span class="Item-Head_dark">Login to Your Account</span><br />
-					<span class="Item-Head_dark" id="lg2" style="color:#F00;font-size: 15px;">
-						<?php if (@$_REQUEST['op'] == "logfals") {
-							echo "Invalid Username Or Password";
-						} ?>
-					</span>
-					<span class="Item-Head_dark" id="errorBoxusr" style="color:#F00;font-size: 15px;"></span> <br />
+				<div class="Item-Head_dark">Login to Your Account</div>
+				<div class="Item-Head_dark" id="lg2" style="color:#F00;font-size: 15px;">
+					<?php if (@$_REQUEST['op'] == "logfals") {
+						echo "Invalid Username Or Password";
+					} ?>
 				</div>
-				<input type="text" id="userfild" name="user" value="" placeholder="User Name" style="margin-bottom: 15px;">
-				<input type="password" id="passfild" name="pass" value="" placeholder="Password" style="margin-bottom: 15px;">
-				<input type="submit" id="login-butt" name="login" value="LOGIN" class="Buttn" style="margin: 10px 0;">
-				<label id="errorBoxpass"></label>
+				<div class="Item-Head_dark" id="errorBoxusr" style="color:#F00;font-size: 15px;"></div>
+				<div style="width: 100%; text-align: center;">
+					<input type="text" id="userfild" name="user" value="" placeholder="User Name" style="margin-bottom: 15px; width: 100%;">
+					<input type="password" id="passfild" name="pass" value="" placeholder="Password" style="margin-bottom: 15px; width: 100%;">
+					<input type="submit" id="login-butt" name="login" value="LOGIN" class="Buttn" style="margin: 10px 0;">
+					<label id="errorBoxpass"></label>
+				</div>
 				<div id="wb_Text2">
 					<span class="Item-Head_dark">OR</span>
 					<div>

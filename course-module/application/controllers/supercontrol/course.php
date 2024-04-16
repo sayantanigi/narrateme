@@ -29,13 +29,13 @@ class Course extends CI_Controller {
 		$primary_key = 'category_id !=';
 		$wheredata = '0';
 		$queryallcat = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$data['allcat'] = $queryallcat;
-		$data['categories'] = $this->generalmodel->getCategories();
-		$data['cites'] = $this->generalmodel->getCities();
-		$data['levels'] = $this->generalmodel->getlevel();
-		$data['modes'] = $this->generalmodel->getMode();
-		$data['locations'] = $this->generalmodel->getlocations();
-		$data['country'] = $this->db->get('na_country')->result();
+		// $data['allcat'] = $queryallcat;
+		// $data['categories'] = $this->generalmodel->getCategories();
+		// $data['cites'] = $this->generalmodel->getCities();
+		// $data['levels'] = $this->generalmodel->getlevel();
+		// $data['modes'] = $this->generalmodel->getMode();
+		// $data['locations'] = $this->generalmodel->getlocations();
+		// $data['country'] = $this->db->get('na_country')->result();
 		$data['title'] = "Add course";
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/courseadd_view');
@@ -96,7 +96,7 @@ class Course extends CI_Controller {
 			);
 			$this->generalmodel->insert_data($table_name, $data);
 			$this->load->view('supercontrol/header', $data);
-			$data['success_msg'] = '<div class="alert alert-success text-center">Data Added Successfully!</div>';
+			$this->session->set_flashdata('message', 'Data Added Successfully!');
 			redirect('supercontrol/course/show_course', 'refresh');
 			$this->load->view('supercontrol/footer');
 		}
@@ -659,16 +659,14 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/batchadd_view', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function add_course_trainingmaterial_view()
-	{
+	public function add_course_trainingmaterial_view() {
 		$id = end($this->uri->segment_array());
 		$data['title'] = "Add Training Material ";
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/trainingmaterialaddview', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function add_course_trainingmaterial()
-	{
+	public function add_course_trainingmaterial() {
 		$this->load->library('form_validation');
 		$config = array(
 			'upload_path' => "uploads/trainingmaterial/",
@@ -687,25 +685,25 @@ class Course extends CI_Controller {
 			$this->load->view('supercontrol/footer', $data);
 		} else {
 			$table_name = 'sm_training_material';
+			$data['training_material_files'] = $this->upload->data();
 			if ($this->upload->do_upload('training_material_files')) {
 				$data['userfile'] = $this->upload->data();
-				$config['file_name'] = time() . str_replace(' ', '_', $_FILES['training_material_files']['name']);
+				//$config['file_name'] = time() . str_replace(' ', '_', $_FILES['training_material_files']['name']);
 			}
 			$filename = $data['userfile']['file_name'];
 			$data = array(
 				'course_id' => $this->input->post('course_id'),
 				'training_material_name' => $this->input->post('training_material_name'),
-				'training_material_files' => $filename,
+				'training_material_files' => $data['training_material_files']['file_name'],
 				's_order' => '1',
 				'status' => '1'
 			);
 			$this->generalmodel->insert_data($table_name, $data);
 			$this->session->set_flashdata('success', 'Data Added Successfully');
-			redirect($_SERVER['HTTP_REFERER']);
+			redirect('supercontrol/course/trainingmaterial_list/'.$this->input->post('course_id'));
 		}
 	}
-	public function trainingmaterial_list()
-	{
+	public function trainingmaterial_list() {
 		$id = end($this->uri->segment_array());
 		$querysyllabus = $this->generalmodel->getAllData('sm_training_material', 'course_id', $id, '', '');
 		$data['syllabuslist'] = $querysyllabus;
@@ -714,8 +712,7 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/showtrainingmateriallist', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function edit_trainingmaterial_view()
-	{
+	public function edit_trainingmaterial_view() {
 		$id = end($this->uri->segment_array());
 		$table_name = 'sm_training_material';
 		$primary_key = 'training_material_id';
@@ -727,8 +724,7 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/edittrainingmaterial', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function edit_trainingmaterial()
-	{
+	public function edit_trainingmaterial() {
 		$training_material_files = $this->input->post('training_material_files');
 		$config = array(
 			'upload_path' => "uploads/trainingmaterial/",
@@ -757,15 +753,13 @@ class Course extends CI_Controller {
 		$this->session->set_flashdata('success', 'Data Updated Successfully !!!');
 		redirect('supercontrol/course/trainingmaterial_list/' . $this->input->post('course_id') . '', 'refresh');
 	}
-	public function delete_trainingmaterial()
-	{
+	public function delete_trainingmaterial() {
 		$id = end($this->uri->segment_array());
 		$this->generalmodel->show_data_id('sm_training_material', $id, 'training_material_id', 'delete', '');
 		$this->session->set_flashdata('success', 'Data Deleted Successfully');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	public function course_session_list()
-	{
+	public function course_session_list() {
 		echo $id = end($this->uri->segment_array());
 		$data['batchlist'] = $this->db->get_where('sm_batch', array('courseId' => $id))->result();
 		$batchId = $data['batchlist'][0]->batchId;
@@ -776,8 +770,7 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/showcoursesessionlist', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function session_view()
-	{
+	public function session_view() {
 		$table_name = 'sm_batch';
 		$primary_key = '';
 		$wheredata = "";
@@ -790,8 +783,7 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/showsessionlist', $data);
 		$this->load->view('supercontrol/footer', $data);
 	}
-	public function edit_coursesession_view()
-	{
+	public function edit_coursesession_view() {
 		$id = $this->uri->segment(4);
 		$data['lessdetails'] = $this->generalmodel->fetch_all_join("Select * from sm_batch where batchId='$id'");
 		$data['batchSessionlist'] = $session_list = $this->db->get_where('sm_course_sessions', array('batch_id' => $id))->result();

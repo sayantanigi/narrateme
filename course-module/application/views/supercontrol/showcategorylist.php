@@ -62,94 +62,31 @@
                                             <td>
                                                 <div class="portlet-body form">
                                                     <?php /*echo $categorieslisting;*/ ?>
-                                                    <table
-                                                        class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive"
-                                                        id="sample_1">
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="sample_1">
                                                         <div id="mydiv">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="180"
-                                                                        style="max-width:170px; float:left;">Category
-                                                                        List</th>
+                                                                    <th width="20">SL No</th>
+                                                                    <th width="20">Category Name</th>
+                                                                    <th width="27">Edit</th>
+                                                                    <th width="27">Delete</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <?php if (is_array($eloca)): ?>
-                                                                    <?php
-                                                                    $ctn = 1;
-                                                                    foreach ($eloca as $i) {
-                                                                        ?>
-                                                                        <tr class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive"
-                                                                            id="sample_1">
-                                                                            <td style="max-width:200px;">
-                                                                                <div class="col-md-12" style="text-align:left;">
-                                                                                    <div class="col-md-12"
-                                                                                        style="background-color: #999;border-bottom: 1px solid #ccc;color: #fff; padding: 5px;">
-                                                                                        <?php echo $i->category_name; ?>&nbsp;<a
-                                                                                            class="btn green sbold uppercase btn-xs"
-                                                                                            href="<?php echo base_url() ?>supercontrol/category/show_category_id/<?php echo $i->category_id; ?>">Edit</a>
-                                                                                        &nbsp;<a
-                                                                                            class="btn red sbold uppercase btn-xs"
-                                                                                            onclick="return confirm('Are you sure about this delete?');"
-                                                                                            href="<?php echo base_url() ?>supercontrol/category/delete_category/<?php echo $i->category_id; ?>">Delete</a>
-                                                                                    </div>
-                                                                                    <div class="col-md-12" style="padding:5px;">
-                                                                                        <?php
-                                                                                        $this->db->from('sm_category');
-                                                                                        $this->db->where('parent_id', $i->category_id);
-                                                                                        $this->db->group_by('category_name', $i->category_name);
-                                                                                        $query = $this->db->get();
-                                                                                        if ($query->num_rows > 0) {
-                                                                                            foreach ($query->result() as $row) {
-                                                                                                ?>
-                                                                                                <div class="col-md-4">
-                                                                                                    <?php echo $row->category_name; ?>
-                                                                                                    &nbsp;
-                                                                                                    <a class="btn  btn-xs"
-                                                                                                        href="<?php echo base_url() ?>supercontrol/category/show_category_id/<?php echo $row->category_id; ?>">&nbsp;</a>
-                                                                                                    &nbsp;<a class=""
-                                                                                                        onclick="return confirm('Are you sure about this delete?');"
-                                                                                                        href="<?php echo base_url() ?>supercontrol/category/delete_category/<?php echo $row->category_id; ?>">&nbsp;</a>
-                                                                                                </div>
-                                                                                                <div class="col-md-12"
-                                                                                                    style="padding:5px; margin-left:25px;">
-                                                                                                    <?php
-                                                                                                    $this->db->from('sm_category');
-                                                                                                    $this->db->where('parent_id', $row->category_id);
-                                                                                                    $this->db->group_by('category_name', $row->category_name);
-                                                                                                    $query = $this->db->get();
-                                                                                                    if ($query->num_rows > 0) {
-                                                                                                        foreach ($query->result() as $newr) {
-                                                                                                            ?>
-                                                                                                            <div class="col-md-4">
-                                                                                                                <?php echo $newr->category_name; ?>
-                                                                                                                <a class="btn green sbold uppercase btn-xs"
-                                                                                                                    href="<?php echo base_url() ?>supercontrol/category/show_category_id/<?php echo $newr->category_id; ?>">Edit</a>
-                                                                                                                <a class="btn red sbold uppercase btn-xs"
-                                                                                                                    onclick="return confirm('Are you sure about this delete?');"
-                                                                                                                    href="<?php echo base_url() ?>supercontrol/category/delete_category/<?php echo $newr->category_id; ?>">Delete</a>
-                                                                                                            </div>
-                                                                                                            <?php
-                                                                                                        }
-                                                                                                    }
-                                                                                                    ?>
-                                                                                                </div>
-                                                                                                &nbsp;<a
-                                                                                                    class="btn green sbold uppercase btn-xs"
-                                                                                                    href="<?php echo base_url() ?>supercontrol/category/show_category_id/<?php echo $row->category_id; ?>">Edit</a>
-                                                                                                &nbsp;<a
-                                                                                                    class="btn red sbold uppercase btn-xs"
-                                                                                                    onclick="return confirm('Are you sure about this delete?');"
-                                                                                                    href="<?php echo base_url() ?>supercontrol/category/delete_category/<?php echo $row->category_id; ?>">Delete</a><br>
-                                                                                            <?php }
-                                                                                        }
-                                                                                        ?>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <?php $ctn++;
-                                                                    } ?>
+                                                            <?php if (is_array($eloca)):
+                                                            $ctn = 1;
+                                                            foreach ($eloca as $i) { ?>
+                                                            <tr class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="sample_1">
+                                                                <td><?php echo $ctn?></td>
+                                                                <td style="max-width:200px;"><?php echo $i->category_name; ?></td>
+                                                                <td style="max-width:200px;">
+                                                                    <a class="btn green sbold uppercase btn-xs" href="<?php echo base_url() ?>supercontrol/category/show_category_id/<?php echo $i->category_id; ?>">Edit</a>
+                                                                </td>
+                                                                <td style="max-width:200px;">
+                                                                    <a class="btn red sbold uppercase btn-xs" onclick="return confirm('Are you sure about this delete?');" href="<?php echo base_url() ?>supercontrol/category/delete_category/<?php echo $i->category_id; ?>">Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                            <?php $ctn++; } ?>
                                                                 <?php endif; ?>
                                                             </tbody>
                                                         </div>

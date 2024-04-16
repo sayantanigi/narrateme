@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
         $_SESSION["userid"] = $row['id']; //login true
         $_SESSION["user_log_flag"];
         //exit();
-        //header("location: dashboard.php");	 
+        //header("location: dashboard.php");
         echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
         echo "window.top.location.href='" . $baseurl . "dashboard.php';\n";
         echo "</script>";
@@ -71,7 +71,7 @@ if (@$_SESSION['user_log_flag'] == 1) {
                                 <?php
                                 if (@$_SESSION['user_log_flag'] == 1) {
                                 ?>
-                                    <a class="link-foo-ha" href="<?php echo $baseurl ?>dashboard.php"><?php echo $viewmember['first_name'] . " " . $viewmember['last_name'] ?></a>
+                                    <a class="link-foo-ha" href="<?php echo $baseurl ?>dashboard.php"><?php echo @$viewmember['first_name'] . " " . @$viewmember['last_name'] ?></a>
                                 <?php } else { ?>
                                     <a class="link-foo-ha" href="<?php echo $baseurl ?>register.php">Register / Sign Up</a>
                                 <?php } ?>
@@ -114,7 +114,9 @@ if (@$_SESSION['user_log_flag'] == 1) {
                                     <li><a href="page.php?id=22">Instructional Facilities &amp; Schools</a></li>
                                     <li><a href="product_list.php">Products</a></li>
                                     <?php if (@$viewmember['std'] == 1) { ?>
-                                        <li><a href="http://localhost/narrateme/course-module/courses">Courses</a></li>
+                                    <li><a href="http://localhost/narrateme/course-module/courses">Courses</a></li>
+                                    <?php } else { ?>
+                                    <li><a href="#" class="link-foo-ha" onClick="$('#Login-area').modal('show');return false;" style="margin-right: 0px;">Courses</a></li>
                                     <?php } ?>
                                     <li><a href="contact.php?id=5">Contact Us</a></li>
                                 </ul>

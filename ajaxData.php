@@ -1,46 +1,33 @@
 <?php
-//Include database configuration file
-require_once("lib/dbcontroller.php");
- $db_handle = new DBController();
-
-if(isset($_POST["country_id"]) && !empty($_POST["country_id"])){
+include('lib/connect.php');
+if (isset($_POST["country_name"]) && !empty($_POST["country_name"])) {
     //Get all state data
-   $product_array = $db_handle->runQuery("SELECT * FROM states WHERE country_id = ".$_POST['country_id']."");
-    print_r($product_array);
-	
-	echo "SELECT * FROM states WHERE country_id = ".$_POST['country_id']."";
-    //Count total number of rows
-    //$rowCount = $query->num_rows;
-    
-    //Display states list
-   if (!empty($product_array)) { 
-        echo '<option value="">Select state</option>';
-        foreach($product_array as $key=>$value){
-		?>
-        	
-            <option value="<?php echo $product_array[$key]['id']?>"><?php echo $product_array[$key]['name']?></option>
-        <?php    
+    $getcountryid = mysqli_query($con, "SELECT id FROM countries WHERE name = '".$_POST['country_name']."'");
+    $country_id = mysqli_fetch_row($getcountryid);
+    $state_array = mysqli_query($con, "SELECT * FROM states WHERE country_id = '".$country_id[0]."' ORDER BY name ASC");
+    if ($state_array->num_rows > 0) {
+        echo '<option value="">Select State</option>';
+        while($srow = $state_array->fetch_assoc()) {
+            echo "<option name='".$srow['name']."' value='".$srow['name']."'>".$srow['name']."</option>";
         }
-    }else{
+    } else {
         echo '<option value="">State not available</option>';
     }
 }
 
-if(isset($_POST["state"]) && !empty($_POST["state"])){
+if (isset($_POST["state_name"]) && !empty($_POST["state_name"])) {
     //Get all city data
-    //$query = $db->query("SELECT * FROM cities WHERE state_id = ".$_POST['state']." AND status = 1 ORDER BY city_name ASC");
-	$product_array1 = $db_handle->runQuery("SELECT * FROM cities WHERE state_id = ".$_POST['state']."");
- 
+    $getstateid = mysqli_query($con, "SELECT id FROM states WHERE name = '".$_POST['state_name']."'");
+    $state_id = mysqli_fetch_row($getstateid);
+    $city_array = mysqli_query($con, "SELECT * FROM cities WHERE state_id = '".$state_id[0]."' ORDER BY name ASC");
+
     //Display cities list
-   if (!empty($product_array1)) {
+    if ($city_array->num_rows > 0) {
         echo '<option value="">Select city</option>';
-       foreach($product_array1 as $key=>$value){
-	?>	
-    	 <option value="<?php echo $product_array1[$key]['id']?>"><?php echo $product_array1[$key]['name']?></option>   
-           
-     <?php       
+        while($crow = $city_array->fetch_assoc()) {
+            echo "<option name= '".$crow['name']."' value='".$crow['name']."'>".$crow['name']."</option>";
         }
-    }else{
+    } else {
         echo '<option value="">City not available</option>';
     }
 }

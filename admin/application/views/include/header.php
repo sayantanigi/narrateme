@@ -57,8 +57,8 @@
                                 <a href="<?php echo base_url(); ?>home"><i class="icon-calendar"></i>Dashboard</a>
                             </li>
                             <!--<li> <a href="app_calendar.html"> <i class="icon-calendar"></i> My Calendar </a> </li>-->
-                            <li><a href="adminprofile.php"><i class="icon-user"></i> Admin Profile</a></li>
-                            <li> <a href="changepass.php"><i class="icon-lock"></i> Change Password</a></li>
+                            <li><a href="<?php echo base_url(); ?>adminprofile/view_adminprofile"><i class="icon-user"></i> Admin Profile</a></li>
+                            <li> <a href="<?php echo base_url(); ?>main/reset_password"><i class="icon-lock"></i> Change Password</a></li>
                             <li class="divider"></li>
                             <!-- <li> <a href="page_user_lock_1.html"> <i class="icon-lock"></i> Lock Screen </a> </li>-->
                             <li><a href="<?php echo base_url() ?>home/logout"><i class="icon-key"></i>Log Out</a></li>

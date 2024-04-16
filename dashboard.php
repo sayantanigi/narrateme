@@ -144,7 +144,7 @@ if (isset($_REQUEST['type'])) {
 					</div>
 					<div class="pmo-block pmo-contact hidden-xs">
 						<h2>Contact</h2>
-						<00ul>
+						<ul>
 							<li><i class="zmdi zmdi-phone"></i><?= $view['phone_no'] ?></li>
 							<li><i class="zmdi zmdi-email"></i><?= $view['email'] ?></li>
 							<?php if(!empty(@$soc['fb_links'])) { ?>

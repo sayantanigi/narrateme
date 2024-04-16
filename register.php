@@ -1,6 +1,5 @@
 <?php
 include('lib/headercms.php');
-
 if (isset($_REQUEST['regsub'])) {
 	strip_tags(mysqli_real_escape_string($con, extract($_POST)));
 	//echo "SELECT * from `na_member` where `email`='".$email."'";
@@ -97,6 +96,7 @@ if (isset($_REQUEST['regsub'])) {
 		}
 	}
 }
+$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <section class="body_content" style="padding: 0;">
@@ -128,7 +128,7 @@ if (isset($_REQUEST['regsub'])) {
 							<div ng-app="">
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
-										<label style="margin-bottom: 0px;">Prefix</label>
+										<label style="margin-bottom: 0px;"><b>Prefix</b></label>
 										<select class="form-control" name="prefixname" id="prefixname" ng-model="prefixname">
 											<option name="" value="">Please Select</option>
 											<option name="mr" value="Mr.">Mr.</option>
@@ -141,92 +141,50 @@ if (isset($_REQUEST['regsub'])) {
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
-										<label>First Name</label>
+										<label><b>First Name</b></label>
 										<input type="text" id="firstname" name="first_name" ng-model="first_name" class="form-control input-sm" value="<?php if (@$_REQUEST['first_name'] != '') { echo @$_REQUEST['first_name']; } ?>">
 										<div style="color:red" id="errofname"></div>
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
-										<label>Last Name</label>
+										<label><b>Last Name</b></label>
 										<input type="text" placeholder="" id="lastname" name="last_name" ng-model="last_name" value="<?php if (@$_REQUEST['last_name'] != '') { echo @$_REQUEST['last_name']; } ?>" class="form-control input-sm">
 										<div style="color:red" id="errolname"></div>
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group fg-line">
-										<label>Suffix</label>
+										<label><b>Suffix</b></label>
 										<input type="text" placeholder="" id="suffix" name="suffix" ng-model="suffix" value="<?php if (@$_REQUEST['suffix'] != '') { echo @$_REQUEST['suffix']; } ?>" class="form-control input-sm">
 										<div style="color:red" id="errorsuffix"></div>
 									</div>
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group fg-line">
-										<label>Name of Member</label>
+										<label><b>Name of Member</b></label>
 										<input type="text" placeholder="Full Name Here" id="fullname" name="fullname" value="{{prefixname}} {{first_name}} {{last_name}} {{suffix}}" class="form-control input-sm">
 										<div style="color:red" id="errorfullname"></div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row">	
-							<div class="col-sm-3">
-								<div class="form-group fg-line">
-									<label style="margin-bottom: 0px;">Country</label>
-									<select class="form-control" name="country" id="country">
-										<option name="" value="">Please Select Country</option>
-										<?php $countrysql = mysqli_query($con, "SELECT * FROM `na_country`");
-										while ($countryfetch = mysqli_fetch_array($countrysql)) { ?>
-											<option name="<?= $countryfetch['nicename'] ?>" value="<?= $countryfetch['nicename'] ?>"><?= $countryfetch['nicename'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-								<div style="color:red" id="errorcountry"></div>
-							</div>
-							<div class="col-sm-3">
-								<div class="form-group fg-line">
-									<label style="margin-bottom: 0px;">Address</label>
-									<textarea type="text" id="address" name="address" class="form-control input-sm"><?php if (@$_REQUEST['address'] != '') { echo @$_REQUEST['address']; } ?></textarea>
-								</div>
-								<div style="color:red" id="erroraddress"></div>
-							</div>
-							<div class="col-sm-3">
-								<div class="form-group fg-line">
-									<label>City</label>
-									<input type="text" placeholder="" id="" name="city" value="<?php if (@$_REQUEST['city'] != '') { echo @$_REQUEST['city']; } ?>" class="form-control input-sm">
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="form-group fg-line">
-									<label>State</label>
-									<input type="text" placeholder="" id="" name="state" value="<?php if (@$_REQUEST['state'] != '') { echo @$_REQUEST['state']; } ?>" class="form-control input-sm">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="form-group fg-line">
-									<label>Zip code</label>
-									<input type="text" placeholder="" id="" name="zip_code" class="form-control input-sm" value="<?php if (@$_REQUEST['zip_code'] != '') { echo @$_REQUEST['zip_code']; } ?>" maxlength="6">
-								</div>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
-									<label>Telephone No</label>
-									<input type="text" placeholder="" name="phone_no" id="" class="form-control input-sm" value="<?php if (@$_REQUEST['phone_no'] != '') { echo @$_REQUEST['phone_no']; } ?>" maxlength="10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group fg-line">
-									<label>Email</label>
+									<label><b>Email</b></label>
 									<input type="email" placeholder="" name="email" id="" value="<?php if (@$_REQUEST['email'] != '') { echo @$_REQUEST['email']; } ?>" class="form-control input-sm" required>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
-									<label>Text No</label>
+									<label><b>Telephone No</b></label>
+									<input type="text" placeholder="" name="phone_no" id="" class="form-control input-sm" value="<?php if (@$_REQUEST['phone_no'] != '') { echo @$_REQUEST['phone_no']; } ?>" maxlength="10">
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group fg-line">
+									<label><b>Text No</b></label>
 									<input type="text" placeholder="" id="" value="<?php if (@$_REQUEST['text_no'] != '') { echo @$_REQUEST['text_no']; } ?>" name="text_no" class="form-control input-sm" maxlength="10">
 								</div>
 							</div>
@@ -234,19 +192,65 @@ if (isset($_REQUEST['regsub'])) {
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
-									<label>Website(s)</label>
+									<label style="margin-bottom: 0px;"><b>Address</b></label>
+									<textarea type="text" id="address" name="address" class="form-control input-sm"><?php if (@$_REQUEST['address'] != '') { echo @$_REQUEST['address']; } ?></textarea>
+								</div>
+								<div style="color:red" id="erroraddress"></div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group fg-line">
+									<label style="margin-bottom: 0px;"><b>Country</b></label>
+									<select class="form-control" name="country" id="country" onchange="getState(this.value)">
+										<option name="" value="">Please Select Country</option>
+										<?php $countrysql = mysqli_query($con, "SELECT * FROM countries  ORDER BY id ASC");
+										while ($countryfetch = mysqli_fetch_array($countrysql)) { ?>
+											<option name="<?= $countryfetch['name'] ?>" value="<?= $countryfetch['name'] ?>"><?= $countryfetch['name'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div style="color:red" id="errorcountry"></div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group fg-line">
+									<label style="margin-bottom: 0px;"><b>State</b></label>
+									<select class="form-control" name="state" id="state" onchange="getCity(this.value);">
+										<option value="">Select State</option>
+									</select>
+									<!-- <input type="text" placeholder="" id="" name="city" value="<?php if (@$_REQUEST['city'] != '') { echo @$_REQUEST['city']; } ?>" class="form-control input-sm"> -->
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group fg-line">
+									<label style="margin-bottom: 0px;"><b>City</b></label>
+									<select class="form-control" name="city" id="city">
+										<option value="">Select City</option>
+									</select>
+									<!-- <input type="text" placeholder="" id="" name="state" value="<?php if (@$_REQUEST['state'] != '') { echo @$_REQUEST['state']; } ?>" class="form-control input-sm"> -->
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group fg-line">
+									<label><b>Zip code</b></label>
+									<input type="text" placeholder="" id="" name="zip_code" class="form-control input-sm" value="<?php if (@$_REQUEST['zip_code'] != '') { echo @$_REQUEST['zip_code']; } ?>" maxlength="6">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-group fg-line">
+									<label style="margin-bottom: 0px;"><b>Website(s)</b></label>
 									<input type="text" placeholder="(e.g http://www.narrateme.com)" id="" name="website" class="form-control input-sm" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>">
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
-									<label>Domain Name(s)</label>
+									<label style="margin-bottom: 0px;"><b>Domain Name(s)</b></label>
 									<input type="text" placeholder="" id="" name="domain_name" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group fg-line">
-									<label>URL(s)</label>
+									<label style="margin-bottom: 0px;"><b>URL(s)</b></label>
 									<input type="text" placeholder="" id="" name="url" value="<?php if (@$_REQUEST['website'] != '') { echo @$_REQUEST['website']; } ?>" class="form-control input-sm">
 								</div>
 							</div>
@@ -254,14 +258,14 @@ if (isset($_REQUEST['regsub'])) {
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group fg-line">
-									<label>User Name</label>
+									<label style="margin-bottom: 0px;"><b>User Name</b></label>
 									<input type="text" placeholder="" id="usrnamereg" value="<?php if (@$_REQUEST['username'] != '') { echo @$_REQUEST['username']; } ?>" name="username" class="form-control input-sm">
 									<div style="color:red" id="errousrnm"></div>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group fg-line">
-									<label>Password</label>
+									<label style="margin-bottom: 0px;"><b>Password</b></label>
 									<input type="password" placeholder="" id="passwordreg" value="<?php if (@$_REQUEST['password'] != '') { echo @$_REQUEST['password']; } ?>" name="password" class="form-control input-sm">
 									<div style="color:red" id="errorpassword"></div>
 								</div>
@@ -296,11 +300,13 @@ if (isset($_REQUEST['regsub'])) {
 							</div>
 						</div>
 						<button class="submit_btn btn btn-primary waves-effect" name="regsub" type="submit">Submit</button>
+						<input type="hidden" id="baseurl" value="<?php echo $currentURL; ?>"/>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
 <script>
 	function SubmitReg() {
@@ -369,6 +375,38 @@ if (isset($_REQUEST['regsub'])) {
 			$("#errousrnm").html("");
 			return true;
 		}
+	}
+	function getState(val) {
+		//var base_url = $("#base_url").val();
+		var id = val;
+		$.ajax({
+			type:"post",
+			cache:false,
+			url:"./ajaxData.php",
+			data:{country_name:id},
+			beforeSend:function(){},
+			success:function(returndata) {
+				$('.state_field').show();
+				$('#state').html(returndata);
+				$('#city').html('<option value="">Select State First</option>');
+			}
+		});
+	}
+	function getCity(val) {
+		//var base_url = $("#base_url").val();
+		var id = val;
+		$.ajax({
+			type:"post",
+			cache:false,
+			url:"./ajaxData.php",
+			data:{state_name:id},
+			beforeSend:function(){},
+			success:function(returndata) {
+				$('.state_field').show();
+				$('#city').html(returndata);
+				//$('#city').html('<option value="">Select State First</option>');
+			}
+		});
 	}
 </script>
 <style>

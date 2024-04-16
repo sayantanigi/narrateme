@@ -36,7 +36,7 @@ class Category extends CI_Controller {
 		$my_date = date("Y-m-d", time());
 		$config = array(
 			'upload_path' => "uploads/categoryimage/",
-			'upload_url' => base_url() . "uploads/categoryimage/",
+			'upload_url' => base_url()."uploads/categoryimage/",
 			'allowed_types' => "gif|jpg|png|jpeg"
 		);
 		$this->load->library('upload', $config);
@@ -50,8 +50,7 @@ class Category extends CI_Controller {
 			$this->load->view('supercontrol/header', $data);
 			$data['categories'] = $this->cat->category_menu();
 			$this->session->set_flashdata('message', 'Category created successfully');
-			$this->load->view('supercontrol/categoryadd_view', $data);
-			$this->load->view('supercontrol/footer');
+			redirect('supercontrol/category/show_category', TRUE);
 		} else {
 			$data['userfile'] = $this->upload->data();
 			$filename = $data['userfile']['file_name'];
@@ -66,41 +65,26 @@ class Category extends CI_Controller {
 			$this->load->view('supercontrol/header', $data);
 			$data['categories'] = $this->cat->category_menu();
 			$this->session->set_flashdata('message', 'Category created successfully');
-			$this->load->view('supercontrol/categoryadd_view', $data);
-			$this->load->view('supercontrol/footer');
+			redirect('supercontrol/category/show_category', TRUE);
 		}
 	}
-	function success()
-	{
-		$data['h1title'] = 'Add Category';
-		$data['title'] = 'Add Category';
-		$this->load->view('supercontrol/header');
-		$this->load->view('supercontrol/categoryadd_view', $data);
-		$this->load->view('supercontrol/footer');
-	}
-	function show_category()
-	{
-		$this->load->database();
+	function show_category(){
 		$this->load->model('supercontrol/category_model');
-		$query = $this->category_model->show_category();
-		$data['eloca'] = $query;
+		$data['eloca'] = $this->category_model->show_category();
 		$data['title'] = "Category List";
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/showcategorylist', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function statusnews()
-	{
+	function statusnews() {
 		$stat = $this->input->get('stat');
 		$id = $this->input->get('id');
 		$this->load->model('news_model');
 		$this->news_model->updt($stat, $id);
 	}
-	function show_category_id($id)
-	{
+	function show_category_id($id) {
 		$id = $this->uri->segment(4);
 		$data['title'] = "Edit Category";
-		$this->load->database();
 		$this->load->model('supercontrol/category_model');
 		$query = $this->category_model->show_category_id($id);
 		$data['ecategory'] = $query;
@@ -113,8 +97,7 @@ class Category extends CI_Controller {
 		$this->load->view('supercontrol/category_edit', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function edit_category()
-	{
+	function edit_category() {
 		$config = array(
 			'upload_path' => "uploads/categoryimage/",
 			'upload_url' => base_url() . "uploads/categoryimage/",
@@ -141,8 +124,7 @@ class Category extends CI_Controller {
 		$this->session->set_flashdata('message', 'Data Updated Successfully !!!');
 		redirect('supercontrol/category/show_category');
 	}
-	function delete_category($id)
-	{
+	function delete_category($id) {
 		$this->load->model('supercontrol/category_model');
 		$result = $this->category_model->show_category_id($id);
 		$this->load->database();
@@ -158,16 +140,14 @@ class Category extends CI_Controller {
 			redirect('supercontrol/category/show_category', TRUE);
 		}
 	}
-	function delete_multiple()
-	{
+	function delete_multiple() {
 		$ids = (explode(',', $this->input->get_post('ids')));
 		$this->news_model->delete_mul($ids);
 		$this->load->view('header');
 		redirect('news/show_news');
 		$this->load->view('footer');
 	}
-	public function Logout()
-	{
+	public function Logout() {
 		$this->session->sess_destroy();
 		redirect('supercontrol/login');
 	}

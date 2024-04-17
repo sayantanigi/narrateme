@@ -4,6 +4,7 @@ $nl2 = $this->uri->segment(3);
 ?>
 <style>
     .page-sidebar .page-sidebar-menu>li>a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a { padding: 10px 0 !important;}
+    .tab-content>.tab-pane {display: block !important;}
 </style>
 <div class="page-sidebar navbar-collapse collapse">
     <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
@@ -184,7 +185,7 @@ $nl2 = $this->uri->segment(3);
         <li class="nav-item <?php if ($nl == "level") { ?>active open<?php } ?>">
             <a href="javascript:;" class="nav-link nav-toggle"> <i class="fa fa-certificate"></i> <span class="title">Level Management</span> <span class="addindividual"></span> <span class="arrow addindividual"></span> </a>
             <ul class="sub-menu">
-            <li class="nav-item  <?php if ($nl == "mode_add_form") { ?>active open<?php } ?>"> <a href="<?php echo base_url(); ?>supercontrol/mode/mode_add_form" class="nav-link "> <span class="title">Add Level</span> </a> </li>
+            <li class="nav-item  <?php if ($nl == "level_add_form") { ?>active open<?php } ?>"> <a href="<?php echo base_url(); ?>supercontrol/level/level_add_form" class="nav-link "> <span class="title">Add Level</span> </a> </li>
                 <li class="nav-item  <?php if ($nl == "show_level") { ?>active open<?php } ?>"> <a href="<?php echo base_url(); ?>supercontrol/level/show_level" class="nav-link "> <span class="title">Manage Level</span> </a> </li>
             </ul>
         </li>

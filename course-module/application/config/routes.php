@@ -44,17 +44,13 @@
 $route['default_controller'] = "home";
 $route['supercontrol'] = "supercontrol/main/login";
 $route['supercontrol/home/(:any)'] = "supercontrol/home/index/$1";
-
 $route['404_override'] = '';
 //$route['courses/(:any)'] = "courses/index/$1";
 $route['courses/upcomingcoursedetails/(:any)'] = "courses/upcomingcoursedetails/$1";
 $route['courses/comingsooncoursedetails/(:any)'] = "courses/comingsooncoursedetails/$1";
-
-
 $route['upload/do_upload'] = 'upload/do_upload';
 $route['upload/(:any)'] = 'upload/view/$1';
 $route['upload'] = 'upload';
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

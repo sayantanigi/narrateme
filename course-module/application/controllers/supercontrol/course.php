@@ -25,81 +25,61 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/footer');
 	}
 	function add_course() {
-		$table_name = 'sm_category';
-		$primary_key = 'category_id !=';
-		$wheredata = '0';
-		$queryallcat = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		// $data['allcat'] = $queryallcat;
-		// $data['categories'] = $this->generalmodel->getCategories();
-		// $data['cites'] = $this->generalmodel->getCities();
-		// $data['levels'] = $this->generalmodel->getlevel();
-		// $data['modes'] = $this->generalmodel->getMode();
-		// $data['locations'] = $this->generalmodel->getlocations();
-		// $data['country'] = $this->db->get('na_country')->result();
+		$data['allcat'] = $this->db->query("SELECT * FROM sm_category")->result_array();
+		//$data['country'] = $this->db->get('na_country')->result();
+		// $data['state'] = $this->db->get('na_country')->result();
+		// $data['city'] = $this->db->get('na_country')->result();
+		$data['levels'] = $this->db->query("SELECT * FROM sm_levels WHERE level_status = 1")->result_array();
+		$data['modes'] = $this->db->query("SELECT * FROM sm_mode WHERE mode_status = 1")->result_array();
 		$data['title'] = "Add course";
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/courseadd_view');
 		$this->load->view('supercontrol/footer');
 	}
 	function add_my_course() {
-		$my_date = date("Y-m-d", time());
-		$table_name = 'sm_course';
-		$config = array(
-			'upload_path' => "uploads/courseimage/",
-			'upload_url' => base_url() . "uploads/courseimage/",
-			'allowed_types' => "gif|jpg|png|jpeg"
-		);
-		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('userfile')) {
-			$data = array(
-				'course_name' => $this->input->post('course_name'),
-				'course_category' => $this->input->post('course_category'),
-				'price' => $this->input->post('price'),
-				/*'cpd' => $this->input->post('cpd'),*/
-				'course_type' => $this->input->post('course_type'),
-				'certificate' => $this->input->post('certificate'),
-				'entry_requirment' => $this->input->post('entry_requirment'),
-				'who_should_apply' => $this->input->post('who_should_apply'),
-				'add_date' => date('Y-m-d H:i:s'),
-				'course_description' => $this->input->post('course_description'),
-				'course_startDate' => date('Y-m-d', strtotime($this->input->post('start_date'))),
-				'course_endDate' => date('Y-m-d', strtotime($this->input->post('end_date'))),
-				'course_mode' => $this->input->post('course_mode'),
-				'course_level' => $this->input->post('course_level'),
-				'userid' => $this->session->userdata('userid'),
-			);
-			$insertId = $this->generalmodel->insert_data($table_name, $data);
-			$this->load->view('supercontrol/header', $data);
-			$data['success_msg'] = '<div class="alert alert-success text-center">Data Added Successfully!</div>';
-			redirect('supercontrol/course/show_course', 'refresh');
-			$this->load->view('supercontrol/footer');
+		if ($_FILES['userfile']['name'] != '') {
+			$_POST['userfile'] = rand(0000, 9999) . "_" . $_FILES['userfile']['name'];
+			$config2['image_library'] = 'gd2';
+			$config2['source_image'] =  $_FILES['userfile']['tmp_name'];
+			$config2['new_image'] =   getcwd() . '/uploads/courseimage/' . $_POST['userfile'];
+			$config2['upload_path'] =  getcwd() . '/uploads/courseimage/';
+			$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg';
+			$config2['maintain_ratio'] = FALSE;
+			$this->image_lib->initialize($config2);
+			if (!$this->image_lib->resize()) {
+				echo ('<pre>');
+				echo ($this->image_lib->display_errors());
+				exit;
+			} else {
+				$image  = $_POST['userfile'];
+				@unlink('uploads/users/' . $_POST['old_image']);
+			}
 		} else {
-			$data['userfile'] = $this->upload->data();
-			$filename = $data['userfile']['file_name'];
-			$data = array(
-				'course_name' => $this->input->post('course_name'),
-				'course_category' => $this->input->post('course_category'),
-				'price' => $this->input->post('price'),
-				/*'cpd' => $this->input->post('cpd'),*/
-				'course_type' => $this->input->post('course_type'),
-				'certificate' => $this->input->post('certificate'),
-				'entry_requirment' => $this->input->post('entry_requirment'),
-				'who_should_apply' => $this->input->post('who_should_apply'),
-				'add_date' => date('Y-m-d H:i:s'),
-				'course_description' => $this->input->post('course_description'),
-				'course_image' => $filename,
-				'course_startDate' => date('Y-m-d', strtotime($this->input->post('start_date'))),
-				'course_endDate' => date('Y-m-d', strtotime($this->input->post('end_date'))),
-				'course_mode' => $this->input->post('course_mode'),
-				'course_level' => $this->input->post('course_level'),
-				'userid' => $this->session->userdata('userid'),
-			);
-			$this->generalmodel->insert_data($table_name, $data);
-			$this->load->view('supercontrol/header', $data);
-			$this->session->set_flashdata('message', 'Data Added Successfully!');
-			redirect('supercontrol/course/show_course', 'refresh');
-			$this->load->view('supercontrol/footer');
+			$image  = $_POST['old_image'];
 		}
+		$data = array(
+			'course_name' => $this->input->post('course_name'),
+			'course_category' => $this->input->post('course_category'),
+			'price' => $this->input->post('price'),
+			/*'cpd' => $this->input->post('cpd'),*/
+			'course_type' => $this->input->post('course_type'),
+			'certificate' => $this->input->post('certificate'),
+			'entry_requirment' => $this->input->post('entry_requirment'),
+			'who_should_apply' => $this->input->post('who_should_apply'),
+			'add_date' => date('Y-m-d H:i:s'),
+			'course_description' => $this->input->post('course_description'),
+			'course_image' => $image,
+			'course_startDate' => date('Y-m-d', strtotime($this->input->post('start_date'))),
+			'course_endDate' => date('Y-m-d', strtotime($this->input->post('end_date'))),
+			'course_mode' => $this->input->post('course_mode'),
+			'course_level' => $this->input->post('course_level'),
+			'userid' => $this->session->userdata('userid'),
+		);
+		$this->generalmodel->insert_data('sm_course', $data);
+		$this->load->view('supercontrol/header', $data);
+		$data['success_msg'] = '<div class="alert alert-success text-center">Data Added Successfully!</div>';
+		redirect('supercontrol/course/show_course', 'refresh');
+		$this->load->view('supercontrol/footer');
 	}
 	function add_instructor() {
 		$queryinst = $this->instructor_model->show_member();
@@ -202,32 +182,14 @@ class Course extends CI_Controller {
 		$this->news_model->updt($stat, $id);
 	}
 	function show_course_id($id) {
-		$id = $this->uri->segment(4);
 		$data['title'] = "Edit course";
-		$table_name = 'sm_course';
-		$primary_key = 'course_id';
-		$wheredata = $id;
-		$querycourse = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$data['course'] = $querycourse;
-		$table_name = 'sm_category';
-		$primary_key = 'category_id !=';
-		$wheredata = '0';
-		$data['categories'] = $this->generalmodel->getCategories();
-		$data['cites'] = $this->generalmodel->getCities();
-		$data['levels'] = $this->generalmodel->getlevel();
-		$data['modes'] = $this->generalmodel->getMode();
-		$queryallcat = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$data['allcat'] = $queryallcat;
-		$table_name = 'sm_mode';
-		$primary_key = 'mode_status';
-		$wheredata = '1';
-		$queryallmode = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$data['eallmode'] = $queryallmode;
-		$table_name = 'sm_levels';
-		$primary_key = 'level_status';
-		$wheredata = '1';
-		$queryalllevel = $this->generalmodel->getAllData($table_name, $primary_key, $wheredata, '', '');
-		$data['ealllevel'] = $queryalllevel;
+		$data['course'] = $this->db->query("SELECT * FROM sm_course WHERE course_id = '".$id."' AND status = '1'")->result_array();
+		$data['allcat'] = $this->db->query("SELECT * FROM sm_category")->result_array();
+		// //$data['country'] = $this->db->get('na_country')->result();
+		// // $data['state'] = $this->db->get('na_country')->result();
+		// // $data['city'] = $this->db->get('na_country')->result();
+		$data['levels'] = $this->db->query("SELECT * FROM sm_levels WHERE level_status = 1")->result_array();
+		$data['modes'] = $this->db->query("SELECT * FROM sm_mode WHERE mode_status = 1")->result_array();
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/course_edit', $data);
 		$this->load->view('supercontrol/footer');
@@ -287,50 +249,45 @@ class Course extends CI_Controller {
 		$this->load->view('supercontrol/footer');
 	}
 	function edit_course() {
-		$course_image = $this->input->post('course_image');
-		$config = array(
-			'upload_path' => "uploads/courseimage/",
-			'upload_url' => base_url() . "uploads/courseimage/",
-			'allowed_types' => "gif|jpg|png|jpeg"
-		);
-		$this->load->library('upload', $config);
-		if ($this->upload->do_upload("userfile")) {
-			@unlink("uploads/courseimage/" . $course_image);
-			$data['img'] = $this->upload->data();
-			$data = array(
-				'course_name' => $this->input->post('course_name'),
-				'course_category' => $this->input->post('course_category'),
-				'price' => $this->input->post('price'),
-				'course_type' => $this->input->post('course_type'),
-				'certificate' => $this->input->post('certificate'),
-				'entry_requirment' => $this->input->post('entry_requirment'),
-				'course_description' => $this->input->post('course_description'),
-				'course_startDate' => date('Y-m-d', strtotime($this->input->post('course_startDate'))),
-				'course_endDate' => date('Y-m-d', strtotime($this->input->post('course_endDate'))),
-				'course_mode' => $this->input->post('course_mode'),
-				'course_level' => $this->input->post('course_level'),
-				'course_image' => $data['img']['file_name']
-			);
+		if ($_FILES['userfile']['name'] != '') {
+			$_POST['userfile'] = rand(0000, 9999) . "_" . $_FILES['userfile']['name'];
+			$config2['image_library'] = 'gd2';
+			$config2['source_image'] =  $_FILES['userfile']['tmp_name'];
+			$config2['new_image'] =   getcwd() . '/uploads/courseimage/' . $_POST['userfile'];
+			$config2['upload_path'] =  getcwd() . '/uploads/courseimage/';
+			$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg';
+			$config2['maintain_ratio'] = FALSE;
+			$this->image_lib->initialize($config2);
+			if (!$this->image_lib->resize()) {
+				echo ('<pre>');
+				echo ($this->image_lib->display_errors());
+				exit;
+			} else {
+				$image  = $_POST['userfile'];
+				@unlink('uploads/users/' . $_POST['old_image']);
+			}
 		} else {
-			$data = array(
-				'course_name' => $this->input->post('course_name'),
-				'course_category' => $this->input->post('course_category'),
-				'price' => $this->input->post('price'),
-				'course_type' => $this->input->post('course_type'),
-				'certificate' => $this->input->post('certificate'),
-				'entry_requirment' => $this->input->post('entry_requirment'),
-				'course_description' => $this->input->post('course_description'),
-				'course_startDate' => date('Y-m-d', strtotime($this->input->post('course_startDate'))),
-				'course_endDate' => date('Y-m-d', strtotime($this->input->post('course_endDate'))),
-				'course_mode' => $this->input->post('course_mode'),
-				'course_level' => $this->input->post('course_level'),
-			);
+			$image  = $_POST['old_image'];
 		}
+		$data = array(
+			'course_name' => $this->input->post('course_name'),
+			'course_category' => $this->input->post('course_category'),
+			'price' => $this->input->post('price'),
+			'course_type' => $this->input->post('course_type'),
+			'certificate' => $this->input->post('certificate'),
+			'entry_requirment' => $this->input->post('entry_requirment'),
+			'course_description' => $this->input->post('course_description'),
+			'course_startDate' => date('Y-m-d', strtotime($this->input->post('course_startDate'))),
+			'course_endDate' => date('Y-m-d', strtotime($this->input->post('course_endDate'))),
+			'course_mode' => $this->input->post('course_mode'),
+			'course_level' => $this->input->post('course_level'),
+			'course_image' => $image
+		);
 		$table_name = 'sm_course';
 		$fieldname = 'course_id';
-		$id = $this->input->post('course_id');
+		$course_id = $this->input->post('course_id');
 		$action = 'update';
-		$this->generalmodel->show_data_id($table_name, $id, $fieldname, $action, $data);
+		$this->generalmodel->show_data_id($table_name, $course_id, $fieldname, $action, $data);
 		$data['title'] = "course Edit";
 		$this->session->set_flashdata('edit_message', 'Data Updated Successfully !!!');
 		redirect('supercontrol/course/show_course');

@@ -47,23 +47,12 @@
                     <li> <span>Admin panel</span> </li>
                 </ul>
             </div>
-            <div class="alert alert-success alert-dismissable" style="padding:10px;">
-                <button class="close" aria-hidden="true" data-dismiss="alert" type="button" style="right:0;"></button>
-                <strong>
-                    <?php
-                    if (@$success_msg != '') {
-                        echo @$success_msg;
-                    }
-                    $last = end($this->uri->segments);
-                    if ($last == "success") {
-                        echo "course Added Successfully ......";
-                    }
-                    if ($last == "successdelete") {
-                        echo "course Deleted Successfully ......";
-                    }
-                    ?>
-                </strong>
-            </div>
+            <?php if($this->session->flashdata('message')) {
+                echo '<div class="alert alert-success alert-dismissable" style="padding:10px;">';
+                echo $this->session->flashdata('message');
+                unset($_SESSION['message']);
+                echo '</div>';
+            } ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable-line boxless tabbable-reversed">
@@ -87,7 +76,7 @@
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                                                 <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
                                                             </div>
-                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                                             <div>
                                                                 <span class="btn default btn-file">
                                                                     <span class="fileinput-new"> Select image </span>
@@ -109,9 +98,7 @@
                                                         <select name="course_category" class="form-control">
                                                             <option>-- Select Category --</option>
                                                             <?php foreach ($allcat as $ac) { ?>
-                                                                <option value="<?php echo $ac->category_id ?>">
-                                                                    <?php echo $ac->category_name ?>
-                                                                </option>
+                                                                <option value="<?php echo $ac['category_id'] ?>"> <?php echo $ac['category_name'] ?> </option>
                                                             <?php } ?>
                                                         </select>
                                                         <label id="errorBox"></label>
@@ -139,7 +126,7 @@
                                                     <b><label class="col-md-3 control-label">Course Type *</label></b>
                                                     <div class="col-md-8">
                                                         <select name="course_type" class="form-control">
-                                                            <option>-- Select Level --</option>
+                                                            <option>-- Select Type --</option>
                                                             <option value="Upcoming Courses">Upcoming Courses</option>
                                                             <option value="Coming Soon courses">Coming Soon courses
                                                             </option>
@@ -184,19 +171,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <b>
-                                                        <label class="col-md-3 control-label">Course Mode *</label>
-                                                    </b>
+                                                    <b><label class="col-md-3 control-label">Course Mode *</label></b>
                                                     <div class="col-md-8">
                                                         <select name="course_mode" class="form-control">
                                                             <option>-- Select Mode --</option>
-                                                            <?php
-                                                            if (is_array($modes) && count($modes) > 0) {
-                                                                foreach ($modes as $mo) {
-                                                            ?>
-                                                            <option value="<?= $mo->id ?>"><?= $mo->mode_title ?></option>
-                                                            <?php }
-                                                            } ?>
+                                                            <?php if (is_array($modes) && count($modes) > 0) {
+                                                                foreach ($modes as $mo) { ?>
+                                                            <option value="<?= $mo['id'] ?>"><?= $mo['mode_title'] ?></option>
+                                                            <?php } } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -206,11 +188,9 @@
                                                         <select name="course_level" class="form-control">
                                                             <option>-- Select Level --</option>
                                                             <?php if (is_array($levels) && count($levels) > 0) {
-                                                                foreach ($levels as $lv) {
-                                                            ?>
-                                                            <option value="<?= $lv->id ?>"><?= $lv->level_title ?></option>
-                                                            <?php }
-                                                            } ?>
+                                                                foreach ($levels as $lv) { ?>
+                                                            <option value="<?= $lv['id'] ?>"><?= $lv['level_title'] ?></option>
+                                                            <?php } } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -365,10 +345,11 @@
             this.setOptions({
                 minTime: '11:00'
             });
-        } else
+        } else {
             this.setOptions({
                 minTime: '8:00'
             });
+        }
     };
     $('#datetimepicker7').datetimepicker({
         onChangeDateTime: logic,
@@ -385,8 +366,7 @@
     });
     $('#datetimepicker9').datetimepicker({
         onGenerate: function (ct) {
-            $(this).find('.xdsoft_date.xdsoft_weekend')
-                .addClass('xdsoft_disabled');
+            $(this).find('.xdsoft_date.xdsoft_weekend').addClass('xdsoft_disabled');
         },
         weekends: ['01.01.2014', '02.01.2014', '03.01.2014', '04.01.2014', '05.01.2014', '06.01.2014'],
         timepicker: false

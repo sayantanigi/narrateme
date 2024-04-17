@@ -30,36 +30,16 @@ class Mode extends CI_Controller {
     }
     function add_mode() {
         $my_date = date("Y-m-d", time());
-        // if(!empty($_FILES['userfile']['name'])) {
-		// 	$_POST['userfile']= rand(0000,9999)."_".$_FILES['userfile']['name'];
-		// 	$config2['image_library'] = 'gd2';
-		// 	$config2['source_image'] = $_FILES['userfile']['tmp_name'];
-		// 	$config2['new_image'] = getcwd().'/uploads/mode/'.$_POST['userfile'];
-		// 	$config2['upload_path'] = getcwd().'/uploads/mode/';
-		// 	$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg|avif';
-		// 	$config2['maintain_ratio'] = FALSE;
-		// 	$this->image_lib->initialize($config2);
-		// 	if(!$this->image_lib->resize()) {
-		// 		echo('<pre>');
-		// 		echo ($this->image_lib->display_errors());
-		// 		exit;
-		// 	} else {
-		// 		$imgname  = $_POST['userfile'];
-		// 		@unlink(getcwd().'/uploads/mode/'.$_POST['old_image']);
-		// 	}
-		// } else {
-		// 	$imgname  = $_POST['old_image'];
-		// }
         $data = array(
             'mode_title' => $this->input->post('mode_title'),
             'posted_by' => $this->session->userdata('userid'),
-            //'mode_image' => $imgname,
             'mode_desc' => $this->input->post('mode_desc'),
             'date' => $my_date,
             'mode_status' => 1
         );
         $this->mode_model->insert_mode($data);
-        redirect('supercontrol/mode/show_mode', 'refresh');
+        $this->session->set_flashdata('message', 'Data Added Successfully !!!');
+        redirect('supercontrol/mode/show_mode');
     }
     function view_mode($id) {
         $id = $this->uri->segment(4);
@@ -72,16 +52,14 @@ class Mode extends CI_Controller {
         $this->load->view('supercontrol/mode_view', $data);
         $this->load->view('supercontrol/footer');
     }
-    function success()
-    {
+    function success() {
         $data['h1title'] = 'Add Mode';
         $data['title'] = 'Add Mode';
         $this->load->view('supercontrol/header');
         $this->load->view('supercontrol/modeadd_view', $data);
         $this->load->view('supercontrol/footer');
     }
-    function show_mode()
-    {
+    function show_mode() {
         $this->load->database();
         $this->load->model('supercontrol/mode_model');
         $query = $this->mode_model->show_mode();
@@ -91,15 +69,13 @@ class Mode extends CI_Controller {
         $this->load->view('supercontrol/showmodelist');
         $this->load->view('supercontrol/footer');
     }
-    function statusmode()
-    {
+    function statusmode() {
         $stat = $this->input->get('stat');
         $id = $this->input->get('id');
         $this->load->model('supercontrol/mode_model');
         $this->mode_model->updt($stat, $id);
     }
-    function show_mode_id($id)
-    {
+    function show_mode_id($id) {
         $id = $this->uri->segment(4);
         $data['title'] = "Edit mode";
         $this->load->database();
@@ -110,8 +86,7 @@ class Mode extends CI_Controller {
         $this->load->view('supercontrol/mode_edit', $data);
         $this->load->view('supercontrol/footer');
     }
-    function edit_mode()
-    {
+    function edit_mode() {
         $mode_image = $this->input->post('mode_image');
         $config = array(
             'upload_path' => "uploads/mode/",
@@ -124,7 +99,7 @@ class Mode extends CI_Controller {
             $data['img'] = $this->upload->data();
             $datalist = array(
                 'mode_title' => $this->input->post('mode_title'),
-                'posted_by' => $this->input->post('posted_by'),
+                'posted_by' => $this->session->userdata('userid'),
                 'mode_desc' => $this->input->post('mode_desc'),
                 'mode_image' => $data['img']['file_name']
             );
@@ -133,17 +108,17 @@ class Mode extends CI_Controller {
             $this->load->database();
             $this->load->model('supercontrol/mode_model');
             $query = $this->mode_model->mode_edit($id, $datalist);
-            $data1['message'] = '<div class="alert alert-success text-center">Data successfully uploaded!!!</div>';
+            $this->session->set_flashdata('message', 'Data successfully updated!!!');
             $query = $this->mode_model->show_modelist();
             $data['ecms'] = $query;
             $data['title'] = "Mode Page List";
             $this->load->view('supercontrol/header', $data);
-            $this->load->view('supercontrol/showmodelist', $data1);
+            $this->load->view('supercontrol/showmodelist');
             $this->load->view('supercontrol/footer');
         } else {
             $datalist = array(
                 'mode_title' => $this->input->post('mode_title'),
-                'posted_by' => $this->input->post('posted_by'),
+                'posted_by' => $this->session->userdata('userid'),
                 'mode_desc' => $this->input->post('mode_desc')
             );
             $id = $this->input->post('mode_id');
@@ -151,12 +126,12 @@ class Mode extends CI_Controller {
             $this->load->database();
             $this->load->model('supercontrol/mode_model');
             $query = $this->mode_model->mode_edit($id, $datalist);
-            $data1['message'] = '<div class="alert alert-success text-center"> Data successfully uploaded!!!</div>';
+            $this->session->set_flashdata('message', 'Data successfully updated!!!');
             $query = $this->mode_model->show_modelist();
             $data['ecms'] = $query;
             $data['title'] = "mode Page List";
             $this->load->view('supercontrol/header', $data);
-            $this->load->view('supercontrol/showmodelist', $data1);
+            $this->load->view('supercontrol/showmodelist');
             $this->load->view('supercontrol/footer');
         }
     }
@@ -169,7 +144,7 @@ class Mode extends CI_Controller {
         $query = $this->mode_model->show_modelist();
         $data['ecms'] = $query;
         $data['title'] = "mode Page List";
-        $this->session->set_flashdata('success_delete', 'Mode Deleted Successfully !!!');
+        $this->session->set_flashdata('message', 'Mode Deleted Successfully !!!');
         redirect('supercontrol/mode/show_mode', TRUE);
     }
     function delete_multiple()
@@ -180,11 +155,6 @@ class Mode extends CI_Controller {
         $this->load->view('supercontrol/header');
         redirect('supercontrol/mode/show_mode', $data4);
         $this->load->view('supercontrol/footer');
-    }
-    public function Logout()
-    {
-        $this->session->sess_destroy();
-        redirect('supercontrol/login');
     }
 }
 ?>

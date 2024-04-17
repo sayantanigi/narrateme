@@ -24,20 +24,6 @@
                     <li> <span>supercontrol panel</span> </li>
                 </ul>
             </div>
-            <div class="alert alert-success alert-dismissable" style="padding:10px;">
-                <button class="close" aria-hidden="true" data-dismiss="alert" type="button" style="right:0;"></button>
-                <strong>
-                    <?php
-                    $last = end($this->uri->segments);
-                    if ($last == "success") {
-                        echo "Data Added Successfully ......";
-                    }
-                    if ($last == "successdelete") {
-                        echo "Data Deleted Successfully ......";
-                    }
-                    ?>
-                </strong>
-            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable-line boxless tabbable-reversed">

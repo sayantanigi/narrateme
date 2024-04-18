@@ -1,3 +1,7 @@
+<style>
+.list-box figure img {height: 215px !important;}
+.price-view {text-align: justify !important;}
+</style>
 <?php
 $this->db->select('*');
 $this->db->from('sm_course');
@@ -59,7 +63,7 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                     <div class="col-form">
                         <label>Category </label>
                         <div class="field-select">
-                            <select class="select-option" onchange="courseget(this);">
+                            <select class="select-option" id="categoryshow" onchange="courseget(this);">
                                 <option value="">-- Select Category --</option>
                                 <?php if (is_array($coursepcategory) && count($coursepcategory) > 0) {
                                 foreach ($coursepcategory as $cat) { ?>
@@ -80,7 +84,7 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                     <div class="col-form">
                         <label>Level </label>
                         <div class="field-select">
-                            <select class="select-option">
+                            <select class="select-option" id="levelshow">
                                 <option>-- Select Level --</option>
                                 <?php if (is_array($levels) && count($levels) > 0) {
                                     foreach ($levels as $lv) { ?>
@@ -93,17 +97,17 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                     <div class="col-form">
                         <label>Type  </label>
                         <div class="field-select">
-                            <select class="select-option">
+                            <select class="select-option" id="typeshow">
                                 <option>-- Select Type --</option>
                                 <option value="Upcoming Courses">Upcoming Courses</option>
                                 <option value="Coming Soon courses">Coming Soon courses</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-form">
+                    <div class="col-form col-name">
                         <label>Certificate </label>
                         <div class="field-select">
-                            <select class="select-option">
+                            <select class="select-option" id="certificateshow">
                                 <option>-- Select Course Certificate --</option>
                                 <option value="Certificate of Completion">Certificate of Completion</option>
                                 <option value="Certificate of Attendance">Certificate of Attendance</option>
@@ -111,8 +115,8 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                             </select>
                         </div>
                     </div>
-                    <div class="col-form buttonForm">
-                        <button type="button" class="btn">Search</button>
+                    <div class="col-form buttonForm" style="width: 8% !important">
+                        <button type="button" class="btn" onclick="searchCourse()">Search</button>
                     </div>
                 </div>
             </div>
@@ -144,6 +148,9 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                                         <div class="all-content">
                                             <div class="hd-bt clearfix">
                                                 <h3><?php echo $i->course_name; ?></h3>
+                                            </div>
+                                            <div class="price-view">
+                                                <span>Price $<?php echo $i->price; ?></span>
                                                 <span class="name-bt"><?php
                                                 $this->load->model('generalmodel');
                                                 $table_name = 'sm_category';
@@ -153,16 +160,12 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                                                 echo $queryallcat[0]->category_name;
                                                 ?></span>
                                             </div>
-                                            <div class="price-view"><span>Price $<?php echo $i->price; ?></span></div>
                                             <div class="contentView">
-                                                <p><?php echo $i->course_startDate; ?> to <?php echo $i->course_endDate; ?> <!-- </br>
-                                        Wednesday, 10:00am to 14:00pm --></p>
+                                                <p><?php echo date('jS M `y', strtotime($i->course_startDate)); ?> to <?php echo date('jS M `y', strtotime($i->course_endDate)); ?></p>
                                             </div>
                                             <div class="both-bt">
-                                                <a href="http://localhost/narrateme/course-module/courses/upcomingcoursedetails/<?php echo $i->course_id; ?>"
-                                                    class="button-default orange">Course Details</a> <a
-                                                    href="<?= base_url(); ?>courses/payment" class="button-default orange">Book
-                                                    Now</a>
+                                                <a href="http://localhost/narrateme/course-module/courses/upcomingcoursedetails/<?php echo $i->course_id; ?>" class="button-default orange">Course Details</a>
+                                                <a href="<?= base_url(); ?>courses/payment" class="button-default orange">Book Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -287,3 +290,15 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
     </div>
 
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function searchCourse() {
+       var categoryshow = $('#categoryshow').val();
+       var courseshow = $('#courseshow').val();
+       var levelshow = $('#levelshow').val();
+       var typeshow = $('#typeshow').val();
+       var certificateshow = $('#certificateshow').val();
+       var data = {categoryshow: categoryshow, courseshow: courseshow,levelshow: levelshow, typeshow: typeshow, certificateshow: certificateshow}
+       console.log(data);
+    }
+</script>

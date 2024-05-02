@@ -13,11 +13,8 @@ $nl2 = $this->uri->segment(3);
             <div class="sidebar-toggler"> </div>
         </li>
         <li class="sidebar-search-wrapper"> </li>
-        <li class="nav-item start "> <a href="<?php echo base_url() ?>supercontrol/home" class="nav-link "> <span class="title">Dashboard</span> </a>
-            <ul class="sub-menu">
-                <li class="nav-item start "> <a href="<?php echo base_url() ?>supercontrol/home" class="nav-link "> <i class="icon-list"></i> <span class="title">View Dashboard</span> </a> </li>
-            </ul>
-        </li>
+        <li class="nav-item start "> <a href="<?php echo base_url() ?>supercontrol/home" class="nav-link "> <i class="fa fa-certificate"></i><span class="title">Go to Dashboard</span> </a></li>
+        <li class="nav-item start "> <a href="<?php echo base_url(); ?>../dashboard.php" class="nav-link "> <i class="fa fa-certificate"></i><span class="title">Go to Profile</span> </a></li>
         <li class="heading">
             <h3 class="uppercase">Features</h3>
         </li>
@@ -219,5 +216,6 @@ $nl2 = $this->uri->segment(3);
                 <li class="nav-item <?php if ($nl2 == "schedule_list") { ?>active open<?php } ?>"> <a href="<?php echo base_url(); ?>supercontrol/member/instructor_schedule" class="nav-link "> <span class="title">Schedule List </span> </a> </li>
             </ul>
         </li>
+        <!-- <li class="nav-item start "> <a href="<?php echo base_url() ?>supercontrol/main/logout" class="nav-link "> <i class="fa fa-certificate"></i><span class="title">Log out</span> </a> </li> -->
     </ul>
 </div>

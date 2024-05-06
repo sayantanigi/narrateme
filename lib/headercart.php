@@ -1,6 +1,5 @@
 <?php
 include ('application_top_cart.php');
-//$_SESSION["user_log_flag"] = 0; //login false
 if (isset($_POST['login'])) {
     extract($_POST);
     $username = mysqli_real_escape_string($con, strip_tags(trim(@$user)));
@@ -10,44 +9,35 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($con, $query);
     $counter = mysqli_num_rows($result);
     $row = mysqli_fetch_array($result);
-    //exit();
     if ($row > 0) {
         $_SESSION["user_log_flag"] = 1;
         $_SESSION["username"] = $row['username'];
         $_SESSION["useremail"] = $row['email'];
-        $_SESSION["userid"] = $row['id']; //login true
+        $_SESSION["userid"] = $row['id'];
         $_SESSION["user_log_flag"];
-
-        //exit();
-        //header("location: dashboard.php");
         echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
         echo "window.top.location.href='dashboard.php';\n";
         echo "</script>";
     } else {
-        $_SESSION["user_log_flag"] = 0; //login false
+        $_SESSION["user_log_flag"] = 0;
         $MSGlogfalse = "Invalid Username or Password";
         echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
         echo "window.top.location.href='index.php?op=logfals';\n";
         echo "</script>";
     }
 }
-
-//if(@$_SESSION['user_log_flag']==1){
-//$viewmember=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
-// }
-
-//=================Page Name Fetch=======================
-//$id=$_GET['id'];
-//$FetchPageName = mysql_fetch_array(mysql_query("SELECT * FROM `na_cms` WHERE id = '".$id."'"));
-//=================Page Name Fetch=======================
+if(@$_SESSION['user_log_flag']==1){
+    $viewmember=getAnyTableWhereData('na_member', " AND username='".$_SESSION["username"]."' ");
+}
+@$id=$_GET['id'];
+$FetchPageName = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `na_cms` WHERE id = '".$id."'"));
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>NarrateMe | <?= $FetchPageName['cms_pagetitle'] ?></title>
+    <title>NarrateMe | <?= @$FetchPageName['cms_pagetitle'] ?></title>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
     <link href="css/animations.css" rel="stylesheet" />
@@ -61,18 +51,12 @@ if (isset($_POST['login'])) {
     <link href="dashboard/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
     <link href="dashboard/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
     <link href="dashboard/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-    <link
-        href="dashboard/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
-        rel="stylesheet">
-    <link href="dashboard/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
-        rel="stylesheet">
-    <!-- CSS -->
+    <link href="dashboard/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="dashboard/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="dashboard/css/app.min.1.css" rel="stylesheet">
     <link href="dashboard/css/app.min.2.css" rel="stylesheet">
 </head>
-
 <body>
-
     <header>
         <div class="header_top">
             <div class="container-fluid">
@@ -81,31 +65,22 @@ if (isset($_POST['login'])) {
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <div id="wb_Login-link">
                                 <span class="top-text">
-                                    <?php
-                                    if (@$_SESSION['user_log_flag'] == 1) {
-                                        ?>
-                                        <a class="link-foo-ha" href="logout.php">Logout</a>
+                                    <?php if (@$_SESSION['user_log_flag'] == 1) { ?>
+                                    <a class="link-foo-ha" href="logout.php">Logout</a>
                                     <?php } else { ?>
-                                        <a href="#" class="link-foo-ha"
-                                            onClick="$('#Login-area').modal('show');return false;"
-                                            style="margin-right: 20px;">Log In</a>
-                                    <?php } ?>
-                                    <?php
-                                    if (@$_SESSION['user_log_flag'] == 1) {
-                                        ?>
-                                        <a class="link-foo-ha"
-                                            href="dashboard.php"><?php echo $viewmember['first_name'] . " " . $viewmember['last_name'] ?></a>
+                                    <a href="#" class="link-foo-ha" onClick="$('#Login-area').modal('show');return false;" style="margin-right: 20px;">Log In</a>
+                                    <?php }
+                                    if (@$_SESSION['user_log_flag'] == 1) { ?>
+                                    <a class="link-foo-ha" href="dashboard.php"><?php echo $viewmember['first_name'] . " " . $viewmember['last_name'] ?></a>
                                     <?php } else { ?>
-                                        <a class="link-foo-ha" href="register.php">Register / Sign Up</a>
+                                    <a class="link-foo-ha" href="register.php">Register / Sign Up</a>
                                     <?php } ?>
-
                                 </span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <form method="post" action="page_search.php" id="Search-site_form" name="Search-site_form">
-                                <input type="text" placeholder="Search this website" value="" name="pagetitle"
-                                    id="Search-site">
+                                <input type="text" placeholder="Search this website" value="" name="pagetitle" id="Search-site">
                                 <input type="submit" value="SEARCH" name="searchsub" id="Search-buttn">
                             </form>
                         </div>
@@ -118,19 +93,15 @@ if (isset($_POST['login'])) {
                 <div class="row">
                     <div class="col-lg-12 main_nav">
                         <nav class="navbar navbar-default">
-                            <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                     <span class="sr-only">Toggle navigation</span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="index.php"><img src="images/Logo.png" class=""
-                                        alt="logo"></a>
+                                <a class="navbar-brand" href="index.php"><img src="images/Logo.png" class="" alt="logo"></a>
                             </div>
-
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
@@ -149,8 +120,7 @@ if (isset($_POST['login'])) {
                                     <?php } ?>
                                     <li><a href="contact.php?id=5">Contact Us</a></li>
                                 </ul>
-
-                            </div><!-- /.navbar-collapse -->
+                            </div>
                         </nav>
                     </div>
                 </div>

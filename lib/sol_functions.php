@@ -13,19 +13,19 @@ function SendEMail($from,$to,$subject,$msg) {
 		// $headers .= 'From: <$from>' . "\r\n";
 		$headers="Content-Type:text/html;CHARSET=iso-8859-1\r\n";
 		$headers.="From: $from\r\n";
-		
+
 		$message = $msg;
 		return mail($to,$subject,$message,$headers);
 		//HTML email BOF
 	} else { //SMTP
-		//////SMTP Mail BOF //////		
+		//////SMTP Mail BOF //////
 		$host = "mail.example.com"; //setup SMTP host
 		$username = "smtp_username"; //setup SMTP username
 		$password = "smtp_password"; //setup SMTP password
 
 		require_once "Mail.php";
-		$body = $msg;		
-		
+		$body = $msg;
+
 		$headers = array ('From' => $from,
 			'To' => $to,
 			'Subject' => $subject);
@@ -34,9 +34,9 @@ function SendEMail($from,$to,$subject,$msg) {
 				'auth' => true,
 				'username' => $username,
 				'password' => $password));
-		
+
 		$mail = $smtp->send($to, $headers, $body);
-		
+
 		if (PEAR::isError($mail)) {
 			return FALSE;
 		 } else {
@@ -53,11 +53,11 @@ function SendEMail($from,$to,$subject,$msg) {
 /////////////////////////////////////////////////////////////
 function download_file($file_path,$file_name) {
 	$filename = $file_path.$file_name;
-	header("Cache-control: private"); 
-	header("Content-Type: application/octet-stream"); 
+	header("Cache-control: private");
+	header("Content-Type: application/octet-stream");
 	header("Content-Length: ".filesize($filename));
 	header("Content-Disposition: attachment; filename=".$file_name);
-	
+
 	$fp = fopen($filename, 'r');
 	fpassthru($fp);
 	fclose($fp);
@@ -113,7 +113,7 @@ function insertData($data, $table) {
 
 		$result=mysqli_query($con, $sql) or die(mysqli_error());
 		return $result;
-	} 
+	}
 	return 0;
 }
 
@@ -146,9 +146,9 @@ function updateData($data, $table, $parameters = '') {
 		}
 		 $sql = 'UPDATE ' . $table . ' ' . $data . ' ' . $where;
 		//exit();
-	
+
 		$result=mysqli_query($con, $sql) or die(mysqli_error());
-		return $result;	  
+		return $result;
 	}
 	return 0;
 }
@@ -166,10 +166,10 @@ function getAnyTableWhereData($table,$whereClause) {
 	$query="select * from $table where 1=1 $whereClause ";
 	$result = $con->query($query);
 	//echo "<pre>"; print_r($result);
-	if($row = mysqli_fetch_assoc($result)) {	
+	if($row = mysqli_fetch_assoc($result)) {
 		mysqli_free_result($result);
 		return $row;
-	} else {	
+	} else {
 		return false;
 	}
 }
@@ -186,7 +186,7 @@ function getAlldataWhereData($table,$whereClause) {
 		die("Connection failed: " . $con->connect_error);
 	}
 	$query="select * from $table where 1=1 $whereClause ";
-	
+
 	//echo "<br>$query";
 	$result=mysqli_query($con, $query) or die(mysqli_error());
 }
@@ -240,7 +240,7 @@ Function CheckImageSize($imageUrl) {
 /////////////////////////////////////////////////////////////
 //	Function to Upload file
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function upload_my_file($upload_file,$destination) {
 	//move_uploaded_file
@@ -257,7 +257,7 @@ function upload_my_file($upload_file,$destination) {
 /////////////////////////////////////////////////////////////
 //	Functions for image
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function create_thumb($path,$size,$save_path) {
 	if (file_exists($path)) {
@@ -377,10 +377,10 @@ class my_thumbnail {
 /////////////////////////////////////////////////////////////
 //	Function to format and display date
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function show_formatted_date($p_date) {
-	if($p_date=="0000-00-00" || $p_date=="0000-00-00 00:00:00") 
+	if($p_date=="0000-00-00" || $p_date=="0000-00-00 00:00:00")
 		return ;
 	else {
 		$arr_date=explode(' ',$p_date);
@@ -389,7 +389,7 @@ function show_formatted_date($p_date) {
 		} else {
 			return date('dS F Y ',strtotime($p_date));
 		}
-	}	 
+	}
 }
 /////////////////////////////////////////////////////////////////
 
@@ -398,28 +398,28 @@ function show_formatted_date($p_date) {
 //	Date: 24-02-2009
 // 	Instructions: just pass the date of birth in function
 /////////////////////////////////////////////////////////////
-function GetAge($DOB) { 
-	list($Year, $Month, $Day) = explode("-",$DOB); 
-	$YearDifference  = date("Y") - $Year; 
-	$MonthDifference = date("m") - $Month; 
-	$DayDifference   = date("d") - $Day; 
-	if ($DayDifference < 0 || $MonthDifference < 0) { 
-	$YearDifference--; 
-	} 
-	return $YearDifference; 
+function GetAge($DOB) {
+	list($Year, $Month, $Day) = explode("-",$DOB);
+	$YearDifference  = date("Y") - $Year;
+	$MonthDifference = date("m") - $Month;
+	$DayDifference   = date("d") - $Day;
+	if ($DayDifference < 0 || $MonthDifference < 0) {
+	$YearDifference--;
+	}
+	return $YearDifference;
 }
 /////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////
 //	Function to compare the difference in two dates and return days
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function date_diff_two_date($start,$end) {
-	$start=substr($start, 0,10);    
-	$start=str_replace("-", "", $start); 
-	$end=substr($end, 0,10);    
-	$end=str_replace("-", "", $end); 
+	$start=substr($start, 0,10);
+	$start=str_replace("-", "", $start);
+	$end=substr($end, 0,10);
+	$end=str_replace("-", "", $end);
 	$count=0;
 	for($j = $start;$j<=$end;$j++){
 		$year = substr($j,0,4);
@@ -440,14 +440,14 @@ function date_diff_two_date($start,$end) {
 			$j = $year.$mnd.$day;
 		}
 	}
-	return $count; 
+	return $count;
 }
 ///////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////
 //	Function to return the no of days in month start
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function daysInMonth($month, $year) {
 	if(checkdate($month, 31, $year)) return 31;
@@ -463,7 +463,7 @@ function date_timelisting($date,$seldd="day",$selmm="month",$selyy="year",$hr="h
 		$str_date=explode(" ",$date);
 		list($hrs,$mins,$secs)=split(":",$str_date[1]);
    	}
-	//print_r($str_date); 
+	//print_r($str_date);
 	//echo $hrs;
 	//date dropdown
 	  	print '<select name="'.$seldd.'"><option value="">Date</option>';
@@ -498,7 +498,7 @@ function date_timelisting($date,$seldd="day",$selmm="month",$selyy="year",$hr="h
 	} else {
 		$s_yy = $startYear;
 	}
-	
+
 	if($endYear=="") {
 		$e_yy=(date('Y')+1);
 	} else {
@@ -551,17 +551,17 @@ function date_timelisting($date,$seldd="day",$selmm="month",$selyy="year",$hr="h
 /////////////////////////////////////////////////////////////
 //	Function to return the file name from where request originated start
 //	Date: 24-02-2009
-// 	Instructions: 
+// 	Instructions:
 /////////////////////////////////////////////////////////////
 function GetRedirectUrl() {
 	$REDIRECT_URL=$_SERVER['HTTP_REFERER']; // redirecting URL
-	$full_url=$REDIRECT_URL; // complete redirecting url  
-	$all_url=explode ( "/", $full_url); // explode url   
+	$full_url=$REDIRECT_URL; // complete redirecting url
+	$all_url=explode ( "/", $full_url); // explode url
 	$all_url=array_reverse($all_url);	// reverse array to fetch file name
 	$return_url= $all_url[0]; // return file name
 	$pos = strpos($return_url,"?"); // find position of ? in url
 	if($pos) {
-		$return_url=substr($return_url,0,$pos);		
+		$return_url=substr($return_url,0,$pos);
 	}
 	return $return_url;
 }
@@ -672,7 +672,7 @@ function sequre(){
 	if($_SESSION['user_log_flag'] != 1) {
 		header('location: index.php');
 		exit;
-	} 
+	}
 }
 
 function socialcheck() {
@@ -680,7 +680,7 @@ function socialcheck() {
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
-	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");	
+	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");
 	if(mysqli_num_rows($sqlcheck) < 1){
 		header('location: ../index.php');
 	}
@@ -691,7 +691,7 @@ function socialcheckreg() {
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
-	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");	
+	$sqlcheck=mysqli_query($con, "select * from `na_social_profile` where `user_id` =".$_SESSION["userid"]."");
 	if(mysqli_num_rows($sqlcheck) < 1){
 		header('location:social-network-profile-creation.php');
 	}

@@ -148,13 +148,21 @@ if (isset($_REQUEST['type'])) {
 							<li><i class="zmdi zmdi-phone"></i><?= $view['phone_no'] ?></li>
 							<li><i class="zmdi zmdi-email"></i><?= $view['email'] ?></li>
 							<?php if(!empty(@$soc['fb_links'])) { ?>
-							<li><i class="zmdi zmdi-facebook-box"></i><a href="<?= @$soc['fb_links'] ?>" target="_blank"><?= @$soc['fb_links'] ?></a></li>
+							<li><i class="zmdi zmdi-facebook-box"></i><a href="<?= @$soc['fb_links'] ?>" target="_blank" style="word-wrap: break-word;"><?= @$soc['fb_links'] ?></a></li>
 							<?php } ?>
-							<?php if(!empty(@$soc['fb_links'])) { ?>
-							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['twit_link'] ?>" target="_blank"><?= @$soc['twit_link'] ?></a></li>
+							<?php if(!empty(@$soc['gplus_link'])) { ?>
+							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['gplus_link'] ?>" target="_blank" style="word-wrap: break-word;"><?= @$soc['gplus_link'] ?></a></li>
 							<?php } ?>
-							<li> <i class="zmdi zmdi-pin"></i>
-								<address class="m-b-0 ng-binding"><?= $view['address'] ?>, <?= $view['country'] ?>, <?= $view['state'] ?></address>
+							<?php if(!empty(@$soc['twit_link'])) { ?>
+							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['twit_link'] ?>" target="_blank" style="word-wrap: break-word;"><?= @$soc['twit_link'] ?></a></li>
+							<?php } ?>
+							<?php if(!empty(@$soc['inst_link'])) { ?>
+							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['inst_link'] ?>" target="_blank" style="word-wrap: break-word;"><?= @$soc['inst_link'] ?></a></li>
+							<?php } ?>
+							<?php if(!empty(@$soc['linkd_link'])) { ?>
+							<li><i class="zmdi zmdi-twitter"></i><a href="<?= @$soc['linkd_link'] ?>" target="_blank" style="word-wrap: break-word;"><?= @$soc['linkd_link'] ?></a></li>
+							<?php } ?>
+							<li> <i class="zmdi zmdi-pin"></i><address class="m-b-0 ng-binding"><?= $view['address'] ?>, <?= $view['country'] ?>, <?= $view['state'] ?></address>
 							</li>
 						</ul>
 					</div>
@@ -192,27 +200,28 @@ if (isset($_REQUEST['type'])) {
 															<dt>Address</dt>
 															<dd><?= $view['address'] ?>
 																<span style="color:green;">
-																	<?php if ($view['addr_st'] == '1') {
-																		echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
-																	} else if ($view['addr_st'] == '2') {
-																		echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
-																	} else {
-																		echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
-																	} ?>
+																<?php if ($view['addr_st'] == '1') {
+																	echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
+																} else if ($view['addr_st'] == '2') {
+																	echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
+																} else {
+																	echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
+																} ?>
 																</span>
 															</dd>
 														</dl>
 														<dl class="dl-horizontal">
 															<dt>Telephone No.</dt>
-															<dd><?= $view['phone_no'] ?>
+															<dd>
+																<?= $view['phone_no'] ?>
 																<span style="color:green;">
-																	<?php if ($view['phone_st'] == '1') {
-																		echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
-																	} else if ($view['phone_st'] == '2') {
-																		echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
-																	} else {
-																		echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
-																	} ?>
+																<?php if ($view['phone_st'] == '1') {
+																	echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
+																} else if ($view['phone_st'] == '2') {
+																	echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
+																} else {
+																	echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
+																} ?>
 																</span>
 															</dd>
 														</dl>
@@ -220,28 +229,28 @@ if (isset($_REQUEST['type'])) {
 															<dt>E-mail Address</dt>
 															<dd><?= $view['email'] ?>
 																<span style="color:green;">
-																	<?php if ($view['email_st'] == '1') {
-																		echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
-																	} else if ($view['email_st'] == '2') {
-																		echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
-																	} else {
-																		echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
-																	} ?>
+																<?php if ($view['email_st'] == '1') {
+																	echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
+																} else if ($view['email_st'] == '2') {
+																	echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
+																} else {
+																	echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
+																} ?>
 																</span>
 															</dd>
 														</dl>
 														<dl class="dl-horizontal">
 															<dt>Text, Instant, SMS , or MMS message number</dt>
 															<dd><?= $view['text_no'] ?>
-																<span style="color:green;">
-																	<?php if ($view['text_no_st'] == '1') {
-																		echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
-																	} else if ($view['text_no_st'] == '2') {
-																		echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
-																	} else {
-																		echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
-																	} ?>
-																</span>
+															<span style="color:green;">
+																<?php if ($view['text_no_st'] == '1') {
+																	echo "<i class='fa fa-globe' aria-hidden='true'></i>&nbsp Public";
+																} else if ($view['text_no_st'] == '2') {
+																	echo "<i class='fa fa-lock' aria-hidden='true'></i>&nbsp Private";
+																} else {
+																	echo "<i class='fa fa-user' aria-hidden='true'></i>&nbsp Friends";
+																} ?>
+															</span>
 															</dd>
 														</dl>
 														<dl class="dl-horizontal">
@@ -267,22 +276,22 @@ if (isset($_REQUEST['type'])) {
 														<div id="onnn" style="display:none; text-align:center;">
 															<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 																<?php if ($viewusr['ind'] == 0) { ?>
-																	<input type="checkbox" onchange="this.form.submit()" value="ind" name="type" <?php if ($pagename == 'individual.php') { ?>checked<?php } ?>>Individual
+																<input type="checkbox" onchange="this.form.submit()" value="ind" name="type" <?php if ($pagename == 'individual.php') { ?>checked<?php } ?>>Individual
 																<?php }
 																if ($viewusr['std'] == 0) { ?>
-																	<input type="checkbox" name="type" value="std" onchange="this.form.submit()" <?php if ($pagename == 'student.php') { ?>checked<?php } ?>>Student
+																<input type="checkbox" name="type" value="std" onchange="this.form.submit()" <?php if ($pagename == 'student.php') { ?>checked<?php } ?>>Student
 																<?php }
 																if ($viewusr['edu'] == 0) { ?>
-																	<input type="checkbox" value="edu" name="type" onchange="this.form.submit()" <?php if ($pagename == 'educationalinstitute.php') { ?>checked<?php } ?>>Educational Institute
+																<input type="checkbox" value="edu" name="type" onchange="this.form.submit()" <?php if ($pagename == 'educationalinstitute.php') { ?>checked<?php } ?>>Educational Institute
 																<?php }
 																if ($viewusr['fac'] == 0) { ?>
-																	<input type="checkbox" value="fac" name="type" onchange="this.form.submit()" <?php if ($pagename == 'instructional_facility.php') { ?>checked<?php } ?>>Instructional Facility
+																<input type="checkbox" value="fac" name="type" onchange="this.form.submit()" <?php if ($pagename == 'instructional_facility.php') { ?>checked<?php } ?>>Instructional Facility
 																<?php }
 																if ($viewusr['soc'] == 0) { ?>
-																	<input type="checkbox" value="soc" name="type" onchange="this.form.submit()" <?php if ($pagename == 'instructional_facility.php') { ?>checked<?php } ?>>Social Profile
+																<input type="checkbox" value="soc" name="type" onchange="this.form.submit()" <?php if ($pagename == 'instructional_facility.php') { ?>checked<?php } ?>>Social Profile
 																<?php }
 																if ($viewusr['mpp'] == 0) { ?>
-																	<input value="mpp" name="type" type="checkbox" onchange="this.form.submit()" <?php if ($pagename == 'mediaprovider-profile.php') { ?> selected<?php } ?>>Media Provider Profile
+																<input value="mpp" name="type" type="checkbox" onchange="this.form.submit()" <?php if ($pagename == 'mediaprovider-profile.php') { ?> selected<?php } ?>>Media Provider Profile
 																<?php } ?>
 															</form>
 														</div>
@@ -342,10 +351,10 @@ if (isset($_REQUEST['type'])) {
 																	<div class="fg-line">
 																		<select class="form-control" name="country" id="country">
 																			<option name="" value="">Please Select Country</option>
-																			<?php $countrysql = mysqli_query($con, "SELECT * FROM `na_country`");
+																			<?php $countrysql = mysqli_query($con, "SELECT * FROM `countries`");
 																			while ($countryfetch = mysqli_fetch_array($countrysql)) {
 																			?>
-																				<option name="<?= $countryfetch['nicename'] ?>" value="<?= $countryfetch['nicename'] ?>" <?php if ($countryfetch['nicename'] == $view['country']) { ?>selected<?php } ?>><?= $countryfetch['nicename'] ?></option>
+																			<option name="<?= $countryfetch['name'] ?>" value="<?= $countryfetch['name'] ?>" <?php if ($countryfetch['name'] == $view['country']) { ?>selected<?php } ?>><?= $countryfetch['name'] ?></option>
 																			<?php } ?>
 																		</select>
 																	</div>
@@ -359,15 +368,9 @@ if (isset($_REQUEST['type'])) {
 																	</div>
 																	<div class="fg-line" style="width:20%;display: contents;">
 																		<select name="addr_st">
-																			<option value="1" <?php if ($view['addr_st'] == '1') {
-																									echo "selected";
-																								} ?>>Public</option>
-																			<option value="2" <?php if ($view['addr_st'] == '2') {
-																									echo "selected";
-																								} ?>>Private</option>
-																			<option value="3" <?php if ($view['addr_st'] == '3') {
-																									echo "selected";
-																								} ?>>Friends</option>
+																			<option value="1" <?php if ($view['addr_st'] == '1') { echo "selected"; } ?>>Public</option>
+																			<option value="2" <?php if ($view['addr_st'] == '2') { echo "selected"; } ?>>Private</option>
+																			<option value="3" <?php if ($view['addr_st'] == '3') { echo "selected"; } ?>>Friends</option>
 																		</select>
 																	</div>
 																</dd>
@@ -380,15 +383,9 @@ if (isset($_REQUEST['type'])) {
 																	</div>
 																	<div class="fg-line" style="width:20%;display: contents;">
 																		<select name="phone_st">
-																			<option value="1" <?php if ($view['phone_st'] == '1') {
-																									echo "selected";
-																								} ?>>Public</option>
-																			<option value="2" <?php if ($view['phone_st'] == '2') {
-																									echo "selected";
-																								} ?>>Private</option>
-																			<option value="3" <?php if ($view['phone_st'] == '3') {
-																									echo "selected";
-																								} ?>>Friends</option>
+																			<option value="1" <?php if ($view['phone_st'] == '1') { echo "selected"; } ?>>Public</option>
+																			<option value="2" <?php if ($view['phone_st'] == '2') { echo "selected"; } ?>>Private</option>
+																			<option value="3" <?php if ($view['phone_st'] == '3') { echo "selected"; } ?>>Friends</option>
 																		</select>
 																	</div>
 																</dd>
@@ -401,15 +398,9 @@ if (isset($_REQUEST['type'])) {
 																	</div>
 																	<div class="fg-line" style="width:20%;display: contents;">
 																		<select name="text_no_st">
-																			<option value="1" <?php if ($view['text_no_st'] == '1') {
-																									echo "selected";
-																								} ?>>Public</option>
-																			<option value="2" <?php if ($view['text_no_st'] == '2') {
-																									echo "selected";
-																								} ?>>Private</option>
-																			<option value="3" <?php if ($view['text_no_st'] == '3') {
-																									echo "selected";
-																								} ?>>Friends</option>
+																			<option value="1" <?php if ($view['text_no_st'] == '1') { echo "selected"; } ?>>Public</option>
+																			<option value="2" <?php if ($view['text_no_st'] == '2') { echo "selected"; } ?>>Private</option>
+																			<option value="3" <?php if ($view['text_no_st'] == '3') { echo "selected"; } ?>>Friends</option>
 																		</select>
 																	</div>
 																</dd>
@@ -422,15 +413,9 @@ if (isset($_REQUEST['type'])) {
 																	</div>
 																	<div class="fg-line" style="width:20%;display: contents;">
 																		<select name="email_st">
-																			<option value="1" <?php if ($view['email_st'] == '1') {
-																									echo "selected";
-																								} ?>>Public</option>
-																			<option value="2" <?php if ($view['email_st'] == '2') {
-																									echo "selected";
-																								} ?>>Private</option>
-																			<option value="3" <?php if ($view['email_st'] == '3') {
-																									echo "selected";
-																								} ?>>Friends</option>
+																			<option value="1" <?php if ($view['email_st'] == '1') { echo "selected"; } ?>>Public</option>
+																			<option value="2" <?php if ($view['email_st'] == '2') { echo "selected"; } ?>>Private</option>
+																			<option value="3" <?php if ($view['email_st'] == '3') { echo "selected"; } ?>>Friends</option>
 																		</select>
 																	</div>
 																</dd>

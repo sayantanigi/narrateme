@@ -1,7 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 session_start();
-class Batch extends CI_Controller {
-	function __construct() {
+class Batch extends CI_Controller
+{
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library(array('form_validation', 'session'));
@@ -18,13 +20,15 @@ class Batch extends CI_Controller {
 			redirect('supercontrol/home', 'refresh');
 		}
 	}
-	function index() {
+	function index()
+	{
 		$data['categories'] = $this->cat->course_menu();
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/courseadd_view', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function add_batch() {
+	function add_batch()
+	{
 		$table_name = 'sm_course';
 		$primary_key = 'course_id !=';
 		$wheredata = '0';
@@ -37,7 +41,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/batchadd_view');
 		$this->load->view('supercontrol/footer');
 	}
-	function add() {
+	function add()
+	{
 		$this->form_validation->set_rules('total_session', 'Total session', 'required');
 		$this->form_validation->set_rules('total_hour', 'Total hour', 'required');
 		if ($this->form_validation->run() == TRUE) {
@@ -90,14 +95,16 @@ class Batch extends CI_Controller {
 			$this->load->view('supercontrol/footer');
 		}
 	}
-	function add_batch_location() {
+	function add_batch_location()
+	{
 		$data['batchlist'] = $this->generalmodel->getAllData("sm_batch", "batchId !=", 0, '', '');
 		$data['title'] = "Add Location ";
 		$this->load->view('supercontrol/header', $data);
 		$this->load->view('supercontrol/add_batch_location_view');
 		$this->load->view('supercontrol/footer');
 	}
-	function addLocation() {
+	function addLocation()
+	{
 		$this->form_validation->set_rules('batchId', 'batch Name', 'trim|required');
 		$this->form_validation->set_rules('locationAddress', 'address', 'trim|required');
 		$this->form_validation->set_rules('start_date', 'start date', 'trim|required');
@@ -130,7 +137,8 @@ class Batch extends CI_Controller {
 			$this->load->view('supercontrol/footer');
 		}
 	}
-	function show_batch_location() {
+	function show_batch_location()
+	{
 		$bid = $this->uri->segment(4);
 		$data['eloca'] = $this->generalmodel->getAllData("sm_batchlocation", "batchId", $bid, "", "");
 		$data['title'] = "Batch Wise Location List";
@@ -138,7 +146,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/showbatchlocationlist', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function add_instructor() {
+	function add_instructor()
+	{
 		$queryinst = $this->instructor_model->show_member();
 		$data['inst'] = $queryinst;
 		$querycourse = $this->instructor_model->show_course();
@@ -150,7 +159,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/instructoradd_view');
 		$this->load->view('supercontrol/footer');
 	}
-	public function add_course_instructor() {
+	public function add_course_instructor()
+	{
 		$table_name = 'sm_course_instructor';
 		$data = array(
 			'course_id' => $this->input->post('course_idd'),
@@ -165,14 +175,16 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('success', 'Data Added Successfully');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	function success() {
+	function success()
+	{
 		$data['h1title'] = 'Add course';
 		$data['title'] = 'Add course';
 		$this->load->view('supercontrol/header');
 		$this->load->view('supercontrol/courseadd_view', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function show_batch() {
+	function show_batch()
+	{
 		$table_name = 'sm_batch';
 		$primary_key = '';
 		$wheredata = '';
@@ -183,7 +195,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/showbatchlist', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function delete_batch() {
+	function delete_batch()
+	{
 		$id = $this->uri->segment(4);
 		$table_name = 'sm_batch';
 		$fieldname = 'batchId';
@@ -192,7 +205,8 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('delete_message', 'Batch Deleted Successfully');
 		redirect('supercontrol/batch/show_batch', TRUE);
 	}
-	function view_batch($id) {
+	function view_batch($id)
+	{
 		$id = $this->uri->segment(4);
 		$data['title'] = "View Batch";
 		$data['lessdetails'] = $this->generalmodel->fetch_all_join("Select * from sm_batch where batchId='$id'");
@@ -200,7 +214,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/batch_view', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function show_instructor() {
+	function show_instructor()
+	{
 		$queryinst = $this->instructor_model->show_instructor();
 		$data['inst'] = $queryinst;
 		$data['title'] = "course List";
@@ -208,13 +223,15 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/showinstructorlist', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function statusnews() {
+	function statusnews()
+	{
 		$stat = $this->input->get('stat');
 		$id = $this->input->get('id');
 		$this->load->model('news_model');
 		$this->news_model->updt($stat, $id);
 	}
-	function show_course_id($id) {
+	function show_course_id($id)
+	{
 		$id = $this->uri->segment(4);
 		$data['title'] = "Edit course";
 		$table_name = 'sm_course';
@@ -231,7 +248,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/course_edit', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function show_instructor_id($id) {
+	function show_instructor_id($id)
+	{
 		$id = $this->uri->segment(4);
 		$data['title'] = "Edit Instructor";
 		$table_name = 'sm_course_instructor';
@@ -249,7 +267,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/instructor_edit', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function edit_instructor() {
+	function edit_instructor()
+	{
 		$data = array(
 			'course_id' => $this->input->post('course_idd'),
 			'instructor_id' => $this->input->post('instructor_id'),
@@ -268,7 +287,8 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('edit_message', 'Data Updated Successfully !!!');
 		redirect('supercontrol/course/show_instructor');
 	}
-	function view_course($id) {
+	function view_course($id)
+	{
 		$id = $this->uri->segment(4);
 		$data['title'] = "Edit course";
 		$data['couserdetails'] = $this->generalmodel->fetch_all_join("Select * from sm_course where course_id='$id'");
@@ -285,7 +305,8 @@ class Batch extends CI_Controller {
 		$this->load->view('supercontrol/course_view', $data);
 		$this->load->view('supercontrol/footer');
 	}
-	function edit_course() {
+	function edit_course()
+	{
 		$course_image = $this->input->post('course_image');
 		$config = array(
 			'upload_path' => "uploads/courseimage/",
@@ -328,7 +349,8 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('edit_message', 'Data Updated Successfully !!!');
 		redirect('supercontrol/course/show_course');
 	}
-	function delete_course() {
+	function delete_course()
+	{
 		$id = $this->uri->segment(4);
 		$table_name = 'sm_course';
 		$fieldname = 'course_id';
@@ -337,7 +359,8 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('delete_message', 'Course Deleted Successfully');
 		redirect('supercontrol/course/show_course', TRUE);
 	}
-	function delete_instructor() {
+	function delete_instructor()
+	{
 		$id = $this->uri->segment(4);
 		$table_name = 'sm_course_instructor';
 		$fieldname = 'inst_id';
@@ -346,7 +369,8 @@ class Batch extends CI_Controller {
 		$this->session->set_flashdata('delete_message', 'Data Deleted Successfully');
 		redirect('supercontrol/course/show_instructor', TRUE);
 	}
-	function delete_multiple() {
+	function delete_multiple()
+	{
 		$ids = (explode(',', $this->input->get_post('ids')));
 		$this->generalmodel->delete_mul($ids);
 		$data4['msg1'] = '<div class="alert alert-success text-center"> Data successfully delete!!!</div>';

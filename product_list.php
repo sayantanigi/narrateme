@@ -204,7 +204,7 @@ if (!empty($_GET["action"])) {
 													<?php } ?>
 												</a>
 												<div class="caption">
-													<h4 class="group inner list-group-item-heading"> <a href="product_detail.php"><?php echo $product_array[$key]['product_name'] ?></a></h4>
+													<h4 class="group inner list-group-item-heading"> <a href="product_detail.php?id=<?php echo $product_array[$key]['product_id']?>"><?php echo $product_array[$key]['product_name'] ?></a></h4>
 													<p class="Product-Des group inner list-group-item-text"> <?php echo strip_tags($product_array[$key]['description']) ?></p>
 													<p class="lead Product-Price"> $<?php echo $product_array[$key]['price'] ?></p>
 												</div>

@@ -1,9 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 error_reporting(0);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 class Courses extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->database();
+		$this->load->library('email');
 		$this->load->model('general_model');
 		$this->load->model('generalmodel');
 		$this->load->helper('string');
@@ -368,6 +372,91 @@ class Courses extends CI_Controller {
 			$ht = '<option value="">No Course Found</option>';
 		}
 		echo $ht;
+	}
+	public function searchCourse() {
+		try {
+			$categoryshow = $this->input->post('categoryshow');
+			$certificateshow = $this->input->post('certificateshow');
+			$courseshow = $this->input->post('courseshow');
+			$levelshow = $this->input->post('levelshow');
+			$typeshow = $this->input->post('typeshow');
+
+			$query = "SELECT * FROM sm_course WHERE status = '1'";
+			if($categoryshow != '') {
+				$query .=" AND course_category  = '".$categoryshow."' ";
+			}
+			if($certificateshow != '') {
+				$query .=" AND certificate  = '".$certificateshow."' ";
+			}
+			if($courseshow != '') {
+				$query .=" AND course_id  = '".$courseshow."' ";
+			}
+			if($levelshow != '') {
+				$query .=" AND course_level  = '".$levelshow."' ";
+			}
+			if($typeshow != '') {
+				$query .=" AND course_type  = '".$typeshow."' ";
+			} else {
+				$query .=" AND course_type  = 'Upcoming Courses' ";
+			}
+			$searchdata = $this->db->query($query)->result_array();
+			$output = '';
+			if(!empty($searchdata)) {
+				foreach($searchdata as $row) {
+					if(!empty($row['course_image']) && file_exists('uploads/courseimage/'.$row['course_image'])) {
+						$courseimage= '<img src="'.base_url('uploads/courseimage/'.$row['course_image']).'" alt="" />';
+					} else {
+						$courseimage= '<img src="'.base_url('uploads/users/user.png').'" alt="" />';
+					}
+					$queryallcat = $this->db->query("SELECT * FROM sm_category WHERE category_id = '".$row['course_category']."'")->row();
+					$category_name = $queryallcat->category_name;
+					$output .= '<li><div class="list-box"><figure>'.$courseimage.'</figure><div class="all-content"><div class="hd-bt clearfix"><h3>'.$row['course_name'].'</h3></div><div class="price-view"><span>Price $'.$row['price'].'</span><span class="name-bt">'.$category_name.'</span></div><div class="contentView"><p>'.date('jS M `y', strtotime($row['course_startDate'])).' to '.date('jS M `y', strtotime($row['course_endDate'])).'</p></div><div class="both-bt"><a href="'.base_url().'courses/upcomingcoursedetails/'.$row['course_id'].'" class="button-default orange">Course Details</a><a href="'.base_url().'courses/payment" class="button-default orange">Book Now</a></div></div></div></div></li>';
+				}
+			} else {
+				$output .= '<div class="emply-resume-list"><div class="emply-resume-thumb"><h2>No Data Found</h2></div></div>';
+			}
+			echo $output;
+		} catch (\Throwable $th) {
+			echo $th->getMessage();
+		}
+	}
+	public function sendMessage() {
+		try {
+			$data['users_name'] = $this->input->post('users_name');
+			$data['users_email'] = $this->input->post('users_email');
+			$data['users_phno'] = $this->input->post('users_phno');
+			$data['users_msg'] = $this->input->post('users_msg');
+			$result = $this->db->insert('na_coure_request', $data);
+			$insert_id = $this->db->insert_id();
+			if(!empty($insert_id)) {
+				$message = '<table align="center" border="0" cellpadding="0" cellspacing="0" width="550" bgcolor="white" style="border:2px solid black"> <tbody> <tr> <td align="center"> <table align="center" border="0" cellpadding="0" cellspacing="0" class="col-550" width="550"> <tbody> <tr> <td align="center" style="background-color: #ff9900; height: 50px;"> <a href="#" style="text-decoration: none;"> <p style="color:white; font-weight:bold;">Narrateme</p> </a> </td> </tr> </tbody> </table> </td> </tr> <tr style="height: 110px;"> <td align="center" style="border: none;border-bottom: 2px solid #ff9900;padding-right: 20px;padding-left:20px"> <p style="font-weight: bolder;font-size: 42px; letter-spacing: 0.025em; color:black;height: 0px;display: inline-block;">Hello Admin</p> <p>Check out the latest course related query</p> </td> </tr><tr style="display: inline-block;"> <td style="height: 150px; padding: 20px; border: none; border-bottom: 2px solid #361B0E; background-color: white;"> <p style="text-align: left; align-items: center;"> <b> Full Name:</b> '.$this->input->post('users_name').' </p> <p style="text-align: left; align-items: center;"> <b> Email Address:</b> '.$this->input->post('users_email').' </p> <p style="text-align: left; align-items: center;"> <b> Contact Number:</b> '.$this->input->post('users_phno').' </p> <p style="text-align: left; align-items: center;"> <b> Message:</b> '.$this->input->post('users_msg').' </p> </td> </tr><tr style="border: none; background-color: #ff9900; height: 40px; color:white; padding-bottom: 20px; text-align: center;"> <td height="40px" align="center"> <p style="color:white; line-height: 1.5em;"> Narrateme </p> <a href="#"  style="border:none; text-decoration: none; padding: 5px;"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"  style="border:none; text-decoration: none; padding: 5px;"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#" style="border:none; text-decoration: none; padding: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i></a> </td> </tr> </tbody></table>';
+				require 'vendor/autoload.php';
+				$mail = new PHPMailer(true);
+				try {
+					$mail->CharSet = 'UTF-8';
+					$mail->SetFrom($this->input->post('users_email'), $this->input->post('users_name'));
+					$mail->AddAddress('sayantan@goigi.in', 'Narrateme');
+					$mail->IsHTML(true);
+					$mail->Subject = 'Check out the latest course related query';
+					$mail->Body = $message;
+					$mail->IsSMTP();
+					$mail->SMTPAuth   = true;
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+					$mail->Host       = "smtp-relay.brevo.com";
+					$mail->Port       = 587; //587 465
+					$mail->Username   = "goutampaul@goigi.in";
+					$mail->Password   = "b7nNQ4Fk9XdAOcL3";
+					$mail->send();
+				} catch (Exception $e) {
+					echo "Message could not be sent. Mailer Error: $mail->ErrorInfo";
+				}
+				echo "Thank you for submitting your request. our contact person will get in touch with you soon.";
+			} else {
+				echo "Something went wrong. Message could not be sent.";
+			}
+		} catch (\Throwable $th) {
+			echo $th->getMessage();
+		}
 	}
 }
 ?>

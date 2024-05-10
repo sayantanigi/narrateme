@@ -148,7 +148,8 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                                     </div>
                                     <div class="both-bt">
                                         <a href="http://localhost/narrateme/course-module/courses/upcomingcoursedetails/<?php echo $i->course_id; ?>" class="button-default orange">Course Details</a>
-                                        <a href="<?= base_url(); ?>courses/payment" class="button-default orange">Book Now</a>
+                                        <!-- <a href="<?= base_url(); ?>courses/payment" class="button-default orange">Book Now</a> -->
+                                        <a href="#" class="button-default orange">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +193,7 @@ $content = $this->generalmodel->show_data_id("sm_page_content", 3, "id", "get", 
                                     </div>
                                     <div class="both-bt">
                                         <a href="<?= base_url(); ?>courses/comingsooncoursedetails/<?php echo $i->course_id; ?>" class="button-default orange">Course Detail </a>
+                                        <!-- <a href="#" class="button-default orange">Register Your Interest </a> -->
                                         <a href="#" class="button-default orange">Register Your Interest </a>
                                     </div>
                                 </div>
